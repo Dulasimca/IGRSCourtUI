@@ -1,1 +1,50 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+@import url("../node_modules/primeicons/primeicons.css");
+@import url("../node_modules/primeng/resources/themes/mdc-light-indigo/theme.css");
+@import url("../node_modules/primeng/resources/primeng.min.css");
+
+
+label {
+    font-size: 12px !important;
+}
+.to-center {
+    display: flex !important;
+    justify-content: center !important;
+}
+.txt-to-center {
+    text-align: center !important;
+}
+
+.no-padding {
+    padding: 0 !important;
+}
+
+
+// primeng styles
+
+.p-dropdown {
+    width: -webkit-fill-available !important; 
+    border: 1px solid var(--blue-700) !important;
+}
+
+.p-inputtext {
+    width: -webkit-fill-available !important; 
+    border: 1px solid var(--blue-700) !important;
+}
+
+.p-float-label label {
+    font-size: 12px !important;
+}
+
+.p-panel .p-panel-header {
+    border: 1px solid #e0e0e0 !important;
+    padding: 0.55rem !important;
+    background: #7a87cc !important;
+    color: #fafafa !important;
+}
+
+.p-panel .p-panel-title {
+    font-size: 1rem !important;
+}
