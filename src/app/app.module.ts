@@ -16,6 +16,7 @@ import { HeaderComponent } from './header/header.component';
 import { MenuComponent } from './menu/menu.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PendingEnquiryComponent } from './forms/highcourt-cases/pending-enquiry/pending-enquiry.component';
+import { SupremecourtCaseDetailsComponent } from './forms/highcourt-cases/supremecourt-case-details/supremecourt-case-details.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { PendingEnquiryComponent } from './forms/highcourt-cases/pending-enquiry
     HeaderComponent,
     MenuComponent,
     DashboardComponent,
-    PendingEnquiryComponent
+    PendingEnquiryComponent,
+    SupremecourtCaseDetailsComponent
     
   ],
   imports: [
