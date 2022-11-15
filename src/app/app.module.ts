@@ -12,11 +12,17 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GovernmentRespondentComponent } from './forms/highcourt-cases/government-respondent/government-respondent.component';
+import { HeaderComponent } from './header/header.component';
+import { MenuComponent } from './menu/menu.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    GovernmentRespondentComponent
+    GovernmentRespondentComponent,
+    HeaderComponent,
+    MenuComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
