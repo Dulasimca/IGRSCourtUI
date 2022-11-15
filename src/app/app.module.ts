@@ -16,6 +16,7 @@ import { HeaderComponent } from './header/header.component';
 import { MenuComponent } from './menu/menu.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { OthersRespondentComponent } from './forms/highcourt-cases/others-respondent/others-respondent.component';
+import { PendingEnquiryComponent } from './forms/highcourt-cases/pending-enquiry/pending-enquiry.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,9 @@ import { OthersRespondentComponent } from './forms/highcourt-cases/others-respon
     HeaderComponent,
     MenuComponent,
     DashboardComponent,
-    OthersRespondentComponent
+    OthersRespondentComponent,
+    PendingEnquiryComponent
+    
   ],
   imports: [
     BrowserModule,
