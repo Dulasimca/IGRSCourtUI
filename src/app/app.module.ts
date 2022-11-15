@@ -15,6 +15,7 @@ import { GovernmentRespondentComponent } from './forms/highcourt-cases/governmen
 import { HeaderComponent } from './header/header.component';
 import { MenuComponent } from './menu/menu.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { PendingEnquiryComponent } from './forms/highcourt-cases/pending-enquiry/pending-enquiry.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     GovernmentRespondentComponent,
     HeaderComponent,
     MenuComponent,
-    DashboardComponent
+    DashboardComponent,
+    PendingEnquiryComponent
+    
   ],
   imports: [
     BrowserModule,
