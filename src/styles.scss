@@ -10,6 +10,7 @@ body {
 }
 label {
     font-size: 12px !important;
+    color: rgba(0, 0, 0, 0.6) !important;
 }
 .to-center {
     display: flex !important;
@@ -43,39 +44,42 @@ label {
     padding: 1rem !important;
 }
 
-
 // primeng styles
-
 .p-dropdown {
     width: -webkit-fill-available !important; 
     border: 1px solid var(--blue-700) !important;
 }
-
+.p-dropdown .p-inputtext {
+    border: none !important;
+}
 .p-inputtext {
     width: -webkit-fill-available !important; 
     border: 1px solid var(--blue-700) !important;
+    color: #292828c7 !important;
 }
-
+.p-inputtext.ng-touched.ng-invalid {
+    border-color: red;
+ }
+.p-float-label input:focus ~ label, .p-float-label .p-inputwrapper-focus ~ label {
+    color: #3F51B5 !important;
+}
 .p-float-label label {
     font-size: 12px !important;
 }
-
 .p-panel .p-panel-header {
     border: 1px solid #e0e0e0 !important;
     padding: 0.55rem !important;
     background: #7a87cc !important;
     color: #fafafa !important;
 }
-
 .p-panel .p-panel-title {
     font-size: 1rem !important;
 }
-
 .p-button:disabled {
     background: #bdbdbd !important;
     color: #606060 !important;
 }
-
 .p-button {
     padding: 0.52rem 0.65rem !important;
+    font-weight: 400 !important;
 }

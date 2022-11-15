@@ -24,7 +24,7 @@
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_sro" [options]="sroOptioins" [(ngModel)]="sro">
+                                                <p-dropdown name="_sro" [options]="sroOptions" [(ngModel)]="sro">
                                                 </p-dropdown>
                                                 <label for="float-input">SRO</label>
                                             </span>
@@ -48,7 +48,14 @@
                                     <div class="grid">
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_highcourtname" [options]="highCourtNameOptions"
+                                                <p-dropdown name="_caseofyear" [options]="CaseYearOptions" [(ngModel)]="year">
+                                                </p-dropdown>
+                                                <label for="float-input">Case Year</label>
+                                            </span>
+                                        </div>
+                                        <div class="col-12 md:col-4 lg:col-2">
+                                            <span class="p-float-label">
+                                                <p-dropdown name="_highcourtname" [options]="highCourtName"
                                                     [(ngModel)]="highCourtName">
                                                 </p-dropdown>
                                                 <label for="float-input">Hight Court Name</label>
@@ -66,37 +73,40 @@
                                                 <label for="float-input">Main Respondents Name</label>
                                             </span>
                                         </div>
-                                        <div class="col-12 md:col-4 lg:col-4">
+                                        
+                                        <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <input name="_gistofcase" type="text" [(ngModel)]="gistOfCase" pInputText>
-                                                <label for="float-input">Gist of the case and Main prayer</label>
+                                                <p-dropdown name="_stateofcase" [options]="stateOfCaseOptions" [(ngModel)]="stateOfCase">
+                                                </p-dropdown>
+                                                <label for="float-input">Stage of the case</label>
                                             </span>
                                         </div>
                                     </div>
                                 </div>
                                 <div #row3 class="col-12 md:col-11 lg:col-11">
                                     <div class="grid">
-                                        <div class="col-12 md:col-4 lg:col-2">
-                                            <div style="border: 1px solid #1769aa;
-                                    border-radius: 5px; padding: 5px;">
-                                                <label for="_counterField">Counter Field(Yes/No)</label><br>
-                                                <div style="text-align: center;">
-                                                    <p-radioButton name="_counteryes" value="1" [(ngModel)]="selectedValue">
-                                                    </p-radioButton>&nbsp;
-                                                    <p-radioButton name="_counterno" value="0" [(ngModel)]="selectedValue">
-                                                    </p-radioButton>&nbsp;
-                                                </div>
-                                            </div>
+                                       
+                                        <div class="col-12 md:col-4 lg:col-4">
+                                            <span class="p-float-label">
+                                                <input name="_gistofcase" type="text" [(ngModel)]="gistOfCase" pInputText>
+                                                <label for="float-input">Gist of the case and Main prayer</label>
+                                            </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_stateofcase" [options]="stateOfCaseOptions" [(ngModel)]="stateOfCase">
-                                                </p-dropdown>
-                                                <label for="float-input">State of the case</label>
+                                                <input name="_subject" type="text" [(ngModel)]="subject" pInputText>
+                                                <label for="float-input">Subject</label>
+                                            </span>
+                                        </div>
+                                        <div class="col-12 md:col-4 lg:col-2">
+                                            <span class="p-float-label">
+                                                <input name="_referencenumber" type="text" [(ngModel)]="Referencenumber" pInputText>
+                                                <label for="float-input">DIG/DR/SR Ref No</label>
                                             </span>
                                         </div>
                                     </div>
                                 </div>
+                               
                                 <div #row3 class="col-12 md:col-11 lg:col-11 txt-to-center no-padding">
                                     <button pButton pRipple type="button" label="Save" (click)="onSave()"
                                         [disabled]="!f.valid || !f.dirty"></button>

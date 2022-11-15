@@ -16,6 +16,8 @@ import { HeaderComponent } from './header/header.component';
 import { MenuComponent } from './menu/menu.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { IgrRespondentComponent } from './forms/highcourt-cases/igr-respondent/igr-respondent.component';
+import { OthersRespondentComponent } from './forms/highcourt-cases/others-respondent/others-respondent.component';
+import { PendingEnquiryComponent } from './forms/highcourt-cases/pending-enquiry/pending-enquiry.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,10 @@ import { IgrRespondentComponent } from './forms/highcourt-cases/igr-respondent/i
     HeaderComponent,
     MenuComponent,
     DashboardComponent,
-    IgrRespondentComponent
+    IgrRespondentComponent,
+    OthersRespondentComponent,
+    PendingEnquiryComponent
+    
   ],
   imports: [
     BrowserModule,
