@@ -5,7 +5,9 @@
 @import url("../node_modules/primeng/resources/themes/mdc-light-indigo/theme.css");
 @import url("../node_modules/primeng/resources/primeng.min.css");
 
-
+body {
+    margin: 0 !important;
+}
 label {
     font-size: 12px !important;
 }
@@ -19,6 +21,15 @@ label {
 
 .no-padding {
     padding: 0 !important;
+}
+
+.header {
+    background: #6774b9;
+    border: 2px solid #5e6fc7;
+    color: white;
+}
+.container {
+    padding: 1rem !important;
 }
 
 
