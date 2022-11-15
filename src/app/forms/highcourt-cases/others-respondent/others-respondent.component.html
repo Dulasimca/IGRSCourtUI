@@ -1,7 +1,7 @@
 <div class="col-12 md:col-12 lg:col-12 container">
     <div class="grid to-center">
         <div class="col-12 md:col-11 lg:col-11">
-            <p-panel header="Government Respondent High Court Cases">
+            <p-panel header="Others Respondent High Court Cases">
                 <div class="col-12 md:col-12 lg:col-12 box" style="margin-top: 5px;">
                     <form #f="ngForm" name="govRespondentForm">
                         <div #main class="col-12 md:col-12 lg:col-12">
@@ -24,7 +24,7 @@
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_sro" [options]="sroOptioins" [(ngModel)]="sro">
+                                                <p-dropdown name="_sro" [options]="sroOptions" [(ngModel)]="sro">
                                                 </p-dropdown>
                                                 <label for="float-input">SRO</label>
                                             </span>
@@ -42,7 +42,17 @@
                                                 <label for="float-input">Case No</label>
                                             </span>
                                         </div>
-                                        <div class="lg:col-2"></div>
+                                        <div class="col-12 md:col-4 lg:col-2">
+                                            <span class="p-float-label">
+                                                <p-dropdown name="_caseyear" [options]="caseYearOptions" [(ngModel)]="caseYear">
+                                                </p-dropdown>
+                                                <label for="float-input">Case Year</label>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div #row2 class="col-12 md:col-11 lg:col-11">
+                                    <div class="grid">
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <p-dropdown name="_highcourtname" [options]="highCourtNameOptions"
@@ -69,11 +79,14 @@
                                                 <label for="float-input">Gist of the case and Main prayer</label>
                                             </span>
                                         </div>
-                                        <div class="lg:col-2"></div>
+                                    </div>
+                                </div>
+                                <div #row3 class="col-12 md:col-11 lg:col-11">
+                                    <div class="grid">
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <div style="border: 1px solid #1769aa;
                                     border-radius: 5px; padding: 5px;">
-                                                <label for="_counterFiled">Counter Filed(Yes/No)</label><br>
+                                                <label for="_counterField">Counter Field(Yes/No)</label><br>
                                                 <div style="text-align: center;">
                                                     <p-radioButton name="_counteryes" value="1" [(ngModel)]="selectedValue">
                                                     </p-radioButton>&nbsp;
