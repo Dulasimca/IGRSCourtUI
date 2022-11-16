@@ -28,7 +28,7 @@ export class GovernmentRespondentComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.sroOptioins = [{ label: '-select-', value: 0 },
+    this.sroOptions = [{ label: '-select-', value: 0 },
   { label: '1', value: 1},
 { label: '2', value: 2}];
   }

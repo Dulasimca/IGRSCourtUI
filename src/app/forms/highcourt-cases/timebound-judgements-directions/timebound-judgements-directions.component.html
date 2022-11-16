@@ -3,7 +3,7 @@
         <div class="col-12 md:col-11 lg:col-11">
             <p-panel header="Form IV: Time Bound/Judgements/Directions to Govt/IGR/others of High Court of Madras/Madurai">
                 <div class="col-12 md:col-12 lg:col-12 box" style="margin-top: 5px;">
-                    <form #f="ngForm" name="FormIV">
+                    <form #f="ngForm" name="time-boundform">
                         <div #main class="col-12 md:col-12 lg:col-12">
                             <div class="grid to-center">
                                 <div #row1 class="col-12 md:col-11 lg:col-11">
@@ -44,7 +44,7 @@
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_year" [options]="year" (onClick)="onSelect('Y')" [(ngModel)]="yearOptions">
+                                                <p-dropdown name="_year" [options]="yearOptions" (onClick)="onSelect('Y')" [(ngModel)]="year">
                                                 </p-dropdown>
                                                 <label for="float-input">Year</label>
                                             </span>
@@ -57,7 +57,7 @@
                                             <div>
                                                 <span class="p-float-label">
                                                     <p-calendar [showIcon]="true" [(ngModel)]="judgementDate"></p-calendar>
-                                                    <label for="float-input">Date of Judgement</label>
+                                                    <label for="float-input">Judgement Date</label>
                                                 </span>
                                             </div>
                                         </div>
@@ -76,19 +76,20 @@
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <p-calendar [showIcon]="true" [(ngModel)]="receiptDate"></p-calendar>
-                                                <label for="float-input">Receipt date of Court Direction</label>
+                                                <label for="float-input">Receipt Date</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <input name="_timelimit" type="text" [(ngModel)]="timeLimit" pInputText>
-                                                <label for="float-input">Time Limit (in weeks/months)</label>
+                                                <label for="float-input">Time Limit</label>
                                             </span>
+                                            <div>(in weeks/months)</div>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <p-calendar [showIcon]="true" [(ngModel)]="expiryDate"></p-calendar>
-                                                <label for="float-input">Expiry date</label>
+                                                <label for="float-input">Expiry Date</label>
                                             </span>
                                         </div>
                                     </div>
