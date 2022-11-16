@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { SelectItem } from 'primeng/api';
 
 @Component({
-  selector: 'app-government-respondent',
-  templateUrl: './government-respondent.component.html',
-  styleUrls: ['./government-respondent.component.scss']
+  selector: 'app-supremecourt-case-details',
+  templateUrl: './supremecourt-case-details.component.html',
+  styleUrls: ['./supremecourt-case-details.component.scss']
 })
-export class GovernmentRespondentComponent implements OnInit {
+export class SupremecourtCaseDetailsComponent implements OnInit {
+
   zoneOptions: SelectItem[] = [];
   zone: any;
   districtOptions: SelectItem[] = [];
@@ -20,17 +21,18 @@ export class GovernmentRespondentComponent implements OnInit {
   highCourtName: any;
   stateOfCaseOptions: SelectItem[] = [];
   stateOfCase: any;
+  subject:any;
   petitionerName: any;
   respondentsName: any;
   gistOfCase: any;
+  Referencenumber:any;
+  casefiled:any;
+  diarycaseNo:any;
+  
   selectedValue: string = '1';
-  dateValue: any;
   constructor() { }
 
   ngOnInit(): void {
-    this.sroOptioins = [{ label: '-select-', value: 0 },
-  { label: '1', value: 1},
-{ label: '2', value: 2}];
   }
 
   onSave() { }
