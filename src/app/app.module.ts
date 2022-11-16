@@ -18,6 +18,7 @@ import { GovernmentRespondentComponent } from './forms/highcourt-cases/governmen
 import { HeaderComponent } from './header/header.component';
 import { MenuComponent } from './menu/menu.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { TimeboundJudgementsDirectionsComponent } from './forms/highcourt-cases/timebound-judgements-directions/timebound-judgements-directions.component';
 import { WritAppealsComponent } from './forms/highcourt-cases/writ-appeals/writ-appeals.component';
 import { IgrRespondentComponent } from './forms/highcourt-cases/igr-respondent/igr-respondent.component';
 import { OthersRespondentComponent } from './forms/highcourt-cases/others-respondent/others-respondent.component';
@@ -32,6 +33,8 @@ import { LawofficersOpinionRegisterComponent } from './forms/highcourt-cases/law
     HeaderComponent,
     MenuComponent,
     DashboardComponent,
+    TimeboundJudgementsDirectionsComponent,
+   
     WritAppealsComponent,
     PendingEnquiryComponent,
     SupremecourtCaseDetailsComponent,
