@@ -1,8 +1,12 @@
 <div class="col-12 md:col-12 lg:col-12 no-padding header hdr-shdw-btm">
     <div class="col-12 md:col-12 lg:col-12">
         <div class="grid">
-            <div class="col-6 md:col-4 lg:col-2 txt-to-center" style="font-size: 22px;">
+            <div fxLayout="row" class="col-6 md:col-4 lg:col-2" style="font-size: 22px;">
                 <!-- [ngStyle.xs]="{'text-align': 'start'}" -->
+                <span>
+                    <!-- <i class="pi pi-bars" style="font-size: 1.25rem;"></i> -->
+                    <button pButton pRipple type="button" icon="pi pi-bars" class="p-button-rounded" fxHide.gt-lg fxHide.lg fxHide.md></button>
+                </span>&nbsp;
                 <span>
                     <img src="assets/images/layout/finance.png"/>
                 </span>&nbsp;

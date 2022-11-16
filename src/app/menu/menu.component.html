@@ -1,6 +1,8 @@
-    <!-- <p-sidebar [(visible)]="display" [modal]="false" [showCloseIcon]="false">
+    <p-sidebar [(visible)]="display" [modal]="false" fxHide.gt-lg fxHide.lg fxHide.md>
         <div>
-
+            <p-panelMenu [model]="items" [style]="{'width':'100%', 'height': '100%', 'border': '1px solid #b4c0ff',
+            'box-shadow': '5px 0 5px -5px #3f51b5'}" ></p-panelMenu>
         </div>
-    </p-sidebar> -->
-    <p-panelMenu [model]="items" [style]="{'width':'200px'}"></p-panelMenu>
+    </p-sidebar>
+    <p-panelMenu [model]="items" [style]="{'width':'210px', 'height': '100%', 'border': '1px solid #b4c0ff',
+'box-shadow': '5px 0 5px -5px #3f51b5'}" fxHide.sm fxHide.xs></p-panelMenu>

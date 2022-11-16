@@ -76,21 +76,21 @@
                                                 <input name="_gistofopinion" type="text" [(ngModel)]="gistOfOpinion" pInputText>
                                                 <label for="float-input">Gist of opinion sought for filing</label>
                                             </span>
-                                            <div>(With Date)</div>
+                                            <div><label>(With Date)</label></div>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-4">
                                             <span class="p-float-label">
                                                 <input name="_gistofopinionreceived" type="text" [(ngModel)]="gistOfOpinionReceived" pInputText>
                                                 <label for="float-input">Gist of opinion received</label>
                                             </span>
-                                            <div>(With Date)</div>
+                                            <div><label>(With Date)</label></div>
                                         </div>
                                         
                                         
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <div style="border: 1px solid #1769aa;
-                                    border-radius: 5px; padding: 5px;">
-                                                <label for="_counterFiled">Opinion Received(Yes/No)</label><br>
+                                    border-radius: 5px; padding: 2px;">
+                                                <label for="_counterFiled">Opinion Received</label><br>
                                                 <div style="text-align: center;">
                                                     <p-radioButton name="_counteryes" value="1" [(ngModel)]="selectedValue">
                                                     </p-radioButton>&nbsp;
@@ -98,6 +98,7 @@
                                                     </p-radioButton>&nbsp;
                                                 </div>
                                             </div>
+                                            <div class="txt-to-center"><label>(Yes/No)</label></div>
                                         </div>
                                         <div class="lg:col-2"></div>
                                         <div class="col-12 md:col-4 lg:col-2">
@@ -105,7 +106,7 @@
                                                 <input name="_stateforreason" type="text" [(ngModel)]="reason" pInputText>
                                                 <label for="float-input"> Reason</label>
                                             </span>
-                                            <div>(If WA,RA not filed)</div>
+                                            <div class="txt-to-center"><label>(If WA,RA not filed)</label></div>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
