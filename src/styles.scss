@@ -5,8 +5,10 @@
 @import url("../node_modules/primeng/resources/themes/mdc-light-indigo/theme.css");
 @import url("../node_modules/primeng/resources/primeng.min.css");
 
+html{ height: 100% !important;}
 body {
     margin: 0 !important;
+    height: 100% !important;
 }
 label {
     font-size: 12px !important;
@@ -40,9 +42,9 @@ label {
     // color: white;
     color: #7a87cc;
 }
-.container {
-    padding: 1rem !important;
-}
+// .container {
+//     padding: 1rem !important;
+// }
 
 // primeng styles
 .p-dropdown {
@@ -93,4 +95,8 @@ label {
 }
 .p-calendar-w-btn .p-datepicker-trigger.p-button span {
     color: white !important;
+}
+.p-sidebar-left {
+    position: relative !important;
+    width: -webkit-fill-available !important;
 }
