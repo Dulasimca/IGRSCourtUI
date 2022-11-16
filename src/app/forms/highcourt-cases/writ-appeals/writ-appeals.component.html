@@ -1,9 +1,9 @@
 <div class="col-12 md:col-12 lg:col-12 container">
     <div class="grid to-center">
         <div class="col-12 md:col-11 lg:col-11">
-            <p-panel header="Others Respondent High Court Cases">
+            <p-panel header="Writ Appeals">
                 <div class="col-12 md:col-12 lg:col-12 box" style="margin-top: 5px;">
-                    <form #f="ngForm" name="otherRespondentForm">
+                    <form #f="ngForm" name="govRespondentForm">
                         <div #main class="col-12 md:col-12 lg:col-12">
                             <div class="grid to-center">
                                 <div #row1 class="col-12 md:col-11 lg:col-11">
@@ -17,21 +17,17 @@
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_district" [options]="districtOptions" [(ngModel)]="district">
+                                                <p-dropdown name="_district" [options]="districtOptions"
+                                                    [(ngModel)]="district">
                                                 </p-dropdown>
                                                 <label for="float-input">District</label>
                                             </span>
                                         </div>
+
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_sro" [options]="sroOptions" [(ngModel)]="sro">
-                                                </p-dropdown>
-                                                <label for="float-input">SRO</label>
-                                            </span>
-                                        </div>
-                                        <div class="col-12 md:col-4 lg:col-2">
-                                            <span class="p-float-label">
-                                                <p-dropdown name="_casetype" [options]="caseTypeOptions" [(ngModel)]="caseType">
+                                                <p-dropdown name="_casetype" [options]="caseTypeOptions"
+                                                    [(ngModel)]="caseType">
                                                 </p-dropdown>
                                                 <label for="float-input">Case Type</label>
                                             </span>
@@ -44,7 +40,8 @@
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_caseyear" [options]="caseYearOptions" [(ngModel)]="caseYear">
+                                                <p-dropdown name="_caseyear" [options]="caseyearOptions"
+                                                    [(ngModel)]="caseYear">
                                                 </p-dropdown>
                                                 <label for="float-input">Case Year</label>
                                             </span>
@@ -53,55 +50,83 @@
                                 </div>
                                 <div #row2 class="col-12 md:col-11 lg:col-11">
                                     <div class="grid">
+
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_highcourtname" [options]="highCourtNameOptions"
-                                                    [(ngModel)]="highCourtName">
+                                                <p-dropdown name="_highcourtref" [options]="highCourtRefOptions"
+                                                    [(ngModel)]="highCourtRef">
                                                 </p-dropdown>
-                                                <label for="float-input">Hight Court Name</label>
+                                                <label for="float-input">Hight Court Reference</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <input name="_petitionername" type="text" [(ngModel)]="petitionerName" pInputText>
+                                                <input name="_petitionername" type="text" [(ngModel)]="petitionerName"
+                                                    pInputText>
                                                 <label for="float-input">Petitioner Name</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <input name="_respondentname" type="text" [(ngModel)]="respondentsName" pInputText>
-                                                <label for="float-input">Main Respondents Name</label>
+                                                <input name="_respondentname" type="text" [(ngModel)]="respondentsName"
+                                                    pInputText>
+                                                <label for="float-input"> Respondents Name</label>
                                             </span>
                                         </div>
+
                                         <div class="col-12 md:col-4 lg:col-4">
                                             <span class="p-float-label">
-                                                <input name="_gistofcase" type="text" [(ngModel)]="gistOfCase" pInputText>
-                                                <label for="float-input">Gist of the case and Main prayer</label>
+                                                <input name="_gistofcase" type="text" [(ngModel)]="gistOfCase"
+                                                    pInputText>
+                                                <label for="float-input">Gist of the case</label>
                                             </span>
                                         </div>
+
                                     </div>
                                 </div>
+
                                 <div #row3 class="col-12 md:col-11 lg:col-11">
                                     <div class="grid">
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <div style="border: 1px solid #1769aa;
                                     border-radius: 5px; padding: 5px;">
-                                                <label for="_counterFiled">Counter Filed(Yes/No)</label><br>
+                                                <label for="_counterField">Regular No Received (Yes/No)</label><br>
                                                 <div style="text-align: center;">
-                                                    <p-radioButton name="_counteryes" value="1" [(ngModel)]="selectedValue">
+                                                    <p-radioButton name="_counteryes" value="1"
+                                                        [(ngModel)]="selectedValue">
                                                     </p-radioButton>&nbsp;
-                                                    <p-radioButton name="_counterno" value="0" [(ngModel)]="selectedValue">
+                                                    <p-radioButton name="_counterno" value="0"
+                                                        [(ngModel)]="selectedValue">
                                                     </p-radioButton>&nbsp;
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_stateofcase" [options]="stateOfCaseOptions" [(ngModel)]="stateOfCase">
+                                                <p-dropdown name="_stageofcase" [options]="stageOfCaseOptions"
+                                                    [(ngModel)]="stageOfCase">
                                                 </p-dropdown>
-                                                <label for="float-input">State of the case</label>
+                                                <label for="float-input">Stage of the case</label>
                                             </span>
                                         </div>
+
+                                        <div class="col-12 md:col-4 lg:col-2">
+                                            <span class="p-float-label">
+                                                <p-dropdown name="_natureofdisposal" [options]="natureOfDisposalOptions"
+                                                    [(ngModel)]="natureofdisposal">
+                                                </p-dropdown>
+                                                <label for="float-input">Nature of the Disposal</label>
+                                            </span>
+                                        </div>
+
+
+                                        <div class="col-12 md:col-4 lg:col-2">
+                                            <span class="p-float-label">
+                                                <input name="_remark" type="text" [(ngModel)]="remark" pInputText>
+                                                <label for="float-input">Remarks</label>
+                                            </span>
+                                        </div>
+
                                     </div>
                                 </div>
                                 <div #row3 class="col-12 md:col-11 lg:col-11 txt-to-center no-padding">
