@@ -83,3 +83,14 @@ label {
     padding: 0.52rem 0.65rem !important;
     font-weight: 400 !important;
 }
+.p-calendar-w-btn .p-datepicker-trigger.p-button {
+    margin-left: -2rem !important;
+    background-color: #3F51B5 !important;
+    border: 2px solid #3F51B5 !important;
+}
+.p-calendar {
+    width: -webkit-fill-available !important;
+}
+.p-calendar-w-btn .p-datepicker-trigger.p-button span {
+    color: white !important;
+}

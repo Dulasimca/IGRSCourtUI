@@ -9,6 +9,8 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { AppRoutingModule } from './app-routing.module';
+import { CalendarModule } from 'primeng/calendar';
+
 import { AppComponent } from './app.component';
 import { GovernmentRespondentComponent } from './forms/highcourt-cases/government-respondent/government-respondent.component';
 import { HeaderComponent } from './header/header.component';
@@ -45,7 +47,8 @@ import { SupremecourtCaseDetailsComponent } from './forms/highcourt-cases/suprem
     ButtonModule,
     DropdownModule,
     InputTextModule,
-    RadioButtonModule
+    RadioButtonModule,
+    CalendarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -24,6 +24,7 @@ export class GovernmentRespondentComponent implements OnInit {
   respondentsName: any;
   gistOfCase: any;
   selectedValue: string = '1';
+  dateValue: any;
   constructor() { }
 
   ngOnInit(): void {
