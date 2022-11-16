@@ -21,6 +21,7 @@ import { IgrRespondentComponent } from './forms/highcourt-cases/igr-respondent/i
 import { OthersRespondentComponent } from './forms/highcourt-cases/others-respondent/others-respondent.component';
 import { PendingEnquiryComponent } from './forms/highcourt-cases/pending-enquiry/pending-enquiry.component';
 import { SupremecourtCaseDetailsComponent } from './forms/highcourt-cases/supremecourt-case-details/supremecourt-case-details.component';
+import { LawofficersOpinionRegisterComponent } from './forms/highcourt-cases/lawofficers-opinion-register/lawofficers-opinion-register.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,9 @@ import { SupremecourtCaseDetailsComponent } from './forms/highcourt-cases/suprem
     SupremecourtCaseDetailsComponent,
     IgrRespondentComponent,
     OthersRespondentComponent,
-    PendingEnquiryComponent
+    PendingEnquiryComponent,
+    LawofficersOpinionRegisterComponent,
+  
     
   ],
   imports: [
