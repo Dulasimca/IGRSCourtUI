@@ -1,13 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { GovernmentRespondentComponent } from './forms/highcourt-cases/government-respondent/government-respondent.component';
-<<<<<<< HEAD
 import { TimeboundJudgementsDirectionsComponent } from './forms/highcourt-cases/timebound-judgements-directions/timebound-judgements-directions.component';
-
-const routes: Routes = [
-  { path: 'government-respondent-hight-court-cases', component: GovernmentRespondentComponent },
-  { path: 'time-bound', component: TimeboundJudgementsDirectionsComponent}
-=======
 import { WritAppealsComponent } from './forms/highcourt-cases/writ-appeals/writ-appeals.component';
 import { IgrRespondentComponent } from './forms/highcourt-cases/igr-respondent/igr-respondent.component';
 import { LawofficersOpinionRegisterComponent } from './forms/highcourt-cases/lawofficers-opinion-register/lawofficers-opinion-register.component';
@@ -22,8 +16,8 @@ const routes: Routes = [
   { path: 'others-respondent', component:OthersRespondentComponent},
   { path:'igr-respondent',component:IgrRespondentComponent},
   { path: 'lawofficers-opinion-register', component:LawofficersOpinionRegisterComponent},
-  { path: 'writ-appeals-hight-court-cases',component:WritAppealsComponent}
->>>>>>> d8be53987de3b5f7052a6fa50cadf24875006937
+  { path: 'writ-appeals-hight-court-cases',component:WritAppealsComponent},
+  { path: 'time-bound', component: TimeboundJudgementsDirectionsComponent}
 ];
 
 
