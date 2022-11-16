@@ -11,7 +11,7 @@ export class GovernmentRespondentComponent implements OnInit {
   zone: any;
   districtOptions: SelectItem[] = [];
   district: any;
-  sroOptioins: SelectItem[] = [];
+  sroOptions: SelectItem[] = [];
   sro: any;
   caseTypeOptions: SelectItem[] = [];
   caseType: any;
