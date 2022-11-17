@@ -56,10 +56,14 @@ label {
 .p-dropdown .p-inputtext {
     border: none !important;
 }
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item {
+    padding: 0.5rem 0.75rem !important;
+}
 .p-inputtext {
     width: -webkit-fill-available !important; 
     border: 1px solid var(--blue-700) !important;
     color: #292828c7 !important;
+    font-size: 14px !important;
 }
 .p-inputtext.ng-touched.ng-invalid {
     border-color: red;
@@ -69,6 +73,10 @@ label {
 }
 .p-float-label label {
     font-size: 12px !important;
+}
+.p-float-label input:focus ~ label, .p-float-label input.p-filled ~ label, .p-float-label textarea:focus ~ label, .p-float-label textarea.p-filled ~ label, .p-float-label .p-inputwrapper-focus ~ label, .p-float-label .p-inputwrapper-filled ~ label {
+    font-weight: 500 !important;
+    color: #42519f !important;
 }
 .p-panel .p-panel-header {
     border: 1px solid #e0e0e0 !important;
@@ -105,6 +113,31 @@ label {
 }
 .p-calendar-w-btn .p-inputtext {
     border-radius: 5px !important;
+}
+.p-datepicker table td.p-datepicker-today > span {
+    background: #3f51b5 !important;
+    color: white !important;
+    border-color: #3f51b5 !important;
+}
+.p-datepicker .p-datepicker-header .p-datepicker-title .p-datepicker-month {
+    padding: 0 !important;
+}
+.p-datepicker .p-datepicker-header .p-datepicker-title .p-datepicker-year, .p-datepicker .p-datepicker-header .p-datepicker-title .p-datepicker-month {
+    padding: 0 !important;
+}
+.p-datepicker:not(.p-datepicker-inline) .p-datepicker-header {
+    border-bottom: 2px solid #707dc8 !important;
+    padding: 0.5rem !important;
+    background: #d3d3ff !important;
+}
+.p-calendar .p-datepicker {
+    padding: 0 !important;
+}
+.p-datepicker table td {
+    padding: 0.25rem !important;
+}
+.p-datepicker table td > span {
+    font-size: 15px !important;
 }
 .p-sidebar-left {
     position: relative !important;
