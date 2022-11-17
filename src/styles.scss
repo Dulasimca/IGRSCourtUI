@@ -98,9 +98,13 @@ label {
 }
 .p-calendar {
     width: -webkit-fill-available !important;
+    border: inherit !important;
 }
 .p-calendar-w-btn .p-datepicker-trigger.p-button span {
     color: white !important;
+}
+.p-calendar-w-btn .p-inputtext {
+    border-radius: 5px !important;
 }
 .p-sidebar-left {
     position: relative !important;
