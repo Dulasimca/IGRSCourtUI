@@ -1,9 +1,9 @@
 <div class="col-12 md:col-12 lg:col-12 container">
     <div class="grid to-center">
         <div class="col-12 md:col-12 lg:col-12">
-            <p-panel header="Form-III Others Respondent High Court Cases">
+            <p-panel header="Form-II IGR Respondent High Court Cases">
                 <div class="col-12 md:col-12 lg:col-12 box" style="margin-top: 5px;">
-                    <form #f="ngForm" name="otherRespondentForm">
+                    <form #f="ngForm" name="igrRespondentForm">
                         <div #main class="col-12 md:col-12 lg:col-12">
                             <div class="grid to-center">
                                 <div #row1 class="col-12 md:col-11 lg:col-11">
@@ -42,7 +42,6 @@
                                                 <label for="float-input">Case No</label>
                                             </span>
                                         </div>
-                                        <div class="lg:col-2"></div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <p-dropdown name="_caseyear" [options]="caseYearOptions" [(ngModel)]="caseYear">
@@ -50,7 +49,10 @@
                                                 <label for="float-input">Case Year</label>
                                             </span>
                                         </div>
-                                   
+                                    </div>
+                                </div>
+                                <div #row2 class="col-12 md:col-11 lg:col-11">
+                                    <div class="grid">
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <p-dropdown name="_highcourtname" [options]="highCourtNameOptions"
@@ -59,26 +61,28 @@
                                                 <label for="float-input">Hight Court Name</label>
                                             </span>
                                         </div>
-                                        <div class="col-12 md:col-4 lg:col-4">
-                                            <span class="p-float-label">
-                                                <input name="_gistofcase" type="text" [(ngModel)]="gistOfCase" pInputText>
-                                                <label for="float-input">Gist of the case and Main prayer</label>
-                                            </span>
-                                        </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <input name="_petitionername" type="text" [(ngModel)]="petitionerName" pInputText>
                                                 <label for="float-input">Petitioner Name</label>
                                             </span>
                                         </div>
-                                        <div class="lg:col-2"></div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <input name="_respondentname" type="text" [(ngModel)]="respondentsName" pInputText>
                                                 <label for="float-input">Main Respondents Name</label>
                                             </span>
                                         </div>
-                                        
+                                        <div class="col-12 md:col-4 lg:col-4">
+                                            <span class="p-float-label">
+                                                <input name="_gistofcase" type="text" [(ngModel)]="gistOfCase" pInputText>
+                                                <label for="float-input">Gist of the case and Main prayer</label>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div #row3 class="col-12 md:col-11 lg:col-11">
+                                    <div class="grid">
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <div style="border: 1px solid #1769aa;
                                     border-radius: 5px; padding: 2px;">
