@@ -11,7 +11,7 @@ export class GovernmentRespondentComponent implements OnInit {
   zone: any;
   districtOptions: SelectItem[] = [];
   district: any;
-  sroOptioins: SelectItem[] = [];
+  sroOptions: SelectItem[] = [];
   sro: any;
   caseTypeOptions: SelectItem[] = [];
   caseType: any;
@@ -24,12 +24,13 @@ export class GovernmentRespondentComponent implements OnInit {
   respondentsName: any;
   gistOfCase: any;
   selectedValue: string = '1';
+  dateValue: any;
   constructor() { }
 
   ngOnInit(): void {
-    this.sroOptioins = [{ label: '-select-', value: 0 },
-  { label: '1', value: 1},
-{ label: '2', value: 2}];
+    this.sroOptions = [{ label: '-select-', value: 0 },
+    { label: '1', value: 1 },
+    { label: '2', value: 2 }];
   }
 
   onSave() { }
