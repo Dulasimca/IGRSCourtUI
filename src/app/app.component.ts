@@ -1,13 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'IGRS-CC';
   show: boolean = false;
+
+  ngOnInit() {
+  }
 
   openMenu($event: boolean) {
     this.show = $event; // setting value from header component whether to open/close menu
