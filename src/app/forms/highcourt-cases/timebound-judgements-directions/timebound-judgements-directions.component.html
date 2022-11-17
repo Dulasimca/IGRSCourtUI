@@ -3,14 +3,14 @@
         <div class="col-12 md:col-12 lg:col-12">
             <p-panel header="Form IV: Time Bound/Judgements/Directions to Govt/IGR/others of High Court of Madras/Madurai">
                 <div class="col-12 md:col-12 lg:col-12 box" style="margin-top: 5px;">
-                    <form #f="ngForm" name="time-boundform">
+                    <form #f="ngForm" name="timeboundForm">
                         <div #main class="col-12 md:col-12 lg:col-12">
                             <div class="grid to-center">
                                 <div #row1 class="col-12 md:col-11 lg:col-11">
                                     <div class="grid">
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_zoneOptions" [options]="zone" [(ngModel)]="zone">
+                                                <p-dropdown name="_zone" [options]="zoneOptions" [(ngModel)]="zone">
                                                 </p-dropdown>
                                                 <label for="float-input">Zone</label>
                                             </span>
