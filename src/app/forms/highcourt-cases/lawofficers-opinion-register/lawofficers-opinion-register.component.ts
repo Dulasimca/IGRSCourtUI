@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { SelectItem } from 'primeng/api';
-
 @Component({
-  selector: 'app-government-respondent',
-  templateUrl: './government-respondent.component.html',
-  styleUrls: ['./government-respondent.component.scss']
+  selector: 'app-lawofficers-opinion-register',
+  templateUrl: './lawofficers-opinion-register.component.html',
+  styleUrls: ['./lawofficers-opinion-register.component.scss']
 })
-export class GovernmentRespondentComponent implements OnInit {
+export class LawofficersOpinionRegisterComponent implements OnInit {
+
   zoneOptions: SelectItem[] = [];
   zone: any;
   districtOptions: SelectItem[] = [];
@@ -16,21 +16,24 @@ export class GovernmentRespondentComponent implements OnInit {
   caseTypeOptions: SelectItem[] = [];
   caseType: any;
   caseNo: any;
-  highCourtNameOptions: SelectItem[] = [];
-  highCourtName: any;
   stateOfCaseOptions: SelectItem[] = [];
   stateOfCase: any;
+  subject:any;
   petitionerName: any;
   respondentsName: any;
   gistOfCase: any;
+  gistOfOpinion:any;
+  gistOfOpinionReceived:any;
+  caseFiled:any;
+  reason:any;
+  nameofcourt:any;
+  remarks:any;
+  nameOfCourtameOptions:SelectItem[] = [];
+  
   selectedValue: string = '1';
-  dateValue: any;
   constructor() { }
 
   ngOnInit(): void {
-    this.sroOptions = [{ label: '-select-', value: 0 },
-    { label: '1', value: 1 },
-    { label: '2', value: 2 }];
   }
 
   onSave() { }

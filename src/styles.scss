@@ -5,8 +5,12 @@
 @import url("../node_modules/primeng/resources/themes/mdc-light-indigo/theme.css");
 @import url("../node_modules/primeng/resources/primeng.min.css");
 
+html{ height: 100% !important;}
 body {
     margin: 0 !important;
+    height: 100% !important;
+    width: 100% !important;
+    // overflow: hidden;
 }
 label {
     font-size: 12px !important;
@@ -40,9 +44,9 @@ label {
     // color: white;
     color: #7a87cc;
 }
-.container {
-    padding: 1rem !important;
-}
+// .container {
+//     padding: 1rem !important;
+// }
 
 // primeng styles
 .p-dropdown {
@@ -52,10 +56,14 @@ label {
 .p-dropdown .p-inputtext {
     border: none !important;
 }
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item {
+    padding: 0.5rem 0.75rem !important;
+}
 .p-inputtext {
     width: -webkit-fill-available !important; 
     border: 1px solid var(--blue-700) !important;
     color: #292828c7 !important;
+    font-size: 14px !important;
 }
 .p-inputtext.ng-touched.ng-invalid {
     border-color: red;
@@ -65,6 +73,10 @@ label {
 }
 .p-float-label label {
     font-size: 12px !important;
+}
+.p-float-label input:focus ~ label, .p-float-label input.p-filled ~ label, .p-float-label textarea:focus ~ label, .p-float-label textarea.p-filled ~ label, .p-float-label .p-inputwrapper-focus ~ label, .p-float-label .p-inputwrapper-filled ~ label {
+    font-weight: 500 !important;
+    color: #42519f !important;
 }
 .p-panel .p-panel-header {
     border: 1px solid #e0e0e0 !important;
@@ -82,4 +94,111 @@ label {
 .p-button {
     padding: 0.52rem 0.65rem !important;
     font-weight: 400 !important;
+}
+.p-button.p-button-icon-only.p-button-rounded {
+    height: 2.25rem !important;
+    width: 2.25rem !important;
+}
+.p-calendar-w-btn .p-datepicker-trigger.p-button {
+    margin-left: -2rem !important;
+    background-color: #3F51B5 !important;
+    border: 2px solid #3F51B5 !important;
+}
+.p-calendar {
+    width: -webkit-fill-available !important;
+    border: inherit !important;
+}
+.p-calendar-w-btn .p-datepicker-trigger.p-button span {
+    color: white !important;
+}
+.p-calendar-w-btn .p-inputtext {
+    border-radius: 5px !important;
+}
+.p-datepicker table td.p-datepicker-today > span {
+    background: #3f51b5 !important;
+    color: white !important;
+    border-color: #3f51b5 !important;
+}
+.p-datepicker .p-datepicker-header .p-datepicker-title .p-datepicker-month {
+    padding: 0 !important;
+}
+.p-datepicker .p-datepicker-header .p-datepicker-title .p-datepicker-year, .p-datepicker .p-datepicker-header .p-datepicker-title .p-datepicker-month {
+    padding: 0 !important;
+}
+.p-datepicker:not(.p-datepicker-inline) .p-datepicker-header {
+    border-bottom: 2px solid #707dc8 !important;
+    padding: 0.5rem !important;
+    background: #d3d3ff !important;
+}
+.p-calendar .p-datepicker {
+    padding: 0 !important;
+}
+.p-datepicker table td {
+    padding: 0.25rem !important;
+}
+.p-datepicker table td > span {
+    font-size: 15px !important;
+}
+.p-sidebar-left {
+    position: relative !important;
+    width: -webkit-fill-available !important;
+}
+.p-panelmenu .p-panelmenu-header > a {
+    padding: 0.85rem !important;
+    color: #3f51b5 !important;
+    font-size: 14px !important;
+}
+.p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link {
+    color: #3f51b5 !important;
+    border-top: 1px solid #7a87cc !important;
+    font-size: 14px !important;
+}
+.p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link .p-menuitem-icon {
+    color: #3f51b5 !important;
+}
+.p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link .p-menuitem-text {
+    color: inherit !important;
+    padding-left: .5rem !important;
+}
+.p-panelmenu .p-panelmenu-panel {
+    box-shadow: none !important; 
+    border-bottom: 1px solid #7a87cc !important;
+}
+.p-panelmenu .p-panelmenu-panel:first-child .p-panelmenu-header > a {
+    border-top-right-radius: 0 !important;
+    border-top-left-radius: 0 !important;
+}
+.p-panelmenu .p-panelmenu-panel:last-child .p-panelmenu-header:not(.p-highlight) > a {
+    border-bottom-right-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+}
+.p-panelmenu .p-panelmenu-panel:last-child {
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+.p-panelmenu .p-panelmenu-content .p-submenu-list:not(.p-panelmenu-root-submenu) {
+    padding: 0 !important;
+}
+.p-panelmenu .p-panelmenu-panel .p-panelmenu-header .p-panelmenu-header-link:focus {
+    background: #7a87cc !important;
+    color: white !important;
+}
+.p-panelmenu .p-panelmenu-content {
+    padding: 0 !important;
+}
+.p-panelmenu .p-panelmenu-panel .p-menuitem .p-menuitem-link:focus {
+    background: #7482cf !important;
+    color: white !important;
+}
+.p-sidebar .p-sidebar-header {
+    padding: 0rem !important;
+}
+.p-sidebar-left {
+    background: #4e5ba3 !important;
+}
+.p-sidebar .p-sidebar-header .p-sidebar-close, .p-sidebar .p-sidebar-header .p-sidebar-icon {
+    color: white !important;
+}
+.p-sidebar .p-sidebar-header .p-sidebar-close:enabled:hover, .p-sidebar .p-sidebar-header .p-sidebar-icon:enabled:hover {
+    color: white !important;
 }
