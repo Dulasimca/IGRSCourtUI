@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 
 @Component({
@@ -7,7 +7,9 @@ import { MenuItem } from 'primeng/api';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
-  display: boolean = true;
+  @Input() status: boolean = false;
+  @Output() public sidenavToggle = new EventEmitter();
+
   constructor() { }
 
   items: MenuItem[] = [];
@@ -24,15 +26,23 @@ export class MenuComponent implements OnInit {
                 items: [
                     { label: 'High Court Cases', 
                   items: [
-                    {label: 'Government Respondent', routerLink: '/government-respondent-hight-court-cases'},
-                    {label: 'IGR Respondent', routerLink: '/igr-respondent'},
-                    {label: 'Other Respondent', routerLink: '/others-respondent'},
-                    {label: 'Time Bound/Judgements', routerLink: '/time-bound'},
-                    {label: 'Pending Enquiry', routerLink: '/pending-enquiry-hight-court-cases'},
-                    {label: 'Writ Appeals', routerLink: '/writ-appeals-hight-court-cases'}
+                    {label: 'Government Respondent', routerLink: '/government-respondent-hight-court-cases',
+                    command: ()=> this.onToggleSidenav()},
+                    {label: 'IGR Respondent', routerLink: '/igr-respondent',
+                    command: ()=> this.onToggleSidenav()},
+                    {label: 'Other Respondent', routerLink: '/others-respondent',
+                    command: ()=> this.onToggleSidenav()},
+                    {label: 'Time Bound/Judgements', routerLink: '/time-bound',
+                    command: ()=> this.onToggleSidenav()},
+                    {label: 'Pending Enquiry', routerLink: '/pending-enquiry-hight-court-cases',
+                    command: ()=> this.onToggleSidenav()},
+                    {label: 'Writ Appeals', routerLink: '/writ-appeals-hight-court-cases',
+                    command: ()=> this.onToggleSidenav()}
                   ]},
-                  { label: 'Supreme Court Case Details', routerLink: '/supreme-court-case-details'},
-                  {label: 'Law Officers Opinion Register', routerLink: '/lawofficers-opinion-register'},
+                  { label: 'Supreme Court Case Details', routerLink: '/supreme-court-case-details',
+                  command: ()=> this.onToggleSidenav()},
+                  {label: 'Law Officers Opinion Register', routerLink: '/lawofficers-opinion-register',
+                  command: ()=> this.onToggleSidenav()},
 
                 ]
             },
@@ -42,4 +52,11 @@ export class MenuComponent implements OnInit {
             },
         ];
     }
+
+    public onToggleSidenav = () => {
+      this.status = !this.status; //closing menu once its been clicked
+      this.sidenavToggle.emit(this.status); //emitting event that menu is closed to app component
+    }
+  
+
 }

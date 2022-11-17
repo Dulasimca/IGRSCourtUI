@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'IGRS-CC';
+  show: boolean = false;
+
+  openMenu($event: boolean) {
+    this.show = $event; // setting value from header component whether to open/close menu
+    this.show = !this.show; // changing show value to avoid double click of icon to open menu
+  }
+
+  onToggle($event: boolean) {
+    this.show = $event; //setting show value from menu component
+  }
 }
