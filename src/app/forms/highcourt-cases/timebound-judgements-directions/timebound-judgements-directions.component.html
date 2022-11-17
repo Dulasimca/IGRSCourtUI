@@ -1,9 +1,9 @@
 <div class="col-12 md:col-12 lg:col-12 container">
     <div class="grid to-center">
         <div class="col-12 md:col-12 lg:col-12">
-            <p-panel header="Form-II IGR Respondent High Court Cases">
+            <p-panel header="Form IV: Time Bound/Judgements/Directions to Govt/IGR/others of High Court of Madras/Madurai">
                 <div class="col-12 md:col-12 lg:col-12 box" style="margin-top: 5px;">
-                    <form #f="ngForm" name="igrRespondentForm">
+                    <form #f="ngForm" name="timeboundForm">
                         <div #main class="col-12 md:col-12 lg:col-12">
                             <div class="grid to-center">
                                 <div #row1 class="col-12 md:col-11 lg:col-11">
@@ -39,14 +39,14 @@
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <input name="_caseno" type="text" [(ngModel)]="caseNo" pInputText>
-                                                <label for="float-input">Case No</label>
+                                                <label for="float-input">WP/WA No.</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_caseyear" [options]="caseYearOptions" [(ngModel)]="caseYear">
+                                                <p-dropdown name="_year" [options]="yearOptions" (onClick)="onSelect('Y')" [(ngModel)]="year">
                                                 </p-dropdown>
-                                                <label for="float-input">Case Year</label>
+                                                <label for="float-input">Year</label>
                                             </span>
                                         </div>
                                     </div>
@@ -54,29 +54,42 @@
                                 <div #row2 class="col-12 md:col-11 lg:col-11">
                                     <div class="grid">
                                         <div class="col-12 md:col-4 lg:col-2">
-                                            <span class="p-float-label">
-                                                <p-dropdown name="_highcourtname" [options]="highCourtNameOptions"
-                                                    [(ngModel)]="highCourtName">
-                                                </p-dropdown>
-                                                <label for="float-input">Hight Court Name</label>
-                                            </span>
+                                            <div>
+                                                <span class="p-float-label">
+                                                    <p-calendar name="_judgementdate" [showIcon]="true" [(ngModel)]="judgementDate"></p-calendar>
+                                                    <label for="float-input">Judgement Date</label>
+                                                </span>
+                                            </div>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <input name="_petitionername" type="text" [(ngModel)]="petitionerName" pInputText>
-                                                <label for="float-input">Petitioner Name</label>
+                                                <label for="float-input"s   >Petitioner Name</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <input name="_respondentname" type="text" [(ngModel)]="respondentsName" pInputText>
-                                                <label for="float-input">Main Respondents Name</label>
+                                                <input name="_respondentsname" type="text" [(ngModel)]="respondentsName" pInputText>
+                                                <label for="float-input">Respondents Name</label>
                                             </span>
                                         </div>
-                                        <div class="col-12 md:col-4 lg:col-4">
+                                        <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <input name="_gistofcase" type="text" [(ngModel)]="gistOfCase" pInputText>
-                                                <label for="float-input">Gist of the case and Main prayer</label>
+                                                <p-calendar name="_receiptdate" [showIcon]="true" [(ngModel)]="receiptDate"></p-calendar>
+                                                <label for="float-input">Receipt Date</label>
+                                            </span>
+                                        </div>
+                                        <div class="col-12 md:col-4 lg:col-2">
+                                            <span class="p-float-label">
+                                                <input name="_timelimit" type="text" [(ngModel)]="timeLimit" pInputText>
+                                                <label for="float-input">Time Limit</label>
+                                            </span>
+                                            <div class="txt-to-center"><label>(in weeks/months)</label></div>
+                                        </div>
+                                        <div class="col-12 md:col-4 lg:col-2">
+                                            <span class="p-float-label">
+                                                <p-calendar name="_expirydate" [showIcon]="true" [(ngModel)]="expiryDate"></p-calendar>
+                                                <label for="float-input">Expiry Date</label>
                                             </span>
                                         </div>
                                     </div>
@@ -84,28 +97,32 @@
                                 <div #row3 class="col-12 md:col-11 lg:col-11">
                                     <div class="grid">
                                         <div class="col-12 md:col-4 lg:col-2">
-                                            <div style="border: 1px solid #1769aa;
-                                    border-radius: 5px; padding: 2px;">
-                                                <label for="_counterFiled">Counter Filed</label><br>
-                                                <div style="text-align: center;">
-                                                    <p-radioButton name="_counteryes" value="1" [(ngModel)]="selectedValue">
-                                                    </p-radioButton>&nbsp;
-                                                    <p-radioButton name="_counterno" value="0" [(ngModel)]="selectedValue">
-                                                    </p-radioButton>&nbsp;
-                                                </div>
-                                            </div>
-                                            <div class="txt-to-center"><label>(Yes/No)</label></div>
+                                            <span class="p-float-label">
+                                                <input name="_directionto" type="text" [(ngModel)]="directionTo" pInputText>
+                                                <label for="float-input">Directed To</label>
+                                            </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_stateofcase" [options]="stateOfCaseOptions" [(ngModel)]="stateOfCase">
-                                                </p-dropdown>
-                                                <label for="float-input">State of the case</label>
+                                                <input name="_natureofdirection" type="text" [(ngModel)]="natureofDirection" pInputText>
+                                                <label for="float-input">Nature of Direction</label>
+                                            </span>
+                                        </div>
+                                        <div class="col-12 md:col-4 lg:col-4">
+                                            <span class="p-float-label">
+                                                <input name="_compliedornot" type="text" [(ngModel)]="compliedorNot" pInputText>
+                                                <label for="float-input">CompliedOrNot/Reason</label>
+                                            </span>
+                                        </div>
+                                        <div class="col-12 md:col-4 lg:col-4">
+                                            <span class="p-float-label">
+                                                <input name="_remarks" type="text" [(ngModel)]="remarks" pInputText>
+                                                <label for="float-input">Remarks</label>
                                             </span>
                                         </div>
                                     </div>
                                 </div>
-                                <div #row3 class="col-12 md:col-11 lg:col-11 txt-to-center no-padding">
+                                <div #row4 class="col-12 md:col-11 lg:col-11 txt-to-center no-padding">
                                     <button pButton pRipple type="button" label="Save" (click)="onSave()"
                                         [disabled]="!f.valid || !f.dirty"></button>
                                 </div>
@@ -117,3 +134,4 @@
         </div>
     </div>
 </div>
+

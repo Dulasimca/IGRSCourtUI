@@ -1,7 +1,7 @@
 <div class="col-12 md:col-12 lg:col-12 container">
     <div class="grid to-center">
-        <div class="col-12 md:col-11 lg:col-11">
-            <p-panel header="Supreme Court Case Details">
+        <div class="col-12 md:col-12 lg:col-12">
+            <p-panel header="Form-VIII Supreme Court Case Details">
                 <div class="col-12 md:col-12 lg:col-12 box" style="margin-top: 5px;">
                     <form #f="ngForm" name="supremeCourtCaseForm">
                         <div #main class="col-12 md:col-12 lg:col-12">
@@ -64,13 +64,13 @@
                                                 <input name="_casefiledby" type="text" [(ngModel)]="casefiled" pInputText>
                                                 <label for="float-input">Case filed by</label>
                                             </span>
-                                            <div>(Government/Individual)</div>
+                                            <div class="txt-to-center"><label>(Government/Individual)</label></div>
                                         </div>
                                         
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <div style="border: 1px solid #1769aa;
-                                    border-radius: 5px; padding: 5px;">
-                                                <label for="_counterField">Counter Field(Yes/No)</label><br>
+                                    border-radius: 5px; padding: 2px;">
+                                                <label for="_counterFiled">Counter Filed</label><br>
                                                 <div style="text-align: center;">
                                                     <p-radioButton name="_counteryes" value="1" [(ngModel)]="selectedValue">
                                                     </p-radioButton>&nbsp;
@@ -78,11 +78,12 @@
                                                     </p-radioButton>&nbsp;
                                                 </div>
                                             </div>
+                                            <div class="txt-to-center"><label>(Yes/No)</label></div>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <input name="_stateofcase" type="text" [(ngModel)]="stateOfCase" pInputText>
-                                                <label for="float-input"> Present Stage of case</label>
+                                                <label for="float-input"> Present stage of case</label>
                                             </span>
                                         </div>
                                        

@@ -1,17 +1,26 @@
 <div class="col-12 md:col-12 lg:col-12 no-padding header hdr-shdw-btm">
     <div class="col-12 md:col-12 lg:col-12">
         <div class="grid">
-            <div class="col-6 md:col-4 lg:col-2 txt-to-center" style="font-size: 22px;">
-                <!-- [ngStyle.xs]="{'text-align': 'start'}" -->
+            <div fxLayout="row" class="col-6 md:col-4 lg:col-2" style="font-size: 22px;">
                 <span>
-                    <img src="assets/images/layout/finance.png"/>
+                    <!-- <i class="pi pi-bars" style="font-size: 1.25rem;"></i> -->
+                    <button pButton pRipple type="button" icon="pi pi-bars" class="p-button-rounded" 
+                    fxHide.gt-lg fxFlex.gt-md fxHide.gt-sm fxHide.md fxHide.lg fxHide.xl fxHide.lt-xl
+                    fxShow.lt-sm fxShow.xs fxShow.gt-xs
+                    (click)="onToggleSidenav()"></button>
+                    <!-- fxHide.gt-xs fxHide.lg fxHide.lt-lg fxHide.lt-md fxHide.lt-sm fxHide.lt-xl fxHide.xl  -->
+
+                </span>&nbsp;
+                <span>
+                    <img src="assets/images/layout/finance.png" />
                 </span>&nbsp;
                 <span>IGRS-CC</span>
             </div>
             <div class="col-2 md:col-6 lg:col-8"></div>
-                <div class="col-4 md:col-2 lg:col-2 txt-to-center">
+            <div class="col-4 md:col-2 lg:col-2 txt-to-center">
                 <span>
-                    <button pButton pRipple type="button" label="Login" icon="pi pi-sign-in" class="p-button-rounded"></button>
+                    <button pButton pRipple type="button" label="Login" icon="pi pi-sign-in"
+                        class="p-button-rounded"></button>
                 </span>
             </div>
         </div>
