@@ -35,17 +35,14 @@
                                                 <label for="float-input">Diary No./SLP Case No</label>
                                             </span>
                                         </div>
+                                        
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <input name="_caseno" type="text" [(ngModel)]="highCourtName" pInputText>
                                                 <label for="float-input">High Court Reference</label>
                                             </span>
                                         </div>
-                                       
-                                    </div>
-                                </div>
-                                <div #row2 class="col-12 md:col-11 lg:col-11">
-                                    <div class="grid">
+                                        <div class="lg:col-2"></div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <input name="_petitionername" type="text" [(ngModel)]="petitionerName" pInputText>
@@ -66,7 +63,7 @@
                                             </span>
                                             <div class="txt-to-center"><label>(Government/Individual)</label></div>
                                         </div>
-                                        
+                                       
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <div style="border: 1px solid #1769aa;
                                     border-radius: 5px; padding: 5px;">
@@ -79,29 +76,22 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <input name="_stateofcase" type="text" [(ngModel)]="stateOfCase" pInputText>
                                                 <label for="float-input"> Present stage of case</label>
                                             </span>
                                         </div>
-                                       
-                                    </div>
-                                </div>
-                                <div #row3 class="col-12 md:col-11 lg:col-11">
-                                    <div class="grid">
-                                       
+                                        <div class="lg:col-2"></div>
                                         <div class="col-12 md:col-4 lg:col-4">
                                             <span class="p-float-label">
                                                 <input name="_gistofcase" type="text" [(ngModel)]="gistOfCase" pInputText>
                                                 <label for="float-input">Gist of the case </label>
                                             </span>
                                         </div>
-                                        
-                                       
                                     </div>
                                 </div>
-                               
                                 <div #row3 class="col-12 md:col-11 lg:col-11 txt-to-center no-padding">
                                     <button pButton pRipple type="button" label="Save" (click)="onSave()"
                                         [disabled]="!f.valid || !f.dirty"></button>
