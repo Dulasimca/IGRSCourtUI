@@ -29,8 +29,8 @@ export class GovernmentRespondentComponent implements OnInit {
 
   ngOnInit(): void {
     this.sroOptions = [{ label: '-select-', value: 0 },
-  { label: '1', value: 1},
-{ label: '2', value: 2}];
+    { label: '1', value: 1 },
+    { label: '2', value: 2 }];
   }
 
   onSave() { }

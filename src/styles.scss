@@ -9,6 +9,8 @@ html{ height: 100% !important;}
 body {
     margin: 0 !important;
     height: 100% !important;
+    width: 100% !important;
+    // overflow: hidden;
 }
 label {
     font-size: 12px !important;
@@ -85,6 +87,10 @@ label {
     padding: 0.52rem 0.65rem !important;
     font-weight: 400 !important;
 }
+.p-button.p-button-icon-only.p-button-rounded {
+    height: 2.25rem !important;
+    width: 2.25rem !important;
+}
 .p-calendar-w-btn .p-datepicker-trigger.p-button {
     margin-left: -2rem !important;
     background-color: #3F51B5 !important;
@@ -99,4 +105,63 @@ label {
 .p-sidebar-left {
     position: relative !important;
     width: -webkit-fill-available !important;
+}
+.p-panelmenu .p-panelmenu-header > a {
+    padding: 0.85rem !important;
+    color: #3f51b5 !important;
+    font-size: 14px !important;
+}
+.p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link {
+    color: #3f51b5 !important;
+    border-top: 1px solid #7a87cc !important;
+    font-size: 14px !important;
+}
+.p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link .p-menuitem-icon {
+    color: #3f51b5 !important;
+}
+.p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link .p-menuitem-text {
+    color: inherit !important;
+    padding-left: .5rem !important;
+}
+.p-panelmenu .p-panelmenu-panel {
+    box-shadow: none !important; 
+    border-bottom: 1px solid #7a87cc !important;
+}
+.p-panelmenu .p-panelmenu-panel:first-child .p-panelmenu-header > a {
+    border-top-right-radius: 0 !important;
+    border-top-left-radius: 0 !important;
+}
+.p-panelmenu .p-panelmenu-panel:last-child .p-panelmenu-header:not(.p-highlight) > a {
+    border-bottom-right-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+}
+.p-panelmenu .p-panelmenu-panel:last-child {
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+.p-panelmenu .p-panelmenu-content .p-submenu-list:not(.p-panelmenu-root-submenu) {
+    padding: 0 !important;
+}
+.p-panelmenu .p-panelmenu-panel .p-panelmenu-header .p-panelmenu-header-link:focus {
+    background: #7a87cc !important;
+    color: white !important;
+}
+.p-panelmenu .p-panelmenu-content {
+    padding: 0 !important;
+}
+.p-panelmenu .p-panelmenu-panel .p-menuitem .p-menuitem-link:focus {
+    background: #7482cf !important;
+    color: white !important;
+}
+.p-sidebar .p-sidebar-header {
+    padding: 0rem !important;
+}
+.p-sidebar-left {
+    background: #4e5ba3 !important;
+}
+.p-sidebar .p-sidebar-header .p-sidebar-close, .p-sidebar .p-sidebar-header .p-sidebar-icon {
+    color: white !important;
+}
+.p-sidebar .p-sidebar-header .p-sidebar-close:enabled:hover, .p-sidebar .p-sidebar-header .p-sidebar-icon:enabled:hover {
+    color: white !important;
 }

@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { CalendarModule } from 'primeng/calendar';
 import { SidebarModule } from 'primeng/sidebar';
 import { PanelMenuModule } from 'primeng/panelmenu';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppComponent } from './app.component';
 import { GovernmentRespondentComponent } from './forms/highcourt-cases/government-respondent/government-respondent.component';
@@ -58,7 +59,8 @@ import { LawofficersOpinionRegisterComponent } from './forms/highcourt-cases/law
     RadioButtonModule,
     CalendarModule,
     SidebarModule,
-    PanelMenuModule
+    PanelMenuModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

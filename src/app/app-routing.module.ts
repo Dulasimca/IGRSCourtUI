@@ -13,10 +13,10 @@ const routes: Routes = [
   { path: 'government-respondent-hight-court-cases', component: GovernmentRespondentComponent },
   { path: 'pending-enquiry-hight-court-cases', component: PendingEnquiryComponent},
   { path: 'supreme-court-case-details', component: SupremecourtCaseDetailsComponent},
-  { path: 'others-respondent', component:OthersRespondentComponent},
-  { path: 'igr-respondent',component:IgrRespondentComponent},
-  { path: 'lawofficers-opinion-register', component:LawofficersOpinionRegisterComponent},
-  { path: 'writ-appeals-hight-court-cases',component:WritAppealsComponent},
+  { path: 'others-respondent', component: OthersRespondentComponent},
+  { path: 'igr-respondent',component: IgrRespondentComponent},
+  { path: 'lawofficers-opinion-register', component: LawofficersOpinionRegisterComponent},
+  { path: 'writ-appeals-hight-court-cases',component: WritAppealsComponent},
   { path: 'time-bound', component: TimeboundJudgementsDirectionsComponent}
 ];
 

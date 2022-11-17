@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 
 @Component({
@@ -7,7 +7,9 @@ import { MenuItem } from 'primeng/api';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
-  display: boolean = true;
+  @Input() status: boolean = false;
+  @Output() public sidenavToggle = new EventEmitter();
+
   constructor() { }
 
   items: MenuItem[] = [];
@@ -15,77 +17,46 @@ export class MenuComponent implements OnInit {
     ngOnInit() {
         this.items = [
             {
-                label: 'File',
-                icon: 'pi pi-pw pi-file',
-                items: [{
-                        label: 'New', 
-                        icon: 'pi pi-fw pi-plus',
-                        items: [
-                            {label: 'User', icon: 'pi pi-fw pi-user-plus'},
-                            {label: 'Filter', icon: 'pi pi-fw pi-filter'}
-                        ]
-                    },
-                    {label: 'Open', icon: 'pi pi-fw pi-external-link'},
-                    {separator: true},
-                    {label: 'Quit', icon: 'pi pi-fw pi-times'}
-                ]
+                label: 'Dashboard',
+                icon: 'pi pi-pw pi-home',
             },
             {
-                label: 'Edit',
-                icon: 'pi pi-fw pi-pencil',
+                label: 'Forms',
+                icon: 'pi pi-fw pi-file-o',
                 items: [
-                    {label: 'Delete', icon: 'pi pi-fw pi-trash'},
-                    {label: 'Refresh', icon: 'pi pi-fw pi-refresh'}
+                    { label: 'High Court Cases', 
+                  items: [
+                    {label: 'Government Respondent', routerLink: '/government-respondent-hight-court-cases',
+                    command: ()=> this.onToggleSidenav()},
+                    {label: 'IGR Respondent', routerLink: '/igr-respondent',
+                    command: ()=> this.onToggleSidenav()},
+                    {label: 'Other Respondent', routerLink: '/others-respondent',
+                    command: ()=> this.onToggleSidenav()},
+                    {label: 'Time Bound/Judgements', routerLink: '/time-bound',
+                    command: ()=> this.onToggleSidenav()},
+                    {label: 'Pending Enquiry', routerLink: '/pending-enquiry-hight-court-cases',
+                    command: ()=> this.onToggleSidenav()},
+                    {label: 'Writ Appeals', routerLink: '/writ-appeals-hight-court-cases',
+                    command: ()=> this.onToggleSidenav()}
+                  ]},
+                  { label: 'Supreme Court Case Details', routerLink: '/supreme-court-case-details',
+                  command: ()=> this.onToggleSidenav()},
+                  {label: 'Law Officers Opinion Register', routerLink: '/lawofficers-opinion-register',
+                  command: ()=> this.onToggleSidenav()},
+
                 ]
             },
             {
                 label: 'Help',
                 icon: 'pi pi-fw pi-question',
-                items: [
-                    {
-                        label: 'Contents',
-                        icon: 'pi pi-pi pi-bars'
-                    },
-                    {
-                        label: 'Search', 
-                        icon: 'pi pi-pi pi-search', 
-                        items: [
-                            {
-                                label: 'Text', 
-                                items: [
-                                    {
-                                        label: 'Workspace'
-                                    }
-                                ]
-                            },
-                            {
-                                label: 'User',
-                                icon: 'pi pi-fw pi-file',
-                            }
-                    ]}
-                ]
             },
-            {
-                label: 'Actions',
-                icon: 'pi pi-fw pi-cog',
-                items: [
-                    {
-                        label: 'Edit',
-                        icon: 'pi pi-fw pi-pencil',
-                        items: [
-                            {label: 'Save', icon: 'pi pi-fw pi-save'},
-                            {label: 'Update', icon: 'pi pi-fw pi-save'},
-                        ]
-                    },
-                    {
-                        label: 'Other',
-                        icon: 'pi pi-fw pi-tags',
-                        items: [
-                            {label: 'Delete', icon: 'pi pi-fw pi-minus'}
-                        ]
-                    }
-                ]
-            }
         ];
     }
+
+    public onToggleSidenav = () => {
+      this.status = !this.status; //closing menu once its been clicked
+      this.sidenavToggle.emit(this.status); //emitting event that menu is closed to app component
+    }
+  
+
 }
