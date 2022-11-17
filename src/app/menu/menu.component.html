@@ -1,8 +1,12 @@
-    <p-sidebar [(visible)]="status" [modal]="false" [showCloseIcon]="false" fxHide.gt-lg fxHide.lg fxHide.md>
+    <p-sidebar [(visible)]="status" [modal]="false" [showCloseIcon]="false" 
+    fxHide.gt-lg fxFlex.gt-md fxHide.gt-sm fxHide.md fxHide.lg fxHide.xl fxHide.lt-xl
+    fxShow.lt-sm fxShow.xs fxShow.gt-xs>
         <div>
             <p-panelMenu [model]="items" [style]="{'width':'100%', 'height': '100%', 'border': '1px solid #b4c0ff',
             'box-shadow': '5px 0 5px -5px #3f51b5'}" ></p-panelMenu>
         </div>
     </p-sidebar>
-    <p-panelMenu [model]="items" [style]="{'width':'210px', 'height': '100%', 'border': '1px solid #b4c0ff',
-'box-shadow': '5px 0 5px -5px #3f51b5'}" fxHide.sm fxHide.xs></p-panelMenu>
+    <p-panelMenu [model]="items" [style]="{'height': '100%', 'border': '1px solid #b4c0ff',
+'box-shadow': '5px 0 5px -5px #3f51b5'}" fxHide.xs 
+fxShow.gt-lg fxShow.gt-md fxShow.gt-sm fxShow.gt-xs fxShow.lg
+fxShow.lt-lg fxShow.lt-md fxShow.lt-sm fxShow.lt-xl fxShow.md></p-panelMenu>
