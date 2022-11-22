@@ -8,7 +8,7 @@
 html{ height: 100% !important;}
 body {
     margin: 0 !important;
-    height: 100% !important;
+    height: auto !important;
     width: 100% !important;
     // overflow: hidden;
 }
@@ -30,8 +30,8 @@ label {
 }
 
 .hdr-shdw-btm {
-    border-bottom: 2px solid;
-    box-shadow: 0px 15px 10px -15px #bdbdbd;
+    border-bottom: 2px solid #7a87cc;
+    box-shadow: 0px 15px 10px -15px #bdbdbd !important; 
 }
 
 .no-padding {
@@ -44,10 +44,86 @@ label {
     // color: white;
     color: #7a87cc;
 }
-// .container {
-//     padding: 1rem !important;
-// }
+.login-title {
+    text-align: center !important;
+    font-family: Times New Roman;
+    font-weight: 600;
+    color: #3F51B5;
+    font-size: 18px;
+}
+.txt-link {
+    color:#1769aa !important;
+    text-decoration: underline;
+    font-weight: 500;
+    font-size: 14px;
+}
+.cursor {
+    cursor: pointer;
+}
+.space {
+    margin: 5px;
+}
+.card {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
 
+.dsh-box {
+    // height: 250px !important;
+    margin-top: 5px; background: #fbfbff;
+    padding: 0 !important;
+    color: white;
+    border-radius: 10px;
+}
+.dsh-box-hdr {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.dsh-box1-bg {
+    background: #ed0d60;
+}
+.dsh-box2-bg {
+    background: #0cc18f;
+}
+.dsh-box3-bg {
+    background: #4f30f9;
+}
+.dsh-box4-bg {
+    background: #a5cb0b;
+}
+.dsh-box5-bg {
+    background: #8908bf;
+}
+.dsh-box6-bg {
+    background: #fb451c;
+}
+.dsh-box1-innerbox-bg {
+   border-radius: 10px;
+   background-image: linear-gradient(to right, #ff0260 , #a494f9);
+}
+.dsh-box2-innerbox-bg {
+   border-radius: 10px;
+   background-image: linear-gradient(to right, #07b182, #a494f9);
+ }
+ .dsh-box3-innerbox-bg {
+   border-radius: 10px;
+   background-image: linear-gradient(to right, #5c3fff, #fd4646);
+ }
+ .dsh-box4-innerbox-bg {
+   border-radius: 10px;
+   background-image: linear-gradient(to right, #bde51d, #88caf1);
+ }
+ .dsh-box5-innerbox-bg {
+   border-radius: 10px;
+   background-image: linear-gradient(to right, #8908bf, #ff23bb);
+ }
+ .dsh-box6-innerbox-bg {
+   border-radius: 10px;
+   background-image: linear-gradient(to right, #efa83e, #ff4223);
+ }
+ .dsh-box-value {
+    font-weight: 600;
+    font-size: 18px;
+ }
 // primeng styles
 .p-dropdown {
     width: -webkit-fill-available !important; 

@@ -8,8 +8,14 @@ import { LawofficersOpinionRegisterComponent } from './forms/highcourt-cases/law
 import { OthersRespondentComponent } from './forms/highcourt-cases/others-respondent/others-respondent.component';
 import { PendingEnquiryComponent } from './forms/highcourt-cases/pending-enquiry/pending-enquiry.component';
 import { SupremecourtCaseDetailsComponent } from './forms/highcourt-cases/supremecourt-case-details/supremecourt-case-details.component';
+import { LoginComponent } from './login/login.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'government-respondent-hight-court-cases', component: GovernmentRespondentComponent },
   { path: 'pending-enquiry-hight-court-cases', component: PendingEnquiryComponent},
   { path: 'supreme-court-case-details', component: SupremecourtCaseDetailsComponent},

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -8,7 +9,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class HeaderComponent implements OnInit {
   @Input() public toggle: boolean = true; 
   @Output() public sidenavToggle = new EventEmitter();
-  constructor() { }
+  constructor(private _authService: AuthService) { }
 
   ngOnInit(): void {
   }
@@ -16,6 +17,10 @@ export class HeaderComponent implements OnInit {
   public onToggleSidenav = () => {
     this.sidenavToggle.emit(this.toggle); //sends 'true' i.e) says menu to open in app component
     this.toggle = !this.toggle; //set toggle to 'false' after opening menu
+  }
+
+  onLogout() {
+    this._authService.logout();
   }
 
 }

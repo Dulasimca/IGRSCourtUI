@@ -26,6 +26,9 @@ import { OthersRespondentComponent } from './forms/highcourt-cases/others-respon
 import { PendingEnquiryComponent } from './forms/highcourt-cases/pending-enquiry/pending-enquiry.component';
 import { SupremecourtCaseDetailsComponent } from './forms/highcourt-cases/supremecourt-case-details/supremecourt-case-details.component';
 import { LawofficersOpinionRegisterComponent } from './forms/highcourt-cases/lawofficers-opinion-register/lawofficers-opinion-register.component';
+import { AuthService } from './services/auth.service';
+import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './services/auth.guard';
 
 @NgModule({
   declarations: [
@@ -43,6 +46,7 @@ import { LawofficersOpinionRegisterComponent } from './forms/highcourt-cases/law
     OthersRespondentComponent,
     PendingEnquiryComponent,
     LawofficersOpinionRegisterComponent,
+    LoginComponent,
   
     
   ],
@@ -62,7 +66,7 @@ import { LawofficersOpinionRegisterComponent } from './forms/highcourt-cases/law
     PanelMenuModule,
     FlexLayoutModule
   ],
-  providers: [],
+  providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

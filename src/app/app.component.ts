@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +10,14 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
   title = 'IGRS-CC';
   show: boolean = false;
+  isLoggedIn: boolean = false;
+
+  constructor(private _authService: AuthService, private _router: Router) {
+    this._authService.isLoggedIn.subscribe(value => {
+      this.isLoggedIn = value;
+    });
+    console.log('log', this.isLoggedIn)
+  }
 
   ngOnInit() {
   }
