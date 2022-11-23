@@ -1,3 +1,4 @@
+import { LocationStrategy } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,10 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
   deputyItems: any[] = [];
-  caItems: any [] = [];
+  caItems: any[] = [];
   scCaseItems: any[] = [];
   contemptItems: any[] = [];
-  constructor() { }
+  constructor() { 
+  }
 
   ngOnInit(): void {
     this.deputyItems = [

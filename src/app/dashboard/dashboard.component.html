@@ -1,4 +1,4 @@
-<div class="col-12 md:col-12 lg:col-12" style="height: 100%;">
+<div class="col-12 md:col-12 lg:col-12 container" style="height: 100%;">
     <div class="col-12 md:col-12 lg:col-12 card">
         <div #gridmain class="grid">
             <div #col1 class="col-12 md:col-6 lg:col-6">
@@ -8,7 +8,7 @@
                     </div>
                     <div class="col-12">
                         <div class="grid to-center">
-                            <div *ngFor="let i of deputyItems" class="col-12 md:col-5 lg:col-5 card space dsh-box1-innerbox-bg">
+                            <div *ngFor="let i of deputyItems" class="col-5 md:col-5 lg:col-5 card space dsh-box1-innerbox-bg">
                                 <div class="col-12">
                                     <span>{{i.title}}</span>
                                 </div>
@@ -25,7 +25,7 @@
                     </div>
                     <div class="col-12">
                         <div class="grid to-center">
-                            <div *ngFor="let i of caItems" class="col-12 md:col-5 lg:col-5 card space dsh-box2-innerbox-bg">
+                            <div *ngFor="let i of caItems" class="col-5 md:col-5 lg:col-5 card space dsh-box2-innerbox-bg">
                                 <div class="col-12">
                                     <span>{{i.title}}</span>
                                 </div>
@@ -42,7 +42,7 @@
                     </div>
                     <div class="col-12">
                         <div class="grid to-center">
-                            <div *ngFor="let i of deputyItems" class="col-12 md:col-5 lg:col-5 card space dsh-box3-innerbox-bg">
+                            <div *ngFor="let i of deputyItems" class="col-5 md:col-5 lg:col-5 card space dsh-box3-innerbox-bg">
                                 <div class="col-12">
                                     <span>{{i.title}}</span>
                                 </div>
@@ -61,7 +61,7 @@
                     </div>
                     <div class="col-12">
                         <div class="grid to-center">
-                            <div *ngFor="let i of deputyItems" class="col-12 md:col-5 lg:col-5 card space dsh-box4-innerbox-bg">
+                            <div *ngFor="let i of deputyItems" class="col-5 md:col-5 lg:col-5 card space dsh-box4-innerbox-bg">
                                 <div class="col-12">
                                     <span>{{i.title}}</span>
                                 </div>
@@ -78,7 +78,7 @@
                     </div>
                     <div class="col-12">
                         <div class="grid to-center">
-                            <div *ngFor="let i of scCaseItems" class="col-12 md:col-5 lg:col-5 card space dsh-box5-innerbox-bg">
+                            <div *ngFor="let i of scCaseItems" class="col-5 md:col-5 lg:col-5 card space dsh-box5-innerbox-bg">
                                 <div class="col-12">
                                     <span>{{i.title}}</span>
                                 </div>
@@ -95,8 +95,9 @@
                     </div>
                     <div class="col-12">
                         <div class="grid to-center">
-                            <div *ngFor="let i of contemptItems" class="col-6 md:col-3 lg:col-3 card space dsh-box6-innerbox-bg">
-                                <div class="col-12">
+                            <div *ngFor="let i of contemptItems" class="col-5 md:col-3 lg:col-3 card space dsh-box6-innerbox-bg"
+                            style="height: 75px;">
+                                <div class="col-12 no-pad-top">
                                     <span>{{i.title}}</span>
                                 </div>
                                 <div class="col-12 no-padding txt-to-center dsh-box-value">

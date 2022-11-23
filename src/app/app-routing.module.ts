@@ -16,14 +16,14 @@ const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
-  { path: 'government-respondent-hight-court-cases', component: GovernmentRespondentComponent },
-  { path: 'pending-enquiry-hight-court-cases', component: PendingEnquiryComponent},
-  { path: 'supreme-court-case-details', component: SupremecourtCaseDetailsComponent},
-  { path: 'others-respondent', component: OthersRespondentComponent},
-  { path: 'igr-respondent',component: IgrRespondentComponent},
-  { path: 'lawofficers-opinion-register', component: LawofficersOpinionRegisterComponent},
-  { path: 'writ-appeals-hight-court-cases',component: WritAppealsComponent},
-  { path: 'time-bound', component: TimeboundJudgementsDirectionsComponent}
+  { path: 'government-respondent-hight-court-cases', component: GovernmentRespondentComponent, canActivate: [AuthGuard] },
+  { path: 'pending-enquiry-hight-court-cases', component: PendingEnquiryComponent, canActivate: [AuthGuard]},
+  { path: 'supreme-court-case-details', component: SupremecourtCaseDetailsComponent, canActivate: [AuthGuard]},
+  { path: 'others-respondent', component: OthersRespondentComponent, canActivate: [AuthGuard]},
+  { path: 'igr-respondent',component: IgrRespondentComponent, canActivate: [AuthGuard]},
+  { path: 'lawofficers-opinion-register', component: LawofficersOpinionRegisterComponent, canActivate: [AuthGuard]},
+  { path: 'writ-appeals-hight-court-cases',component: WritAppealsComponent, canActivate: [AuthGuard]},
+  { path: 'time-bound', component: TimeboundJudgementsDirectionsComponent, canActivate: [AuthGuard]}
 ];
 
 
