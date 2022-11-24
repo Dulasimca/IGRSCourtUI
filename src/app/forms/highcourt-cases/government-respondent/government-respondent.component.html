@@ -24,7 +24,7 @@
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_sro" [options]="sroOptions" [(ngModel)]="sro">
+                                                <p-dropdown name="_sro" [options]="sroOptions" [(ngModel)]="sro" [required]="true">
                                                 </p-dropdown>
                                                 <label for="float-input">SRO</label>
                                             </span>
@@ -38,7 +38,7 @@
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <input name="_caseno" type="text" [(ngModel)]="caseNo" pInputText>
+                                                <input name="_caseno" type="text" [(ngModel)]="caseNo" pInputText required>
                                                 <label for="float-input">Case No</label>
                                             </span>
                                         </div>
@@ -71,8 +71,7 @@
                                         </div>
                                         <div class="lg:col-2"></div>
                                         <div class="col-12 md:col-4 lg:col-2">
-                                            <div style="border: 1px solid #1769aa;
-                                    border-radius: 5px; padding: 2px;">
+                                            <div class="div-radio-box">
                                                 <label for="_counterFiled">Counter Filed</label><br>
                                                 <div style="text-align: center;">
                                                     <p-radioButton name="_counteryes" value="1" [(ngModel)]="selectedValue">

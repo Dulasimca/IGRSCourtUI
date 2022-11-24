@@ -35,9 +35,14 @@ label {
     border-radius: 5px;
 }
 
+.div-radio-box {
+    border: 1px solid #1a9967 ;
+    border-radius: 5px; padding: 2px;
+}
+
 .hdr-shdw-btm {
-    border-bottom: 2px solid #7a87cc;
-    box-shadow: 0px 15px 10px -15px #bdbdbd !important; 
+    border-bottom: 2px solid #18A558;
+    box-shadow: 0px 15px 10px -15px #adffb1 !important; 
 }
 
 .no-padding {
@@ -53,13 +58,13 @@ label {
     // background: #6774b9;
     // border: 2px solid #5e6fc7;
     // color: white;
-    color: #7a87cc;
+    color: #18A558;
 }
 .login-title {
     text-align: center !important;
     font-family: Times New Roman;
     font-weight: 600;
-    color: #3F51B5;
+    color: #18A558;
     font-size: 18px;
 }
 .txt-link {
@@ -72,7 +77,10 @@ label {
     cursor: pointer;
 }
 .space {
-    margin: 5px;
+    margin: 5px 25px;
+}
+.space-smaller {
+    margin: 5px 10px;
 }
 .card {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -88,59 +96,64 @@ label {
 .dsh-box-hdr {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-}
-.dsh-box1-bg {
-    background: #ed0d60;
-}
-.dsh-box2-bg {
-    background: #0cc18f;
-}
-.dsh-box3-bg {
-    background: #4f30f9;
-}
-.dsh-box4-bg {
-    background: #a5cb0b;
-}
-.dsh-box5-bg {
-    background: #8908bf;
-}
-.dsh-box6-bg {
-    background: #fb451c;
+    background: #18A558;
 }
 .dsh-box1-innerbox-bg {
    border-radius: 10px;
-   background-image: linear-gradient(to right, #ff0260 , #a494f9);
+   width: 25% !important;
+    background: rgb(55, 55, 255);
 }
 .dsh-box2-innerbox-bg {
    border-radius: 10px;
-   background-image: linear-gradient(to right, #07b182, #a494f9);
+   width: 25% !important;
+    background: rgb(238, 118, 6);
  }
  .dsh-box3-innerbox-bg {
    border-radius: 10px;
-   background-image: linear-gradient(to right, #5c3fff, #fd4646);
+   width: 25% !important;
+    background: rgb(243, 15, 129);
  }
  .dsh-box4-innerbox-bg {
    border-radius: 10px;
-   background-image: linear-gradient(to right, #a0c705, #6abeef);
+   width: 25% !important;
+    background: rgb(228, 4, 4);
  }
  .dsh-box5-innerbox-bg {
    border-radius: 10px;
-   background-image: linear-gradient(to right, #8908bf, #ff23bb);
+   width: 25% !important;
+    background: rgb(255, 218, 5);
  }
  .dsh-box6-innerbox-bg {
    border-radius: 10px;
-   background-image: linear-gradient(to right, #efa83e, #ff4223);
+   width: 25% !important;
+    background: rgb(96, 204, 23);
  }
  .dsh-box-value {
     font-weight: 600;
     font-size: 18px;
  }
 // primeng styles
+
 .p-dropdown {
     width: -webkit-fill-available !important; 
-    border: 1px solid var(--blue-700) !important;
+    border: 1px solid #1a9967  !important;
+    box-shadow: inherit !important;
+}
+.p-dropdown-open {
+    border: .2px solid #1a9967  !important;
+    box-shadow:  0 0 0 .15rem #4deead !important;
 }
 .p-dropdown .p-inputtext {
+    border: none !important;
+    // border-color: #1a9967  !important;
+}
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight {
+    color: #18A558 !important;
+}
+.p-dropdown .p-dropdown-trigger {
+    border: none !important;
+}
+.p-dropdown :focus-visible {
     border: none !important;
 }
 .p-dropdown-panel .p-dropdown-items .p-dropdown-item {
@@ -150,30 +163,48 @@ label {
     color: rgb(56 53 53 / 87%) !important;
     font-size: 14px !important;
 }
+.p-dropdown:not(.p-disabled):hover {
+    border-color: #1a9967  !important;
+}
+
+.p-inputtext.p-filled {
+    background: white !important;
+}
 .p-inputtext {
     width: -webkit-fill-available !important; 
-    border: 1px solid var(--blue-700) !important;
+    border: 1px solid #1a9967  !important;
+    background: white !important;
     color: #292828c7 !important;
     font-size: 14px !important;
+}
+.p-inputtext:enabled:focus {
+    box-shadow:  0 0 0 .15rem #4deead !important;
+    // border-color: #18A558 !important;
+    // border: 2px solid #18A558 !important;
 }
 .p-inputtext.ng-touched.ng-invalid {
     border-color: red;
  }
+ .p-input-filled .p-inputtext {
+    background-color: white !important;
+}
 .p-float-label input:focus ~ label, .p-float-label .p-inputwrapper-focus ~ label {
-    color: #3F51B5 !important;
+    color: #1a9967  !important;
 }
 .p-float-label label {
-    font-size: 12px !important;
+    font-size: 14px !important;
 }
 .p-float-label input:focus ~ label, .p-float-label input.p-filled ~ label, .p-float-label textarea:focus ~ label, .p-float-label textarea.p-filled ~ label, .p-float-label .p-inputwrapper-focus ~ label, .p-float-label .p-inputwrapper-filled ~ label {
     font-weight: 500 !important;
-    color: #42519f !important;
+    color: #1a9967  !important;
+    padding: 2px 1px 2px 2px !important;
+    margin-left: -5px !important;
 }
 .p-panel .p-panel-header {
-    border: 1px solid #e0e0e0 !important;
+    border: 1px solid #4ed39e !important;
     padding: 0.55rem !important;
-    background: #7a87cc !important;
-    color: #fafafa !important;
+    background: #18A558 !important;
+    color: #fcfff6 !important;
 }
 .p-panel .p-panel-title {
     font-size: 1rem !important;
@@ -185,15 +216,25 @@ label {
 .p-button {
     padding: 0.52rem 0.65rem !important;
     font-weight: 400 !important;
+    background: #18A558 !important;
+}
+.p-button:enabled:hover {
+    background: #1a9967  !important;
 }
 .p-button.p-button-icon-only.p-button-rounded {
     height: 2.25rem !important;
     width: 2.25rem !important;
 }
+.p-radiobutton .p-radiobutton-box.p-highlight {
+    border-color: #1a9967  !important;
+}
+.p-radiobutton .p-radiobutton-box .p-radiobutton-icon {
+    background-color: #18A558 !important;
+}
 .p-calendar-w-btn .p-datepicker-trigger.p-button {
     margin-left: -2rem !important;
-    background-color: #3F51B5 !important;
-    border: 2px solid #3F51B5 !important;
+    // background-color: #3F51B5 !important;
+    // border: 2px solid #3F51B5 !important;
 }
 .p-calendar {
     width: -webkit-fill-available !important;
@@ -206,9 +247,12 @@ label {
     border-radius: 5px !important;
 }
 .p-datepicker table td.p-datepicker-today > span {
-    background: #3f51b5 !important;
+    background: #009c5f !important;
     color: white !important;
-    border-color: #3f51b5 !important;
+    border-color: #1be749 !important;
+}
+.p-datepicker table td > span.p-highlight {
+    color: #009c5f !important;
 }
 .p-datepicker .p-datepicker-header .p-datepicker-title .p-datepicker-month {
     padding: 0 !important;
@@ -217,9 +261,9 @@ label {
     padding: 0 !important;
 }
 .p-datepicker:not(.p-datepicker-inline) .p-datepicker-header {
-    border-bottom: 2px solid #707dc8 !important;
-    padding: 0.5rem !important;
-    background: #d3d3ff !important;
+    border-bottom: 2px solid #009c5f !important;
+    padding: 0.25rem !important;
+    background: #d5efe5 !important;
 }
 .p-calendar .p-datepicker {
     padding: 0 !important;
@@ -236,16 +280,16 @@ label {
 }
 .p-panelmenu .p-panelmenu-header > a {
     padding: 0.85rem !important;
-    color: #3f51b5 !important;
+    // color: #1a9967  !important;
     font-size: 14px !important;
 }
 .p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link {
-    color: #3f51b5 !important;
-    border-top: 1px solid #7a87cc !important;
+    // color: #1a9967  !important;
+    border-top: 1px solid #58d15e !important;
     font-size: 14px !important;
 }
 .p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link .p-menuitem-icon {
-    color: #3f51b5 !important;
+     color: #1a9967  !important;
 }
 .p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link .p-menuitem-text {
     color: inherit !important;
@@ -253,7 +297,7 @@ label {
 }
 .p-panelmenu .p-panelmenu-panel {
     box-shadow: none !important; 
-    border-bottom: 1px solid #7a87cc !important;
+    border-bottom: 1px solid #18A558 !important;
 }
 .p-panelmenu .p-panelmenu-panel:first-child .p-panelmenu-header > a {
     border-top-right-radius: 0 !important;
@@ -271,21 +315,21 @@ label {
     padding: 0 !important;
 }
 .p-panelmenu .p-panelmenu-panel .p-panelmenu-header .p-panelmenu-header-link:focus {
-    background: #7a87cc !important;
+    background: #18A558 !important;
     color: white !important;
 }
 .p-panelmenu .p-panelmenu-content {
     padding: 0 !important;
 }
 .p-panelmenu .p-panelmenu-panel .p-menuitem .p-menuitem-link:focus {
-    background: #7482cf !important;
+    background: #18A558 !important;
     color: white !important;
 }
 .p-sidebar .p-sidebar-header {
     padding: 0rem !important;
 }
 .p-sidebar-left {
-    background: #4e5ba3 !important;
+     background: #18A558 !important;
 }
 .p-sidebar .p-sidebar-header .p-sidebar-close, .p-sidebar .p-sidebar-header .p-sidebar-icon {
     color: white !important;

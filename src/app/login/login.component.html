@@ -1,5 +1,5 @@
 <div class="col-12 md:col-12 lg:col-12" style="padding: 4.2rem 1rem;
-background: linear-gradient(var(--blue-300), var(--purple-600));height: 100vh;">
+background: linear-gradient(#06ef70, #0a8b44);height: 100vh;">
     <div class="grid p-fluid to-center">
 
         <div class="col-11 md:col-10 lg:col-6 bdr-box-light-blue" style="background: white; border-radius: 10px;">
@@ -14,9 +14,11 @@ background: linear-gradient(var(--blue-300), var(--purple-600));height: 100vh;">
                         <div class="grid p-fluid to-center">
                             <div class="field col-12 md:col-8 lg:col-6">
                                 <div class="p-inputgroup">
-                                    <span class="p-inputgroup-addon" style="background: #3F51B5; color: white;"><i class="pi pi-user"></i></span>
+                                    <span class="p-inputgroup-addon" style="background: #18A558; color: white;
+    border: 0.5px solid #4ed39e !important;"><i class="pi pi-user"></i></span>
                                     <span class="p-float-label">
-                                        <input type="text" pInputText [(ngModel)]="username" placeholder="Username">
+                                        <input type="text" style="background: white !important;" pInputText
+                                            [(ngModel)]="username" placeholder="Username" autocomplete="off">
                                         <label for="float-input">Username</label>
                                     </span>
                                 </div>
@@ -25,9 +27,11 @@ background: linear-gradient(var(--blue-300), var(--purple-600));height: 100vh;">
                         <div class="grid p-fluid to-center">
                             <div class="col-12 md:col-8 lg:col-6">
                                 <div class="p-inputgroup">
-                                    <span class="p-inputgroup-addon" style="background: #3F51B5; color: white;"><i class="pi pi-lock"></i></span>
+                                    <span class="p-inputgroup-addon" style="background: #18A558; color: white;
+    border: 1px solid #4ed39e !important;"><i class="pi pi-lock"></i></span>
                                     <span class="p-float-label">
-                                        <input type="password" pInputText [(ngModel)]="password" placeholder="Password">
+                                        <input type="password" pInputText [(ngModel)]="password" placeholder="Password"
+                                            autocomplete="off">
                                         <label for="float-input">Password</label>
                                     </span>
                                 </div>
@@ -44,7 +48,8 @@ background: linear-gradient(var(--blue-300), var(--purple-600));height: 100vh;">
                         <div class="grid p-fluid to-center">
                             <div class="col-6 md:col-4 lg:col-4">
                                 <button pButton type="button" class="p-button-raised p-button-rounded" label="login"
-                                    style="background-image: linear-gradient(to right, #709df9, #e63ae9);" (click)="onLogin()"></button>
+                                    (click)="onLogin()"></button>
+                                <!-- style="background-image: linear-gradient(to right, #709df9, #e63ae9);" -->
                             </div>
                             <div class="col-12 md:col-12 lg:col-12 txt-to-center">
                                 or
