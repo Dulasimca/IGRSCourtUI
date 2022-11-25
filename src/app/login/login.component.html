@@ -31,7 +31,8 @@ background: linear-gradient(#06ef70, #0a8b44);height: 100vh;">
                                     <div class="p-inputgroup">
                                         <span class="p-inputgroup-addon" style="background: #18A558; color: white;
     border: 1px solid #4ed39e !important;">
-                                            <i class="pi pi-lock"></i>
+                                            <i *ngIf="!showPwd" class="pi pi-lock"></i>
+                                            <i *ngIf="showPwd" class="pi pi-unlock"></i>
                                         </span>
                                         <span class="p-float-label p-input-icon-right">
                                             <i *ngIf="!showPwd" class="pi pi-eye" (click)="onShowPwd()"></i>
