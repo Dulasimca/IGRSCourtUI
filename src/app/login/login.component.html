@@ -17,9 +17,10 @@ background: linear-gradient(#06ef70, #0a8b44);height: 100vh;">
                                     <div class="p-inputgroup">
                                         <span class="p-inputgroup-addon" style="background: #18A558; color: white;
     border: 0.5px solid #4ed39e !important;"><i class="pi pi-user"></i></span>
-                                        <span class="p-float-label">
-                                            <input name="_username" type="text" style="background: white !important;" pInputText
-                                                [(ngModel)]="username" placeholder="Username" autocomplete="off" required>
+                                        <span class="p-float-label p-input-icon-right">
+                                            <input name="_username" type="text" style="background: white !important;"
+                                                pInputText [(ngModel)]="username" placeholder="Username"
+                                                autocomplete="off" required>
                                             <label for="float-input">Username</label>
                                         </span>
                                     </div>
@@ -29,10 +30,15 @@ background: linear-gradient(#06ef70, #0a8b44);height: 100vh;">
                                 <div class="col-12 md:col-8 lg:col-6">
                                     <div class="p-inputgroup">
                                         <span class="p-inputgroup-addon" style="background: #18A558; color: white;
-    border: 1px solid #4ed39e !important;"><i class="pi pi-lock"></i></span>
-                                        <span class="p-float-label">
-                                            <input name="_password" type="password" pInputText [(ngModel)]="password"
-                                                placeholder="Password" autocomplete="off" required>
+    border: 1px solid #4ed39e !important;">
+                                            <i class="pi pi-lock"></i>
+                                        </span>
+                                        <span class="p-float-label p-input-icon-right">
+                                            <i *ngIf="!showPwd" class="pi pi-eye" (click)="onShowPwd()"></i>
+                                            <i *ngIf="showPwd" class="pi pi-eye-slash" (click)="onShowPwd()"></i>
+                                            <input #pwd id="pwd" name="_password" type="password" pInputText
+                                                [(ngModel)]="password" placeholder="Password" autocomplete="off"
+                                                required>
                                             <label for="float-input">Password</label>
                                         </span>
                                     </div>
@@ -41,7 +47,7 @@ background: linear-gradient(#06ef70, #0a8b44);height: 100vh;">
                             <div class="grid p-fluid to-center">
                                 <div class="field col-12 md:col-8 lg:col-6">
                                     <div>
-                                        <label><span class="txt-link">Forget
+                                        <label class="cursor"><span class="txt-link">Forget
                                                 Password?</span></label>
                                     </div>
                                 </div>
@@ -56,7 +62,7 @@ background: linear-gradient(#06ef70, #0a8b44);height: 100vh;">
                                     or
                                 </div>
                                 <div class="col-12 md:col-12 lg:col-12 txt-to-center txt-link">
-                                    <span>
+                                    <span class="cursor">
                                         Sign Up
                                     </span>
                                 </div>
