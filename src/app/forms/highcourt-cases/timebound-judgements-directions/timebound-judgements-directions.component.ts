@@ -34,10 +34,6 @@ export class TimeboundJudgementsDirectionsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSelect(type:any) {
-
-  }
-
   onSave() {}
 
 }

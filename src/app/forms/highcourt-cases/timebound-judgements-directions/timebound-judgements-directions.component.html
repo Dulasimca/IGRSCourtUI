@@ -10,28 +10,32 @@
                                     <div class="grid">
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_zone" [options]="zoneOptions" [(ngModel)]="zone">
+                                                <p-dropdown name="_zone" [autoDisplayFirst]="false" [options]="zoneOptions" [(ngModel)]="zone"
+                                                [required]="true">
                                                 </p-dropdown>
                                                 <label for="float-input">Zone</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_district" [options]="districtOptions" [(ngModel)]="district">
+                                                <p-dropdown name="_district" [autoDisplayFirst]="false" [options]="districtOptions" [(ngModel)]="district"
+                                                [required]="true">
                                                 </p-dropdown>
                                                 <label for="float-input">District</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_sro" [options]="sroOptions" [(ngModel)]="sro">
+                                                <p-dropdown name="_sro" [autoDisplayFirst]="false" [options]="sroOptions" [(ngModel)]="sro"
+                                                [required]="true">
                                                 </p-dropdown>
                                                 <label for="float-input">SRO</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_casetype" [options]="caseTypeOptions" [(ngModel)]="caseType">
+                                                <p-dropdown name="_casetype" [autoDisplayFirst]="false" [options]="caseTypeOptions" [(ngModel)]="caseType"
+                                                [required]="true">
                                                 </p-dropdown>
                                                 <label for="float-input">Case Type</label>
                                             </span>
@@ -44,7 +48,8 @@
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_year" [options]="yearOptions" (onClick)="onSelect('Y')" [(ngModel)]="year">
+                                                <p-dropdown name="_year" [autoDisplayFirst]="false" [options]="yearOptions"
+                                                [(ngModel)]="year" [required]="true">
                                                 </p-dropdown>
                                                 <label for="float-input">Year</label>
                                             </span>
