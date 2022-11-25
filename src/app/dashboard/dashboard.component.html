@@ -1,14 +1,16 @@
 <div class="col-12 md:col-12 lg:col-12 container" style="height: 100%;">
     <div class="col-12 md:col-12 lg:col-12 card">
         <div #gridmain class="grid">
-            <div #col1 class="col-12 md:col-6 lg:col-6">
+            <div #col1 class="col-12 md:col-12 lg:col-6">
                 <div #box1 class="col-12 md:col-12 lg:col-12 box dsh-box">
                     <div class="col-12 dsh-box1-bg dsh-box-hdr">
                         <span>Deputy Inspector of Registration</span>
                     </div>
                     <div class="col-12">
                         <div class="grid to-center">
-                            <div *ngFor="let i of deputyItems" class="col-5 md:col-4 lg:col-4 card space dsh-box1-innerbox-bg">
+                            <div *ngFor="let i of deputyItems" class="col-4 md:col-3 lg:col-3 card dsh-box1-innerbox-bg"
+                            [ngStyle.xs]="{'margin': '5px 15px'}" [ngStyle.lg]="{'margin': '5px 25px'}"
+                            [ngStyle.sm]="{'margin': '5px 25px'}" [ngStyle.md]="{'margin': '5px 20px'}">
                                 <div class="col-12">
                                     <span>{{i.title}}</span>
                                 </div>
@@ -25,7 +27,9 @@
                     </div>
                     <div class="col-12">
                         <div class="grid to-center">
-                            <div *ngFor="let i of caItems" class="col-5 md:col-4 lg:col-4 card space dsh-box2-innerbox-bg">
+                            <div *ngFor="let i of caItems" class="col-4 md:col-3 lg:col-3 card dsh-box2-innerbox-bg"
+                            [ngStyle.xs]="{'margin': '5px 15px'}" [ngStyle.lg]="{'margin': '5px 25px'}"
+                            [ngStyle.sm]="{'margin': '5px 25px'}" [ngStyle.md]="{'margin': '5px 20px'}">
                                 <div class="col-12">
                                     <span>{{i.title}}</span>
                                 </div>
@@ -42,7 +46,9 @@
                     </div>
                     <div class="col-12">
                         <div class="grid to-center">
-                            <div *ngFor="let i of deputyItems" class="col-5 md:col-4 lg:col-4 card space dsh-box3-innerbox-bg">
+                            <div *ngFor="let i of deputyItems" class="col-4 md:col-3 lg:col-3 card dsh-box3-innerbox-bg"
+                            [ngStyle.xs]="{'margin': '5px 15px'}" [ngStyle.lg]="{'margin': '5px 25px'}"
+                            [ngStyle.sm]="{'margin': '5px 25px'}" [ngStyle.md]="{'margin': '5px 20px'}">
                                 <div class="col-12">
                                     <span>{{i.title}}</span>
                                 </div>
@@ -54,14 +60,16 @@
                     </div>
                 </div>
             </div>
-            <div #col2 class="col-12 md:col-6 lg:col-6">
+            <div #col2 class="col-12 md:col-12 lg:col-6">
                 <div #box4 class="col-12 md:col-12 lg:col-12 box dsh-box">
                     <div class="col-12 dsh-box4-bg dsh-box-hdr">
                         <span>Assistant Executive Engineer</span>
                     </div>
                     <div class="col-12">
                         <div class="grid to-center">
-                            <div *ngFor="let i of deputyItems" class="col-5 md:col-4 lg:col-4 card space dsh-box4-innerbox-bg">
+                            <div *ngFor="let i of deputyItems" class="col-4 md:col-3 lg:col-3 card dsh-box4-innerbox-bg"
+                            [ngStyle.xs]="{'margin': '5px 15px'}" [ngStyle.lg]="{'margin': '5px 25px'}"
+                            [ngStyle.sm]="{'margin': '5px 25px'}" [ngStyle.md]="{'margin': '5px 20px'}">
                                 <div class="col-12">
                                     <span>{{i.title}}</span>
                                 </div>
@@ -78,7 +86,9 @@
                     </div>
                     <div class="col-12">
                         <div class="grid to-center">
-                            <div *ngFor="let i of scCaseItems" class="col-5 md:col-4 lg:col-4 card space dsh-box5-innerbox-bg">
+                            <div *ngFor="let i of scCaseItems" class="col-4 md:col-3 lg:col-3 card dsh-box5-innerbox-bg"
+                            [ngStyle.xs]="{'margin': '5px 15px'}" [ngStyle.lg]="{'margin': '5px 25px'}"
+                            [ngStyle.sm]="{'margin': '5px 25px'}" [ngStyle.md]="{'margin': '5px 20px'}">
                                 <div class="col-12">
                                     <span>{{i.title}}</span>
                                 </div>
@@ -95,7 +105,9 @@
                     </div>
                     <div class="col-12">
                         <div class="grid to-center">
-                            <div *ngFor="let i of contemptItems" class="col-5 md:col-3 lg:col-3 card space-smaller dsh-box6-innerbox-bg">
+                            <div *ngFor="let i of contemptItems" class="col-4 md:col-3 lg:col-3 card dsh-box6-innerbox-bg"
+                            [ngStyle.xs]="{'margin': '5px 5px'}" [ngStyle.lg]="{'margin': '5px 15px'}"
+                            [ngStyle.sm]="{'margin': '5px 15px'}" [ngStyle.md]="{'margin': '5px 10px'}">
                                 <div class="col-12 no-pad-top">
                                     <span>{{i.title}}</span>
                                 </div>

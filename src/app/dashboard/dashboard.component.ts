@@ -18,8 +18,8 @@ export class DashboardComponent implements OnInit {
     this.deputyItems = [
       { 'title': 'No of CA not filed', 'value': '93' },
       { 'title': 'New affidavits received', 'value': '18' },
-      { 'title': 'No of CA filed', 'value': '25' },
-      { 'title': 'No of CA pending', 'value': '39' },
+      { 'title': 'No of  CA filed', 'value': '25' },
+      { 'title': 'No of  CA pending', 'value': '39' },
     ];
     this.caItems = [
       { 'title': 'GOVT Respondent', 'value': '12' },

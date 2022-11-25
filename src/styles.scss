@@ -100,33 +100,33 @@ label {
 }
 .dsh-box1-innerbox-bg {
    border-radius: 10px;
-   width: 25% !important;
-    background: rgb(55, 55, 255);
+//    width: 25% !important;
+    background: #4770ad;
 }
 .dsh-box2-innerbox-bg {
    border-radius: 10px;
-   width: 25% !important;
-    background: rgb(238, 118, 6);
+//    width: 25% !important;
+    background: #fbc02d;
  }
  .dsh-box3-innerbox-bg {
    border-radius: 10px;
-   width: 25% !important;
-    background: rgb(243, 15, 129);
+//    width: 25% !important;
+    background: #4caf50;
  }
  .dsh-box4-innerbox-bg {
    border-radius: 10px;
-   width: 25% !important;
-    background: rgb(228, 4, 4);
+//    width: 25% !important;
+    background: #dc3545;
  }
  .dsh-box5-innerbox-bg {
    border-radius: 10px;
-   width: 25% !important;
-    background: rgb(255, 218, 5);
+//    width: 25% !important;
+    background: #07abcd;
  }
  .dsh-box6-innerbox-bg {
    border-radius: 10px;
-   width: 25% !important;
-    background: rgb(96, 204, 23);
+//    width: 25% !important;
+    background: #ed4981;
  }
  .dsh-box-value {
     font-weight: 600;
@@ -141,7 +141,7 @@ label {
 }
 .p-dropdown-open {
     border: .2px solid #1a9967  !important;
-    box-shadow:  0 0 0 .15rem #4deead !important;
+    box-shadow:  0 0 0 .15rem #7bffa7 !important;
 }
 .p-dropdown .p-inputtext {
     border: none !important;
@@ -178,7 +178,7 @@ label {
     font-size: 14px !important;
 }
 .p-inputtext:enabled:focus {
-    box-shadow:  0 0 0 .15rem #4deead !important;
+    box-shadow:  0 0 0 .15rem #7bffa7 !important;
     // border-color: #18A558 !important;
     // border: 2px solid #18A558 !important;
 }
@@ -219,7 +219,8 @@ label {
     background: #18A558 !important;
 }
 .p-button:enabled:hover {
-    background: #1a9967  !important;
+    background: #0a9046   !important;
+    box-shadow:  0 0 0 .15rem #aaecc8 !important;
 }
 .p-button.p-button-icon-only.p-button-rounded {
     height: 2.25rem !important;
