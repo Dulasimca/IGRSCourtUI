@@ -29,6 +29,8 @@ import { LawofficersOpinionRegisterComponent } from './forms/highcourt-cases/law
 import { AuthService } from './services/auth.service';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './services/auth.guard';
+import { ZonemasterComponent } from './masters/zonemaster/zonemaster.component';
+import { DistrictmasterComponent } from './masters/districtmaster/districtmaster.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +49,8 @@ import { AuthGuard } from './services/auth.guard';
     PendingEnquiryComponent,
     LawofficersOpinionRegisterComponent,
     LoginComponent,
+    ZonemasterComponent,
+    DistrictmasterComponent,
   
     
   ],

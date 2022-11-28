@@ -11,6 +11,8 @@ import { SupremecourtCaseDetailsComponent } from './forms/highcourt-cases/suprem
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard } from './services/auth.guard';
+import { ZonemasterComponent } from './masters/zonemaster/zonemaster.component';
+import { DistrictmasterComponent } from './masters/districtmaster/districtmaster.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -23,7 +25,9 @@ const routes: Routes = [
   { path: 'igr-respondent',component: IgrRespondentComponent, canActivate: [AuthGuard]},
   { path: 'lawofficers-opinion-register', component: LawofficersOpinionRegisterComponent, canActivate: [AuthGuard]},
   { path: 'writ-appeals-hight-court-cases',component: WritAppealsComponent, canActivate: [AuthGuard]},
-  { path: 'time-bound', component: TimeboundJudgementsDirectionsComponent, canActivate: [AuthGuard]}
+  { path: 'time-bound', component: TimeboundJudgementsDirectionsComponent, canActivate: [AuthGuard]},
+  {path: 'zonemaster', component: ZonemasterComponent},
+  {path: 'districtmaster', component: DistrictmasterComponent}
 ];
 
 
