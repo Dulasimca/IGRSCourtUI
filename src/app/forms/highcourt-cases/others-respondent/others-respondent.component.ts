@@ -21,6 +21,7 @@ export class OthersRespondentComponent implements OnInit {
   caseYear: any;
   highCourtNameOptions: SelectItem[] = [];
   highCourtName: any;
+  remarks: any;
   stateOfCaseOptions: SelectItem[] = [];
   stateOfCase: any;
   petitionerName: any;

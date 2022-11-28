@@ -26,6 +26,7 @@ export class IgrRespondentComponent implements OnInit {
   petitionerName: any;
   respondentsName: any;
   gistOfCase: any;
+  remarks: any;
   selectedValue: string = '1';
   constructor() { }
 

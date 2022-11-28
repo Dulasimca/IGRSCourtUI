@@ -16,6 +16,8 @@ export class GovernmentRespondentComponent implements OnInit {
   caseTypeOptions: SelectItem[] = [];
   caseType: any;
   caseNo: any;
+  yearOptions: any;
+  year: any;
   highCourtNameOptions: SelectItem[] = [];
   highCourtName: any;
   stateOfCaseOptions: SelectItem[] = [];
@@ -23,6 +25,7 @@ export class GovernmentRespondentComponent implements OnInit {
   petitionerName: any;
   respondentsName: any;
   gistOfCase: any;
+  remarks: any;
   selectedValue: string = '1';
   dateValue: any;
   constructor() { }
