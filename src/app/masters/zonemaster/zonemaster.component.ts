@@ -6,7 +6,7 @@ import {RadioButtonModule} from 'primeng/radiobutton';
   templateUrl: './zonemaster.component.html',
   styleUrls: ['./zonemaster.component.scss']
 })
-export class ZonemasterComponent implements OnInit {
+export class ZoneMasterComponent implements OnInit {
 
   selectedType:any;
   cols:any;

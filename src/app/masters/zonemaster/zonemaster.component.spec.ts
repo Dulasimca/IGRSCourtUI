@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ZonemasterComponent } from './zonemaster.component';
+import { ZoneMasterComponent } from './zonemaster.component';
 
-describe('ZonemasterComponent', () => {
-  let component: ZonemasterComponent;
-  let fixture: ComponentFixture<ZonemasterComponent>;
+describe('ZoneMasterComponent', () => {
+  let component: ZoneMasterComponent;
+  let fixture: ComponentFixture<ZoneMasterComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ZonemasterComponent ]
+      declarations: [ ZoneMasterComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ZonemasterComponent);
+    fixture = TestBed.createComponent(ZoneMasterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

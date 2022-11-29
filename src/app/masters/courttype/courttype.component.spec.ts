@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CourttypeComponent } from './courttype.component';
+import { CourtTypeComponent } from './courttype.component';
 
-describe('CourttypeComponent', () => {
-  let component: CourttypeComponent;
-  let fixture: ComponentFixture<CourttypeComponent>;
+describe('CourtTypeComponent', () => {
+  let component: CourtTypeComponent;
+  let fixture: ComponentFixture<CourtTypeComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CourttypeComponent ]
+      declarations: [ CourtTypeComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CourttypeComponent);
+    fixture = TestBed.createComponent(CourtTypeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

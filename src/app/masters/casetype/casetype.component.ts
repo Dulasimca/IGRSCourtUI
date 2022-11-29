@@ -6,7 +6,7 @@ import { SelectItem } from 'primeng/api';
   templateUrl: './casetype.component.html',
   styleUrls: ['./casetype.component.scss']
 })
-export class CasetypeComponent implements OnInit {
+export class CaseTypeComponent implements OnInit {
 
   selectedType:any;
   casetype:any;

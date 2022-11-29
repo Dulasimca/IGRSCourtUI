@@ -11,10 +11,10 @@ import { SupremecourtCaseDetailsComponent } from './forms/highcourt-cases/suprem
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard } from './services/auth.guard';
-import { ZonemasterComponent } from './masters/zonemaster/zonemaster.component';
-import { DistrictmasterComponent } from './masters/districtmaster/districtmaster.component';
-import { CourttypeComponent } from './masters/courttype/courttype.component';
-import { CasetypeComponent } from './masters/casetype/casetype.component';
+import { ZoneMasterComponent } from './masters/zonemaster/zonemaster.component';
+import { DistrictMasterComponent } from './masters/districtmaster/districtmaster.component';
+import { CourtTypeComponent } from './masters/courttype/courttype.component';
+import { CaseTypeComponent } from './masters/casetype/casetype.component';
 import { SroComponent } from './masters/sro/sro.component';
 
 const routes: Routes = [
@@ -29,12 +29,11 @@ const routes: Routes = [
   { path: 'lawofficers-opinion-register', component: LawofficersOpinionRegisterComponent, canActivate: [AuthGuard]},
   { path: 'writ-appeals-hight-court-cases',component: WritAppealsComponent, canActivate: [AuthGuard]},
   { path: 'time-bound', component: TimeboundJudgementsDirectionsComponent, canActivate: [AuthGuard]},
-  {path: 'zonemaster', component: ZonemasterComponent},
-  {path: 'districtmaster', component: DistrictmasterComponent},
-  {path: 'courttype',component:CourttypeComponent},
-  {path: 'Sro',component:SroComponent},
-  {path:'casetype',component:CasetypeComponent},
-  {path: 'Sro',component:SroComponent},
+  {path: 'zone-master', component: ZoneMasterComponent, canActivate: [AuthGuard]},
+  {path: 'district-master', component: DistrictMasterComponent, canActivate: [AuthGuard]},
+  {path: 'court-type',component:CourtTypeComponent, canActivate: [AuthGuard]},
+  {path: 'sro',component:SroComponent, canActivate: [AuthGuard]},
+  {path:'case-type',component:CaseTypeComponent, canActivate: [AuthGuard]},
 ];
 
 

@@ -29,10 +29,10 @@ import { LawofficersOpinionRegisterComponent } from './forms/highcourt-cases/law
 import { AuthService } from './services/auth.service';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './services/auth.guard';
-import { ZonemasterComponent } from './masters/zonemaster/zonemaster.component';
-import { DistrictmasterComponent } from './masters/districtmaster/districtmaster.component';
-import { CourttypeComponent } from './masters/courttype/courttype.component';
-import { CasetypeComponent } from './masters/casetype/casetype.component';
+import { ZoneMasterComponent } from './masters/zonemaster/zonemaster.component';
+import { DistrictMasterComponent } from './masters/districtmaster/districtmaster.component';
+import { CourtTypeComponent } from './masters/courttype/courttype.component';
+import { CaseTypeComponent } from './masters/casetype/casetype.component';
 import { SroComponent } from './masters/sro/sro.component';
 
 @NgModule({
@@ -52,10 +52,10 @@ import { SroComponent } from './masters/sro/sro.component';
     PendingEnquiryComponent,
     LawofficersOpinionRegisterComponent,
     LoginComponent,
-    ZonemasterComponent,
-    DistrictmasterComponent,
-    CourttypeComponent,
-    CasetypeComponent,
+    ZoneMasterComponent,
+    DistrictMasterComponent,
+    CourtTypeComponent,
+    CaseTypeComponent,
     SroComponent,
   
     

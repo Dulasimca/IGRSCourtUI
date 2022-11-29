@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './courttype.component.html',
   styleUrls: ['./courttype.component.scss']
 })
-export class CourttypeComponent implements OnInit {
+export class CourtTypeComponent implements OnInit {
 
   courtname:any;
   selectedType:any;
