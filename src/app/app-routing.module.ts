@@ -13,6 +13,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard } from './services/auth.guard';
 import { ZonemasterComponent } from './masters/zonemaster/zonemaster.component';
 import { DistrictmasterComponent } from './masters/districtmaster/districtmaster.component';
+import { CasetypeComponent } from './masters/casetype/casetype.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -27,7 +28,8 @@ const routes: Routes = [
   { path: 'writ-appeals-hight-court-cases',component: WritAppealsComponent, canActivate: [AuthGuard]},
   { path: 'time-bound', component: TimeboundJudgementsDirectionsComponent, canActivate: [AuthGuard]},
   {path: 'zonemaster', component: ZonemasterComponent},
-  {path: 'districtmaster', component: DistrictmasterComponent}
+  {path: 'districtmaster', component: DistrictmasterComponent},
+  {path:'casetype',component:CasetypeComponent}
 ];
 
 
