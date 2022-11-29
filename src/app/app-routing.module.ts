@@ -13,6 +13,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard } from './services/auth.guard';
 import { ZonemasterComponent } from './masters/zonemaster/zonemaster.component';
 import { DistrictmasterComponent } from './masters/districtmaster/districtmaster.component';
+import { CourttypeComponent } from './masters/courttype/courttype.component';
+import { CasetypeComponent } from './masters/casetype/casetype.component';
 import { SroComponent } from './masters/sro/sro.component';
 
 const routes: Routes = [
@@ -29,7 +31,10 @@ const routes: Routes = [
   { path: 'time-bound', component: TimeboundJudgementsDirectionsComponent, canActivate: [AuthGuard]},
   {path: 'zonemaster', component: ZonemasterComponent},
   {path: 'districtmaster', component: DistrictmasterComponent},
-  {path: 'Sro',component:SroComponent}
+  {path: 'courttype',component:CourttypeComponent},
+  {path: 'Sro',component:SroComponent},
+  {path:'casetype',component:CasetypeComponent},
+  {path: 'Sro',component:SroComponent},
 ];
 
 
