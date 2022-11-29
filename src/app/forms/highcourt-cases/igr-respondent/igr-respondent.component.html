@@ -39,18 +39,16 @@
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <input name="_caseno" type="text" [(ngModel)]="caseNo" pInputText>
-                                                <label for="float-input">Case No</label>
+                                                <label for="float-input">Case No.</label>
                                             </span>
                                         </div>
                                        <div class="lg:col-2"></div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_caseyear" [options]="caseYearOptions" [(ngModel)]="caseYear">
-                                                </p-dropdown>
+                                                <p-calendar [(ngModel)]="year" view="year" dateFormat="yy"></p-calendar>
                                                 <label for="float-input">Case Year</label>
                                             </span>
                                         </div>
-                                   
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <p-dropdown name="_highcourtname" [options]="highCourtNameOptions"

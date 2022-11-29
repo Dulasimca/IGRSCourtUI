@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SelectItem } from 'primeng/api';
+import {CalendarModule} from 'primeng/calendar';
 
 @Component({
   selector: 'app-timebound-judgements-directions',
@@ -19,7 +20,6 @@ export class TimeboundJudgementsDirectionsComponent implements OnInit {
   courtType: any;
   courtTypeOptions: SelectItem[] = [];
   yearOptions: SelectItem[] = [];
-  year:any;
   judgementDate: any;
   petitionerName: any;
   respondentsName: any;
@@ -30,6 +30,7 @@ export class TimeboundJudgementsDirectionsComponent implements OnInit {
   natureofDirection: any;
   compliedorNot: any;
   remarks: any;
+  year: any;
   
   constructor() { }
 
