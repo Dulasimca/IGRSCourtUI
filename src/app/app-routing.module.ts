@@ -14,6 +14,7 @@ import { AuthGuard } from './services/auth.guard';
 import { ZonemasterComponent } from './masters/zonemaster/zonemaster.component';
 import { DistrictmasterComponent } from './masters/districtmaster/districtmaster.component';
 import { CourttypeComponent } from './masters/courttype/courttype.component';
+import { SroComponent } from './masters/sro/sro.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -30,6 +31,7 @@ const routes: Routes = [
   {path: 'zonemaster', component: ZonemasterComponent},
   {path: 'districtmaster', component: DistrictmasterComponent},
   {path: 'courttype',component:CourttypeComponent},
+  {path: 'Sro',component:SroComponent}
 ];
 
 
