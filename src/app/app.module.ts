@@ -32,6 +32,7 @@ import { AuthGuard } from './services/auth.guard';
 import { ZonemasterComponent } from './masters/zonemaster/zonemaster.component';
 import { DistrictmasterComponent } from './masters/districtmaster/districtmaster.component';
 import { CasetypeComponent } from './masters/casetype/casetype.component';
+import { SroComponent } from './masters/sro/sro.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { CasetypeComponent } from './masters/casetype/casetype.component';
     ZonemasterComponent,
     DistrictmasterComponent,
     CasetypeComponent,
+    SroComponent,
   
     
   ],
