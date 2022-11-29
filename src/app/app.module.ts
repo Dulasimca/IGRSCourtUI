@@ -31,6 +31,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './services/auth.guard';
 import { ZonemasterComponent } from './masters/zonemaster/zonemaster.component';
 import { DistrictmasterComponent } from './masters/districtmaster/districtmaster.component';
+import { CourttypeComponent } from './masters/courttype/courttype.component';
 import { CasetypeComponent } from './masters/casetype/casetype.component';
 import { SroComponent } from './masters/sro/sro.component';
 
@@ -53,6 +54,7 @@ import { SroComponent } from './masters/sro/sro.component';
     LoginComponent,
     ZonemasterComponent,
     DistrictmasterComponent,
+    CourttypeComponent,
     CasetypeComponent,
     SroComponent,
   

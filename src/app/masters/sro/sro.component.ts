@@ -29,7 +29,7 @@ export class SroComponent implements OnInit {
   onSubmit() {
    
     }
-  onview(){
+  onView(){
   
   }
 
