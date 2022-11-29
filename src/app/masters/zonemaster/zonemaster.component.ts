@@ -11,7 +11,7 @@ export class ZoneMasterComponent implements OnInit {
   selectedType:any;
   cols:any;
   selectedCategory: any = null;
-  Zonename:any;
+  zoneName:any;
 
   constructor() { }
 
