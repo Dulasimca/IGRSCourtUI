@@ -9,7 +9,7 @@ import { SelectItem } from 'primeng/api';
 export class CasetypeComponent implements OnInit {
 
   selectedType:any;
-  casetype:any;
+  caseType:any;
 
   
   constructor() { }
@@ -22,7 +22,7 @@ export class CasetypeComponent implements OnInit {
   onSubmit() {
    
     }
-  onview(){
+  onView(){
   
   }
 
