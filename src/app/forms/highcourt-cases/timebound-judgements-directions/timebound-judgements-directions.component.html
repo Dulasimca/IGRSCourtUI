@@ -1,7 +1,7 @@
 <div class="col-12 md:col-12 lg:col-12 container">
     <div class="grid to-center">
         <div class="col-12 md:col-12 lg:col-12">
-            <p-panel header="Form IV: Time Bound/Judgements/Directions to Govt/IGR/Others of High Court of Madras/Madurai">
+            <p-panel header="Form-IV Time Bound/Judgements/Directions to Govt/IGR/Others of High Court of Madras/Madurai">
                 <div class="col-12 md:col-12 lg:col-12 box" style="margin-top: 5px;">
                     <form #f="ngForm" name="timeboundForm">
                         <div #main class="col-12 md:col-12 lg:col-12">
@@ -42,10 +42,22 @@
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <input name="_caseno" type="text" [(ngModel)]="caseNo" pInputText>
-                                                <label for="float-input">WP/WA No.</label>
+                                                <p-dropdown name="_courttype" [autoDisplayFirst]="false" [options]="courtTypeOptions" [(ngModel)]="courtType"
+                                                [required]="true">
+                                                </p-dropdown>
+                                                <label for="float-input">Court Type</label>
                                             </span>
                                         </div>
+                                        <div class="col-12 md:col-4 lg:col-2">
+                                            <span class="p-float-label">
+                                                <input name="_caseno" type="text" [(ngModel)]="caseNo" pInputText>
+                                                <label for="float-input">Case No.</label>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div #row2 class="col-12 md:col-11 lg:col-11">
+                                    <div class="grid">
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <p-dropdown name="_year" [autoDisplayFirst]="false" [options]="yearOptions"
@@ -54,10 +66,6 @@
                                                 <label for="float-input">Year</label>
                                             </span>
                                         </div>
-                                    </div>
-                                </div>
-                                <div #row2 class="col-12 md:col-11 lg:col-11">
-                                    <div class="grid">
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <div>
                                                 <span class="p-float-label">
@@ -87,20 +95,19 @@
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <input name="_timelimit" type="text" [(ngModel)]="timeLimit" pInputText>
-                                                <label for="float-input">Time Limit</label>
-                                            </span>
-                                            <div class="txt-to-center"><label>(in weeks/months)</label></div>
-                                        </div>
-                                        <div class="col-12 md:col-4 lg:col-2">
-                                            <span class="p-float-label">
-                                                <p-calendar name="_expirydate" [showIcon]="true" [(ngModel)]="expiryDate"></p-calendar>
-                                                <label for="float-input">Expiry Date</label>
+                                                <label for="float-input">TimeLimit (weeks/months)</label>
                                             </span>
                                         </div>
                                     </div>
                                 </div>
                                 <div #row3 class="col-12 md:col-11 lg:col-11">
                                     <div class="grid">
+                                        <div class="col-12 md:col-4 lg:col-2">
+                                            <span class="p-float-label">
+                                                <p-calendar name="_expirydate" [showIcon]="true" [(ngModel)]="expiryDate"></p-calendar>
+                                                <label for="float-input">Expiry Date</label>
+                                            </span>
+                                        </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <input name="_directionto" type="text" [(ngModel)]="directionTo" pInputText>
@@ -113,13 +120,13 @@
                                                 <label for="float-input">Nature of Direction</label>
                                             </span>
                                         </div>
-                                        <div class="col-12 md:col-4 lg:col-4">
+                                        <div class="col-12 md:col-4 lg:col-3">
                                             <span class="p-float-label">
                                                 <input name="_compliedornot" type="text" [(ngModel)]="compliedorNot" pInputText>
                                                 <label for="float-input">CompliedOrNot/Reason</label>
                                             </span>
                                         </div>
-                                        <div class="col-12 md:col-4 lg:col-4">
+                                        <div class="col-12 md:col-4 lg:col-3">
                                             <span class="p-float-label">
                                                 <input name="_remarks" type="text" [(ngModel)]="remarks" pInputText>
                                                 <label for="float-input">Remarks</label>

@@ -16,6 +16,8 @@ export class TimeboundJudgementsDirectionsComponent implements OnInit {
   caseTypeOptions: SelectItem[] = [];
   caseType: any;
   caseNo:any;
+  courtType: any;
+  courtTypeOptions: SelectItem[] = [];
   yearOptions: SelectItem[] = [];
   year:any;
   judgementDate: any;
