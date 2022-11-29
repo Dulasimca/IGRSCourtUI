@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CourtTypeComponent implements OnInit {
 
-  courtname:any;
+  courtName:any;
   selectedType:any;
 
 
@@ -20,7 +20,7 @@ export class CourtTypeComponent implements OnInit {
   onSubmit() {
    
   }
-onview(){
+onView(){
 
 }
 
