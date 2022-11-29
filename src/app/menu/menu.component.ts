@@ -67,7 +67,7 @@ export class MenuComponent implements OnInit {
       },
       {
         label: 'Masters',
-        icon: '',
+        icon: 'pi pi-fw pi-database',
         items: [
           {
             label: 'Zone Master',
