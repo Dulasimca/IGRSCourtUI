@@ -36,7 +36,6 @@ export class GovernmentRespondentComponent implements OnInit {
 
   ngOnInit(): void {
     this.cols = TableConstants.governmentRespondentColumns;
-    this.data = [];
     this.sroOptions = [
     { label: '1', value: 1 },
     { label: '2', value: 2 }];
