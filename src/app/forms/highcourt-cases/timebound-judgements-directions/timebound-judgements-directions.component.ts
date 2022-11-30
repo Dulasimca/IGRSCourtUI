@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SelectItem } from 'primeng/api';
-import {CalendarModule} from 'primeng/calendar';
+import { TableConstants } from 'src/app/constants/table-constants';
 
 @Component({
   selector: 'app-timebound-judgements-directions',
@@ -26,15 +26,19 @@ export class TimeboundJudgementsDirectionsComponent implements OnInit {
   receiptDate: any;
   timeLimit: any;
   expiryDate: any;
-  directionTo: any;
+  directedTo: any;
   natureofDirection: any;
   compliedorNot: any;
   remarks: any;
   year: any;
+  cols: any[] = [];
+  data: any[] = [];
   
   constructor() { }
 
   ngOnInit(): void {
+    this.cols = TableConstants.timeboundjudgementColumns;
+    this.data = [];
   }
 
   onSave() {}

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SelectItem } from 'primeng/api';
+import { TableConstants } from 'src/app/constants/table-constants';
 
 @Component({
   selector: 'app-others-respondent',
@@ -29,9 +30,13 @@ export class OthersRespondentComponent implements OnInit {
   respondentsName: any;
   gistOfCase: any;
   selectedValue: string = '1';
+  cols: any[] = [];
+  data: any[] = [];
   constructor() { }
 
   ngOnInit(): void {
+    this.cols = TableConstants.otherRespondentColumns;
+    this.data = [];
   }
 
   onSave() { }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SelectItem } from 'primeng/api';
+import { TableConstants } from 'src/app/constants/table-constants';
 
 @Component({
   selector: 'app-pending-enquiry',
@@ -29,9 +30,13 @@ export class PendingEnquiryComponent implements OnInit {
   year:any;
   CaseYearOptions:any;
   selectedValue: string = '1';
+  cols: any[] = [];
+  data: any[] = [];
   constructor() { }
 
   ngOnInit(): void {
+    this.cols = TableConstants.pendingEnquiryColumns;
+    this.data = [];
   }
 
   onSave() { }

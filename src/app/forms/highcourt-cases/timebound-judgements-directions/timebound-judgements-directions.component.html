@@ -60,7 +60,7 @@
                                     <div class="grid">
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                            <p-calendar [(ngModel)]="year" view="year" dateFormat="yy"></p-calendar>
+                                            <p-calendar name="_year" [(ngModel)]="year" view="year" dateFormat="yy"></p-calendar>
                                             <label for="float-input">Case Year</label>
                                             </span>
                                         </div>
@@ -108,7 +108,7 @@
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <input name="_directionto" type="text" [(ngModel)]="directionTo" pInputText>
+                                                <input name="_directedto" type="text" [(ngModel)]="directedTo" pInputText>
                                                 <label for="float-input">Directed To</label>
                                             </span>
                                         </div>
@@ -137,6 +137,30 @@
                                         [disabled]="!f.valid || !f.dirty"></button>
                                 </div>
                             </div>
+                        <!-- table  -->
+                        <div class="col-12 md:col-12 lg:col-12">
+                            <p-table #dt [columns]="cols" [value]="data" styleClass="p-datatable-gridlines">
+                                <ng-template pTemplate="caption">
+                                    <div class="flex">
+                                        <button type="button" pButton pRipple icon="pi pi-file" (click)="dt.exportCSV()" class="mr-2" pTooltip="CSV" label="Export" tooltipPosition="bottom"></button>
+                                    </div>
+                                </ng-template>
+                                <ng-template pTemplate="header" let-columns>
+                                    <tr>
+                                        <th *ngFor="let col of columns">
+                                            {{col.header}}
+                                        </th>
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="body" let-rowData let-columns="columns">
+                                    <tr>
+                                        <td *ngFor="let col of columns">
+                                            {{rowData[col.field]}}
+                                        </td>
+                                    </tr>
+                                </ng-template>
+                            </p-table>
+                        </div>    
                         </div>
                     </form>
                 </div>

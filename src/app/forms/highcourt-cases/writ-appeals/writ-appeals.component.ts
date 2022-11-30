@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SelectItem } from 'primeng/api';
+import { TableConstants } from 'src/app/constants/table-constants';
 
 @Component({
   selector: 'app-writ-appeals',
@@ -34,11 +35,14 @@ export class WritAppealsComponent implements OnInit {
   natureOfCase:any;
   natureofdisposal:any;
   natureOfDisposalOptions:any;
- 
+  cols: any[] = [];
+  data: any[] = [];
 
   constructor() { }
 
   ngOnInit(): void {
+    this.cols = TableConstants.writeAppealsColumns;
+    this.data = [];
   }
 
   onSave() { }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SelectItem } from 'primeng/api/selectitem';
+import { TableConstants } from 'src/app/constants/table-constants';
 
 @Component({
   selector: 'app-igr-respondent',
@@ -29,9 +30,13 @@ export class IgrRespondentComponent implements OnInit {
   gistOfCase: any;
   remarks: any;
   selectedValue: string = '1';
+  cols: any[] = [];
+  data: any[] = [];
   constructor() { }
 
   ngOnInit(): void {
+    this.cols = TableConstants.igrRespondentColumns;
+    this.data = [];
   }
 
   onSave() { }

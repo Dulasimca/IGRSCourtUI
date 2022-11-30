@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SelectItem } from 'primeng/api';
+import { TableConstants } from 'src/app/constants/table-constants';
+
 @Component({
   selector: 'app-lawofficers-opinion-register',
   templateUrl: './lawofficers-opinion-register.component.html',
@@ -29,11 +31,14 @@ export class LawofficersOpinionRegisterComponent implements OnInit {
   nameofcourt:any;
   remarks:any;
   nameOfCourtameOptions:SelectItem[] = [];
-  
   selectedValue: string = '1';
+  cols: any[] = [];
+  data: any[] = [];
   constructor() { }
 
   ngOnInit(): void {
+    this.cols = TableConstants.lawofficersopinionColumns;
+    this.data = [];
   }
 
   onSave() { }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SelectItem } from 'primeng/api';
+import { TableConstants } from 'src/app/constants/table-constants';
 
 @Component({
   selector: 'app-supremecourt-case-details',
@@ -28,11 +29,14 @@ export class SupremecourtCaseDetailsComponent implements OnInit {
   Referencenumber:any;
   casefiled:any;
   diarycaseNo:any;
-  
   selectedValue: string = '1';
+  cols: any[] = [];
+  data: any[] = [];
   constructor() { }
 
   ngOnInit(): void {
+    this.cols = TableConstants.supremecourtcaseColumns;
+    this.data = [];
   }
 
   onSave() { }
