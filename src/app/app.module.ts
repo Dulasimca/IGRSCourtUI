@@ -35,6 +35,7 @@ import { DistrictMasterComponent } from './masters/districtmaster/districtmaster
 import { CourtTypeComponent } from './masters/courttype/courttype.component';
 import { CaseTypeComponent } from './masters/casetype/casetype.component';
 import { SroComponent } from './masters/sro/sro.component';
+import { ReportsComponent } from './reports/reports.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { SroComponent } from './masters/sro/sro.component';
     CourtTypeComponent,
     CaseTypeComponent,
     SroComponent,
+    ReportsComponent,
   ],
   imports: [
     BrowserModule,

@@ -66,6 +66,17 @@ export class MenuComponent implements OnInit {
         ]
       },
       {
+        label: 'Reports',
+        icon: 'pi pi-fw pi-database',
+        items: [
+          {
+            label: 'Reports',
+            routerLink: '/reports',
+            command: () => this.onToggleSidenav()
+          }
+        ]
+      },
+      {
         label: 'Masters',
         icon: 'pi pi-fw pi-database',
         items: [
@@ -100,7 +111,7 @@ export class MenuComponent implements OnInit {
         label: 'Help',
         icon: 'pi pi-fw pi-question',
       },
-    ];
+    ]
   }
 
   public onToggleSidenav = () => {
@@ -108,5 +119,4 @@ export class MenuComponent implements OnInit {
     this.sidenavToggle.emit(this.status); //emitting event that menu is closed to app component
   }
 
-
-}
+  }

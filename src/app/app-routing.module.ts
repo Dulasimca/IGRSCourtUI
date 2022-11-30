@@ -16,6 +16,7 @@ import { DistrictMasterComponent } from './masters/districtmaster/districtmaster
 import { CourtTypeComponent } from './masters/courttype/courttype.component';
 import { CaseTypeComponent } from './masters/casetype/casetype.component';
 import { SroComponent } from './masters/sro/sro.component';
+import { ReportsComponent } from './reports/reports.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -34,6 +35,7 @@ const routes: Routes = [
   {path: 'court-type',component:CourtTypeComponent, canActivate: [AuthGuard]},
   {path: 'sro',component:SroComponent, canActivate: [AuthGuard]},
   {path:'case-type',component:CaseTypeComponent, canActivate: [AuthGuard]},
+  {path: 'reports',component:ReportsComponent, canActivate: [AuthGuard]},
 ];
 
 

@@ -130,4 +130,11 @@ export class TableConstants {
         { field: 'remarks', header: 'Remarks' }
     ];
 
+    public static readonly reportsColumns: any[] = [
+        { field: 'zone', header: 'Zone' },
+        { field: 'district', header: 'District' },
+        { field: 'sro', header: 'SRO' }
+
+    ];
+
 }
