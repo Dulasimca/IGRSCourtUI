@@ -13,6 +13,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { SidebarModule } from 'primeng/sidebar';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { TableModule } from 'primeng/table';
 
 import { AppComponent } from './app.component';
 import { GovernmentRespondentComponent } from './forms/highcourt-cases/government-respondent/government-respondent.component';
@@ -43,7 +44,6 @@ import { SroComponent } from './masters/sro/sro.component';
     MenuComponent,
     DashboardComponent,
     TimeboundJudgementsDirectionsComponent,
-   
     WritAppealsComponent,
     PendingEnquiryComponent,
     SupremecourtCaseDetailsComponent,
@@ -74,7 +74,8 @@ import { SroComponent } from './masters/sro/sro.component';
     CalendarModule,
     SidebarModule,
     PanelMenuModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    TableModule
   ],
   providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]

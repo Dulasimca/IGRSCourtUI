@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SelectItem } from 'primeng/api';
+import { TableConstants } from 'src/app/constants/table-constants';
 
 @Component({
   selector: 'app-government-respondent',
@@ -28,9 +29,13 @@ export class GovernmentRespondentComponent implements OnInit {
   remarks: any;
   selectedValue: string = '1';
   dateValue: any;
+  cols: any[] = [];
+  data: any[] = [];
   constructor() { }
 
   ngOnInit(): void {
+    this.cols = TableConstants.governmentRespondentColumns;
+    this.data = [];
     this.sroOptions = [
     { label: '1', value: 1 },
     { label: '2', value: 2 }];
