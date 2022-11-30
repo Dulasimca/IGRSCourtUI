@@ -57,8 +57,6 @@ import { SroComponent } from './masters/sro/sro.component';
     CourtTypeComponent,
     CaseTypeComponent,
     SroComponent,
-  
-    
   ],
   imports: [
     BrowserModule,

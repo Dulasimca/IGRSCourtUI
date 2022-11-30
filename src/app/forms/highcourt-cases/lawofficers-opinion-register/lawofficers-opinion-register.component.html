@@ -1,7 +1,7 @@
 <div class="col-12 md:col-12 lg:col-12 container">
     <div class="grid to-center">
         <div class="col-12 md:col-12 lg:col-12">
-            <p-panel header="Law Officers Opinion Register">
+            <p-panel header="FORM-VII Law Officers Opinion Register">
                 <div class="col-12 md:col-12 lg:col-12 box" style="margin-top: 5px;">
                     <form #f="ngForm" name="lawOfficersOpinionregisterForm">
                         <div #main class="col-12 md:col-12 lg:col-12">
@@ -43,7 +43,7 @@
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <input name="_caseno" type="text" [(ngModel)]="caseNo" pInputText>
-                                                <label for="float-input">Case No</label>
+                                                <label for="float-input">Case No.</label>
                                             </span>
                                         </div>
                                         <div class="lg:col-2"></div>
@@ -78,18 +78,15 @@
                                         <div class="col-12 md:col-4 lg:col-4">
                                             <span class="p-float-label">
                                                 <input name="_gistofopinion" type="text" [(ngModel)]="gistOfOpinion" pInputText>
-                                                <label for="float-input">Gist of opinion sought for filing</label>
+                                                <label for="float-input">Gist of opinion sought for filing (With Date)</label>
                                             </span>
-                                            <div><label>(With Date)</label></div>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-4">
                                             <span class="p-float-label">
                                                 <input name="_gistofopinionreceived" type="text" [(ngModel)]="gistOfOpinionReceived" pInputText>
-                                                <label for="float-input">Gist of opinion received</label>
+                                                <label for="float-input">Gist of opinion received (With Date)</label>
                                             </span>
-                                            <div><label>(With Date)</label></div>
                                         </div>
-                                        
                                         
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <div class="div-radio-box">
@@ -103,14 +100,13 @@
                                             </div>
                                         </div>
                                         <div class="lg:col-2"></div>
-                                        <div class="col-12 md:col-4 lg:col-2">
+                                        <div class="col-12 md:col-4 lg:col-4">
                                             <span class="p-float-label">
                                                 <input name="_stateforreason" type="text" [(ngModel)]="reason" pInputText>
-                                                <label for="float-input"> Reason</label>
+                                                <label for="float-input"> Reason (If WA,RA not filed)</label>
                                             </span>
-                                            <div class="txt-to-center"><label>(If WA,RA not filed)</label></div>
                                         </div>
-                                        <div class="col-12 md:col-4 lg:col-2">
+                                        <div class="col-12 md:col-4 lg:col-4">
                                             <span class="p-float-label">
                                                 <input name="_remarks" type="text" [(ngModel)]="remarks" pInputText>
                                                 <label for="float-input">Remarks</label>

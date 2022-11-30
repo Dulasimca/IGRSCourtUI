@@ -28,6 +28,7 @@ export class WritAppealsComponent implements OnInit {
   caseNoYear:any;
   caseYear:any;
   caseyearOptions:any;
+  year: any;
   remark:any;
   natureOfCaseOptions:any;
   natureOfCase:any;
