@@ -60,8 +60,11 @@
                                     <div class="grid">
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                            <p-calendar name="_year" [(ngModel)]="year" view="year" dateFormat="yy"></p-calendar>
-                                            <label for="float-input">Case Year</label>
+                                                <p-dropdown name="_caseyear" [autoDisplayFirst]="false"
+                                                [options]="caseYearOptions" [(ngModel)]="caseYear"
+                                                [required]="true">
+                                            </p-dropdown>              
+                                      <label for="float-input">Case Year</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">

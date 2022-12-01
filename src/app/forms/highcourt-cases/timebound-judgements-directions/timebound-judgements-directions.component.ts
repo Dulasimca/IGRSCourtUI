@@ -16,6 +16,8 @@ export class TimeboundJudgementsDirectionsComponent implements OnInit {
   sro: any;
   caseTypeOptions: SelectItem[] = [];
   caseType: any;
+  caseYearOptions: SelectItem[] = [];
+  caseYear: any;
   caseNo:any;
   courtType: any;
   courtTypeOptions: SelectItem[] = [];
@@ -30,7 +32,6 @@ export class TimeboundJudgementsDirectionsComponent implements OnInit {
   natureofDirection: any;
   compliedorNot: any;
   remarks: any;
-  year: any;
   cols: any[] = [];
   data: any[] = [];
   

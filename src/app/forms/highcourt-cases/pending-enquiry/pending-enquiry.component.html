@@ -49,8 +49,11 @@
                                         <div class="lg:col-2"></div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-calendar name="_year" [(ngModel)]="year" view="year" dateFormat="yy"></p-calendar>
-                                                <label for="float-input">Year</label>
+                                                <p-dropdown name="_caseyear" [autoDisplayFirst]="false"
+                                                [options]="caseYearOptions" [(ngModel)]="caseYear"
+                                                [required]="true">
+                                            </p-dropdown>         
+                                          <label for="float-input">Year</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
@@ -98,7 +101,7 @@
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <input name="_referencenumber" type="text" [(ngModel)]="Referencenumber" pInputText>
+                                                <input name="_referencenumber" type="text" [(ngModel)]="referenceNo" pInputText>
                                                 <label for="float-input">DIG/DR/SR Ref No</label>
                                             </span>
                                         </div>

@@ -8,7 +8,6 @@ import { TableConstants } from 'src/app/constants/table-constants';
   styleUrls: ['./pending-enquiry.component.scss']
 })
 export class PendingEnquiryComponent implements OnInit {
-
   zoneOptions: SelectItem[] = [];
   zone: any;
   districtOptions: SelectItem[] = [];
@@ -17,6 +16,8 @@ export class PendingEnquiryComponent implements OnInit {
   sro: any;
   caseTypeOptions: SelectItem[] = [];
   caseType: any;
+  caseYear:any;
+  caseYearOptions:any;
   caseNo: any;
   highCourtNameOptions: SelectItem[] = [];
   highCourtName: any;
@@ -26,9 +27,7 @@ export class PendingEnquiryComponent implements OnInit {
   petitionerName: any;
   respondentsName: any;
   gistOfCase: any;
-  Referencenumber:any;
-  year:any;
-  CaseYearOptions:any;
+  referenceNo:any;
   selectedValue: string = '1';
   cols: any[] = [];
   data: any[] = [];
