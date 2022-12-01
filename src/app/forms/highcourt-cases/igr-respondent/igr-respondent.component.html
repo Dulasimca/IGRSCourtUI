@@ -92,7 +92,7 @@
                                             <span class="p-float-label">
                                                 <p-dropdown name="_stateofcase" [options]="stateOfCaseOptions" [(ngModel)]="stateOfCase">
                                                 </p-dropdown>
-                                                <label for="float-input">State of the case</label>
+                                                <label for="float-input">Stage of the case</label>
                                             </span>
                                         </div>
                                     </div>
@@ -115,13 +115,15 @@
                         </ng-template>
                         <ng-template pTemplate="header" let-columns>
                             <tr>
+                                <th>S.No:</th>
                                 <th *ngFor="let col of columns">
                                     {{col.header}}
                                 </th>
                             </tr>
                         </ng-template>
-                        <ng-template pTemplate="body" let-rowData let-columns="columns">
+                        <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex" let-columns="columns">
                             <tr>
+                                <td>{{rowIndex+1}}</td>
                                 <td *ngFor="let col of columns">
                                     {{rowData[col.field]}}
                                 </td>
