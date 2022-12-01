@@ -8,7 +8,6 @@ import { SelectItem } from 'primeng/api/selectitem';
   styleUrls: ['./reports.component.scss']
 })
 export class ReportsComponent implements OnInit {
-
   zone: any;
   zoneOptions: SelectItem[] = [];
   district: any;
@@ -17,7 +16,6 @@ export class ReportsComponent implements OnInit {
   sroOptions: SelectItem[] = [];
   cols: any[] = [];
   data: any[] = [];
-  
   
   constructor() { }
 

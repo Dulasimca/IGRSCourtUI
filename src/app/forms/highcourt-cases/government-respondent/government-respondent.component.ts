@@ -39,6 +39,9 @@ export class GovernmentRespondentComponent implements OnInit {
     this.sroOptions = [
     { label: '1', value: 1 },
     { label: '2', value: 2 }];
+    this.data = [
+      {'zone': 'xxx'}
+    ]
   }
 
   onSave() { }

@@ -67,7 +67,7 @@ export class MenuComponent implements OnInit {
       },
       {
         label: 'Reports',
-        icon: 'pi pi-fw pi-database',
+        icon: 'pi pi-fw pi-file-excel',
         items: [
           {
             label: 'Reports',
