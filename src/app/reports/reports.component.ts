@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TableConstants } from 'src/app/constants/table-constants';
 import { SelectItem } from 'primeng/api/selectitem';
+import {ButtonModule} from 'primeng/button';
 
 @Component({
   selector: 'app-reports',
