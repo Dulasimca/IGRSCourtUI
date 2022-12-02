@@ -1,7 +1,8 @@
 <div class="col-12 md:col-12 lg:col-12 container">
     <div class="grid to-center">
         <div class="col-12 md:col-12 lg:col-12">
-            <p-panel header="Form-IV Time Bound/Judgements/Directions to Govt/IGR/Others of High Court of Madras/Madurai">
+            <p-panel
+                header="Form-IV Time Bound/Judgements/Directions to Govt/IGR/Others of High Court of Madras/Madurai">
                 <div class="col-12 md:col-12 lg:col-12 box" style="margin-top: 5px;">
                     <form #f="ngForm" name="timeboundForm">
                         <div #main class="col-12 md:col-12 lg:col-12">
@@ -10,40 +11,43 @@
                                     <div class="grid">
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_zone" [autoDisplayFirst]="false" [options]="zoneOptions" [(ngModel)]="zone"
-                                                [required]="true">
+                                                <p-dropdown name="_zone" [autoDisplayFirst]="false"
+                                                    [options]="zoneOptions" [(ngModel)]="zone" [required]="true">
                                                 </p-dropdown>
                                                 <label for="float-input">Zone</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_district" [autoDisplayFirst]="false" [options]="districtOptions" [(ngModel)]="district"
-                                                [required]="true">
+                                                <p-dropdown name="_district" [autoDisplayFirst]="false"
+                                                    [options]="districtOptions" [(ngModel)]="district"
+                                                    [required]="true">
                                                 </p-dropdown>
                                                 <label for="float-input">District</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_sro" [autoDisplayFirst]="false" [options]="sroOptions" [(ngModel)]="sro"
-                                                [required]="true">
+                                                <p-dropdown name="_sro" [autoDisplayFirst]="false"
+                                                    [options]="sroOptions" [(ngModel)]="sro" [required]="true">
                                                 </p-dropdown>
                                                 <label for="float-input">SRO</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_casetype" [autoDisplayFirst]="false" [options]="caseTypeOptions" [(ngModel)]="caseType"
-                                                [required]="true">
+                                                <p-dropdown name="_casetype" [autoDisplayFirst]="false"
+                                                    [options]="caseTypeOptions" [(ngModel)]="caseType"
+                                                    [required]="true">
                                                 </p-dropdown>
                                                 <label for="float-input">Case Type</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_courttype" [autoDisplayFirst]="false" [options]="courtTypeOptions" [(ngModel)]="courtType"
-                                                [required]="true">
+                                                <p-dropdown name="_courttype" [autoDisplayFirst]="false"
+                                                    [options]="courtTypeOptions" [(ngModel)]="courtType"
+                                                    [required]="true">
                                                 </p-dropdown>
                                                 <label for="float-input">Court Type</label>
                                             </span>
@@ -60,36 +64,38 @@
                                     <div class="grid">
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_caseyear" [autoDisplayFirst]="false"
-                                                [options]="caseYearOptions" [(ngModel)]="caseYear"
-                                                [required]="true">
-                                            </p-dropdown>              
-                                      <label for="float-input">Case Year</label>
+                                                <p-calendar name="_caseyear" [(ngModel)]="caseYear" view="year" dateFormat="yy"
+                                                    inputId="yearpicker"></p-calendar>
+                                                <label for="float-input">Case Year</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <div>
                                                 <span class="p-float-label">
-                                                    <p-calendar name="_judgementdate" [showIcon]="true" [(ngModel)]="judgementDate"></p-calendar>
+                                                    <p-calendar name="_judgementdate" [showIcon]="true"
+                                                        [(ngModel)]="judgementDate"></p-calendar>
                                                     <label for="float-input">Judgement Date</label>
                                                 </span>
                                             </div>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <input name="_petitionername" type="text" [(ngModel)]="petitionerName" pInputText>
-                                                <label for="float-input"s   >Petitioner Name</label>
+                                                <input name="_petitionername" type="text" [(ngModel)]="petitionerName"
+                                                    pInputText>
+                                                <label for="float-input" s>Petitioner Name</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <input name="_respondentsname" type="text" [(ngModel)]="respondentsName" pInputText>
+                                                <input name="_respondentsname" type="text" [(ngModel)]="respondentsName"
+                                                    pInputText>
                                                 <label for="float-input">Respondents Name</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-calendar name="_receiptdate" [showIcon]="true" [(ngModel)]="receiptDate"></p-calendar>
+                                                <p-calendar name="_receiptdate" [showIcon]="true"
+                                                    [(ngModel)]="receiptDate"></p-calendar>
                                                 <label for="float-input">Receipt Date</label>
                                             </span>
                                         </div>
@@ -105,25 +111,29 @@
                                     <div class="grid">
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-calendar name="_expirydate" [showIcon]="true" [(ngModel)]="expiryDate"></p-calendar>
+                                                <p-calendar name="_expirydate" [showIcon]="true"
+                                                    [(ngModel)]="expiryDate"></p-calendar>
                                                 <label for="float-input">Expiry Date</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <input name="_directedto" type="text" [(ngModel)]="directedTo" pInputText>
+                                                <input name="_directedto" type="text" [(ngModel)]="directedTo"
+                                                    pInputText>
                                                 <label for="float-input">Directed To</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <input name="_natureofdirection" type="text" [(ngModel)]="natureofDirection" pInputText>
+                                                <input name="_natureofdirection" type="text"
+                                                    [(ngModel)]="natureofDirection" pInputText>
                                                 <label for="float-input">Nature of Direction</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-3">
                                             <span class="p-float-label">
-                                                <input name="_compliedornot" type="text" [(ngModel)]="compliedorNot" pInputText>
+                                                <input name="_compliedornot" type="text" [(ngModel)]="compliedorNot"
+                                                    pInputText>
                                                 <label for="float-input">CompliedOrNot/Reason</label>
                                             </span>
                                         </div>
@@ -140,32 +150,35 @@
                                         [disabled]="!f.valid || !f.dirty"></button>
                                 </div>
                             </div>
-                        <!-- table  -->
-                        <div class="col-12 md:col-12 lg:col-12">
-                            <p-table #dt [columns]="cols" [value]="data" styleClass="p-datatable-gridlines">
-                                <ng-template pTemplate="caption">
-                                    <div class="flex">
-                                        <button type="button" pButton pRipple icon="pi pi-file" (click)="dt.exportCSV()" class="mr-2" pTooltip="CSV" label="Export" tooltipPosition="bottom"></button>
-                                    </div>
-                                </ng-template>
-                                <ng-template pTemplate="header" let-columns>
-                                    <tr>
-                                        <th>S.No:</th>
-                                        <th *ngFor="let col of columns">
-                                            {{col.header}}
-                                        </th>
-                                    </tr>
-                                </ng-template>
-                                <ng-template pTemplate="body" let-rowIndex="rowIndex" let-rowData let-columns="columns">
-                                    <tr>
-                                        <td>{{rowIndex+1}}</td>
-                                        <td *ngFor="let col of columns">
-                                            {{rowData[col.field]}}
-                                        </td>
-                                    </tr>
-                                </ng-template>
-                            </p-table>
-                        </div>    
+                            <!-- table  -->
+                            <div class="col-12 md:col-12 lg:col-12">
+                                <p-table #dt [columns]="cols" [value]="data" styleClass="p-datatable-gridlines">
+                                    <ng-template pTemplate="caption">
+                                        <div class="flex">
+                                            <button type="button" pButton pRipple icon="pi pi-file"
+                                                (click)="dt.exportCSV()" class="mr-2" pTooltip="CSV" label="Export"
+                                                tooltipPosition="bottom"></button>
+                                        </div>
+                                    </ng-template>
+                                    <ng-template pTemplate="header" let-columns>
+                                        <tr>
+                                            <th>S.No:</th>
+                                            <th *ngFor="let col of columns">
+                                                {{col.header}}
+                                            </th>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template pTemplate="body" let-rowIndex="rowIndex" let-rowData
+                                        let-columns="columns">
+                                        <tr>
+                                            <td>{{rowIndex+1}}</td>
+                                            <td *ngFor="let col of columns">
+                                                {{rowData[col.field]}}
+                                            </td>
+                                        </tr>
+                                    </ng-template>
+                                </p-table>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -173,4 +186,3 @@
         </div>
     </div>
 </div>
-

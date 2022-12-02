@@ -28,8 +28,6 @@ export class WritAppealsComponent implements OnInit {
   selectedValue: string = '1';
   caseNoYear:any;
   caseYear:any;
-  caseyearOptions:any;
-  year: any;
   remark:any;
   natureOfCaseOptions:any;
   natureOfCase:any;

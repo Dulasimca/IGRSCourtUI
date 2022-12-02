@@ -14,6 +14,8 @@ import { SidebarModule } from 'primeng/sidebar';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { TableModule } from 'primeng/table';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
 
 import { AppComponent } from './app.component';
 import { GovernmentRespondentComponent } from './forms/highcourt-cases/government-respondent/government-respondent.component';
@@ -36,6 +38,8 @@ import { CourtTypeComponent } from './masters/courttype/courttype.component';
 import { CaseTypeComponent } from './masters/casetype/casetype.component';
 import { SroComponent } from './masters/sro/sro.component';
 import { ReportsComponent } from './reports/reports.component';
+import { MasterService } from './services/master.service';
+import { RestapiService } from './services/restapi.service';
 
 @NgModule({
   declarations: [
@@ -75,9 +79,11 @@ import { ReportsComponent } from './reports/reports.component';
     SidebarModule,
     PanelMenuModule,
     FlexLayoutModule,
-    TableModule
+    TableModule,
+    MessagesModule,
+    MessageModule
   ],
-  providers: [AuthService, AuthGuard],
+  providers: [AuthService, AuthGuard, MasterService, RestapiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -197,11 +197,13 @@ label {
 
 .p-dropdown-panel .p-dropdown-items .p-dropdown-item {
     padding: 0.5rem 0.75rem !important;
+    font-size: 15px!important;
 }
 
 .p-dropdown-panel .p-dropdown-items .p-dropdown-empty-message {
     color: rgb(56 53 53 / 87%) !important;
     font-size: 14px !important;
+    color: #161616de !important;
 }
 
 .p-dropdown:not(.p-disabled):hover {
@@ -324,7 +326,7 @@ label {
 }
 
 .p-datepicker table td>span.p-highlight {
-    color: #009c5f !important;
+    color: white !important;
 }
 
 .p-datepicker .p-datepicker-header .p-datepicker-title .p-datepicker-month {
@@ -340,6 +342,18 @@ label {
     border-bottom: 2px solid #009c5f !important;
     padding: 0.25rem !important;
     background: #d5efe5 !important;
+}
+
+.p-datepicker .p-datepicker-header {
+    font-size: 14px !important;
+}
+.p-datepicker .p-datepicker-header .p-datepicker-prev, .p-datepicker .p-datepicker-header .p-datepicker-next {
+    width: 1rem !important;
+    height: 1.5rem !important;
+}
+.p-datepicker .p-yearpicker .p-yearpicker-year {
+    padding: 0.35rem 0.15rem !important;
+    font-size: 14px !important;
 }
 
 .p-calendar .p-datepicker {
@@ -455,4 +469,16 @@ label {
     background: #ececec !important;
     padding: 0.5rem 0.5rem !important;
     font-size: 14px !important;
+}
+.p-datatable .p-datatable-header {
+    // border: 1px solid transparent !important;
+}
+.p-message .p-message-wrapper {
+    padding: 0.25rem 1.25rem !important;
+}
+.p-message.p-message-info {
+    background: #b5dff3 !important;
+}
+.p-message.p-message-warn {
+    background: #fbf17b !important;
 }

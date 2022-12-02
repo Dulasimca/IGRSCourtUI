@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { SelectItem } from 'primeng/api';
+import { ResponseMessage } from 'src/app/constants/message-constants';
 import { TableConstants } from 'src/app/constants/table-constants';
+import { MasterService } from 'src/app/services/master.service';
 import { RestapiService } from 'src/app/services/restapi.service';
+import { Message } from 'primeng/api';
 
 
 @Component({
@@ -19,7 +22,6 @@ export class GovernmentRespondentComponent implements OnInit {
   caseTypeOptions: SelectItem[] = [];
   caseType: any;
   caseNo: any;
-  caseYearOptions: any;
   caseYear: any;
   caseDate: Date = new Date();
   highCourtNameOptions: SelectItem[] = [];
@@ -34,32 +36,94 @@ export class GovernmentRespondentComponent implements OnInit {
   dateValue: any;
   cols: any[] = [];
   data: any[] = [];
+  masters?: any;
+  responseMsg: Message[] = [];
 
-  constructor(private _restApiService: RestapiService) { }
+  constructor(private _restApiService: RestapiService, private _masterService: MasterService) { }
 
   ngOnInit(): void {
     this.cols = TableConstants.governmentRespondentColumns;
-    this.sroOptions = [
-      { label: '1', value: 1 },
-      { label: '2', value: 2 }];
+    this.masters = this._masterService.masterData;
   }
 
   onSelect(value: string) {
-    switch (value) {
-      case 'ZN':
-        break;
-      case 'DT':
-        break;
-      case 'SR':
-        break;
-      case 'CT':
-        break;
-      case 'CY':
-        break;
-      case 'HC':
-        break;
-      case 'SC':
-        break;
+    if (this.masters) {
+      let caseStatusList: any = [];
+      let caseTypeList: any = [];
+      let zoneList: any = [];
+      let districtList: any = [];
+      let sroList: any = [];
+      let courtList: any = [];
+      switch (value) {
+        case 'ZN':
+          if (this.masters.zone_Masters) {
+            this.masters.zone_Masters.forEach((zn: any) => {
+              zoneList.push(
+                { label: zn.zonename, value: zn.zoneid, }
+              )
+            })
+            this.zoneOptions = zoneList;
+          }
+          break;
+        case 'DT':
+          if (this.masters.district_Masters) {
+            if (this.zone) {
+              this.masters.district_Masters.forEach((dt: any) => {
+                if (dt.zoneid === this.zone.value) {
+                  districtList.push(
+                    { label: dt.districtname, value: dt.districtid, zoneId: dt.zoneid }
+                  )
+                }
+              })
+            }
+            this.districtOptions = districtList;
+          }
+          break;
+        case 'SR':
+          if (this.masters.sro_Masters) {
+            if (this.zone && this.district) {
+              this.masters.sro_Masters.forEach((sr: any) => {
+                if (sr.zoneid === this.zone.value && sr.districtid === this.district.value) {
+                  sroList.push(
+                    { label: sr.sroname, value: sr.sroid, zoneId: sr.zoneid, districtId: sr.districtid }
+                  )
+                }
+              })
+            }
+            this.sroOptions = sroList;
+          }
+          break;
+        case 'CT':
+          if (this.masters.casetype_Masters) {
+            this.masters.casetype_Masters.forEach((ct: any) => {
+              caseTypeList.push(
+                { label: ct.casetypename, value: ct.casetypeid }
+              )
+            })
+            this.caseTypeOptions = caseTypeList;
+          }
+          break;
+        case 'HC':
+          if (this.masters.court_Masters) {
+            this.masters.court_Masters.forEach((hc: any) => {
+              courtList.push(
+                { label: hc.courtname, value: hc.courtid }
+              )
+            })
+            this.highCourtNameOptions = courtList;
+          }
+          break;
+        case 'SC':
+          if (this.masters.casestatus_Masters) {
+            this.masters.casestatus_Masters.forEach((cs: any) => {
+              caseStatusList.push(
+                { label: cs.casestatusname, value: cs.casestatusid }
+              )
+            })
+            this.stateOfCaseOptions = caseStatusList;
+          }
+          break;
+      }
     }
   }
 
@@ -80,15 +144,17 @@ export class GovernmentRespondentComponent implements OnInit {
       'casestatusid': this.stateOfCase.value,
       'casetypeid': this.caseType.value,
       'caseyear': this.caseYear.value,
-      'counterfiled': this.selectedValue,
-      'flag': 1,
+      'counterfiled': (this.selectedValue === '1') ? true : false,
+      'flag': true,
       'createdate': new Date()
     }
     this._restApiService.post('Respondent/SaveRespondentCase', params).subscribe(res => {
       if (res) {
-        console.log(res);
+        this.responseMsg = [{ severity: ResponseMessage.SuccessSeverity, detail: ResponseMessage.SuccessMessage }];
+        setTimeout(() => this.responseMsg = [], 3000);
       } else {
-        console.log('error occured')
+        this.responseMsg = [{ severity: ResponseMessage.ErrorSeverity, detail: ResponseMessage.ErrorMessage }];
+        setTimeout(() => this.responseMsg = [], 3000)
       }
     })
   }

@@ -10,32 +10,34 @@
                                     <div class="grid">
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_zone" [autoDisplayFirst]="false" [options]="zoneOptions" [(ngModel)]="zone"
-                                                [required]="true">
+                                                <p-dropdown name="_zone" [autoDisplayFirst]="false"
+                                                    [options]="zoneOptions" [(ngModel)]="zone" [required]="true">
                                                 </p-dropdown>
                                                 <label for="float-input">Zone</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_district" [autoDisplayFirst]="false" [options]="districtOptions" [(ngModel)]="district"
-                                                [required]="true">
+                                                <p-dropdown name="_district" [autoDisplayFirst]="false"
+                                                    [options]="districtOptions" [(ngModel)]="district"
+                                                    [required]="true">
                                                 </p-dropdown>
                                                 <label for="float-input">District</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_sro" [autoDisplayFirst]="false" [options]="sroOptions" [(ngModel)]="sro"
-                                                [required]="true">
+                                                <p-dropdown name="_sro" [autoDisplayFirst]="false"
+                                                    [options]="sroOptions" [(ngModel)]="sro" [required]="true">
                                                 </p-dropdown>
                                                 <label for="float-input">SRO</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_casetype" [autoDisplayFirst]="false" [options]="caseTypeOptions" [(ngModel)]="caseType"
-                                                [required]="true">
+                                                <p-dropdown name="_casetype" [autoDisplayFirst]="false"
+                                                    [options]="caseTypeOptions" [(ngModel)]="caseType"
+                                                    [required]="true">
                                                 </p-dropdown>
                                                 <label for="float-input">Case Type</label>
                                             </span>
@@ -49,47 +51,50 @@
                                         <div class="lg:col-2"></div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_caseyear" [autoDisplayFirst]="false"
-                                                [options]="caseYearOptions" [(ngModel)]="caseYear"
-                                                [required]="true">
-                                            </p-dropdown>         
-                                          <label for="float-input">Year</label>
+                                                <p-calendar name="_caseyear" [(ngModel)]="caseYear" view="year" dateFormat="yy"
+                                                    inputId="yearpicker"></p-calendar>
+                                                <label for="float-input">Year</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_highcourtname" [autoDisplayFirst]="false" [options]="highCourtName"
-                                                    [(ngModel)]="highCourtName" [required]="true">
+                                                <p-dropdown name="_highcourtname" [autoDisplayFirst]="false"
+                                                    [options]="highCourtName" [(ngModel)]="highCourtName"
+                                                    [required]="true">
                                                 </p-dropdown>
                                                 <label for="float-input">Hight Court Name</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <input name="_petitionername" type="text" [(ngModel)]="petitionerName" pInputText>
+                                                <input name="_petitionername" type="text" [(ngModel)]="petitionerName"
+                                                    pInputText>
                                                 <label for="float-input">Petitioner Name</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <input name="_respondentname" type="text" [(ngModel)]="respondentsName" pInputText>
+                                                <input name="_respondentname" type="text" [(ngModel)]="respondentsName"
+                                                    pInputText>
                                                 <label for="float-input">Respondents Name</label>
                                             </span>
                                         </div>
-                                        
+
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_stateofcase" [autoDisplayFirst]="false" [options]="stateOfCaseOptions" 
-                                                [(ngModel)]="stateOfCase" [required]="true">
+                                                <p-dropdown name="_stateofcase" [autoDisplayFirst]="false"
+                                                    [options]="stateOfCaseOptions" [(ngModel)]="stateOfCase"
+                                                    [required]="true">
                                                 </p-dropdown>
                                                 <label for="float-input">Stage of the case</label>
                                             </span>
                                         </div>
-                            
+
                                         <div class="lg:col-2"></div>
                                         <div class="col-12 md:col-4 lg:col-4">
                                             <span class="p-float-label">
-                                                <input name="_gistofcase" type="text" [(ngModel)]="gistOfCase" pInputText>
+                                                <input name="_gistofcase" type="text" [(ngModel)]="gistOfCase"
+                                                    pInputText>
                                                 <label for="float-input">Gist of the case and main prayer</label>
                                             </span>
                                         </div>
@@ -101,13 +106,14 @@
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <input name="_referencenumber" type="text" [(ngModel)]="referenceNo" pInputText>
+                                                <input name="_referencenumber" type="text" [(ngModel)]="referenceNo"
+                                                    pInputText>
                                                 <label for="float-input">DIG/DR/SR Ref No</label>
                                             </span>
                                         </div>
                                     </div>
                                 </div>
-                               
+
                                 <div #row3 class="col-12 md:col-11 lg:col-11 txt-to-center no-padding">
                                     <button pButton pRipple type="button" label="Save" (click)="onSave()"
                                         [disabled]="!f.valid || !f.dirty"></button>
@@ -120,7 +126,8 @@
                     <p-table #dt [columns]="cols" [value]="data" styleClass="p-datatable-gridlines">
                         <ng-template pTemplate="caption">
                             <div class="flex">
-                                <button type="button" pButton pRipple icon="pi pi-file" (click)="dt.exportCSV()" class="mr-2" pTooltip="CSV" label="Export" tooltipPosition="bottom"></button>
+                                <button type="button" pButton pRipple icon="pi pi-file" (click)="dt.exportCSV()"
+                                    class="mr-2" pTooltip="CSV" label="Export" tooltipPosition="bottom"></button>
                             </div>
                         </ng-template>
                         <ng-template pTemplate="header" let-columns>

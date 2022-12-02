@@ -47,17 +47,15 @@
                                         <div class="lg:col-2"></div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-calendar name="_year" [(ngModel)]="caseDate" [showIcon]="true"
+                                                <p-calendar name="_casedate" [(ngModel)]="caseDate" [showIcon]="true"
                                                     [required]="true"></p-calendar>
                                                 <label for="float-input">Case Date</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_caseyear" [autoDisplayFirst]="false"
-                                                    [options]="caseYearOptions" [(ngModel)]="caseYear"
-                                                    [required]="true">
-                                                </p-dropdown>
+                                                <p-calendar name="_caseyear" [(ngModel)]="caseYear" view="year" dateFormat="yy"
+                                                    inputId="yearpicker"></p-calendar>
                                                 <label for="float-input">Case Year</label>
                                             </span>
                                         </div>

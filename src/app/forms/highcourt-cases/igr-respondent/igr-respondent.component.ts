@@ -18,7 +18,6 @@ export class IgrRespondentComponent implements OnInit {
   caseTypeOptions: SelectItem[] = [];
   caseType: any;
   caseNo: any;
-  caseYearOptions:SelectItem[] = [];
   caseYear:any;
   caseDate: Date = new Date();
   highCourtNameOptions: SelectItem[] = [];
