@@ -34,7 +34,7 @@ export class OthersRespondentComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.cols = TableConstants.otherRespondentColumns;
+    this.cols = TableConstants.respondentColumns;
     this.data = [];
   }
 

@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { SelectItem } from 'primeng/api';
 import { ResponseMessage } from 'src/app/constants/message-constants';
 import { TableConstants } from 'src/app/constants/table-constants';
 import { MasterService } from 'src/app/services/master.service';
 import { RestapiService } from 'src/app/services/restapi.service';
 import { Message } from 'primeng/api';
+import { NgForm } from '@angular/forms';
+import { HttpParams } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
 
 
 @Component({
@@ -38,12 +41,19 @@ export class GovernmentRespondentComponent implements OnInit {
   data: any[] = [];
   masters?: any;
   responseMsg: Message[] = [];
-
-  constructor(private _restApiService: RestapiService, private _masterService: MasterService) { }
+  @ViewChild('f', {static: false}) _respondentForm!: NgForm;
+  constructor(private _restApiService: RestapiService, private _masterService: MasterService,
+    private _datePipe: DatePipe) { }
 
   ngOnInit(): void {
-    this.cols = TableConstants.governmentRespondentColumns;
+    this.cols = TableConstants.respondentColumns;
     this.masters = this._masterService.masterData;
+    this.onLoadCases();
+  }
+
+  assignDefault() {
+    this.selectedValue = '1';
+    this.caseDate = new Date();
   }
 
   onSelect(value: string) {
@@ -127,7 +137,18 @@ export class GovernmentRespondentComponent implements OnInit {
     }
   }
 
+  onLoadCases() {
+    this.data = [];
+    const params = new HttpParams().append('userid','1');
+    this._restApiService.getByParameters('Respondent/GetRespondentCase', params).subscribe(res => {
+      if(res) {
+        this.data = res;
+      }
+    })
+  }
+
   onSave() {
+    let _caseyear: any = this._datePipe.transform(this.caseYear, 'yyyy');
     const params = {
       'courtcaseid': 0,
       'zoneid': this.zone.value,
@@ -135,7 +156,6 @@ export class GovernmentRespondentComponent implements OnInit {
       'sroid': this.sro.value,
       'petitionername': this.petitionerName,
       'remarks': this.remarks,
-      'responsetypeid': 1,
       'mainprayer': this.gistOfCase,
       'mainrespondents': this.respondentsName,
       'courtid': this.highCourtName.value,
@@ -143,15 +163,21 @@ export class GovernmentRespondentComponent implements OnInit {
       'casenumber': this.caseNo,
       'casestatusid': this.stateOfCase.value,
       'casetypeid': this.caseType.value,
-      'caseyear': this.caseYear.value,
+      'caseyear': (_caseyear * 1),
       'counterfiled': (this.selectedValue === '1') ? true : false,
       'flag': true,
-      'createdate': new Date()
+      'createdate': new Date(),
+      'userId': 1,
+      'responsetypeid': 1, //for government respondent
     }
     this._restApiService.post('Respondent/SaveRespondentCase', params).subscribe(res => {
       if (res) {
+        this._respondentForm.reset();
+        this._respondentForm.form.markAsUntouched();
+        this._respondentForm.form.markAsPristine();
         this.responseMsg = [{ severity: ResponseMessage.SuccessSeverity, detail: ResponseMessage.SuccessMessage }];
         setTimeout(() => this.responseMsg = [], 3000);
+        this.assignDefault();
       } else {
         this.responseMsg = [{ severity: ResponseMessage.ErrorSeverity, detail: ResponseMessage.ErrorMessage }];
         setTimeout(() => this.responseMsg = [], 3000)

@@ -1,17 +1,17 @@
 export class TableConstants {
-   public static readonly governmentRespondentColumns: any[] = [
-        { field: 'zone', header: 'Zone' },
-        { field: 'district', header: 'District' },
-        { field: 'sro', header: 'SRO' },
-        { field: 'casetype', header: 'Case Type' },
-        { field: 'caseno', header: 'Case No.' },
+   public static readonly respondentColumns: any[] = [
+        { field: 'zonename', header: 'Zone' },
+        { field: 'districtname', header: 'District' },
+        { field: 'sroname', header: 'SRO' },
+        { field: 'casetypename', header: 'Case Type' },
+        { field: 'casenumber', header: 'Case No.' },
         { field: 'year', header: 'Year' },
-        { field: 'highcourtname', header: 'Highcourt Name' },
+        { field: 'courtname', header: 'Highcourt Name' },
         { field: 'petitionername', header: 'Petitioner Name' },
         { field: 'respondentsname', header: 'Respondents Name' },
-        { field: 'gistofcase', header: 'Gist of Case' },
+        { field: 'mainprayer', header: 'Gist of Case' },
         { field: 'counterfiled', header: 'Counter Filed' },
-        { field: 'stageofcase', header: 'Stage of Case' },
+        { field: 'casestatusname', header: 'Stage of Case' },
         { field: 'remarks', header: 'Remarks' }
     ];
 
@@ -34,38 +34,6 @@ export class TableConstants {
         { field: 'compliedornot', header: 'Complied(or)Not' },
         { field: 'remarks', header: 'Remarks' },
     ];  
-
-    public static readonly igrRespondentColumns: any[] = [
-        { field: 'zone', header: 'Zone' },
-        { field: 'district', header: 'District' },
-        { field: 'sro', header: 'SRO' },
-        { field: 'casetype', header: 'Case Type' },
-        { field: 'caseno', header: 'Case No.' },
-        { field: 'year', header: 'Year' },
-        { field: 'highcourtname', header: 'Highcourt Name' },
-        { field: 'gistofcase', header: 'Gist of Case' },
-        { field: 'petitionername', header: 'Petitioner Name' },
-        { field: 'respondentsname', header: 'Respondents Name' },
-        { field: 'counterfiled', header: 'Counter Filed' },
-        { field: 'stageofcase', header: 'Stage of Case' },
-        { field: 'remarks', header: 'Remarks' }
-    ];
-
-    public static readonly otherRespondentColumns: any[] = [
-        { field: 'zone', header: 'Zone' },
-        { field: 'district', header: 'District' },
-        { field: 'sro', header: 'SRO' },
-        { field: 'casetype', header: 'Case Type' },
-        { field: 'caseno', header: 'Case No' },
-        { field: 'year', header: 'Year' },
-        { field: 'highcourtname', header: 'Highcourt Name' },
-        { field: 'petitionername', header: 'Petitioner Name' },
-        { field: 'respondentsname', header: 'Respondents Name' },
-        { field: 'gistofcase', header: 'Gist of Case' },
-        { field: 'counterfiled', header: 'Counter Filed' },
-        { field: 'stageofcase', header: 'Stage of Case' },
-        { field: 'remarks', header: 'Remarks' }
-    ];
 
     public static readonly lawofficersopinionColumns: any[] = [
         { field: 'zone', header: 'Zone' },

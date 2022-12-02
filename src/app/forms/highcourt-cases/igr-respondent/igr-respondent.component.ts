@@ -34,7 +34,7 @@ export class IgrRespondentComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.cols = TableConstants.igrRespondentColumns;
+    this.cols = TableConstants.respondentColumns;
     this.data = [];
   }
 

@@ -40,6 +40,7 @@ import { SroComponent } from './masters/sro/sro.component';
 import { ReportsComponent } from './reports/reports.component';
 import { MasterService } from './services/master.service';
 import { RestapiService } from './services/restapi.service';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,7 @@ import { RestapiService } from './services/restapi.service';
     MessagesModule,
     MessageModule
   ],
-  providers: [AuthService, AuthGuard, MasterService, RestapiService],
+  providers: [AuthService, AuthGuard, MasterService, RestapiService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
