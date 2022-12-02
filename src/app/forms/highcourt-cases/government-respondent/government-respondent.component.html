@@ -153,6 +153,7 @@
                                 <th *ngFor="let col of columns">
                                     {{col.header}}
                                 </th>
+                                <th>Edit</th>
                             </tr>
                         </ng-template>
                         <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex" let-columns="columns">
@@ -160,6 +161,9 @@
                                 <td>{{rowIndex+1}}</td>
                                 <td *ngFor="let col of columns">
                                     {{rowData[col.field]}}
+                                </td>
+                                <td>
+                                    <p-button icon="pi pi-pencil" (onClick)="onEdit(rowData)"></p-button>
                                 </td>
                             </tr>
                         </ng-template>

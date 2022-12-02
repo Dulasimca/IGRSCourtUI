@@ -41,6 +41,7 @@ export class GovernmentRespondentComponent implements OnInit {
   data: any[] = [];
   masters?: any;
   responseMsg: Message[] = [];
+  caseId: any;
   @ViewChild('f', {static: false}) _respondentForm!: NgForm;
   constructor(private _restApiService: RestapiService, private _masterService: MasterService,
     private _datePipe: DatePipe) { }
@@ -54,6 +55,7 @@ export class GovernmentRespondentComponent implements OnInit {
   assignDefault() {
     this.selectedValue = '1';
     this.caseDate = new Date();
+    this.caseId = 0;
   }
 
   onSelect(value: string) {
@@ -142,15 +144,45 @@ export class GovernmentRespondentComponent implements OnInit {
     const params = new HttpParams().append('userid','1');
     this._restApiService.getByParameters('Respondent/GetRespondentCase', params).subscribe(res => {
       if(res) {
+        res.forEach((i: any) => {
+          i.countervalue = i.counterfiled ? 'Yes' : 'No';
+        })
         this.data = res;
       }
     })
   }
 
+  onEdit(row: any) {
+    if(row) {
+      this.caseId = row.courtcaseid;
+      this.zone = { label: row.zonename, value: row.zoneid };
+      this.zoneOptions = [{ label: row.zonename, value: row.zoneid }];
+      this.district = { label: row.districtname, value: row.districtid };
+      this.districtOptions = [{ label: row.districtname, value: row.districtid }];
+      this.sro = { label: row.sroname, value: row.sroid };
+      this.sroOptions = [{ label: row.sroname, value: row.sroid }];
+      this.highCourtName = { label: row.courtname, value: row.courtid };
+      this.highCourtNameOptions = [{ label: row.courtname, value: row.courtid }];
+      this.caseType = { label: row.casetypename, value: row.casetypeid };
+      this.caseTypeOptions = [{ label: row.casetypename, value: row.casetypeid }];
+      this.stateOfCase = { label: row.casestatusname, value: row.casestatusid };
+      this.stateOfCaseOptions = [{ label: row.casestatusname, value: row.casestatusid }];
+      this.caseDate = new Date(row.casedate);
+      this.caseNo = row.casenumber;
+      this.petitionerName = row.petitionername;
+      this.selectedValue = (row.counterfiled) ? '1' : '0';
+      this.gistOfCase = row.mainprayer;
+      this.respondentsName = row.mainrespondents;
+      this.remarks = row.remarks;
+      const date = '01/01/'+row.caseyear;
+      this.caseYear = new Date(date);
+    }
+  }
+
   onSave() {
     let _caseyear: any = this._datePipe.transform(this.caseYear, 'yyyy');
     const params = {
-      'courtcaseid': 0,
+      'courtcaseid': this.caseId,
       'zoneid': this.zone.value,
       'districtid': this.district.value,
       'sroid': this.sro.value,

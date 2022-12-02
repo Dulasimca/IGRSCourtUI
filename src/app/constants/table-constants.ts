@@ -5,7 +5,7 @@ export class TableConstants {
         { field: 'sroname', header: 'SRO' },
         { field: 'casetypename', header: 'Case Type' },
         { field: 'casenumber', header: 'Case No.' },
-        { field: 'year', header: 'Year' },
+        { field: 'caseyear', header: 'Year' },
         { field: 'courtname', header: 'Highcourt Name' },
         { field: 'petitionername', header: 'Petitioner Name' },
         { field: 'mainrespondents', header: 'Respondents Name' },
