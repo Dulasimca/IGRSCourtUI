@@ -18,6 +18,7 @@ export class PendingEnquiryComponent implements OnInit {
   caseType: any;
   caseYear:any;
   caseNo: any;
+  caseDate: any;
   highCourtNameOptions: SelectItem[] = [];
   highCourtName: any;
   stateOfCaseOptions: SelectItem[] = [];
