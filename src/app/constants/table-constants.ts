@@ -125,8 +125,8 @@ export class TableConstants {
         { field: 'casefromDate', header: 'Case from Date' },
         { field: 'casetoDate', header: ' Case to Date' },
         { field: 'total', header: 'Total' },
-        { field: 'No of CA Filled week', header: 'No of CAs Filled week' },
-        { field: 'No of CA Filled week', header: ' Balance No of CAs Filled week' },
+        { field: 'No of CA Filed week', header: 'No of CAs Filed week' },
+        { field: 'No of CA Filed week', header: ' Balance No of CAs Filed week' },
         { field: 'pendingGp', header: 'No of CAs Pending with G.P for vetting' },
         { field: 'remarks', header: 'Remarks' }
     ];
@@ -164,6 +164,29 @@ export class TableConstants {
         { field: 'remarks', header: 'Remarks' },
         { field: 'section', header: 'Section' },
         
+    ];
+
+    public static readonly supremeCourtCaseReportColumns: any[] = [
+        { field: 'dept', header: 'Dept' },
+        { field: 'casefromDate', header: 'Case Date From' },
+        { field: 'casetoDate', header: 'Case Date To' },
+        { field: '', header: 'Total no.of Cases' },
+        { field: '', header: 'No.of Cases of Government As Petitioner' },
+        { field: '', header: 'No.Of Cases Of Igr As Petitioner' },
+        { field: '', header: 'No.Of Cases Others(D.R,S.R,DRO,SDC)as Petitioner' },
+        { field: '', header: 'No.Of Cases Of Individual as Petitioner' },
+    ];
+
+    public static readonly contemptCasesHcReportColumns: any[] = [
+        { field: '', header: 'Dept' },
+        { field: '', header: 'Total Contempt Cases ' },
+        { field: '', header: 'Contempt Implemented' },
+        { field: '', header: 'Contempt Not Implemented' },
+        { field: '', header: 'Contempt Appealed' },
+        { field: '', header: 'Contempt Not Appealed' },
+        { field: '', header: 'Contempt Affidavit Filed' },
+        { field: '', header: 'Contempt Affidavit Not Filed' },
+        { field: '', header: 'Depertment Not Contemnor' },
     ];
 
 }
