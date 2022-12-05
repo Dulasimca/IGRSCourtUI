@@ -16,7 +16,7 @@ export class TableConstants {
         { field: 'remarks', header: 'Remarks' }
     ];
 
-    public static readonly timeboundjudgementColumns: any[] = [
+    public static readonly timeBoundJudgementColumns: any[] = [
         { field: 'zone', header: 'Zone' },
         { field: 'district', header: 'District' },
         { field: 'sro', header: 'SRO' },
@@ -36,7 +36,7 @@ export class TableConstants {
         { field: 'remarks', header: 'Remarks' },
     ];  
 
-    public static readonly lawofficersopinionColumns: any[] = [
+    public static readonly lawOfficersOpinionColumns: any[] = [
         { field: 'zone', header: 'Zone' },
         { field: 'district', header: 'District' },
         { field: 'sro', header: 'SRO' },
@@ -71,7 +71,7 @@ export class TableConstants {
         { field: 'refno', header: 'DIG/DR/SR-RefNo' }
     ];
 
-    public static readonly supremecourtcaseColumns: any[] = [
+    public static readonly supremeCourtCaseColumns: any[] = [
         { field: 'zone', header: 'Zone' },
         { field: 'district', header: 'District' },
         { field: 'sro', header: 'SRO' },
@@ -109,7 +109,7 @@ export class TableConstants {
 
     ];
 
-    public static readonly caNotfiledreportColumns : any[] = [
+    public static readonly caNotFiledReportColumns : any[] = [
         { field: 'zone', header: 'Zone' },
         { field: 'govtRespondent', header: 'Govt Respondent' },
         { field: 'igrRespondent', header: 'Igr Respondent' },
@@ -119,7 +119,7 @@ export class TableConstants {
 
     ];
 
-    public static readonly drosdcColumns : any[] = [
+    public static readonly droSdcColumns : any[] = [
         { field: 'dro', header: 'Dro' },
         { field: 'casefromDate', header: 'Case from Date' },
         { field: 'casetoDate', header: ' Case to Date' },
@@ -130,7 +130,7 @@ export class TableConstants {
         { field: 'remarks', header: 'Remarks' }
     ];
 
-    public static readonly digreportColumns: any[] = [
+    public static readonly digReportColumns: any[] = [
         { field: 'digs', header: 'DIGs' },
         { field: 'casefromDate', header: 'Case Date From' },
         { field: 'casetoDate', header: 'Case Date To' },
@@ -143,7 +143,7 @@ export class TableConstants {
         { field: 'remarks', header: 'Remarks' },
     ];
 
-    public static readonly aeereportColumns: any[] = [
+    public static readonly aeeReportColumns: any[] = [
         { field: 'aee', header: 'AEE' },
         { field: 'casefromDate', header: 'Case Date From' },
         { field: 'casetoDate', header: 'Case Date To' },

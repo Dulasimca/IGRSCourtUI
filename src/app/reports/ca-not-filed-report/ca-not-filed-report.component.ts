@@ -23,7 +23,7 @@ export class CaNotFiledReportComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.cols = TableConstants.caNotfiledreportColumns;
+    this.cols = TableConstants.caNotFiledReportColumns;
     this.data = [];
   }
 

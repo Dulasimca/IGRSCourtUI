@@ -17,7 +17,7 @@ export class DIGReportComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.cols = TableConstants.digreportColumns;
+    this.cols = TableConstants.digReportColumns;
     this.data = [];
   }
   onView() { }

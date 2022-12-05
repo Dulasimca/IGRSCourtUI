@@ -17,7 +17,7 @@ export class AeeReportComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.cols = TableConstants.aeereportColumns;
+    this.cols = TableConstants.aeeReportColumns;
     this.data = [];
   }
  onView()

@@ -38,7 +38,7 @@ export class LawofficersOpinionRegisterComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.cols = TableConstants.lawofficersopinionColumns;
+    this.cols = TableConstants.lawOfficersOpinionColumns;
     this.data = [];
   }
 

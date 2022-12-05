@@ -19,7 +19,7 @@ export class DroSdcReportComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.cols = TableConstants.drosdcColumns;
+    this.cols = TableConstants.droSdcColumns;
     this.data = [];
     
   }

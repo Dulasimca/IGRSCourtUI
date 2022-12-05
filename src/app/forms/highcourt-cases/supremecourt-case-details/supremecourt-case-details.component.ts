@@ -36,7 +36,7 @@ export class SupremecourtCaseDetailsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.cols = TableConstants.supremecourtcaseColumns;
+    this.cols = TableConstants.supremeCourtCaseColumns;
     this.data = [];
   }
 
