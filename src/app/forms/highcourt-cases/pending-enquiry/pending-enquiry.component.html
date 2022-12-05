@@ -51,6 +51,13 @@
                                         <div class="lg:col-2"></div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
+                                                <p-calendar name="_casedate" [(ngModel)]="caseDate" [showIcon]="true"
+                                                    [required]="true"></p-calendar>
+                                                <label for="float-input">Case Date</label>
+                                            </span>
+                                        </div>
+                                        <div class="col-12 md:col-4 lg:col-2">
+                                            <span class="p-float-label">
                                                 <p-calendar name="_caseyear" [(ngModel)]="caseYear" view="year" dateFormat="yy"
                                                     inputId="yearpicker"></p-calendar>
                                                 <label for="float-input">Year</label>
@@ -80,6 +87,7 @@
                                             </span>
                                         </div>
 
+                                        <div class="lg:col-2"></div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <p-dropdown name="_stateofcase" [autoDisplayFirst]="false"
@@ -89,8 +97,6 @@
                                                 <label for="float-input">Stage of the case</label>
                                             </span>
                                         </div>
-
-                                        <div class="lg:col-2"></div>
                                         <div class="col-12 md:col-4 lg:col-4">
                                             <span class="p-float-label">
                                                 <input name="_gistofcase" type="text" [(ngModel)]="gistOfCase"

@@ -18,6 +18,7 @@ export class LawofficersOpinionRegisterComponent implements OnInit {
   caseTypeOptions: SelectItem[] = [];
   caseType: any;
   caseNo: any;
+  caseYear: any;
   stateOfCaseOptions: SelectItem[] = [];
   stateOfCase: any;
   subject:any;

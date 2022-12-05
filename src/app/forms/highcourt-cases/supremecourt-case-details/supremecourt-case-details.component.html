@@ -38,14 +38,20 @@
                                                 <label for="float-input">Diary No./SLP Case No.</label>
                                             </span>
                                         </div>
-                                        
+                                        <div class="col-12 md:col-4 lg:col-2">
+                                            <span class="p-float-label">
+                                                <p-calendar name="_casedate" [(ngModel)]="caseDate" [showIcon]="true"
+                                                    [required]="true"></p-calendar>
+                                                <label for="float-input">Case Date</label>
+                                            </span>
+                                        </div>
+                                        <div class="lg:col-2"></div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <input name="_caseno" type="text" [(ngModel)]="highCourtName" pInputText>
                                                 <label for="float-input">High Court Reference</label>
                                             </span>
                                         </div>
-                                        <div class="lg:col-2"></div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <input name="_petitionername" type="text" [(ngModel)]="petitionerName" pInputText>
@@ -78,14 +84,14 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        
+
+                                        <div class="lg:col-2"></div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <input name="_stateofcase" type="text" [(ngModel)]="stateOfCase" pInputText>
                                                 <label for="float-input"> Present stage of case</label>
                                             </span>
                                         </div>
-                                        <div class="lg:col-2"></div>
                                         <div class="col-12 md:col-4 lg:col-4">
                                             <span class="p-float-label">
                                                 <input name="_gistofcase" type="text" [(ngModel)]="gistOfCase" pInputText>

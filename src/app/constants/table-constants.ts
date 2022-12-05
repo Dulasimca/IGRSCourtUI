@@ -5,6 +5,7 @@ export class TableConstants {
         { field: 'sroname', header: 'SRO' },
         { field: 'casetypename', header: 'Case Type' },
         { field: 'casenumber', header: 'Case No.' },
+        { field: 'casedate', header: 'Case Date' },
         { field: 'caseyear', header: 'Year' },
         { field: 'courtname', header: 'Highcourt Name' },
         { field: 'petitionername', header: 'Petitioner Name' },
@@ -41,6 +42,7 @@ export class TableConstants {
         { field: 'sro', header: 'SRO' },
         { field: 'casetype', header: 'Case Type' },
         { field: 'caseno', header: 'Case No' },
+        { field: 'casedate', header: 'Case Date' },
         { field: 'nameofcourt', header: 'Name of Court' },
         { field: 'gistofcase', header: 'Gist of Case' },
         { field: 'petitionername', header: 'Petitioner Name' },
@@ -58,6 +60,7 @@ export class TableConstants {
         { field: 'sro', header: 'SRO' },
         { field: 'casetype', header: 'CaseType' },
         { field: 'caseno', header: 'CaseNo' },
+        { field: 'casedate', header: 'CaseDate' },
         { field: 'year', header: 'Year' },
         { field: 'highcourtname', header: 'Highcourt Name' },
         { field: 'petitionername', header: 'Petitioner Name' },
@@ -73,6 +76,7 @@ export class TableConstants {
         { field: 'district', header: 'District' },
         { field: 'sro', header: 'SRO' },
         { field: 'caseno', header: 'DiaryNo/SLP Case No.' },
+        { field: 'casedate', header: 'CaseDate' },
         { field: 'highcourtreference', header: 'Highcourt Reference' },
         { field: 'petitionername', header: 'Petitioner Name' },
         { field: 'respondentsname', header: 'Respondents Name' },
@@ -103,6 +107,40 @@ export class TableConstants {
         { field: 'district', header: 'District' },
         { field: 'sro', header: 'SRO' }
 
+    ];
+
+    public static readonly caNotfiledreportColumns : any[] = [
+        { field: 'zone', header: 'Zone' },
+        { field: 'govtRespondent', header: 'Govt Respondent' },
+        { field: 'igrRespondent', header: 'Igr Respondent' },
+        { field: 'othersRespondent', header: 'Others Respondent' },
+        { field: 'total', header: 'Total' },
+        { field: 'pendingGp', header: 'Pending with G.P for vetting' }
+
+    ];
+
+    public static readonly drosdcColumns : any[] = [
+        { field: 'dro', header: 'Dro' },
+        { field: 'casefromDate', header: 'Case from Date' },
+        { field: 'casetoDate', header: ' Case to Date' },
+        { field: 'total', header: 'Total' },
+        { field: 'No of CA Filled week', header: 'No of CAs Filled week' },
+        { field: 'No of CA Filled week', header: ' Balance No of CAs Filled week' },
+        { field: 'pendingGp', header: 'No of CAs Pending with G.P for vetting' },
+        { field: 'remarks', header: 'Remarks' }
+    ];
+
+    public static readonly digreportColumns: any[] = [
+        { field: 'digs', header: 'DIGs' },
+        { field: 'casefromDate', header: 'Case Date From' },
+        { field: 'casetoDate', header: 'Case Date To' },
+        { field: 'caNotFiled', header: 'No.Of CAs Not Filed' },
+        { field: 'newAffidavits', header: 'New Affidavits Received this week' },
+        { field: 'total', header: 'Total' },
+        { field: 'caFiled', header: 'No.Of CAs Filed' },
+        { field: 'caTobeFiled', header: 'Balance No.Of CAs To Be Filed' },
+        { field: 'caPending', header: 'CAs Pending With G.P For Vetting' },
+        { field: 'remarks', header: 'Remarks' },
     ];
 
 }
