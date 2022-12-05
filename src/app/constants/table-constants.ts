@@ -105,4 +105,26 @@ export class TableConstants {
 
     ];
 
+    public static readonly caNotfiledreportColumns : any[] = [
+        { field: 'zone', header: 'Zone' },
+        { field: 'govtRespondent', header: 'Govt Respondent' },
+        { field: 'igrRespondent', header: 'Igr Respondent' },
+        { field: 'othersRespondent', header: 'Others Respondent' },
+        { field: 'total', header: 'Total' },
+        { field: 'pendingGp', header: 'Pending with G.P for vetting' }
+
+    ];
+
+    public static readonly drosdcColumns : any[] = [
+        { field: 'dro', header: 'Dro' },
+        { field: 'casefromDate', header: 'Case from Date' },
+        { field: 'casetoDate', header: ' Case to Date' },
+        { field: 'total', header: 'Total' },
+        { field: 'No of CA Filled week', header: 'No of CAs Filled week' },
+        { field: 'No of CA Filled week', header: ' Balance No of CAs Filled week' },
+        { field: 'pendingGp', header: 'No of CAs Pending with G.P for vetting' },
+        { field: 'remarks', header: 'Remarks' }
+
+    ];
+
 }
