@@ -111,6 +111,7 @@ export class TableConstants {
 
     public static readonly caNotFiledReportColumns : any[] = [
         { field: 'zone', header: 'Zone' },
+        { field: 'zone', header: 'Number', colspan:3 },
         { field: 'govtRespondent', header: 'Govt Respondent' },
         { field: 'igrRespondent', header: 'Igr Respondent' },
         { field: 'othersRespondent', header: 'Others Respondent' },
@@ -154,6 +155,15 @@ export class TableConstants {
         { field: 'caTobeFiled', header: 'Balance No.Of CAs To Be Filed' },
         { field: 'caPending', header: 'CAs Pending With G.P For Vetting' },
         { field: 'remarks', header: 'Remarks' },
+    ];
+    public static readonly ScCaNotFiledColumns: any[] = [
+        { field: 'slpCaseNo', header: 'SlpCaseNo' },
+        { field: 'petitioner', header: 'Petitioner' },
+        { field: 'Respondent', header: 'Respondent' },
+        { field: 'GistOfMatter', header: 'GistOfMatter' },
+        { field: 'remarks', header: 'Remarks' },
+        { field: 'section', header: 'Section' },
+        
     ];
 
 }

@@ -25,6 +25,7 @@ import { SupremeCourtCasesReportComponent } from './reports/supreme-court-cases-
 import { CasestatusComponent } from './masters/casestatus/casestatus.component';
 import { MenumasterComponent } from './masters/menumaster/menumaster.component';
 import { UsermasterComponent } from './masters/usermaster/usermaster.component';
+import { ScCaNotFiledComponent } from './reports/sc-ca-not-filed/sc-ca-not-filed.component';
 
 
 
@@ -54,6 +55,7 @@ const routes: Routes = [
   {path: 'casestatus',component:CasestatusComponent},
   {path: 'menumaster',component:MenumasterComponent},
   {path:'usermaster',component:UsermasterComponent},
+  {path:'sc-ca-not-filed',component:ScCaNotFiledComponent}
 
 ];
 

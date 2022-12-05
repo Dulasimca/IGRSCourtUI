@@ -9,27 +9,28 @@ import { TableConstants } from 'src/app/constants/table-constants';
   styleUrls: ['./ca-not-filed-report.component.scss']
 })
 export class CaNotFiledReportComponent implements OnInit {
-  
+
   zoneOptions: SelectItem[] = [];
   zone: any;
   cols: any[] = [];
   data: any[] = [];
-  govtRespondent:any;
-  igrRespondent:any;
-  othersRespondent:any;
-  total:any;
-  pendingGp:any;
+  govtRespondent: any;
+  igrRespondent: any;
+  othersRespondent: any;
+  total: any;
+  pendingGp: any;
+  year:any;
 
   constructor() { }
 
   ngOnInit(): void {
-    this.cols = TableConstants.caNotFiledReportColumns;
+    // this.cols = TableConstants.caNotFiledReportColumns;
     this.data = [];
   }
 
-  onSave() { }
-  }
-  
+  onView() { }
+}
+
 
 
 
