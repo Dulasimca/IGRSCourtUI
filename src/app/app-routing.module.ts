@@ -18,6 +18,8 @@ import { CaseTypeComponent } from './masters/casetype/casetype.component';
 import { SroComponent } from './masters/sro/sro.component';
 import { ReportsComponent } from './reports/reports.component';
 import { DIGReportComponent } from './reports/dig-report/dig-report.component';
+import { AeeReportComponent } from './reports/aee-report/aee-report.component';
+import { SupremeCourtCasesReportComponent } from './reports/supreme-court-cases-report/supreme-court-cases-report.component';
 
 
 const routes: Routes = [
@@ -38,7 +40,9 @@ const routes: Routes = [
   {path: 'sro',component:SroComponent, canActivate: [AuthGuard]},
   {path:'case-type',component:CaseTypeComponent, canActivate: [AuthGuard]},
   {path: 'reports',component:ReportsComponent, canActivate: [AuthGuard]},
-  {path:'dig-report',component:DIGReportComponent}
+  {path:'dig-report',component:DIGReportComponent},
+  {path:'aee-report',component:AeeReportComponent},
+  {path:'supreme-court-cases-report',component:SupremeCourtCasesReportComponent},
 ];
 
 

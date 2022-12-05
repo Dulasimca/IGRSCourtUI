@@ -118,4 +118,17 @@ export class TableConstants {
         { field: 'remarks', header: 'Remarks' },
     ];
 
+    public static readonly aeereportColumns: any[] = [
+        { field: 'aee', header: 'AEE' },
+        { field: 'casefromDate', header: 'Case Date From' },
+        { field: 'casetoDate', header: 'Case Date To' },
+        { field: 'caNotFiled', header: 'No.Of CAs Not Filed' },
+        { field: 'newAffidavits', header: 'New Affidavits Received this week' },
+        { field: 'total', header: 'Total' },
+        { field: 'caFiled', header: 'No.Of CAs Filed' },
+        { field: 'caTobeFiled', header: 'Balance No.Of CAs To Be Filed' },
+        { field: 'caPending', header: 'CAs Pending With G.P For Vetting' },
+        { field: 'remarks', header: 'Remarks' },
+    ];
+
 }

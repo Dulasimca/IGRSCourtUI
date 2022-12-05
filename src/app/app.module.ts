@@ -42,6 +42,8 @@ import { MasterService } from './services/master.service';
 import { RestapiService } from './services/restapi.service';
 import { DatePipe } from '@angular/common';
 import { DIGReportComponent } from './reports/dig-report/dig-report.component';
+import { AeeReportComponent } from './reports/aee-report/aee-report.component';
+import { SupremeCourtCasesReportComponent } from './reports/supreme-court-cases-report/supreme-court-cases-report.component';
 
 
 @NgModule({
@@ -67,6 +69,8 @@ import { DIGReportComponent } from './reports/dig-report/dig-report.component';
     SroComponent,
     ReportsComponent,
     DIGReportComponent,
+    AeeReportComponent,
+    SupremeCourtCasesReportComponent,
  
   ],
   imports: [
