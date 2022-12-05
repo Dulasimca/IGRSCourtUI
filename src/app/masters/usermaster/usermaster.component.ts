@@ -15,4 +15,16 @@ export class UsermasterComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onSubmit() {
+   
+    }
+
+  onView(){
+  
+  }
+
+  onClear() {
+    
+  }
+
 }

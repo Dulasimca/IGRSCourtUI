@@ -8,11 +8,22 @@ import { Component, OnInit } from '@angular/core';
 export class MenumasterComponent implements OnInit {
 
   selectedType:any;
-  caseStatus:any;
+  menu: any;
   
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  onSubmit() {
+   
+    }
+    
+  onView(){
+  
+  }
+
+  onClear() {
+    
+  }
 }

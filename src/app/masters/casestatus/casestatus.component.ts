@@ -15,4 +15,16 @@ export class CasestatusComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onSubmit() {
+   
+    }
+    
+  onView(){
+  
+  }
+
+  onClear() {
+    
+  }
+
 }
