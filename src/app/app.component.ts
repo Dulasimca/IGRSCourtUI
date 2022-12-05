@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { AuthService } from './services/auth.service';
 
 @Component({
@@ -12,15 +11,13 @@ export class AppComponent implements OnInit {
   show: boolean = false;
   isLoggedIn: boolean = false;
 
-  constructor(private _authService: AuthService, private _router: Router) {
+  constructor(private _authService: AuthService) {
     this._authService.isLoggedIn.subscribe(value => {
       this.isLoggedIn = value;
     });
-    console.log('log', this.isLoggedIn)
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   openMenu($event: boolean) {
     this.show = $event; // setting value from header component whether to open/close menu
