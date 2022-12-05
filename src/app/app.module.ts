@@ -44,6 +44,8 @@ import { DatePipe } from '@angular/common';
 import { CasestatusComponent } from './masters/casestatus/casestatus.component';
 import { MenumasterComponent } from './masters/menumaster/menumaster.component';
 import { UsermasterComponent } from './masters/usermaster/usermaster.component';
+import { DIGReportComponent } from './reports/dig-report/dig-report.component';
+
 
 @NgModule({
   declarations: [
@@ -70,6 +72,8 @@ import { UsermasterComponent } from './masters/usermaster/usermaster.component';
     CasestatusComponent,
     MenumasterComponent,
     UsermasterComponent,
+    DIGReportComponent,
+ 
   ],
   imports: [
     BrowserModule,

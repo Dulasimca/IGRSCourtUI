@@ -17,6 +17,8 @@ import { CourtTypeComponent } from './masters/courttype/courttype.component';
 import { CaseTypeComponent } from './masters/casetype/casetype.component';
 import { SroComponent } from './masters/sro/sro.component';
 import { ReportsComponent } from './reports/reports.component';
+import { DIGReportComponent } from './reports/dig-report/dig-report.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -36,6 +38,7 @@ const routes: Routes = [
   {path: 'sro',component:SroComponent, canActivate: [AuthGuard]},
   {path:'case-type',component:CaseTypeComponent, canActivate: [AuthGuard]},
   {path: 'reports',component:ReportsComponent, canActivate: [AuthGuard]},
+  {path:'dig-report',component:DIGReportComponent}
 ];
 
 
