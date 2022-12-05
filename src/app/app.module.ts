@@ -41,6 +41,8 @@ import { ReportsComponent } from './reports/reports.component';
 import { MasterService } from './services/master.service';
 import { RestapiService } from './services/restapi.service';
 import { DatePipe } from '@angular/common';
+import { DIGReportComponent } from './reports/dig-report/dig-report.component';
+
 
 @NgModule({
   declarations: [
@@ -64,6 +66,8 @@ import { DatePipe } from '@angular/common';
     CaseTypeComponent,
     SroComponent,
     ReportsComponent,
+    DIGReportComponent,
+ 
   ],
   imports: [
     BrowserModule,
