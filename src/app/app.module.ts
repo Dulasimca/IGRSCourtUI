@@ -41,14 +41,11 @@ import { ReportsComponent } from './reports/reports.component';
 import { MasterService } from './services/master.service';
 import { RestapiService } from './services/restapi.service';
 import { DatePipe } from '@angular/common';
-<<<<<<< HEAD
 import { CaNotFiledReportComponent } from './reports/ca-not-filed-report/ca-not-filed-report.component';
 import { DroSdcReportComponent } from './reports/dro-sdc-report/dro-sdc-report.component';
-=======
 import { CasestatusComponent } from './masters/casestatus/casestatus.component';
 import { MenumasterComponent } from './masters/menumaster/menumaster.component';
 import { UsermasterComponent } from './masters/usermaster/usermaster.component';
->>>>>>> b745e14dfc895e81ab300e09664b41b2a1091d19
 import { DIGReportComponent } from './reports/dig-report/dig-report.component';
 
 
@@ -74,14 +71,11 @@ import { DIGReportComponent } from './reports/dig-report/dig-report.component';
     CaseTypeComponent,
     SroComponent,
     ReportsComponent,
-<<<<<<< HEAD
     CaNotFiledReportComponent,
     DroSdcReportComponent,
-=======
     CasestatusComponent,
     MenumasterComponent,
     UsermasterComponent,
->>>>>>> b745e14dfc895e81ab300e09664b41b2a1091d19
     DIGReportComponent,
  
   ],

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {RadioButtonModule} from 'primeng/radiobutton';
 
 @Component({
   selector: 'app-usermaster',
