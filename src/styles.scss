@@ -460,7 +460,7 @@ label {
 
 .p-datatable.p-datatable-gridlines .p-datatable-header {
     display: flex !important;
-    justify-content: end !important;
+    // justify-content: end !important;
     padding: 0.25rem !important;
 }
 
@@ -469,6 +469,10 @@ label {
     background: #ececec !important;
     padding: 0.5rem 0.5rem !important;
     font-size: 14px !important;
+}
+.p-datatable.p-datatable-gridlines:has(.p-datatable-thead):has(.p-datatable-tbody) .p-datatable-tbody > tr > td {
+    font-size: 14px !important;
+    color: #2a2a2a !important;
 }
 .p-datatable .p-datatable-header {
     // border: 1px solid transparent !important;

@@ -1,5 +1,8 @@
+import { HttpParams } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { AuthService } from '../services/auth.service';
+import { RestapiService } from '../services/restapi.service';
 
 @Component({
   selector: 'app-menu',
@@ -10,113 +13,41 @@ export class MenuComponent implements OnInit {
   @Input() status: boolean = false;
   @Output() public sidenavToggle = new EventEmitter();
 
-  constructor() { }
+  constructor(private _authService: AuthService, private _restApiService: RestapiService) { }
 
   items: MenuItem[] = [];
 
   ngOnInit() {
-    this.items = [
-      {
-        label: 'Dashboard',
-        icon: 'pi pi-pw pi-home',
-        routerLink: '/dashboard'
-      },
-      {
-        label: 'Forms',
-        icon: 'pi pi-fw pi-file-o',
-        items: [
-          {
-            label: 'High Court Cases',
-            items: [
-              {
-                label: 'Government Respondent', routerLink: '/government-respondent-hight-court-cases',
-                command: () => this.onToggleSidenav()
-              },
-              {
-                label: 'IGR Respondent', routerLink: '/igr-respondent',
-                command: () => this.onToggleSidenav()
-              },
-              {
-                label: 'Other Respondent', routerLink: '/others-respondent',
-                command: () => this.onToggleSidenav()
-              },
-              {
-                label: 'Time Bound/Judgements', routerLink: '/time-bound',
-                command: () => this.onToggleSidenav()
-              },
-              {
-                label: 'Pending Enquiry', routerLink: '/pending-enquiry-hight-court-cases',
-                command: () => this.onToggleSidenav()
-              },
-              {
-                label: 'Writ Appeals', routerLink: '/writ-appeals-hight-court-cases',
-                command: () => this.onToggleSidenav()
-              }
-            ]
-          },
-          {
-            label: 'Supreme Court Case Details', routerLink: '/supreme-court-case-details',
-            command: () => this.onToggleSidenav()
-          },
-          {
-            label: 'Law Officers Opinion Register', routerLink: '/lawofficers-opinion-register',
-            command: () => this.onToggleSidenav()
-          },
-
-        ]
-      },
-      {
-        label: 'Reports',
-        icon: 'pi pi-fw pi-file-excel',
-        items: [
-          {
-            label: 'Reports',
-            routerLink: '/reports',
-            command: () => this.onToggleSidenav()
-          }
-        ]
-      },
-      {
-        label: 'Masters',
-        icon: 'pi pi-fw pi-database',
-        items: [
-          {
-            label: 'Zone Master',
-            routerLink: '/zone-master',
-            command: () => this.onToggleSidenav()
-          },
-          {
-            label: 'District Master',
-            routerLink: '/district-master',
-            command: () => this.onToggleSidenav()
-          },
-          {
-            label: 'Court Type',
-            routerLink: '/court-type',
-            command: () => this.onToggleSidenav()
-          },
-          {
-            label: 'SRO Master',
-            routerLink: '/sro',
-            command: () => this.onToggleSidenav()
-          },
-          {
-            label: 'Case Master',
-            routerLink: '/case-type',
-            command: () => this.onToggleSidenav()
-          }
-        ]
-      },
-      {
-        label: 'Help',
-        icon: 'pi pi-fw pi-question',
-      },
-    ]
+    console.log('items', this.items)
+    this._authService.isLoggedIn.subscribe(value => {
+      if (value) {
+     const params = new HttpParams().append('roleid', this._authService.getUserInfo().roleId);
+        this._restApiService.getByParameters('Masters/GetMenuMasters', params).subscribe(res => {
+            console.log('menu', this._authService.getUserInfo().roleId, res);
+            this.checkChildItems(res);
+            this.items = res;
+            this._authService.hasMenu.next(true);
+        });
+      }
+    });
   }
+
+  checkChildItems(data: any) {
+    if (data.length !== 0) {
+        for (let i = 0; i < data.length; i++) {
+            if (data[i].items.length !== 0) {
+                //  continue;
+                this.checkChildItems(data[i].items);
+            } else {
+                delete data[i].items;
+            }
+        }
+    }
+}
 
   public onToggleSidenav = () => {
     this.status = !this.status; //closing menu once its been clicked
     this.sidenavToggle.emit(this.status); //emitting event that menu is closed to app component
   }
 
-  }
+}

@@ -8,6 +8,7 @@ import { Message } from 'primeng/api';
 import { NgForm } from '@angular/forms';
 import { HttpParams } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 @Component({
@@ -42,14 +43,16 @@ export class GovernmentRespondentComponent implements OnInit {
   masters?: any;
   responseMsg: Message[] = [];
   caseId: any;
+  loading: boolean = false;
+  fromDate: any;
+  toDate: any;
   @ViewChild('f', {static: false}) _respondentForm!: NgForm;
   constructor(private _restApiService: RestapiService, private _masterService: MasterService,
-    private _datePipe: DatePipe) { }
+    private _datePipe: DatePipe, private _authService: AuthService) { }
 
   ngOnInit(): void {
     this.cols = TableConstants.respondentColumns;
     this.masters = this._masterService.masterData;
-    this.onLoadCases();
   }
 
   assignDefault() {
@@ -141,13 +144,17 @@ export class GovernmentRespondentComponent implements OnInit {
 
   onLoadCases() {
     this.data = [];
-    const params = new HttpParams().append('userid','1');
+    this.loading = true;
+    const params = new HttpParams().append('userid',this._authService.getUserInfo().roleId).set('fromdate', this.fromDate).set('todate', this.toDate);
     this._restApiService.getByParameters('Respondent/GetRespondentCase', params).subscribe(res => {
       if(res) {
+        this.loading = false;
         res.forEach((i: any) => {
           i.countervalue = i.counterfiled ? 'Yes' : 'No';
         })
         this.data = res;
+      } else {
+        this.loading = false;
       }
     })
   }
@@ -210,6 +217,7 @@ export class GovernmentRespondentComponent implements OnInit {
         this.responseMsg = [{ severity: ResponseMessage.SuccessSeverity, detail: ResponseMessage.SuccessMessage }];
         setTimeout(() => this.responseMsg = [], 3000);
         this.assignDefault();
+        this.onLoadCases();
       } else {
         this.responseMsg = [{ severity: ResponseMessage.ErrorSeverity, detail: ResponseMessage.ErrorMessage }];
         setTimeout(() => this.responseMsg = [], 3000)

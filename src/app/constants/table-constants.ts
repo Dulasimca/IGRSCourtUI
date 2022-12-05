@@ -10,7 +10,7 @@ export class TableConstants {
         { field: 'petitionername', header: 'Petitioner Name' },
         { field: 'mainrespondents', header: 'Respondents Name' },
         { field: 'mainprayer', header: 'Gist of Case' },
-        { field: 'counterfiled', header: 'Counter Filed' },
+        { field: 'countervalue', header: 'Counter Filed' },
         { field: 'casestatusname', header: 'Stage of Case' },
         { field: 'remarks', header: 'Remarks' }
     ];

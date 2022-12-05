@@ -2,7 +2,8 @@
     <div class="grid to-center">
         <div class="col-12 md:col-12 lg:col-12">
             <p-panel header="Form-I Government Respondent High Court Cases">
-                <p-messages [(value)]="responseMsg" [enableService]="false"  [hideTransitionOptions]="'500ms cubic-bezier(0.86, 0, 0.076, 1)'"></p-messages>
+                <p-messages [(value)]="responseMsg" [enableService]="false"
+                    [hideTransitionOptions]="'500ms cubic-bezier(0.86, 0, 0.076, 1)'"></p-messages>
                 <div class="col-12 md:col-12 lg:col-12 box" style="margin-top: 5px;">
                     <form #f="ngForm" name="govRespondentForm">
                         <div #main class="col-12 md:col-12 lg:col-12">
@@ -63,8 +64,8 @@
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-calendar name="_caseyear" [(ngModel)]="caseYear" view="year" dateFormat="yy"
-                                                   inputId="yearpicker"></p-calendar>
+                                                <p-calendar name="_caseyear" [(ngModel)]="caseYear" view="year"
+                                                    dateFormat="yy" inputId="yearpicker"></p-calendar>
                                                 <label for="float-input">Case Year</label>
                                             </span>
                                         </div>
@@ -133,18 +134,31 @@
                                 </div>
                                 <div #row3 class="col-12 md:col-11 lg:col-11 txt-to-center no-padding">
                                     <button pButton pRipple type="button" label="Save" (click)="onSave()"
-                                    [disabled]="!f.valid || !f.dirty" ></button>
+                                        [disabled]="!f.valid || !f.dirty"></button>
                                 </div>
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="col-12 md:col-12 lg:col-12">
-                    <p-table #dt [columns]="cols" [value]="data" styleClass="p-datatable-gridlines">
+                    <p-table #dt [columns]="cols" [value]="data" styleClass="p-datatable-gridlines" [loading]="loading">
                         <ng-template pTemplate="caption">
-                            <div class="flex">
-                                <button type="button" pButton pRipple icon="pi pi-file" (click)="dt.exportCSV()"
-                                    class="mr-2" pTooltip="CSV" label="Export" tooltipPosition="bottom"></button>
+                            <div class="grid" style="width: -webkit-fill-available;">
+                                <div class="lg:col-2 no-pad-top no-pad-btm">
+                                    <div><label>From Date</label></div>
+                                    <p-calendar name="_fdate" [(ngModel)]="fromDate" [showIcon]="true"
+                                        (ngModelChange)="onLoadCases()"></p-calendar>
+                                </div>
+                                <div class="lg:col-2 no-pad-top no-pad-btm">
+                                    <div><label>To Date</label></div>
+                                    <p-calendar name="_tdate" [(ngModel)]="toDate" [showIcon]="true"
+                                        (ngModelChange)="onLoadCases()"></p-calendar>
+                                </div>
+                                <div class="lg:col-6 no-pad-top no-pad-btm"></div>
+                                <div class="lg:col-2 no-pad-top no-pad-btm" style="margin-top: 1.5rem;">
+                                    <button type="button" pButton pRipple icon="pi pi-file" (click)="dt.exportCSV()"
+                                        class="mr-2" pTooltip="CSV" label="Export" tooltipPosition="bottom"></button>
+                                </div>
                             </div>
                         </ng-template>
                         <ng-template pTemplate="header" let-columns>
