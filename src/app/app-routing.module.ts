@@ -25,6 +25,7 @@ import { SupremeCourtCasesReportComponent } from './reports/supreme-court-cases-
 import { CasestatusComponent } from './masters/casestatus/casestatus.component';
 import { MenumasterComponent } from './masters/menumaster/menumaster.component';
 import { UsermasterComponent } from './masters/usermaster/usermaster.component';
+import { ContemptCasesHcReportComponent } from './reports/contempt-cases-hc-report/contempt-cases-hc-report.component';
 
 
 
@@ -54,6 +55,8 @@ const routes: Routes = [
   {path: 'casestatus',component:CasestatusComponent},
   {path: 'menumaster',component:MenumasterComponent},
   {path:'usermaster',component:UsermasterComponent},
+  {path:'contempt-cases-hc-report',component:ContemptCasesHcReportComponent}
+
 
 ];
 

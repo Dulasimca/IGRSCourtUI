@@ -124,8 +124,8 @@ export class TableConstants {
         { field: 'casefromDate', header: 'Case from Date' },
         { field: 'casetoDate', header: ' Case to Date' },
         { field: 'total', header: 'Total' },
-        { field: 'No of CA Filled week', header: 'No of CAs Filled week' },
-        { field: 'No of CA Filled week', header: ' Balance No of CAs Filled week' },
+        { field: 'No of CA Filed week', header: 'No of CAs Filed week' },
+        { field: 'No of CA Filed week', header: ' Balance No of CAs Filed week' },
         { field: 'pendingGp', header: 'No of CAs Pending with G.P for vetting' },
         { field: 'remarks', header: 'Remarks' }
     ];
@@ -165,9 +165,18 @@ export class TableConstants {
         { field: '', header: 'No.Of Cases Of Igr As Petitioner' },
         { field: '', header: 'No.Of Cases Others(D.R,S.R,DRO,SDC)as Petitioner' },
         { field: '', header: 'No.Of Cases Of Individual as Petitioner' },
-       // { field: '', header: 'No.Of Counter Affidatives Filed Cases(Yes/No)' },
-        // { field: '', header: 'Yes' },
-        // { field: '', header: 'no' },
+    ];
+
+    public static readonly contemptCasesHcReportColumns: any[] = [
+        { field: '', header: 'Dept' },
+        { field: '', header: 'Total Contempt Cases ' },
+        { field: '', header: 'Contempt Implemented' },
+        { field: '', header: 'Contempt Not Implemented' },
+        { field: '', header: 'Contempt Appealed' },
+        { field: '', header: 'Contempt Not Appealed' },
+        { field: '', header: 'Contempt Affidavit Filed' },
+        { field: '', header: 'Contempt Affidavit Not Filed' },
+        { field: '', header: 'Depertment Not Contemnor' },
     ];
 
 }
