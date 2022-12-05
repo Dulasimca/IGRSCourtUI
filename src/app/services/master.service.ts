@@ -18,4 +18,5 @@ export class MasterService {
         })
         return this.masterData;
     }
+
 }

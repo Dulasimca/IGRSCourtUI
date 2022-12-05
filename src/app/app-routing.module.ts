@@ -17,9 +17,15 @@ import { CourtTypeComponent } from './masters/courttype/courttype.component';
 import { CaseTypeComponent } from './masters/casetype/casetype.component';
 import { SroComponent } from './masters/sro/sro.component';
 import { ReportsComponent } from './reports/reports.component';
+import { CaNotFiledReportComponent } from './reports/ca-not-filed-report/ca-not-filed-report.component';
+import { DroSdcReportComponent } from './reports/dro-sdc-report/dro-sdc-report.component';
 import { DIGReportComponent } from './reports/dig-report/dig-report.component';
 import { AeeReportComponent } from './reports/aee-report/aee-report.component';
 import { SupremeCourtCasesReportComponent } from './reports/supreme-court-cases-report/supreme-court-cases-report.component';
+import { CasestatusComponent } from './masters/casestatus/casestatus.component';
+import { MenumasterComponent } from './masters/menumaster/menumaster.component';
+import { UsermasterComponent } from './masters/usermaster/usermaster.component';
+
 
 
 const routes: Routes = [
@@ -40,9 +46,15 @@ const routes: Routes = [
   {path: 'sro',component:SroComponent, canActivate: [AuthGuard]},
   {path:'case-type',component:CaseTypeComponent, canActivate: [AuthGuard]},
   {path: 'reports',component:ReportsComponent, canActivate: [AuthGuard]},
-  {path:'dig-report',component:DIGReportComponent},
   {path:'aee-report',component:AeeReportComponent},
   {path:'supreme-court-cases-report',component:SupremeCourtCasesReportComponent},
+  {path:'ca-not-filed-report',component:CaNotFiledReportComponent},
+  {path:'dro-sdc-report',component:DroSdcReportComponent},
+  {path:'dig-report',component:DIGReportComponent},
+  {path: 'casestatus',component:CasestatusComponent},
+  {path: 'menumaster',component:MenumasterComponent},
+  {path:'usermaster',component:UsermasterComponent},
+
 ];
 
 

@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from '../interfaces/user.interface';
 import { AuthService } from '../services/auth.service';
 import { MasterService } from '../services/master.service';
 
@@ -12,9 +13,8 @@ export class LoginComponent implements OnInit {
   username: any;
   password: any;
   showPwd: boolean = false;
-  // @ViewChild()
-  constructor(private _authService: AuthService, private _router: Router,
-    private _masterService: MasterService) { }
+  userInfo!: User;
+  constructor(private _authService: AuthService, private _router: Router, private _masterService: MasterService) { }
 
   ngOnInit(): void {
     this._authService.logout();
@@ -22,10 +22,15 @@ export class LoginComponent implements OnInit {
 
   onLogin() {
     this._masterService.getMasters();
-    setTimeout(() => {
-      this._authService.login();
-      this._router.navigate(['/dashboard']);
-    }, 100)
+    this.userInfo = {
+      roleId: 1
+    }
+    this._authService.login(this.userInfo);
+    this._authService.isLoggedIn.subscribe(value => {
+      if(value) {
+        this._router.navigate(['/dashboard']);
+      }
+    });
   }
 
   onShowPwd() {
