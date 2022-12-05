@@ -2,6 +2,7 @@
     <div class="grid to-center">
         <div class="col-12 md:col-12 lg:col-12">
             <p-panel header="Form-III Others Respondent High Court Cases">
+                <p-messages [(value)]="responseMsg" [enableService]="false"  [hideTransitionOptions]="'500ms cubic-bezier(0.86, 0, 0.076, 1)'"></p-messages>
                 <div class="col-12 md:col-12 lg:col-12 box" style="margin-top: 5px;">
                     <form #f="ngForm" name="otherRespondentForm">
                         <div #main class="col-12 md:col-12 lg:col-12">

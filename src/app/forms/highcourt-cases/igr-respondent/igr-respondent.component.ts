@@ -143,14 +143,14 @@ export class IgrRespondentComponent implements OnInit {
     }
   }
 
-  onLoadCases()
-  {
+  onLoadCases() {
     if(this.fromDate && this.toDate) {
     this.data = [];
     this.loading = true;
     const params = new HttpParams().append('userid',this._authService.getUserInfo().roleId)
     .set('fromdate', this._datePipe.transform(this.fromDate, 'MM/dd/yyyy') as any)
-    .set('todate', this._datePipe.transform(this.toDate, 'MM/dd/yyyy') as any);
+    .set('todate', this._datePipe.transform(this.toDate, 'MM/dd/yyyy') as any)
+    .set('respondentType', 2);
     this._restApiService.getByParameters('Respondent/GetRespondentCase', params).subscribe(res => {
       if(res) {
         this.loading = false;
