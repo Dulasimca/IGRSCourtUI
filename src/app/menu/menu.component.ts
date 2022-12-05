@@ -18,12 +18,10 @@ export class MenuComponent implements OnInit {
   items: MenuItem[] = [];
 
   ngOnInit() {
-    console.log('items', this.items)
     this._authService.isLoggedIn.subscribe(value => {
       if (value) {
      const params = new HttpParams().append('roleid', this._authService.getUserInfo().roleId);
         this._restApiService.getByParameters('Masters/GetMenuMasters', params).subscribe(res => {
-            console.log('menu', this._authService.getUserInfo().roleId, res);
             this.checkChildItems(res);
             this.items = res;
             this._authService.hasMenu.next(true);

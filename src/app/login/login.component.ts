@@ -35,7 +35,6 @@ export class LoginComponent implements OnInit {
 
   onShowPwd() {
     var inputValue = (<HTMLInputElement>document.getElementById('pwd'));
-    console.log('in', inputValue)
     if (inputValue.type === 'password') {
       inputValue.type = 'text';
       this.showPwd = !this.showPwd;
