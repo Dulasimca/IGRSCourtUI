@@ -37,7 +37,7 @@ export class TimeboundJudgementsDirectionsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.cols = TableConstants.timeboundjudgementColumns;
+    this.cols = TableConstants.timeBoundJudgementColumns;
     this.data = [];
   }
 

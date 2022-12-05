@@ -3,13 +3,13 @@ import { SelectItem } from 'primeng/api';
 import { TableConstants } from 'src/app/constants/table-constants';
 
 @Component({
-  selector: 'app-dig-report',
-  templateUrl: './dig-report.component.html',
-  styleUrls: ['./dig-report.component.scss']
+  selector: 'app-aee-report',
+  templateUrl: './aee-report.component.html',
+  styleUrls: ['./aee-report.component.scss']
 })
-export class DIGReportComponent implements OnInit {
-  dig: any;
-  digOptions: SelectItem[] = [];
+export class AeeReportComponent implements OnInit {
+  aee: any;
+  aeeOptions: SelectItem[] = [];
   caseFromDate: any;
   caseToDate: any;
   cols: any[] = [];
@@ -17,8 +17,11 @@ export class DIGReportComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.cols = TableConstants.digReportColumns;
+    this.cols = TableConstants.aeeReportColumns;
     this.data = [];
   }
-  onView() { }
+ onView()
+ {
+
+ }
 }

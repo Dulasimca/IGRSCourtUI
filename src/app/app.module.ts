@@ -47,6 +47,8 @@ import { CasestatusComponent } from './masters/casestatus/casestatus.component';
 import { MenumasterComponent } from './masters/menumaster/menumaster.component';
 import { UsermasterComponent } from './masters/usermaster/usermaster.component';
 import { DIGReportComponent } from './reports/dig-report/dig-report.component';
+import { AeeReportComponent } from './reports/aee-report/aee-report.component';
+import { SupremeCourtCasesReportComponent } from './reports/supreme-court-cases-report/supreme-court-cases-report.component';
 
 
 @NgModule({
@@ -77,6 +79,8 @@ import { DIGReportComponent } from './reports/dig-report/dig-report.component';
     MenumasterComponent,
     UsermasterComponent,
     DIGReportComponent,
+    AeeReportComponent,
+    SupremeCourtCasesReportComponent,
  
   ],
   imports: [
