@@ -142,8 +142,7 @@ export class IgrRespondentComponent implements OnInit {
     }
   }
 
-  onLoadCases()
-  {
+  onLoadCases() {
     if(this.fromDate && this.toDate) {
     this.data = [];
     this.loading = true;
