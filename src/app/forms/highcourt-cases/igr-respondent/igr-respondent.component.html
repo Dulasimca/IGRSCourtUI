@@ -2,6 +2,7 @@
     <div class="grid to-center">
         <div class="col-12 md:col-12 lg:col-12">
             <p-panel header="Form-II IGR Respondent High Court Cases">
+                <p-messages [(value)]="responseMsg" [enableService]="false"  [hideTransitionOptions]="'500ms cubic-bezier(0.86, 0, 0.076, 1)'"></p-messages>
                 <div class="col-12 md:col-12 lg:col-12 box" style="margin-top: 5px;">
                     <form #f="ngForm" name="igrRespondentForm">
                         <div #main class="col-12 md:col-12 lg:col-12">
@@ -10,29 +11,34 @@
                                     <div class="grid">
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_zone" [options]="zoneOptions" [(ngModel)]="zone">
-                                                </p-dropdown>
-                                                <label for="float-input">Zone</label>
+                                            <p-dropdown name="_zone" [autoDisplayFirst]="false" optionLabel="label" (onClick)="onSelect('ZN')" [options]="zoneOptions"
+                                            [(ngModel)]="zone" [required]="true">
+                                            </p-dropdown>
+                                            <label for="float-input">Zone</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_district" [options]="districtOptions"
-                                                    [(ngModel)]="district">
+                                                <p-dropdown name="_district" [autoDisplayFirst]="false"
+                                                    optionLabel="label" (onClick)="onSelect('DT')"
+                                                    [options]="districtOptions" [(ngModel)]="district"
+                                                    [required]="true">
                                                 </p-dropdown>
                                                 <label for="float-input">District</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_sro" [options]="sroOptions" [(ngModel)]="sro">
+                                                <p-dropdown name="_sro" [autoDisplayFirst]="false"
+                                                optionLabel="label" (onClick)="onSelect('SR')" [options]="sroOptions" [(ngModel)]="sro">
                                                 </p-dropdown>
                                                 <label for="float-input">SRO</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_casetype" [options]="caseTypeOptions"
+                                                <p-dropdown name="_casetype" [autoDisplayFirst]="false"
+                                                optionLabel="label" (onClick)="onSelect('CT')" [options]="caseTypeOptions"
                                                     [(ngModel)]="caseType">
                                                 </p-dropdown>
                                                 <label for="float-input">Case Type</label>
@@ -61,7 +67,8 @@
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_highcourtname" [options]="highCourtNameOptions"
+                                                <p-dropdown name="_highcourtname"  [autoDisplayFirst]="false"
+                                                optionLabel="label" (onClick)="onSelect('HC')" [options]="highCourtNameOptions"
                                                     [(ngModel)]="highCourtName">
                                                 </p-dropdown>
                                                 <label for="float-input">Hight Court Name</label>
@@ -105,10 +112,17 @@
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_stateofcase" [options]="stateOfCaseOptions"
+                                                <p-dropdown name="_stateofcase"  [autoDisplayFirst]="false"
+                                                optionLabel="label" (onClick)="onSelect('SC')" [options]="stateOfCaseOptions"
                                                     [(ngModel)]="stateOfCase">
                                                 </p-dropdown>
                                                 <label for="float-input">Stage of the case</label>
+                                            </span>
+                                        </div>
+                                        <div class="col-12 md:col-4 lg:col-2">
+                                            <span class="p-float-label">
+                                                <input name="_remarks" type="text" [(ngModel)]="remarks" pInputText>
+                                                <label for="float-input">Remarks</label>
                                             </span>
                                         </div>
                                     </div>
@@ -143,6 +157,9 @@
                                 <td>{{rowIndex+1}}</td>
                                 <td *ngFor="let col of columns">
                                     {{rowData[col.field]}}
+                                </td>
+                                <td>
+                                    <p-button icon="pi pi-pencil" (onClick)="onEdit(rowData)"></p-button>
                                 </td>
                             </tr>
                         </ng-template>

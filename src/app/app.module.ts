@@ -41,6 +41,9 @@ import { ReportsComponent } from './reports/reports.component';
 import { MasterService } from './services/master.service';
 import { RestapiService } from './services/restapi.service';
 import { DatePipe } from '@angular/common';
+import { CasestatusComponent } from './masters/casestatus/casestatus.component';
+import { MenumasterComponent } from './masters/menumaster/menumaster.component';
+import { UsermasterComponent } from './masters/usermaster/usermaster.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +67,9 @@ import { DatePipe } from '@angular/common';
     CaseTypeComponent,
     SroComponent,
     ReportsComponent,
+    CasestatusComponent,
+    MenumasterComponent,
+    UsermasterComponent,
   ],
   imports: [
     BrowserModule,
