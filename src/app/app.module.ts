@@ -43,6 +43,8 @@ import { RestapiService } from './services/restapi.service';
 import { DatePipe } from '@angular/common';
 import { CaNotFiledReportComponent } from './reports/ca-not-filed-report/ca-not-filed-report.component';
 import { DroSdcReportComponent } from './reports/dro-sdc-report/dro-sdc-report.component';
+import { DIGReportComponent } from './reports/dig-report/dig-report.component';
+
 
 @NgModule({
   declarations: [
@@ -68,6 +70,8 @@ import { DroSdcReportComponent } from './reports/dro-sdc-report/dro-sdc-report.c
     ReportsComponent,
     CaNotFiledReportComponent,
     DroSdcReportComponent,
+    DIGReportComponent,
+ 
   ],
   imports: [
     BrowserModule,
