@@ -45,6 +45,7 @@ export class IgrRespondentComponent implements OnInit {
   loading: boolean = false;
   fromDate: any;
   toDate: any;
+  roleId: any;
   @ViewChild('f', {static: false}) _respondentForm!: NgForm;
 
   constructor(private _restApiService: RestapiService, private _masterService: MasterService,
@@ -53,7 +54,7 @@ export class IgrRespondentComponent implements OnInit {
   ngOnInit(): void {
     this.cols = TableConstants.respondentColumns;
     this.masters = this._masterService.masterData;
-    this.onLoadCases();
+    this.roleId = this._authService.getUserInfo().roleId;
   }
   assignDefault() {
     this.selectedValue = '1';
@@ -211,7 +212,7 @@ export class IgrRespondentComponent implements OnInit {
       'counterfiled': (this.selectedValue === '1') ? true : false,
       'flag': true,
       'createdate': new Date(),
-      'userId': 1,
+      'userId': this.roleId,
       'responsetypeid': 2, //for igr respondent
     }
     this._restApiService.post('Respondent/SaveRespondentCase', params).subscribe(res => {
