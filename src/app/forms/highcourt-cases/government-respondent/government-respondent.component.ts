@@ -143,9 +143,12 @@ export class GovernmentRespondentComponent implements OnInit {
   }
 
   onLoadCases() {
+    if(this.fromDate && this.toDate) {
     this.data = [];
     this.loading = true;
-    const params = new HttpParams().append('userid',this._authService.getUserInfo().roleId).set('fromdate', this.fromDate).set('todate', this.toDate);
+    const params = new HttpParams().append('userid',this._authService.getUserInfo().roleId)
+    .set('fromdate', this._datePipe.transform(this.fromDate, 'MM/dd/yyyy') as any)
+    .set('todate', this._datePipe.transform(this.toDate, 'MM/dd/yyyy') as any);
     this._restApiService.getByParameters('Respondent/GetRespondentCase', params).subscribe(res => {
       if(res) {
         this.loading = false;
@@ -157,6 +160,7 @@ export class GovernmentRespondentComponent implements OnInit {
         this.loading = false;
       }
     })
+  }
   }
 
   onEdit(row: any) {
