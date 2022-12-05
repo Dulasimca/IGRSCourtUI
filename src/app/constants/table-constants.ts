@@ -156,4 +156,18 @@ export class TableConstants {
         { field: 'remarks', header: 'Remarks' },
     ];
 
+    public static readonly supremeCourtCaseReportColumns: any[] = [
+        { field: 'dept', header: 'Dept' },
+        { field: 'casefromDate', header: 'Case Date From' },
+        { field: 'casetoDate', header: 'Case Date To' },
+        { field: '', header: 'Total no.of Cases' },
+        { field: '', header: 'No.of Cases of Government As Petitioner' },
+        { field: '', header: 'No.Of Cases Of Igr As Petitioner' },
+        { field: '', header: 'No.Of Cases Others(D.R,S.R,DRO,SDC)as Petitioner' },
+        { field: '', header: 'No.Of Cases Of Individual as Petitioner' },
+       // { field: '', header: 'No.Of Counter Affidatives Filed Cases(Yes/No)' },
+        // { field: '', header: 'Yes' },
+        // { field: '', header: 'no' },
+    ];
+
 }
