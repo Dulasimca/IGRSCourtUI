@@ -49,6 +49,7 @@ import { UsermasterComponent } from './masters/usermaster/usermaster.component';
 import { DIGReportComponent } from './reports/dig-report/dig-report.component';
 import { AeeReportComponent } from './reports/aee-report/aee-report.component';
 import { SupremeCourtCasesReportComponent } from './reports/supreme-court-cases-report/supreme-court-cases-report.component';
+import { DateConverter } from './helper/Date-Converter';
 
 
 @NgModule({
@@ -81,7 +82,6 @@ import { SupremeCourtCasesReportComponent } from './reports/supreme-court-cases-
     DIGReportComponent,
     AeeReportComponent,
     SupremeCourtCasesReportComponent,
- 
   ],
   imports: [
     BrowserModule,
@@ -102,7 +102,7 @@ import { SupremeCourtCasesReportComponent } from './reports/supreme-court-cases-
     MessagesModule,
     MessageModule
   ],
-  providers: [AuthService, AuthGuard, MasterService, RestapiService, DatePipe],
+  providers: [AuthService, AuthGuard, MasterService, RestapiService, DatePipe, DateConverter],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
