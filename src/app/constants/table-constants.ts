@@ -111,8 +111,9 @@ export class TableConstants {
 
     public static readonly caNotFiledReportColumns : any[] = [
         { field: 'zone', header: 'Zone' },
+        { field: 'zone', header: 'Number', colspan:3 },
         { field: 'govtRespondent', header: 'Govt Respondent' },
-        { field: 'igrRespondent', header: 'Igr Respondent' },
+        { field: 'igrRespondent', header: 'IGR Respondent' },
         { field: 'othersRespondent', header: 'Others Respondent' },
         { field: 'total', header: 'Total' },
         { field: 'pendingGp', header: 'Pending with G.P for vetting' }
@@ -120,7 +121,7 @@ export class TableConstants {
     ];
 
     public static readonly droSdcColumns : any[] = [
-        { field: 'dro', header: 'Dro' },
+        { field: 'dro', header: 'DRO' },
         { field: 'casefromDate', header: 'Case from Date' },
         { field: 'casetoDate', header: ' Case to Date' },
         { field: 'total', header: 'Total' },
@@ -155,14 +156,23 @@ export class TableConstants {
         { field: 'caPending', header: 'CAs Pending With G.P For Vetting' },
         { field: 'remarks', header: 'Remarks' },
     ];
+    public static readonly ScCaNotFiledColumns: any[] = [
+        { field: 'slpCaseNo', header: 'SLPCaseNo.' },
+        { field: 'petitioner', header: 'Petitioner' },
+        { field: 'Respondent', header: 'Respondent' },
+        { field: 'GistOfMatter', header: 'GistOfMatter' },
+        { field: 'remarks', header: 'Remarks' },
+        { field: 'section', header: 'Section' },
+        
+    ];
 
     public static readonly supremeCourtCaseReportColumns: any[] = [
         { field: 'dept', header: 'Dept' },
         { field: 'casefromDate', header: 'Case Date From' },
         { field: 'casetoDate', header: 'Case Date To' },
         { field: '', header: 'Total no.of Cases' },
-        { field: '', header: 'No.of Cases of Government As Petitioner' },
-        { field: '', header: 'No.Of Cases Of Igr As Petitioner' },
+        { field: '', header: 'No.of Cases of Government as Petitioner' },
+        { field: '', header: 'No.Of Cases Of IGR as Petitioner' },
         { field: '', header: 'No.Of Cases Others(D.R,S.R,DRO,SDC)as Petitioner' },
         { field: '', header: 'No.Of Cases Of Individual as Petitioner' },
     ];
@@ -176,7 +186,7 @@ export class TableConstants {
         { field: '', header: 'Contempt Not Appealed' },
         { field: '', header: 'Contempt Affidavit Filed' },
         { field: '', header: 'Contempt Affidavit Not Filed' },
-        { field: '', header: 'Depertment Not Contemnor' },
+        { field: '', header: 'Department Not Contemnor' },
     ];
 
     public static readonly CaseTypeColumn: any[] = [

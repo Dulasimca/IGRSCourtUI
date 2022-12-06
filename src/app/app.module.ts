@@ -49,7 +49,9 @@ import { UsermasterComponent } from './masters/usermaster/usermaster.component';
 import { DIGReportComponent } from './reports/dig-report/dig-report.component';
 import { AeeReportComponent } from './reports/aee-report/aee-report.component';
 import { SupremeCourtCasesReportComponent } from './reports/supreme-court-cases-report/supreme-court-cases-report.component';
+import { ScCaNotFiledComponent } from './reports/sc-ca-not-filed/sc-ca-not-filed.component';
 import { ContemptCasesHcReportComponent } from './reports/contempt-cases-hc-report/contempt-cases-hc-report.component';
+import { DateConverter } from './helper/date-converter';
 
 
 @NgModule({
@@ -82,8 +84,8 @@ import { ContemptCasesHcReportComponent } from './reports/contempt-cases-hc-repo
     DIGReportComponent,
     AeeReportComponent,
     SupremeCourtCasesReportComponent,
+    ScCaNotFiledComponent,
     ContemptCasesHcReportComponent,
- 
   ],
   imports: [
     BrowserModule,
@@ -104,7 +106,7 @@ import { ContemptCasesHcReportComponent } from './reports/contempt-cases-hc-repo
     MessagesModule,
     MessageModule
   ],
-  providers: [AuthService, AuthGuard, MasterService, RestapiService, DatePipe],
+  providers: [AuthService, AuthGuard, MasterService, RestapiService, DatePipe, DateConverter],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -9,6 +9,7 @@ import { NgForm } from '@angular/forms';
 import { HttpParams } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 import { AuthService } from 'src/app/services/auth.service';
+import { DateConverter } from 'src/app/helper/date-converter';
 
 @Component({
   selector: 'app-others-respondent',
@@ -48,7 +49,7 @@ export class OthersRespondentComponent implements OnInit {
   roleId: any;
   @ViewChild('f', {static: false}) _respondentForm!: NgForm;
   constructor(private _restApiService: RestapiService, private _masterService: MasterService,
-    private _datePipe: DatePipe,  private _authService: AuthService) { }
+    private _datePipe: DatePipe,  private _authService: AuthService, private _converter: DateConverter) { }
 
   ngOnInit(): void {
     this.cols = TableConstants.respondentColumns;
@@ -204,7 +205,7 @@ export class OthersRespondentComponent implements OnInit {
       'mainprayer': this.gistOfCase,
       'mainrespondents': this.respondentsName,
       'courtid': this.highCourtName.value,
-      'casedate': this.caseDate,
+      'casedate': this._converter.convertDate(this.caseDate),
       'casenumber': this.caseNo,
       'casestatusid': this.stateOfCase.value,
       'casetypeid': this.caseType.value,
