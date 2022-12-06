@@ -199,16 +199,12 @@ export class TableConstants {
         { field: 'flag', header: 'Status'}
     ];
 
-    public static readonly UserMasterColumns: any[] = [
-        { field: '', header: 'User Name'},
-        { field: '', header: 'Mail Id'},
-        { field: '', header: 'Password'},
-        { field: '', header: 'Mobile'},
-        { field: '', header: 'Zone Name'},
-        { field: '', header: 'District Name'},
-        { field: '', header: 'User Name'},
-        { field: '', header: 'User Name'},
-        { field: '', header: 'User Name'}
+    public static readonly CaseTypeColumn: any[] = [
+       
+        { field: 'casetypeid', header: 'Case Type ID' },
+        { field: 'casetypename', header: 'Case Type Name' },
+        { field: 'createddate', header: 'Created Date' },
+        { field: 'flag', header: 'Active Flag' }    
     ];
 
 }
