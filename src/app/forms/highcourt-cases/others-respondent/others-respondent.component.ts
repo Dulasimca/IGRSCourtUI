@@ -46,6 +46,7 @@ export class OthersRespondentComponent implements OnInit {
   loading: boolean = false;
   fromDate: any;
   toDate: any;
+  roleId: any;
   @ViewChild('f', {static: false}) _respondentForm!: NgForm;
   constructor(private _restApiService: RestapiService, private _masterService: MasterService,
     private _datePipe: DatePipe,  private _authService: AuthService, private _converter: DateConverter) { }
@@ -53,7 +54,7 @@ export class OthersRespondentComponent implements OnInit {
   ngOnInit(): void {
     this.cols = TableConstants.respondentColumns;
     this.masters = this._masterService.masterData;
-    this.onLoadCases();
+    this.roleId = this._authService.getUserInfo().roleId;
   }
 
   assignDefault() {
@@ -212,7 +213,7 @@ export class OthersRespondentComponent implements OnInit {
       'counterfiled': (this.selectedValue === '1') ? true : false,
       'flag': true,
       'createdate': new Date(),
-      'userId': 1,
+      'userId': this.roleId,
       'responsetypeid': 3, //for others respondent
     }
     this._restApiService.post('Respondent/SaveRespondentCase', params).subscribe(res => {

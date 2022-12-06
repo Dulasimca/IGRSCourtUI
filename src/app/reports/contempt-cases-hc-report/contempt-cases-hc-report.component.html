@@ -1,7 +1,7 @@
 <div class="col-12 md:col-12 lg:col-12 container">
     <div class="grid to-center">
         <div class="col-12 md:col-12 lg:col-12">
-            <p-panel header="Supreme Court Cases Report">
+            <p-panel header="Contempt Cases Of Hon'ble High Court Of Madras And Its Bench At Madurai">
                 <div class="col-12 md:col-12 lg:col-12 box" style="margin-top: 5px;">
                     <div #main class="col-12 md:col-12 lg:col-12">
                         <div class="grid">
@@ -9,28 +9,15 @@
                                 <div class="grid">
                                     <div class="col-12 md:col-4 lg:col-2">
                                         <span class="p-float-label">
-                                            <p-dropdown name="_dept" [autoDisplayFirst]="false" [options]="deptOptions"
-                                                [(ngModel)]="dept">
+                                            <p-dropdown name="_Court" [autoDisplayFirst]="false"
+                                                [options]="courtOptions" [(ngModel)]="court">
                                             </p-dropdown>
-                                            <label for="float-input">Dept</label>
+                                            <label for="float-input">Court</label>
                                         </span>
                                     </div>
                                     <div class="col-12 md:col-4 lg:col-2">
-                                        <span class="p-float-label">
-                                            <p-calendar name="_casefromdate" [showIcon]="true"
-                                                [(ngModel)]="caseFromDate"></p-calendar>
-                                            <label for="float-input">Case Date From</label>
-                                        </span>
-                                    </div>
-                                    <div class="col-12 md:col-4 lg:col-2">
-                                        <span class="p-float-label">
-                                            <p-calendar name="_casetoDate" [showIcon]="true" [(ngModel)]="caseToDate">
-                                            </p-calendar>
-                                            <label for="float-input">Case Date To</label>
-                                        </span>
-                                    </div>
-                                    <div class="col-12 md:col-4 lg:col-2">
-                                        <button style="margin-top:4px;" pButton pRipple type="button" label="View" (click)="onView()"></button>
+                                        <button style="margin-top:4px;" pButton pRipple type="button" label="View"
+                                            (click)="onView()"></button>
                                     </div>
                                 </div>
                             </div>
@@ -42,15 +29,10 @@
 
                         <ng-template pTemplate="header" let-columns>
                             <tr>
-                                <th rowspan="2">S.No:</th>
-                                <th *ngFor="let col of columns" rowspan="2">
+                                <th>S.No:</th>
+                                <th *ngFor="let col of columns">
                                     {{col.header}}
                                 </th>
-                                <th colspan="2">No.Of Counter Affidavits Filed Cases (Yes/No)</th>
-                            </tr>
-                            <tr>
-                                <th>Yes</th>
-                                <th>No</th>
                             </tr>
                         </ng-template>
                         <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex" let-columns="columns">
@@ -59,8 +41,6 @@
                                 <td *ngFor="let col of columns">
                                     {{rowData[col.field]}}
                                 </td>
-                                <td></td>
-                                <td></td>
                             </tr>
                         </ng-template>
                     </p-table>
