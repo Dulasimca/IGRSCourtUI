@@ -30,15 +30,16 @@ export class CaseTypeComponent implements OnInit {
   caseId: any;
   loading: boolean = false; 
   roleId: any;
+  RowId: any;
   @ViewChild('f', {static: false}) _respondentForm!: NgForm;
-  constructor(private _restApiService: RestapiService, private _masterService: MasterService,
-    private _datePipe: DatePipe, private _authService: AuthService) { }
+  constructor(private _restApiService: RestapiService, private _masterService: MasterService, private _authService: AuthService) { }
 
   ngOnInit(): void {
     this.cols = TableConstants.CaseTypeColumn;
     //this.masters = this._masterService.masterData;
     this.roleId = this._authService.getUserInfo().roleId;   
     this.ActiveType = 1;
+    this.onView();
   }
   // onSelect(value: string) {
   //   if (this.masters) {     
@@ -60,7 +61,7 @@ export class CaseTypeComponent implements OnInit {
   onSubmit() {
     console.log(this.ActiveType);
    const params = {
-      'casetypeid': 0,   
+      'casetypeid': this.RowId,   
       'casetypename': this.caseType,
       'createddate': new Date(),
       'flag': (this.ActiveType === '1') ? true : false,
@@ -68,7 +69,7 @@ export class CaseTypeComponent implements OnInit {
    
     this._restApiService.post('CasetypeMaster/SaveCasetypeMaster', params).subscribe(res => {
       if (res) {
-       
+        this.onView();       
         this.responseMsg = [{ severity: ResponseMessage.SuccessSeverity, detail: ResponseMessage.SuccessMessage }];
         setTimeout(() => this.responseMsg = [], 3000);
         
@@ -83,6 +84,9 @@ export class CaseTypeComponent implements OnInit {
   onView(){
     this._restApiService.get('CasetypeMaster/GetCasetypeMaster').subscribe(res => {
       if(res) {
+        res.forEach((i:any) => {
+          i.flag = (i.flag == true) ? 'Active' : 'InActive'
+        })
          this.data = res;
       } else {
         this.loading = false;
@@ -93,8 +97,14 @@ export class CaseTypeComponent implements OnInit {
 
   onClear() {
     this.data = [];
-    this.caseType = '';
+    this.caseType = null;
+    this.ActiveType = null;
+  }
 
+  onEdit(row:any) {
+    this.RowId = row.casetypeid;
+    this.caseType = row.casetypename;
+    this.ActiveType = (row.flag === 'Active') ? 1 : 0;
   }
   
 }

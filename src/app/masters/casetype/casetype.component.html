@@ -2,6 +2,8 @@
     <div class="grid to-center">
         <div class="col-12 md:col-12 lg:col-12">
             <p-panel header="Case Type">
+                <p-messages [(value)]="responseMsg" [enableService]="false"
+                [hideTransitionOptions]="'500ms cubic-bezier(0.86, 0, 0.076, 1)'"></p-messages>
                 <div class="col-12 md:col-12 lg:col-12 box" style="margin-top: 5px;">
                     <form #f="ngForm" name="caseTypeForm">
                         <div #main class="col-12 md:col-12 lg:col-12">
@@ -46,6 +48,7 @@
                                 <th *ngFor="let col of columns">
                                     {{col.header}}
                                 </th>
+                                <th>Edit</th>
                              
                             </tr>
                         </ng-template>
@@ -54,6 +57,9 @@
                                 <td>{{rowIndex+1}}</td>
                                 <td *ngFor="let col of columns">
                                     {{rowData[col.field]}}
+                                </td>
+                                <td>
+                                    <p-button icon="pi pi-pencil" (onClick)="onEdit(rowData)"></p-button>
                                 </td>
                                 
                             </tr>
