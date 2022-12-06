@@ -189,4 +189,22 @@ export class TableConstants {
         { field: '', header: 'Department Not Contemnor' },
     ];
 
+    public static readonly caseStatusColumns: any[] = [
+        { field: 'casestatusname', header: 'Case Status Name'},
+        { field: 'flag', header: 'Status'}
+    ];
+
+    public static readonly zonemasterColumns: any[] = [
+        { field: 'zonename', header: 'Zone Name'},
+        { field: 'flag', header: 'Status'}
+    ];
+
+    public static readonly CaseTypeColumn: any[] = [
+       
+        { field: 'casetypeid', header: 'Case Type ID' },
+        { field: 'casetypename', header: 'Case Type Name' },
+        { field: 'createddate', header: 'Created Date' },
+        { field: 'flag', header: 'Active Flag' }    
+    ];
+
 }
