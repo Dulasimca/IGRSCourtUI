@@ -11,7 +11,78 @@
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <input name="_username" type="text" [(ngModel)]="userName" pInputText>
-                                                <label for="float-input">User</label>      
+                                                <label for="float-input">Username</label>      
+                                            </span>
+                                        </div>
+                                        <div class="col-12 md:col-4 lg:col-2">
+                                            <span class="p-float-label">
+                                                <input name="_mailid" type="text" [(ngModel)]="mailId" pInputText>
+                                                <label for="float-input">e-mail ID</label>      
+                                            </span>
+                                        </div>
+                                        <div class="col-12 md:col-4 lg:col-2">
+                                        <div class="p-inputgroup">
+                                            <span class="p-float-label p-input-icon-right">
+                                                <i *ngIf="!showPwd" class="pi pi-eye" (click)="onShowPwd()"></i>
+                                                <i *ngIf="showPwd" class="pi pi-eye-slash" (click)="onShowPwd()"></i>
+                                                <input #pwd id="pwd" name="_password" type="password" pInputText
+                                                    [(ngModel)]="password" placeholder="Password" autocomplete="off"
+                                                    required>
+                                                <label for="float-input">Password</label>
+                                            </span>
+           	                            </div>
+                                        </div>
+                                        <div class="col-12 md:col-4 lg:col-2">
+                                            <span class="p-float-label">
+                                                <input name="_mobileno" type="text" [(ngModel)]="mobileNo" pInputText>
+                                                <label for="float-input">Mobile No.</label>      
+                                            </span>
+                                        </div>
+                                        <div class="col-12 md:col-4 lg:col-2">
+                                            <span class="p-float-label">
+                                                <p-dropdown name="_zone" [autoDisplayFirst]="false" optionLabel="label"
+                                                    (onClick)="onSelect('ZN')" [options]="zoneOptions"
+                                                    [(ngModel)]="zone" [required]="true">
+                                                </p-dropdown>
+                                                <label for="float-input">Zone</label>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div #row1 class="col-12 md:col-11 lg:col-11">
+                                    <div class="grid">
+                                        <div class="col-12 md:col-4 lg:col-2">
+                                            <span class="p-float-label">
+                                                <p-dropdown name="_district" [autoDisplayFirst]="false"
+                                                    optionLabel="label" (onClick)="onSelect('DT')"
+                                                    [options]="districtOptions" [(ngModel)]="district"
+                                                    [required]="true">
+                                                </p-dropdown>
+                                                <label for="float-input">District</label>
+                                            </span>
+                                        </div>
+                                        <div class="col-12 md:col-4 lg:col-2">
+                                            <span class="p-float-label">
+                                                <p-dropdown name="_sro" [autoDisplayFirst]="false" optionLabel="label"
+                                                    (onClick)="onSelect('SR')" [options]="sroOptions" [(ngModel)]="sro"
+                                                    [required]="true">
+                                                </p-dropdown>
+                                                <label for="float-input">SRO</label>
+                                            </span>
+                                        </div>
+                                        <div class="col-12 md:col-4 lg:col-2">
+                                            <span class="p-float-label">
+                                                <p-dropdown name="_role" [autoDisplayFirst]="false" [options]="roleOptions" [(ngModel)]="role"
+                                                [required]="true">
+                                                </p-dropdown>
+                                                <label for="float-input">Role</label>
+                                            </span>
+                                        </div>
+                                        <div class="col-12 md:col-4 lg:col-2">
+                                            <span class="p-float-label">
+                                                <p-calendar name="_createddate" [(ngModel)]="createdDate" [showIcon]="true"
+                                                   [required]="true"></p-calendar>
+                                                <label for="float-input">Created Date</label>
                                             </span>
                                         </div>
                                         <div class="p-col-12 p-md-12 p-lg-3" style="margin-top: 23px;">
@@ -22,7 +93,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div #row2 class="col-12 md:col-11 lg:col-11 txt-to-center no-padding">
+                                <div #row3 class="col-12 md:col-11 lg:col-11 txt-to-center no-padding">
                                         <button pButton name="save" type="button" label="Submit" icon="pi pi-save"
                                             (click)="onSubmit()"></button>&nbsp;
                                         <button pButton type="button" label="View" icon="pi pi-eye" (click)="onView()"></button>&nbsp;

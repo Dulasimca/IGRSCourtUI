@@ -12,7 +12,7 @@ export class ZoneMasterComponent implements OnInit {
   cols:any;
   selectedCategory: any = null;
   zoneName:any;
-
+ 
   constructor() { }
 
   ngOnInit(): void {
