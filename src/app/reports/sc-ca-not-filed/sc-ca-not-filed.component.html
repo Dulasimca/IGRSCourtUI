@@ -1,7 +1,7 @@
 <div class="col-12 md:col-12 lg:col-12 container">
     <div class="grid to-center">
         <div class="col-12 md:col-12 lg:col-12">
-            <p-panel header="Counter affidavits not filed cases - SC">
+            <p-panel header="Supreme Court cases  not filed ">
                 <div class="col-12 md:col-12 lg:col-12 box" style="margin-top: 5px;">
            <div #main class="col-12 md:col-12 lg:col-12">
                         <div class="grid to-center">
@@ -9,48 +9,17 @@
                                 <div class="grid">
                                     <div class="col-12 md:col-4 lg:col-2">
                                         <span class="p-float-label">
-                                            <input name="_SLP CASE NO" type="text" [(ngModel)]="slpCaseNo" pInputText>
-                                            <label for="SLP CASE NO">SLP Case No</label>
+                                            <input name="_SlP CASE NO" type="text" [(ngModel)]="slpCaseNo" pInputText>
+                                            <label for="SlP CASE NO">Slp Case No</label>
                                         </span>
                                     </div>
                                     <div class="col-12 md:col-4 lg:col-2">
-                                        <span class="p-float-label">
-                                            <input name="petitioner(s)" type="text" [(ngModel)]="petitioner" pInputText>
-                                            <label for="petitioner(s)">Petitioner</label>
-                                        </span>
-                                    </div>
-                                    <div class="col-12 md:col-4 lg:col-2">
-                                        <span class="p-float-label">
-                                            <input name=" Respondent(s)" type="text" [(ngModel)]="Respondent"
-                                                pInputText>
-                                            <label for="Respondent(s)">Respondent</label>
-                                        </span>
-                                    </div>
-                                    <div class="col-12 md:col-4 lg:col-2">
-                                        <span class="p-float-label">
-                                            <input name="Gist of Matter" type="text" [(ngModel)]="GistOfMatter"
-                                                pInputText>
-                                            <label for="Gist of Matter">Gist of Matter</label>
-                                        </span>
-                                    </div>
-                                    <div class="col-12 md:col-4 lg:col-2">
-                                        <span class="p-float-label">
-                                            <input name="Remarks" type="text" [(ngModel)]="remarks" pInputText>
-                                            <label for="float-input">Remarks</label>
-                                        </span>
-                                    </div>
-                                    <div class="lg:col-2"></div>
-                                    <div class="col-12 md:col-4 lg:col-2">
-                                        <span class="p-float-label">
-                                            <input name="section" type="text" [(ngModel)]="section" pInputText>
-                                            <label for="float-input">section</label>
-                                        </span>
+                                        <button style="margin-top:4px;" pButton pRipple type="button" label="View"
+                                        (click)="onView()"></button>
                                     </div>
                                 </div>
                             </div>
-                            <div #row3 class="col-12 md:col-11 lg:col-11 txt-to-center no-padding">
-                                <button pButton pRipple type="button" label="View" (click)="onView()"></button>
-                            </div>
+                            
                         </div>
                     </div>
 
