@@ -189,4 +189,26 @@ export class TableConstants {
         { field: '', header: 'Department Not Contemnor' },
     ];
 
+    public static readonly caseStatusColumns: any[] = [
+        { field: 'casestatusname', header: 'Case Status Name'},
+        { field: 'flag', header: 'Status'}
+    ];
+
+    public static readonly zonemasterColumns: any[] = [
+        { field: 'zonename', header: 'Zone Name'},
+        { field: 'flag', header: 'Status'}
+    ];
+
+    public static readonly UserMasterColumns: any[] = [
+        { field: '', header: 'User Name'},
+        { field: '', header: 'Mail Id'},
+        { field: '', header: 'Password'},
+        { field: '', header: 'Mobile'},
+        { field: '', header: 'Zone Name'},
+        { field: '', header: 'District Name'},
+        { field: '', header: 'User Name'},
+        { field: '', header: 'User Name'},
+        { field: '', header: 'User Name'}
+    ];
+
 }
