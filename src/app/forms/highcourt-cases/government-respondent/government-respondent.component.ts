@@ -9,7 +9,7 @@ import { NgForm } from '@angular/forms';
 import { HttpParams } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 import { AuthService } from 'src/app/services/auth.service';
-import { DateConverter } from 'src/app/helper/Date-Converter';
+import { DateConverter } from 'src/app/helper/date-converter';
 
 
 @Component({
