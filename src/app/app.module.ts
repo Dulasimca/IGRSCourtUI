@@ -51,7 +51,7 @@ import { AeeReportComponent } from './reports/aee-report/aee-report.component';
 import { SupremeCourtCasesReportComponent } from './reports/supreme-court-cases-report/supreme-court-cases-report.component';
 import { ScCaNotFiledComponent } from './reports/sc-ca-not-filed/sc-ca-not-filed.component';
 import { ContemptCasesHcReportComponent } from './reports/contempt-cases-hc-report/contempt-cases-hc-report.component';
-import { DateConverter } from './helper/Date-Converter';
+import { DateConverter } from './helper/date-converter';
 
 
 @NgModule({
