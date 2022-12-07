@@ -206,4 +206,15 @@ export class TableConstants {
         { field: 'flag', header: 'Active Flag' }    
     ];
 
+    public static readonly CourtTypeMaster: any[] = [
+        { field: 'courtname', header: 'Court Name'},
+        { field: 'flag', header: 'Status'}
+    ];
+
+    public static readonly DistrictMasterColumns: any[] = [
+        { field: 'zonename', header: 'Zone Name'},
+        { field: 'districtname', header: 'District Name'},
+        { field: 'flag', header: 'Status'}
+    ];
+
 }
