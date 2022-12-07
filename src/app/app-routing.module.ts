@@ -55,7 +55,7 @@ const routes: Routes = [
   {path:'dig-report',component:DIGReportComponent},
   {path: 'casestatus',component:CasestatusComponent},
   {path: 'menumaster',component:MenumasterComponent},
-  {path:'usermaster',component:UsermasterComponent},
+  {path:'usermaster',component:UsermasterComponent, canActivate: [AuthGuard]},
   {path:'sc-ca-not-filed',component:ScCaNotFiledComponent},
   {path:'contempt-cases-hc-report',component:ContemptCasesHcReportComponent}
 

@@ -2,35 +2,69 @@
     <div class="grid to-center">
         <div class="col-12 md:col-12 lg:col-12">
             <p-panel header="Case Type">
+                <p-messages [(value)]="responseMsg" [enableService]="false"
+                [hideTransitionOptions]="'500ms cubic-bezier(0.86, 0, 0.076, 1)'"></p-messages>
                 <div class="col-12 md:col-12 lg:col-12 box" style="margin-top: 5px;">
                     <form #f="ngForm" name="caseTypeForm">
                         <div #main class="col-12 md:col-12 lg:col-12">
                             <div class="grid to-center">
                                 <div #row1 class="col-12 md:col-11 lg:col-11">
                                     <div class="grid">
-                                                 <div class="col-12 md:col-4 lg:col-2">
-                                                <span class="p-float-label">
-                                                    <input name="_casetype" type="text" [(ngModel)]="caseType" pInputText>
-                                                    <label for="float-input">Case Type</label>      
-                                                </span>
-                                            </div>
+                                        <div class="col-12 md:col-4 lg:col-2">
+                                            <span class="p-float-label">
+                                                <input name="_caseType" type="text" [(ngModel)]="caseType" pInputText>
+                                                <label for="float-input"  required>Case Type Name</label>      
+                                            </span>
+                                        </div>
                                         <div class="p-col-12 p-md-12 p-lg-3" style="margin-top: 23px;">
-                                            <p-radioButton name="Flag" label="ACTIVE" value=1 [(ngModel)]="selectedType" required>
+                                            <p-radioButton name="Flag" label="ACTIVE" value="1" for="ActiveType" [(ngModel)]="ActiveType" required>
                                             </p-radioButton>&nbsp;
-                                            <p-radioButton name="Flag" label="INACTIVE" value=0 [(ngModel)]="selectedType" required>
+                                            <p-radioButton name="Flag" label="INACTIVE" value="0" for="ActiveType" [(ngModel)]="ActiveType" required>
                                             </p-radioButton>
                                         </div>
                                     </div>
                                 </div>
                                 <div #row2 class="col-12 md:col-11 lg:col-11 txt-to-center no-padding">
                                             <button pButton name="save" type="button" label="Submit" icon="pi pi-save"
-                                            (click)="onSubmit()"></button>&nbsp;
+                                            (click)="onSubmit()"
+                                            [disabled]="!f.valid || !f.dirty">
+                                            </button>&nbsp;
                                             <button pButton type="button" label="View" icon="pi pi-eye" (click)="onView()"></button>&nbsp;
                                             <button pButton type="button" label="Clear" icon="pi pi-trash" (click)="onClear()"></button>
                                 </div>
+
                             </div>
                         </div>
                     </form>
+                </div>
+                <div class="col-12 md:col-12 lg:col-12">
+                    <p-table #dt [columns]="cols" [value]="data" styleClass="p-datatable-gridlines" [loading]="loading">
+                        <ng-template pTemplate="caption">
+                            
+                        </ng-template>
+                        <ng-template pTemplate="header" let-columns>
+                            <tr>
+                                <th>S.No:</th>
+                                <th *ngFor="let col of columns">
+                                    {{col.header}}
+                                </th>
+                                <th>Edit</th>
+                             
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex" let-columns="columns">
+                            <tr>
+                                <td>{{rowIndex+1}}</td>
+                                <td *ngFor="let col of columns">
+                                    {{rowData[col.field]}}
+                                </td>
+                                <td>
+                                    <p-button icon="pi pi-pencil" (onClick)="onEdit(rowData)"></p-button>
+                                </td>
+                                
+                            </tr>
+                        </ng-template>
+                    </p-table>
                 </div>
             </p-panel>
         </div>
