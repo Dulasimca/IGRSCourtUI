@@ -27,8 +27,14 @@ export class LoginComponent implements OnInit {
     }
     this._authService.login(this.userInfo);
     this._authService.isLoggedIn.subscribe(value => {
-      if(value) {
-        this._router.navigate(['/dashboard']);
+      if (value) {
+        this._authService.isMenuLoaded.subscribe(check => {
+          if(check) {
+            setTimeout(() => {
+              this._router.navigate(['/dashboard']);
+            }, 200)
+          }
+        })
       }
     });
   }

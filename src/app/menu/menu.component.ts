@@ -24,7 +24,7 @@ export class MenuComponent implements OnInit {
         this._restApiService.getByParameters('Masters/GetMenuMasters', params).subscribe(res => {
             this.checkChildItems(res);
             this.items = res;
-            this._authService.hasMenu.next(true);
+            this._authService.setMenuStatus(true);
         });
       }
     });

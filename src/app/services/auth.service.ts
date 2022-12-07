@@ -11,7 +11,7 @@ export class AuthService {
   roleId: any;
 
   private loggedIn = new BehaviorSubject<boolean>(false);
-  public hasMenu = new BehaviorSubject<boolean>(false); 
+  private hasMenu = new BehaviorSubject<boolean>(false); 
   /// To control if the user is logged in or not
   /// The BehaviorSubject keeps the latest value cached (in our case when the service is created the initial value is going to be false). 
   /// So when an Observer subscribes to the isLoggedIn(), the cached valued is going to be emitted right away.
@@ -25,6 +25,10 @@ export class AuthService {
 
   get isMenuLoaded() {
     return this.hasMenu.asObservable();
+  }
+
+  setMenuStatus(value: boolean) {
+    this.hasMenu.next(value);
   }
 
   login(user: User) {
