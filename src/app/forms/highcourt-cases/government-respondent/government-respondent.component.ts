@@ -38,6 +38,7 @@ export class GovernmentRespondentComponent implements OnInit {
   gistOfCase: any;
   remarks: any;
   selectedValue: string = '1';
+  judgementValue: string = '1';
   dateValue: any;
   cols: any[] = [];
   data: any[] = [];
@@ -182,6 +183,7 @@ export class GovernmentRespondentComponent implements OnInit {
       this.caseTypeOptions = [{ label: row.casetypename, value: row.casetypeid }];
       this.stateOfCase = { label: row.casestatusname, value: row.casestatusid };
       this.stateOfCaseOptions = [{ label: row.casestatusname, value: row.casestatusid }];
+      this.judgementValue = (row.judgement) ? '1' : '0';
       this.caseDate = new Date(row.casedate);
       this.caseNo = row.casenumber;
       this.petitionerName = row.petitionername;
@@ -209,6 +211,7 @@ export class GovernmentRespondentComponent implements OnInit {
       'casedate': this._converter.convertDate(this.caseDate),
       'casenumber': this.caseNo,
       'casestatusid': this.stateOfCase.value,
+      'judgement': (this.judgementValue === '1') ? true : false,
       'casetypeid': this.caseType.value,
       'caseyear': (_caseyear * 1),
       'counterfiled': (this.selectedValue === '1') ? true : false,
