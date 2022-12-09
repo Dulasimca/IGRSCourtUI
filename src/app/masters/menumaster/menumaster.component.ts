@@ -9,7 +9,8 @@ import {RadioButtonModule} from 'primeng/radiobutton';
 export class MenumasterComponent implements OnInit {
 
   selectedType:any;
-  menu: any;
+  label: any;
+  url: any;
   
   constructor() { }
 

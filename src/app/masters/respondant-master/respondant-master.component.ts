@@ -5,41 +5,37 @@ import { ResponseMessage } from 'src/app/constants/message-constants';
 import { TableConstants } from 'src/app/constants/table-constants';
 import { RestapiService } from 'src/app/services/restapi.service';
 
-@Component({
-  selector: 'app-courttype',
-  templateUrl: './courttype.component.html',
-  styleUrls: ['./courttype.component.scss']
-})
-export class CourtTypeComponent implements OnInit {
 
-  courtName:any;
+@Component({
+  selector: 'app-respondant-master',
+  templateUrl: './respondant-master.component.html',
+  styleUrls: ['./respondant-master.component.scss']
+})
+export class RespondantMasterComponent implements OnInit {
+  responseMsg: Message[] = [];
   selectedType:any;
   cols: any[] = [];
   data: any[] = [];
-  loading: boolean = false;
-  responseMsg: Message[] = [];
-  caseId: any;
+  respondentsid: any;
+  respondentsname: any;
 
   @ViewChild('f', {static: false}) _respondentForm!: NgForm;
   
   
-
   constructor(private _restApiService: RestapiService) { }
 
   ngOnInit(): void {
-    this.cols = TableConstants.CourtTypeMaster;
+    this.cols = TableConstants.RespondentMaster;
     this.onView();
   }
-
-
   onSubmit() {
     const params = {
-      'courtid': this.caseId,
-      'courtname': this.courtName,
+      'respondentsid': this.respondentsid,
+      'respondentsname': this.respondentsname,
       'createddate': new Date(),
       'flag': (this.selectedType == 1) ? true : false
     }
-    this._restApiService.post('CourtMaster/SaveCourtMaster', params).subscribe(res => {
+    this._restApiService.post('RespondantMaster/SaveRespondentsMaster', params).subscribe(res => {
       if (res) {
         this.onView();
         this._respondentForm.reset();
@@ -53,8 +49,9 @@ export class CourtTypeComponent implements OnInit {
       }
     })
   }
+  
 onView(){
-  this._restApiService.get('CourtMaster/GetCourtMaster').subscribe(res => {
+  this._restApiService.get('RespondantMaster/GetRespondentsMaster').subscribe(res => {
     if(res) {
       res.forEach((i:any) => {
         i.flag = (i.flag == true) ? 'Active' : 'InActive'
@@ -66,14 +63,12 @@ onView(){
 }
 
 onClear() {
-  this.courtName  = null;
+  this.respondentsname  = null;
   this.selectedType = null;
 }
-
 onEdit(row:any) {
-  this.caseId = row.courtid;
-  this.courtName = row.courtname;
+  this.respondentsid = row.respondentsid;
+  this.respondentsname = row.respondentsname;
   this.selectedType = (row.flag === 'Active') ? 1 : 0;
 }
-
 }
