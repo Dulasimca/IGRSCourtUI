@@ -29,6 +29,7 @@ export class ZoneMasterComponent implements OnInit {
 
   ngOnInit(): void {
     this.cols = TableConstants.zonemasterColumns; 
+    
     this.onView();
   }
 
