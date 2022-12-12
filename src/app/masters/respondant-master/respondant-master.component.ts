@@ -38,6 +38,7 @@ export class RespondantMasterComponent implements OnInit {
     this._restApiService.post('RespondantMaster/SaveRespondentsMaster', params).subscribe(res => {
       if (res) {
         this.onView();
+        this.onClear();
         this._respondentForm.reset();
         this._respondentForm.form.markAsUntouched();
         this._respondentForm.form.markAsPristine();
@@ -63,6 +64,7 @@ onView(){
 }
 
 onClear() {
+  this.respondentsid = 0;
   this.respondentsname  = null;
   this.selectedType = null;
 }
