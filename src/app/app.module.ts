@@ -52,6 +52,7 @@ import { SupremeCourtCasesReportComponent } from './reports/supreme-court-cases-
 import { ScCaNotFiledComponent } from './reports/sc-ca-not-filed/sc-ca-not-filed.component';
 import { ContemptCasesHcReportComponent } from './reports/contempt-cases-hc-report/contempt-cases-hc-report.component';
 import { DateConverter } from './helper/date-converter';
+import { RolemasterComponent } from './masters/rolemaster/rolemaster.component';
 
 
 @NgModule({
@@ -86,6 +87,7 @@ import { DateConverter } from './helper/date-converter';
     SupremeCourtCasesReportComponent,
     ScCaNotFiledComponent,
     ContemptCasesHcReportComponent,
+    RolemasterComponent,
   ],
   imports: [
     BrowserModule,

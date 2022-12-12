@@ -69,7 +69,8 @@ export class CaseTypeComponent implements OnInit {
    
     this._restApiService.post('CasetypeMaster/SaveCasetypeMaster', params).subscribe(res => {
       if (res) {
-        this.onView();       
+        this.onView();    
+        this.onClear();   
         this.responseMsg = [{ severity: ResponseMessage.SuccessSeverity, detail: ResponseMessage.SuccessMessage }];
         setTimeout(() => this.responseMsg = [], 3000);
         
@@ -99,6 +100,7 @@ export class CaseTypeComponent implements OnInit {
     this.data = [];
     this.caseType = null;
     this.ActiveType = null;
+    this.RowId = 0;
   }
 
   onEdit(row:any) {

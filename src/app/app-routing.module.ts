@@ -27,6 +27,7 @@ import { MenumasterComponent } from './masters/menumaster/menumaster.component';
 import { UsermasterComponent } from './masters/usermaster/usermaster.component';
 import { ScCaNotFiledComponent } from './reports/sc-ca-not-filed/sc-ca-not-filed.component';
 import { ContemptCasesHcReportComponent } from './reports/contempt-cases-hc-report/contempt-cases-hc-report.component';
+import { RolemasterComponent } from './masters/rolemaster/rolemaster.component';
 
 
 
@@ -43,7 +44,7 @@ const routes: Routes = [
   { path: 'writ-appeals-hight-court-cases',component: WritAppealsComponent, canActivate: [AuthGuard]},
   { path: 'time-bound', component: TimeboundJudgementsDirectionsComponent, canActivate: [AuthGuard]},
   {path: 'zone-master', component: ZoneMasterComponent, canActivate: [AuthGuard]},
-  {path: 'district-master', component: DistrictMasterComponent, canActivate: [AuthGuard]},
+  {path: 'district-master', component: UsermasterComponent, canActivate: [AuthGuard]},
   {path: 'court-type',component:CourtTypeComponent, canActivate: [AuthGuard]},
   {path: 'sro',component:SroComponent, canActivate: [AuthGuard]},
   {path:'case-type',component:CaseTypeComponent, canActivate: [AuthGuard]},
@@ -55,9 +56,11 @@ const routes: Routes = [
   {path:'dig-report',component:DIGReportComponent},
   {path: 'casestatus',component:CasestatusComponent},
   {path: 'menumaster',component:MenumasterComponent},
-  {path:'usermaster',component:UsermasterComponent, canActivate: [AuthGuard]},
+  {path:'usermaster',component:UsermasterComponent},
   {path:'sc-ca-not-filed',component:ScCaNotFiledComponent},
-  {path:'contempt-cases-hc-report',component:ContemptCasesHcReportComponent}
+  {path:'contempt-cases-hc-report',component:ContemptCasesHcReportComponent},
+  {path:'rolemaster',component:RolemasterComponent},
+
 
 
 ];

@@ -217,4 +217,24 @@ export class TableConstants {
         { field: 'flag', header: 'Status'}
     ];
 
+    public static readonly SroMasterColumns: any[] = [
+        {field:'zonename',header: 'ZoneName'},
+        {field:'districtName',header: 'DistrictName'},
+        {field:'sroname',header: 'SROName'},
+        {field:'flag',header: 'Status'}
+    ];
+
+    public static readonly UserMasterColumns: any[] = [
+        { field: 'username', header: 'User Name'},
+        { field: 'mailid', header: 'mailid'},
+        {field: 'password', header: 'Password'},
+        { field: 'mobile', header: 'Mobile'},
+        { field: 'flag', header: 'Status'}
+    ];
+
+    public static readonly RoleMasterColumns: any[] = [
+        { field: 'rolename', header: 'Role Name'},
+        { field: 'flag', header: 'Status'}
+    ];
+
 }
