@@ -1,59 +1,39 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Message } from 'primeng/api';
-import {RadioButtonModule} from 'primeng/radiobutton';
-import { AppModule } from 'src/app/app.module';
 import { ResponseMessage } from 'src/app/constants/message-constants';
 import { TableConstants } from 'src/app/constants/table-constants';
 import { RestapiService } from 'src/app/services/restapi.service';
 
 @Component({
-  selector: 'app-zonemaster',
-  templateUrl: './zonemaster.component.html',
-  styleUrls: ['./zonemaster.component.scss']
+  selector: 'app-slp-master',
+  templateUrl: './slp-master.component.html',
+  styleUrls: ['./slp-master.component.scss']
 })
-export class ZoneMasterComponent implements OnInit {
-
+export class SlpMasterComponent implements OnInit {
+  Name:any;
   selectedType:any;
-  selectedCategory: any = null;
-  zoneName:any;
   cols: any[] = [];
   data: any[] = [];
   loading: boolean = false;
   responseMsg: Message[] = [];
-  RowId: any;
+  slpid: any;
 
   @ViewChild('f', {static: false}) _respondentForm!: NgForm;
-
   constructor(private _restApiService: RestapiService) { }
 
   ngOnInit(): void {
-    this.cols = TableConstants.zonemasterColumns; 
-    
+    this.cols = TableConstants.SlpMaster;
     this.onView();
   }
-
-      
-  onView(){
-    this._restApiService.get('ZoneMaster/GetZoneMaster').subscribe(res => {
-      if(res) {
-        res.forEach((i:any) => {
-          i.flag = (i.flag == true) ? 'Active' : 'InActive'
-        })
-
-      }
-      this.data = res;
-    })
-  }
-
   onSubmit() {
     const params = {
-      'zoneid': this.RowId,
-      'zonename': this.zoneName,
+      'slpid': this.slpid,
+      'name': this.Name,
       'createddate': new Date(),
       'flag': (this.selectedType == 1) ? true : false
     }
-    this._restApiService.post('ZoneMaster/SaveZoneMaster', params).subscribe(res => {
+    this._restApiService.post('SlpMaster/SaveSlpMaster', params).subscribe(res => {
       if (res) {
         this.onView();
         this.onClear();
@@ -67,19 +47,28 @@ export class ZoneMasterComponent implements OnInit {
         setTimeout(() => this.responseMsg = [], 3000)
       }
     })
+  }
+onView(){
+  this._restApiService.get('SlpMaster/GetSlpMaster').subscribe(res => {
+    if(res) {
+      res.forEach((i:any) => {
+        i.flag = (i.flag == true) ? 'Active' : 'InActive'
+      })
+
     }
+    this.data = res;
+  })
+}
 
-  onClear() {
-    this.zoneName = null;
-    this.selectedType = null;
-    this.RowId = 0;
-    
-  }
+onClear() {
+  this.Name  = null;
+  this.selectedType = null;
+  this.slpid=0;
+}
 
-  onEdit(row: any) {
-    this.RowId = row.zoneid;
-    this.zoneName = row.zonename;
-    this.selectedType = (row.flag === 'Active') ? 1 : 0;
-  }
-
+onEdit(row:any) {
+  this.slpid = row.slpid;
+  this.Name = row.name;
+  this.selectedType = (row.flag === 'Active') ? 1 : 0;
+}
 }
