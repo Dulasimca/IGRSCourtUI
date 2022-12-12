@@ -24,7 +24,14 @@
                                                 <label for="float-input">District</label>
                                             </span>
                                         </div>
-
+                                        <div class="col-12 md:col-4 lg:col-2">
+                                            <span class="p-float-label">
+                                                <p-dropdown name="_sro" [autoDisplayFirst]="false"
+                                                    [options]="sroOptions" [(ngModel)]="sro" [required]="true">
+                                                </p-dropdown>
+                                                <label for="float-input">SRO</label>
+                                            </span>
+                                        </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <p-dropdown name="_casetype" [autoDisplayFirst]="false" [options]="caseTypeOptions"
@@ -39,16 +46,13 @@
                                                 <label for="float-input">Case No.</label>
                                             </span>
                                         </div>
-                                         
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <p-calendar name="_caseyear" [(ngModel)]="caseYear" view="year" dateFormat="yy"></p-calendar>
                                                 <label for="float-input">Case Year</label>
                                             </span>
                                         </div>
-
-                                        <div class ="lg:col-2"></div>
-
+                                        
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <p-dropdown name="_highcourtref" [autoDisplayFirst]="false" [options]="highCourtRefOptions"

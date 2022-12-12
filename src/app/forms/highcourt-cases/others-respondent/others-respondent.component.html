@@ -53,7 +53,6 @@
                                                 <label for="float-input">Case No.</label>
                                             </span>
                                         </div>
-                                        <div class="lg:col-2"></div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <p-calendar name="_casedate" [(ngModel)]="caseDate" [showIcon]="true"
@@ -61,6 +60,10 @@
                                                 <label for="float-input">Case Date</label>
                                             </span>
                                         </div>
+                                    </div>
+                                </div>
+                                <div #row2 class="col-12 md:col-11 lg:col-11">
+                                    <div class="grid">
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <p-calendar name="_caseyear" [(ngModel)]="caseYear" view="year" dateFormat="yy"
@@ -68,7 +71,6 @@
                                                 <label for="float-input">Case Year</label>
                                             </span>
                                         </div>
-
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <p-dropdown name="_highcourtname" [autoDisplayFirst]="false"
@@ -93,8 +95,6 @@
                                                 <label for="float-input">Respondents Name</label>
                                             </span>
                                         </div>
-
-                                        <div class="lg:col-2"></div>
                                         <div class="col-12 md:col-4 lg:col-4">
                                             <span class="p-float-label">
                                                 <input name="_gistofcase" type="text" [(ngModel)]="gistOfCase"
@@ -102,6 +102,10 @@
                                                 <label for="float-input">Gist of the case and Main prayer</label>
                                             </span>
                                         </div>
+                                    </div>
+                                </div>
+                                <div #row3 class="col-12 md:col-11 lg:col-11">
+                                    <div class="grid">
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <div class="div-radio-box">
                                                 <label for="_counterFiled">Counter Filed</label><br>
@@ -122,8 +126,21 @@
                                                     [options]="stateOfCaseOptions" [(ngModel)]="stateOfCase"
                                                     [required]="true">
                                                 </p-dropdown>
-                                                <label for="float-input">Stage of the case</label>
+                                                <label for="float-input">Case Status</label>
                                             </span>
+                                        </div>
+                                        <div class="col-12 md:col-4 lg:col-2">
+                                            <div class="div-radio-box">
+                                                <label for="_judgement">Judgement</label><br>
+                                                <div style="text-align: center;">
+                                                    <p-radioButton name="_judgementfor" value="1" label="For"
+                                                        [(ngModel)]="judgementValue">
+                                                    </p-radioButton>&nbsp;
+                                                    <p-radioButton name="_judgementagainst" value="0" label="Against"
+                                                        [(ngModel)]="judgementValue">
+                                                    </p-radioButton>&nbsp;
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
@@ -133,7 +150,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div #row3 class="col-12 md:col-11 lg:col-11 txt-to-center no-padding">
+                                <div #row4 class="col-12 md:col-11 lg:col-11 txt-to-center no-padding">
                                     <button pButton pRipple type="button" label="Save" (click)="onSave()"
                                         [disabled]="!f.valid || !f.dirty"></button>
                                 </div>

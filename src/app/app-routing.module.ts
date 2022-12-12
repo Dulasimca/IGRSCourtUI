@@ -27,6 +27,9 @@ import { MenumasterComponent } from './masters/menumaster/menumaster.component';
 import { UsermasterComponent } from './masters/usermaster/usermaster.component';
 import { ScCaNotFiledComponent } from './reports/sc-ca-not-filed/sc-ca-not-filed.component';
 import { ContemptCasesHcReportComponent } from './reports/contempt-cases-hc-report/contempt-cases-hc-report.component';
+import { SlpMasterComponent } from './masters/slp-master/slp-master.component';
+import { JudgementMasterComponent } from './masters/judgement-master/judgement-master.component';
+import { RespondantMasterComponent } from './masters/respondant-master/respondant-master.component';
 
 
 
@@ -35,6 +38,30 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'government-respondent-hight-court-cases', component: GovernmentRespondentComponent, canActivate: [AuthGuard] },
+  { path: 'pending-enquiry-hight-court-cases', component: PendingEnquiryComponent, canActivate: [AuthGuard] },
+  { path: 'supreme-court-case-details', component: SupremecourtCaseDetailsComponent, canActivate: [AuthGuard] },
+  { path: 'others-respondent', component: OthersRespondentComponent, canActivate: [AuthGuard] },
+  { path: 'igr-respondent', component: IgrRespondentComponent, canActivate: [AuthGuard] },
+  { path: 'lawofficers-opinion-register', component: LawofficersOpinionRegisterComponent, canActivate: [AuthGuard] },
+  { path: 'writ-appeals-hight-court-cases', component: WritAppealsComponent, canActivate: [AuthGuard] },
+  { path: 'time-bound', component: TimeboundJudgementsDirectionsComponent, canActivate: [AuthGuard] },
+  { path: 'zone-master', component: ZoneMasterComponent, canActivate: [AuthGuard] },
+  { path: 'district-master', component: DistrictMasterComponent, canActivate: [AuthGuard] },
+  { path: 'court-type', component: CourtTypeComponent, canActivate: [AuthGuard] },
+  { path: 'sro', component: SroComponent, canActivate: [AuthGuard] },
+  { path: 'case-type', component: CaseTypeComponent, canActivate: [AuthGuard] },
+  { path: 'reports', component: ReportsComponent, canActivate: [AuthGuard] },
+  { path: 'aee-report', component: AeeReportComponent },
+  { path: 'supreme-court-cases-report', component: SupremeCourtCasesReportComponent },
+  { path: 'ca-not-filed-report', component: CaNotFiledReportComponent },
+  { path: 'dro-sdc-report', component: DroSdcReportComponent },
+  { path: 'dig-report', component: DIGReportComponent },
+  { path: 'casestatus', component: CasestatusComponent },
+  { path: 'menumaster', component: MenumasterComponent },
+  { path: 'usermaster', component: UsermasterComponent, canActivate: [AuthGuard] },
+  { path: 'sc-ca-not-filed', component: ScCaNotFiledComponent },
+  { path: 'contempt-cases-hc-report', component: ContemptCasesHcReportComponent },
+  { path: 'judgement-master', component: JudgementMasterComponent },
   { path: 'pending-enquiry-hight-court-cases', component: PendingEnquiryComponent, canActivate: [AuthGuard]},
   { path: 'supreme-court-case-details', component: SupremecourtCaseDetailsComponent, canActivate: [AuthGuard]},
   { path: 'others-respondent', component: OthersRespondentComponent, canActivate: [AuthGuard]},
@@ -57,8 +84,9 @@ const routes: Routes = [
   {path: 'menumaster',component:MenumasterComponent},
   {path:'usermaster',component:UsermasterComponent, canActivate: [AuthGuard]},
   {path:'sc-ca-not-filed',component:ScCaNotFiledComponent},
-  {path:'contempt-cases-hc-report',component:ContemptCasesHcReportComponent}
-
+  {path:'contempt-cases-hc-report',component:ContemptCasesHcReportComponent},
+  {path:'slp-master',component:SlpMasterComponent},
+  {path:'respondant-master',component:RespondantMasterComponent},
 
 ];
 
