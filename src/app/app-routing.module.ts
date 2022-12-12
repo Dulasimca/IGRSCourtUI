@@ -27,6 +27,8 @@ import { MenumasterComponent } from './masters/menumaster/menumaster.component';
 import { UsermasterComponent } from './masters/usermaster/usermaster.component';
 import { ScCaNotFiledComponent } from './reports/sc-ca-not-filed/sc-ca-not-filed.component';
 import { ContemptCasesHcReportComponent } from './reports/contempt-cases-hc-report/contempt-cases-hc-report.component';
+import { SlpMasterComponent } from './masters/slp-master/slp-master.component';
+
 
 
 
@@ -57,7 +59,9 @@ const routes: Routes = [
   {path: 'menumaster',component:MenumasterComponent},
   {path:'usermaster',component:UsermasterComponent, canActivate: [AuthGuard]},
   {path:'sc-ca-not-filed',component:ScCaNotFiledComponent},
-  {path:'contempt-cases-hc-report',component:ContemptCasesHcReportComponent}
+  {path:'contempt-cases-hc-report',component:ContemptCasesHcReportComponent},
+  {path:'slp-master',component:SlpMasterComponent},
+ 
 
 
 ];

@@ -217,4 +217,12 @@ export class TableConstants {
         { field: 'flag', header: 'Status'}
     ];
 
+    public static readonly SlpMaster: any[] = [
+        
+        { field: 'name', header: 'Name'},
+        { field: 'createddate',header:'Created Date'},
+        { field: 'flag', header: 'Status'}
+    ];
+ 
+
 }
