@@ -33,6 +33,7 @@ export class IgrRespondentComponent implements OnInit {
   highCourtName: any;
   stateOfCaseOptions: SelectItem[] = [];
   stateOfCase: any;
+  judgementValue: string = '1';
   petitionerName: any;
   respondentsName: any;
   gistOfCase: any;
@@ -181,6 +182,7 @@ export class IgrRespondentComponent implements OnInit {
       this.caseTypeOptions = [{ label: row.casetypename, value: row.casetypeid }];
       this.stateOfCase = { label: row.casestatusname, value: row.casestatusid };
       this.stateOfCaseOptions = [{ label: row.casestatusname, value: row.casestatusid }];
+      this.judgementValue = (row.judgement) ? '1' : '0';
       this.caseDate = new Date(row.casedate);
       this.caseNo = row.casenumber;
       this.petitionerName = row.petitionername;
@@ -209,6 +211,7 @@ export class IgrRespondentComponent implements OnInit {
       'casenumber': this.caseNo,
       'casestatusid': this.stateOfCase.value,
       'casetypeid': this.caseType.value,
+      'judgement': (this.judgementValue === '1') ? true : false,
       'caseyear': (_caseyear * 1),
       'counterfiled': (this.selectedValue === '1') ? true : false,
       'flag': true,
