@@ -12,7 +12,7 @@ export class TableConstants {
         { field: 'mainrespondents', header: 'Respondents Name' },
         { field: 'mainprayer', header: 'Gist of Case' },
         { field: 'countervalue', header: 'Counter Filed' },
-        { field: 'casestatusname', header: 'Stage of Case' },
+        { field: 'casestatusname', header: 'Case Status' },
         { field: 'remarks', header: 'Remarks' }
     ];
 
@@ -97,7 +97,7 @@ export class TableConstants {
         { field: 'respondentsname', header: 'Respondents Name' },
         { field: 'gistofcase', header: 'Gist of Case' },
         { field: 'regularnoreceived', header: 'Regular No. Received' },
-        { field: 'stageofcase', header: 'Stage of Case' },
+        { field: 'stageofcase', header: 'Case Status' },
         { field: 'natureofdisposal', header: 'Nature Of Disposal' },
         { field: 'remarks', header: 'Remarks' }
     ];
@@ -222,5 +222,11 @@ export class TableConstants {
         { field: 'flag', header: 'Status'}
     ];
 
+
+    public static readonly RespondentMaster: any[] = [
+        { field: 'respondentsname', header: 'Respondents Name'},
+        { field: 'createddate', header: 'Created Date'},
+        { field: 'flag', header: 'Status'}
+    ];
 
 }

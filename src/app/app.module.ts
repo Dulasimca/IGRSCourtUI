@@ -53,6 +53,7 @@ import { ScCaNotFiledComponent } from './reports/sc-ca-not-filed/sc-ca-not-filed
 import { ContemptCasesHcReportComponent } from './reports/contempt-cases-hc-report/contempt-cases-hc-report.component';
 import { DateConverter } from './helper/date-converter';
 import { JudgementMasterComponent } from './masters/judgement-master/judgement-master.component';
+import { RespondantMasterComponent } from './masters/respondant-master/respondant-master.component';
 
 
 @NgModule({
@@ -88,6 +89,7 @@ import { JudgementMasterComponent } from './masters/judgement-master/judgement-m
     ScCaNotFiledComponent,
     ContemptCasesHcReportComponent,
     JudgementMasterComponent,
+    RespondantMasterComponent,
   ],
   imports: [
     BrowserModule,
