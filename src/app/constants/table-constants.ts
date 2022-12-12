@@ -216,6 +216,12 @@ export class TableConstants {
         { field: 'districtname', header: 'District Name'},
         { field: 'flag', header: 'Status'}
     ];
+    public static readonly judgementMaster: any[] = [
+        { field: 'judgementname', header: 'judgement Name'},
+        { field: 'createddate', header: 'Create Date'},
+        { field: 'flag', header: 'Status'}
+    ];
+
 
     public static readonly RespondentMaster: any[] = [
         { field: 'respondentsname', header: 'Respondents Name'},
