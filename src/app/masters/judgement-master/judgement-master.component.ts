@@ -12,7 +12,6 @@ import { RestapiService } from 'src/app/services/restapi.service';
 })
 export class JudgementMasterComponent implements OnInit {
   selectedType: any;
-
   judgementid: any;
   judgementName: any;
   responseMsg: Message[] = [];
@@ -27,20 +26,20 @@ export class JudgementMasterComponent implements OnInit {
   ngOnInit(): void {
     this.cols = TableConstants.judgementMaster;
     this.onView();
-
-
   }
-  onSubmit() {
 
+  onSubmit() {
     const params = {
       'judgementid': this.judgementid,
       'judgementname': this.judgementName,
       'createddate': new Date(),
       'flag': (this.selectedType == 1) ? true : false
     }
+
     this._restApiService.post('JudgementMaster/SaveJudgementMaster', params).subscribe(res => {
       if (res) {
         this.onView();
+        this.onClear();
         this._respondentForm.reset();
         this._respondentForm.form.markAsUntouched();
         this._respondentForm.form.markAsPristine();
@@ -69,6 +68,7 @@ export class JudgementMasterComponent implements OnInit {
   onClear() {
     this.judgementName = null;
     this.selectedType = null;
+    this.judgementid = 0;
 
   }
 
