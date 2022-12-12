@@ -34,7 +34,9 @@ export class GovernmentRespondentComponent implements OnInit {
   stateOfCaseOptions: SelectItem[] = [];
   stateOfCase: any;
   petitionerName: any;
-  respondentsName: any;
+  respondentsList: any;
+  respondentCadre: any;
+  respondentCadreOptions: any;
   gistOfCase: any;
   remarks: any;
   selectedValue: string = '1';
@@ -189,7 +191,9 @@ export class GovernmentRespondentComponent implements OnInit {
       this.petitionerName = row.petitionername;
       this.selectedValue = (row.counterfiled) ? '1' : '0';
       this.gistOfCase = row.mainprayer;
-      this.respondentsName = row.mainrespondents;
+      this.respondentsList = row.mainrespondents;
+      this.respondentCadre = { label: row.respondentCadrename, value: row.respondentCadreid };
+      this.respondentCadreOptions = [{ label: row.respondentCadrename, value: row.respondentCadreid }];
       this.remarks = row.remarks;
       const date = '01/01/'+row.caseyear;
       this.caseYear = new Date(date);
@@ -206,7 +210,7 @@ export class GovernmentRespondentComponent implements OnInit {
       'petitionername': this.petitionerName,
       'remarks': this.remarks,
       'mainprayer': this.gistOfCase,
-      'mainrespondents': this.respondentsName,
+      'mainrespondents': this.respondentsList,
       'courtid': this.highCourtName.value,
       'casedate': this._converter.convertDate(this.caseDate),
       'casenumber': this.caseNo,

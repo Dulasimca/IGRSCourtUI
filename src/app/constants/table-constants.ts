@@ -9,10 +9,11 @@ export class TableConstants {
         { field: 'caseyear', header: 'Year' },
         { field: 'courtname', header: 'Highcourt Name' },
         { field: 'petitionername', header: 'Petitioner Name' },
-        { field: 'mainrespondents', header: 'Respondents Name' },
-        { field: 'mainprayer', header: 'Gist of Case' },
+        { field: 'mainrespondents', header: 'Respondents' },
+        { field: 'mainprayer', header: 'Gist of Case/ main prayer' },
         { field: 'countervalue', header: 'Counter Filed' },
         { field: 'casestatusname', header: 'Case Status' },
+        { field: 'judgement', header: 'Judgement (For/Against)' },
         { field: 'remarks', header: 'Remarks' }
     ];
 
