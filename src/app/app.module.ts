@@ -52,6 +52,8 @@ import { SupremeCourtCasesReportComponent } from './reports/supreme-court-cases-
 import { ScCaNotFiledComponent } from './reports/sc-ca-not-filed/sc-ca-not-filed.component';
 import { ContemptCasesHcReportComponent } from './reports/contempt-cases-hc-report/contempt-cases-hc-report.component';
 import { DateConverter } from './helper/date-converter';
+import { RolemasterComponent } from './masters/rolemaster/rolemaster.component';
+import { SlpMasterComponent } from './masters/slp-master/slp-master.component';
 import { JudgementMasterComponent } from './masters/judgement-master/judgement-master.component';
 import { RespondantMasterComponent } from './masters/respondant-master/respondant-master.component';
 
@@ -88,6 +90,8 @@ import { RespondantMasterComponent } from './masters/respondant-master/respondan
     SupremeCourtCasesReportComponent,
     ScCaNotFiledComponent,
     ContemptCasesHcReportComponent,
+    RolemasterComponent,
+    SlpMasterComponent,
     JudgementMasterComponent,
     RespondantMasterComponent,
   ],

@@ -223,6 +223,26 @@ export class TableConstants {
         { field: 'flag', header: 'Status'}
     ];
 
+    public static readonly SroMasterColumns: any[] = [
+        {field:'zonename',header: 'ZoneName'},
+        {field:'districtName',header: 'DistrictName'},
+        {field:'sroname',header: 'SROName'},
+        {field:'flag',header: 'Status'}
+    ];
+
+    public static readonly UserMasterColumns: any[] = [
+        { field: 'username', header: 'User Name'},
+        { field: 'mailid', header: 'mailid'},
+        {field: 'password', header: 'Password'},
+        { field: 'mobile', header: 'Mobile'},
+        { field: 'flag', header: 'Status'}
+    ];
+
+    public static readonly RoleMasterColumns: any[] = [
+        { field: 'rolename', header: 'Role Name'},
+        { field: 'flag', header: 'Status'}
+    ];
+
 
     public static readonly RespondentMaster: any[] = [
         { field: 'respondentsname', header: 'Respondents Name'},
@@ -230,4 +250,20 @@ export class TableConstants {
         { field: 'flag', header: 'Status'}
     ];
 
+    public static readonly SlpMaster: any[] = [
+        
+        { field: 'name', header: 'Name'},
+        { field: 'createddate',header:'Created Date'},
+        { field: 'flag', header: 'Status'}
+    ];
+ 
+
+    public static readonly MenuMasterColumns: any[] = [
+        { field: 'menuName', header: 'Menu Name'},
+        { field: 'url', header: 'URL'},
+        { field: 'parentId',header:'Parent Id'},
+        { field: 'icon',header:'Icon'},
+        { field: 'roleId',header:'role Id'},
+        { field: 'flag', header: 'Status'}
+    ];
 }

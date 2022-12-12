@@ -40,6 +40,7 @@ export class CasestatusComponent implements OnInit {
     this._restApiService.post('CasestatusMaster/CasestatusMaster', params).subscribe(res => {
       if (res) {
         this.onView();
+        this.onClear();
         this._respondentForm.reset();
         this._respondentForm.form.markAsUntouched();
         this._respondentForm.form.markAsPristine();
@@ -68,6 +69,7 @@ export class CasestatusComponent implements OnInit {
   onClear() {
       this.caseStatus = null;
       this.selectedType = null;
+      this.caseId = 0;
   }
 
   onEdit(row: any) {
