@@ -27,9 +27,9 @@ export class MenumasterComponent implements OnInit {
   masters?: any;
   responseMsg: Message[] = [];
   @ViewChild('f', {static: false}) _respondentForm!: NgForm;
-  data: any;
   loading: boolean = false;
   cols:any;
+  data: any[] = [];
   priority: any;
   priorityOptions: any;
   constructor(private _restApiService: RestapiService, private _masterService: MasterService) { }
@@ -75,7 +75,7 @@ export class MenumasterComponent implements OnInit {
             if(this.masters.menumaster) {
               this.masters.menumaster.forEach((m: any) => {
                 menuList.push(
-                  { label: m.name, value: m.menuid }
+                  { label: m.name, value: m.id }
                 )
               })
               this.parentIdOptions = menuList;
@@ -86,11 +86,10 @@ export class MenumasterComponent implements OnInit {
   onSubmit() {
     const params = {
       'menuid': this.menuId,
-      'id': 0,
       'name': this.menuName,
-      'url':this.url,
-      'parentId':this.parentId,
-      'icon':this.icon,
+      'url': (this.url !== null && this.url !== undefined) ? this.url : ' ',
+      'parentid':this.parentId,
+      'icon': (this.icon !== null && this.icon !== undefined) ? this.icon: '' ,
       'roleid':this.role,
       'priorities':this.priority,
       'createddate': new Date(),
@@ -139,14 +138,22 @@ export class MenumasterComponent implements OnInit {
     this.menuId = row.menuid;
     this.menuName=row.name;
     this.url=row.url;
-    this.parentId=row.menuid;
-    this.parentIdOptions = [{ label: row.name, value: row.menuid}];
+    this.parentId=row.parentid;
+    this.parentIdOptions = [{ label: row.parentname, value: row.parentid}];
     this.icon=row.icon;
     this.role=row.roleid;
     this.roleidOptions = [{ label: row.rolename, value: row.roleid}];
     this.selectedType = (row.isactive === 'Active') ? 1 : 0;
     this.priority = row.priorities;
+    console.log('parent',this.parentId)
   }
-
+  onCheck() {
+    this.data.forEach( i => {
+      if(i.name  === this.menuName ) {
+        this.responseMsg = [{ severity: ResponseMessage.WarnSeverity, detail: 'Respondent name is already exist, Please input different name' }];
+          this.menuName = null;
+      }
+    })
+  }
   }
 
