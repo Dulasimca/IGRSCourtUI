@@ -17,6 +17,7 @@ export class JudgementMasterComponent implements OnInit {
   responseMsg: Message[] = [];
   cols: any[] = [];
   data: any[] = [];
+  loading: boolean = false;
 
   @ViewChild('f', { static: false }) _respondentForm!: NgForm;
 
@@ -53,6 +54,7 @@ export class JudgementMasterComponent implements OnInit {
   }
 
   onView() {
+    this.loading = true;
     this._restApiService.get('JudgementMaster/GetJudgementMaster').subscribe(res => {
       if (res) {
         res.forEach((i: any) => {
@@ -61,6 +63,7 @@ export class JudgementMasterComponent implements OnInit {
 
       }
       this.data = res;
+      this.loading = false;
     })
 
   }

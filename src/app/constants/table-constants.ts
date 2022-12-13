@@ -9,10 +9,11 @@ export class TableConstants {
         { field: 'caseyear', header: 'Year' },
         { field: 'courtname', header: 'Highcourt Name' },
         { field: 'petitionername', header: 'Petitioner Name' },
-        { field: 'mainrespondents', header: 'Respondents Name' },
-        { field: 'mainprayer', header: 'Gist of Case' },
+        { field: 'mainrespondents', header: 'Respondents' },
+        { field: 'mainprayer', header: 'Gist of Case/ main prayer' },
         { field: 'countervalue', header: 'Counter Filed' },
         { field: 'casestatusname', header: 'Case Status' },
+        { field: 'judgement', header: 'Judgement (For/Against)' },
         { field: 'remarks', header: 'Remarks' }
     ];
 
@@ -65,7 +66,7 @@ export class TableConstants {
         { field: 'highcourtname', header: 'Highcourt Name' },
         { field: 'petitionername', header: 'Petitioner Name' },
         { field: 'respondentsname', header: 'Respondents Name' },
-        { field: 'stageofcase', header: 'Stage of Case' },
+        { field: 'stageofcase', header: 'Case Status' },
         { field: 'gistofcase', header: 'Gist of Case' },
         { field: 'subject', header: 'Subject' },
         { field: 'refno', header: 'DIG/DR/SR-RefNo' }
@@ -89,6 +90,7 @@ export class TableConstants {
     public static readonly writeAppealsColumns: any[] = [
         { field: 'zone', header: 'Zone' },
         { field: 'district', header: 'District' },
+        { field: 'sro', header: 'SRO' },
         { field: 'casetype', header: 'Case Type' },
         { field: 'caseno', header: 'Case No.' },
         { field: 'year', header: 'Year' },

@@ -29,6 +29,7 @@ export class RolemasterComponent implements OnInit {
   }
 
   onView() {
+    this.loading = true;
     this._restApiService.get('RoleMaster/GetRoleMaster').subscribe(res => {
       if(res) {
         res.forEach((i:any) => {
@@ -37,6 +38,7 @@ export class RolemasterComponent implements OnInit {
   
       }
       this.data = res;
+      this.loading = false;
     })
   }
 

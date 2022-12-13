@@ -55,6 +55,7 @@ export class CourtTypeComponent implements OnInit {
     })
   }
 onView(){
+  this.loading = true;
   this._restApiService.get('CourtMaster/GetCourtMaster').subscribe(res => {
     if(res) {
       res.forEach((i:any) => {
@@ -63,6 +64,7 @@ onView(){
 
     }
     this.data = res;
+    this.loading = false;
   })
 }
 

@@ -84,6 +84,7 @@ export class DistrictMasterComponent implements OnInit {
     }
 
   onView(){
+    this.loading = true;
     this._restApiService.get('DistrictMaster/GetDistrictMaster').subscribe(res => {
       if(res) {
         res.forEach((i:any) => {
@@ -91,6 +92,7 @@ export class DistrictMasterComponent implements OnInit {
         })  
       }
       this.data = res;
+      this.loading = false;
     })
   }
 

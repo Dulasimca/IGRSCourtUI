@@ -119,6 +119,7 @@ export class MenumasterComponent implements OnInit {
         })
       }
       this.data = res;
+      this.loading = false;
     })
   }
   onClear() {

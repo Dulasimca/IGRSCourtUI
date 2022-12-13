@@ -56,6 +56,7 @@ import { RolemasterComponent } from './masters/rolemaster/rolemaster.component';
 import { SlpMasterComponent } from './masters/slp-master/slp-master.component';
 import { JudgementMasterComponent } from './masters/judgement-master/judgement-master.component';
 import { RespondantMasterComponent } from './masters/respondant-master/respondant-master.component';
+import { PaginatorModule } from 'primeng/paginator';
 
 
 @NgModule({
@@ -112,7 +113,8 @@ import { RespondantMasterComponent } from './masters/respondant-master/respondan
     FlexLayoutModule,
     TableModule,
     MessagesModule,
-    MessageModule
+    MessageModule,
+    PaginatorModule,
   ],
   providers: [AuthService, AuthGuard, MasterService, RestapiService, DatePipe, DateConverter],
   bootstrap: [AppComponent]
