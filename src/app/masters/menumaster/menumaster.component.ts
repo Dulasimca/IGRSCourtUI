@@ -79,6 +79,7 @@ export class MenumasterComponent implements OnInit {
     })
     }
   onView(){
+    this.loading = true;
     this._restApiService.get('CourtMaster/GetCourtMaster').subscribe(res => {
       if(res) {
         res.forEach((i:any) => {
@@ -86,6 +87,7 @@ export class MenumasterComponent implements OnInit {
         })
       }
       this.data = res;
+      this.loading = false;
     })
   }
   onClear() {

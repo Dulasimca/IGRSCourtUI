@@ -81,6 +81,7 @@ export class UsermasterComponent implements OnInit {
     }
 
   onView(){
+    this.loading = true;
     this._restApiService.get('UserMaster/GetUserMaster').subscribe(res => {
       if(res) {
         res.forEach((i:any) => {
@@ -88,6 +89,7 @@ export class UsermasterComponent implements OnInit {
         })  
       }
       this.data = res;
+      this.loading = false;
     })
   }
 
