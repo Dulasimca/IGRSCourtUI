@@ -12,7 +12,7 @@
                                     <div class="grid">
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <input name="_caseType" type="text" [(ngModel)]="caseType" pInputText>
+                                                <input name="_caseType" type="text" (change)="onCheck()" [(ngModel)]="caseType" pInputText>
                                                 <label for="float-input"  required>Case Type Name</label>      
                                             </span>
                                         </div>

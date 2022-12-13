@@ -80,4 +80,12 @@ onEdit(row:any) {
   this.selectedType = (row.flag === 'Active') ? 1 : 0;
 }
 
+onCheck() {
+  this.data.forEach( i => {
+    if(i.courtname  === this.courtName ) {
+      this.responseMsg = [{ severity: ResponseMessage.WarnSeverity, detail: 'courtname is already exist, Please input different name' }];
+        this.courtName = null;
+    }
+  })
+}
 }
