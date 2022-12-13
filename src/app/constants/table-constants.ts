@@ -263,8 +263,9 @@ export class TableConstants {
         { field: 'name', header: 'Menu Name'},
         { field: 'url', header: 'URL'},
         { field: 'parentid',header:'Parent Id'},
+        { field: 'parentname',header:'Parent Name'},
         { field: 'icon',header:'Icon'},
-        { field: 'rolename', header: 'Role Name'},
+        { field: 'rolename', header: 'Role Name'},   
         { field: 'isactive', header: 'Status'}        
     ];
 }

@@ -12,13 +12,13 @@
                                     <div class="grid">
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <input name="_username" type="text" [(ngModel)]="userName" pInputText>
+                                                <input name="_username" type="text" (change)="onCheck()" [(ngModel)]="userName" pInputText>
                                                 <label for="float-input">Username</label>      
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <input name="_mailid" type="text" [(ngModel)]="mailId" pInputText>
+                                                <input name="_mailid" type="text" (change)="onCheck()" [(ngModel)]="mailId" pInputText>
                                                 <label for="float-input">e-mail ID</label>      
                                             </span>
                                         </div>
