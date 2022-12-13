@@ -12,6 +12,20 @@
                                     <div class="grid">
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
+                                        <p-dropdown name="_role" [autoDisplayFirst]="false" [options]="roleidOptions" (onClick)="onSelect('R')" [(ngModel)]="role" [required]="true">
+                                        </p-dropdown>
+                                        <label for="float-input">Role</label>   
+                                    </span>
+                                </div>
+                                <div class="col-12 md:col-4 lg:col-2">
+                                    <span class="p-float-label">
+                                        <p-dropdown name="_parentid" [options]="parentIdOptions" (onClick)="onSelect('M')" [(ngModel)]="parentId" [required]="true">
+                                        </p-dropdown>
+                                        <label for="float-input">parentId</label>      
+                                    </span>
+                                </div>
+                                        <div class="col-12 md:col-4 lg:col-2">
+                                            <span class="p-float-label">
                                                 <input name="_name" type="text" [(ngModel)]="menuName" pInputText>
                                                 <label for="float-input">MenuName</label>      
                                             </span>
@@ -24,24 +38,10 @@
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_parentid" [options]="parentIdOptions" (onClick)="onSelect('M')" [(ngModel)]="parentId" [required]="true">
-                                                </p-dropdown>
-                                                <label for="float-input">parentId</label>      
-                                            </span>
-                                        </div>
-                                        <div class="col-12 md:col-4 lg:col-2">
-                                            <span class="p-float-label">
                                                 <input name="_icon" type="text" [(ngModel)]="icon" pInputText>
                                                 <label for="float-input">Icon</label>      
                                             </span>
                                         </div>
-                                        <div class="col-12 md:col-4 lg:col-2">
-                                            <span class="p-float-label">
-                                        <p-dropdown name="_role" [autoDisplayFirst]="false" [options]="roleidOptions" (onClick)="onSelect('R')" [(ngModel)]="role" [required]="true">
-                                        </p-dropdown>
-                                        <label for="float-input">Role</label>   
-                                    </span>
-                                </div>
                                 <div class="lg:col-2"></div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
