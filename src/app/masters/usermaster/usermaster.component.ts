@@ -196,5 +196,13 @@ export class UsermasterComponent implements OnInit {
     this.roleOptions  = [{ label: row.rolename, value: row.roleid}];
     this.createdDate = row.createddate;
   }
-
+  onCheck() {
+    this.data.forEach( i => {
+      if(i.username  === this.userName && i.mailid === this.mailId) {
+        this.responseMsg = [{ severity: ResponseMessage.WarnSeverity, detail: 'Respondent name is already exist, Please input different name' }];
+          this.userName = null;
+          this.mailId=null;
+      }
+    })
+  }
 }
