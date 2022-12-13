@@ -81,4 +81,12 @@ export class JudgementMasterComponent implements OnInit {
     this.selectedType = (row.flag === 'Active') ? 1 : 0;
   }
 
+  onCheck() {
+    this.data.forEach( i => {
+      if(i.judgementname  === this.judgementName ) {
+        this.responseMsg = [{ severity: ResponseMessage.WarnSeverity, detail: 'Judgement name is already exist, Please input different name' }];
+          this.judgementName = null;
+      }
+    })
+  }
 }

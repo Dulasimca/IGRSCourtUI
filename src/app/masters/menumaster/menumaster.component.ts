@@ -112,6 +112,7 @@ export class MenumasterComponent implements OnInit {
     })
     }
   onView(){
+    this.loading = true;
     this._restApiService.get('MenuMaster/GetMenuMasterCase').subscribe(res => {
       if(res) {
         res.forEach((i:any) => {
