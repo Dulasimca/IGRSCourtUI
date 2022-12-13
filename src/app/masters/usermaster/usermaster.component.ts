@@ -199,7 +199,7 @@ export class UsermasterComponent implements OnInit {
   onCheck() {
     this.data.forEach( i => {
       if(i.username  === this.userName && i.mailid === this.mailId) {
-        this.responseMsg = [{ severity: ResponseMessage.WarnSeverity, detail: 'Respondent name is already exist, Please input different name' }];
+        this.responseMsg = [{ severity: ResponseMessage.WarnSeverity, detail: ' Username & emailId  already exists, Please enter valid Username & emailId' }];
           this.userName = null;
           this.mailId=null;
       }
