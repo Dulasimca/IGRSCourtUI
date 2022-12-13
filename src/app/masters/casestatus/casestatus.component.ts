@@ -54,6 +54,7 @@ export class CasestatusComponent implements OnInit {
     }
     
   onView(){
+    this.loading = true;
     this._restApiService.get('CasestatusMaster/GetCasestatusMaster').subscribe(res => {
       if(res) {
         res.forEach((i:any) => {
@@ -62,6 +63,7 @@ export class CasestatusComponent implements OnInit {
 
       }
       this.data = res;
+      this.loading = false;
     })
   }
 

@@ -54,6 +54,7 @@ import { ContemptCasesHcReportComponent } from './reports/contempt-cases-hc-repo
 import { DateConverter } from './helper/date-converter';
 import { JudgementMasterComponent } from './masters/judgement-master/judgement-master.component';
 import { RespondantMasterComponent } from './masters/respondant-master/respondant-master.component';
+import { PaginatorModule } from 'primeng/paginator';
 
 
 @NgModule({
@@ -108,7 +109,8 @@ import { RespondantMasterComponent } from './masters/respondant-master/respondan
     FlexLayoutModule,
     TableModule,
     MessagesModule,
-    MessageModule
+    MessageModule,
+    PaginatorModule,
   ],
   providers: [AuthService, AuthGuard, MasterService, RestapiService, DatePipe, DateConverter],
   bootstrap: [AppComponent]

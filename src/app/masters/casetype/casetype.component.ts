@@ -84,9 +84,11 @@ export class CaseTypeComponent implements OnInit {
   }
     
   onView(){
+    this.loading = true;
     this._restApiService.get('CasetypeMaster/GetCasetypeMaster').subscribe(res => {
       if(res) {
          this.data = res;
+         this.loading = false;
       } else {
         this.loading = false;
       }

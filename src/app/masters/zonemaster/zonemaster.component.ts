@@ -35,6 +35,7 @@ export class ZoneMasterComponent implements OnInit {
 
       
   onView(){
+    this.loading = true;
     this._restApiService.get('ZoneMaster/GetZoneMaster').subscribe(res => {
       if(res) {
         res.forEach((i:any) => {
@@ -43,6 +44,7 @@ export class ZoneMasterComponent implements OnInit {
 
       }
       this.data = res;
+      this.loading = false;
     })
   }
 

@@ -18,6 +18,7 @@ export class RespondantMasterComponent implements OnInit {
   data: any[] = [];
   respondentsid: any;
   respondentsname: any;
+  loading: boolean = false;
 
   @ViewChild('f', {static: false}) _respondentForm!: NgForm;
   
@@ -52,6 +53,7 @@ export class RespondantMasterComponent implements OnInit {
   }
   
 onView(){
+  this.loading = true;
   this._restApiService.get('RespondantMaster/GetRespondentsMaster').subscribe(res => {
     if(res) {
       res.forEach((i:any) => {
@@ -60,6 +62,7 @@ onView(){
 
     }
     this.data = res;
+    this.loading = false;
   })
 }
 
