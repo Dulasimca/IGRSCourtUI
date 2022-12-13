@@ -70,6 +70,7 @@ export class DistrictMasterComponent implements OnInit {
     this._restApiService.post('DistrictMaster/SaveDistrictMaster', params).subscribe(res => {
       if (res) {
         this.onView();
+        this.onClear();
         this._respondentForm.reset();
         this._respondentForm.form.markAsUntouched();
         this._respondentForm.form.markAsPristine();
@@ -100,6 +101,7 @@ export class DistrictMasterComponent implements OnInit {
     this.zoneOptions = [];
     this.district = null;
     this.selectedType = null;
+    this.RowId = 0;
   }
 
   onEdit(row: any) {

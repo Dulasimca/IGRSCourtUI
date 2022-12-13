@@ -91,11 +91,25 @@
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <input name="_respondentname" type="text" [(ngModel)]="respondentsName"
-                                                    pInputText>
-                                                <label for="float-input">Respondents Name</label>
+                                                <p-dropdown name="_respondentcadre" [autoDisplayFirst]="false"
+                                                    optionLabel="label" (onClick)="onSelect('CT')"
+                                                    [options]="respondentCadreOptions" [(ngModel)]="respondentCadre"
+                                                    [required]="true">
+                                                </p-dropdown>
+                                                <label for="float-input">Respondent Designation</label>
                                             </span>
                                         </div>
+                                        <div class="col-12 md:col-4 lg:col-4">
+                                            <span class="p-float-label">
+                                                <input name="_respondentlist" type="text" [(ngModel)]="respondentsList"
+                                                    pInputText>
+                                                <label for="float-input">Respondents List</label>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div #row3 class="col-12 md:col-11 lg:col-11">
+                                    <div class="grid">
                                         <div class="col-12 md:col-4 lg:col-4">
                                             <span class="p-float-label">
                                                 <input name="_gistofcase" type="text" [(ngModel)]="gistOfCase"
@@ -103,10 +117,6 @@
                                                 <label for="float-input">Gist of the case and Main prayer</label>
                                             </span>
                                         </div>
-                                    </div>
-                                </div>
-                                <div #row3 class="col-12 md:col-11 lg:col-11">
-                                    <div class="grid">
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <div class="div-radio-box">
                                                 <label for="_counterFiled">Counter Filed</label><br>

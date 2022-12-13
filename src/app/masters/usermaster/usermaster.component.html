@@ -2,6 +2,8 @@
     <div class="grid to-center">
         <div class="col-12 md:col-12 lg:col-12">
             <p-panel header="User Master">
+                <p-messages [(value)]="responseMsg" [enableService]="false"
+                [hideTransitionOptions]="'500ms cubic-bezier(0.86, 0, 0.076, 1)'"></p-messages>
                 <div class="col-12 md:col-12 lg:col-12 box" style="margin-top: 5px;">
                     <form #f="ngForm" name="userForm">
                         <div #main class="col-12 md:col-12 lg:col-12">
@@ -40,7 +42,7 @@
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_zone" [autoDisplayFirst]="false" optionLabel="label"
+                                                <p-dropdown name="_zone" [autoDisplayFirst]="false" 
                                                     (onClick)="onSelect('ZN')" [options]="zoneOptions"
                                                     [(ngModel)]="zone" [required]="true">
                                                 </p-dropdown>
@@ -54,7 +56,7 @@
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <p-dropdown name="_district" [autoDisplayFirst]="false"
-                                                    optionLabel="label" (onClick)="onSelect('DT')"
+                                                    (onClick)="onSelect('DT')"
                                                     [options]="districtOptions" [(ngModel)]="district"
                                                     [required]="true">
                                                 </p-dropdown>
@@ -63,7 +65,7 @@
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_sro" [autoDisplayFirst]="false" optionLabel="label"
+                                                <p-dropdown name="_sro" [autoDisplayFirst]="false"
                                                     (onClick)="onSelect('SR')" [options]="sroOptions" [(ngModel)]="sro"
                                                     [required]="true">
                                                 </p-dropdown>
@@ -72,7 +74,8 @@
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_role" [autoDisplayFirst]="false" [options]="roleOptions" [(ngModel)]="role"
+                                                <p-dropdown name="_role" [autoDisplayFirst]="false" [options]="roleOptions" 
+                                                 (onClick)="onSelect('R')" [(ngModel)]="roleId"
                                                 [required]="true">
                                                 </p-dropdown>
                                                 <label for="float-input">Role</label>
@@ -102,6 +105,39 @@
                             </div>
                         </div>
                     </form>
+                </div>
+                <div class="col-12 md:col-12 lg:col-12">
+                    <p-table #dt [columns]="cols" [value]="data" styleClass="p-datatable-gridlines" [loading]="loading">
+                        <ng-template pTemplate="caption">
+                            <div class="grid" style="width: -webkit-fill-available;">
+                                <div class="lg:col-6 no-pad-top no-pad-btm"></div>
+                                <div class="lg:col-6 table-hdr-export">
+                                    <button type="button" pButton pRipple icon="pi pi-file" (click)="dt.exportCSV()"
+                                        class="mr-2" pTooltip="CSV" label="Export" tooltipPosition="bottom"></button>
+                                </div>
+                            </div>
+                        </ng-template>
+                        <ng-template pTemplate="header" let-columns>
+                            <tr>
+                                <th>S.No:</th>
+                                <th *ngFor="let col of columns">
+                                    {{col.header}}
+                                </th>
+                                <th>Edit</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex" let-columns="columns">
+                            <tr>
+                                <td>{{rowIndex+1}}</td>
+                                <td *ngFor="let col of columns">
+                                    {{rowData[col.field]}}
+                                </td>
+                                <td>
+                                    <p-button icon="pi pi-pencil" (onClick)="onEdit(rowData)"></p-button>
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
                 </div>
             </p-panel>
         </div>

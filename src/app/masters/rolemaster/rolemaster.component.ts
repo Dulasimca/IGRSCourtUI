@@ -6,40 +6,47 @@ import { TableConstants } from 'src/app/constants/table-constants';
 import { RestapiService } from 'src/app/services/restapi.service';
 
 @Component({
-  selector: 'app-courttype',
-  templateUrl: './courttype.component.html',
-  styleUrls: ['./courttype.component.scss']
+  selector: 'app-rolemaster',
+  templateUrl: './rolemaster.component.html',
+  styleUrls: ['./rolemaster.component.scss']
 })
-export class CourtTypeComponent implements OnInit {
-
-  courtName:any;
-  selectedType:any;
+export class RolemasterComponent implements OnInit {
+  roleName: any;
+  selectedType: any;
   cols: any[] = [];
   data: any[] = [];
   loading: boolean = false;
   responseMsg: Message[] = [];
-  caseId: any;
 
   @ViewChild('f', {static: false}) _respondentForm!: NgForm;
-  
-  
+  RowId: any;
 
   constructor(private _restApiService: RestapiService) { }
 
   ngOnInit(): void {
-    this.cols = TableConstants.CourtTypeMaster;
+    this.cols = TableConstants.RoleMasterColumns;
     this.onView();
   }
 
+  onView() {
+    this._restApiService.get('RoleMaster/GetRoleMaster').subscribe(res => {
+      if(res) {
+        res.forEach((i:any) => {
+          i.flag = (i.flag == true) ? 'Active' : 'InActive'
+        })
+  
+      }
+      this.data = res;
+    })
+  }
 
   onSubmit() {
     const params = {
-      'courtid': this.caseId,
-      'courtname': this.courtName,
-      'createddate': new Date(),
+      'roleid': this.RowId,
+      'rolename': this.roleName,
       'flag': (this.selectedType == 1) ? true : false
     }
-    this._restApiService.post('CourtMaster/SaveCourtMaster', params).subscribe(res => {
+    this._restApiService.post('RoleMaster/SaveRoleMaster', params).subscribe(res => {
       if (res) {
         this.onView();
         this.onClear();
@@ -54,30 +61,17 @@ export class CourtTypeComponent implements OnInit {
       }
     })
   }
-onView(){
-  this.loading = true;
-  this._restApiService.get('CourtMaster/GetCourtMaster').subscribe(res => {
-    if(res) {
-      res.forEach((i:any) => {
-        i.flag = (i.flag == true) ? 'Active' : 'InActive'
-      })
 
-    }
-    this.data = res;
-    this.loading = false;
-  })
-}
+  onEdit(row: any) {
+    this.RowId = row.roleid;
+    this.roleName = row.rolename;
+    this.selectedType = (row.flag === 'Active') ? 1 : 0;
+  }
 
-onClear() {
-  this.courtName  = null;
-  this.selectedType = null;
-  this.caseId = 0;
-}
-
-onEdit(row:any) {
-  this.caseId = row.courtid;
-  this.courtName = row.courtname;
-  this.selectedType = (row.flag === 'Active') ? 1 : 0;
-}
+  onClear() {
+    this.RowId = 0;
+    this.roleName = null;
+    this.selectedType = null;
+  }
 
 }

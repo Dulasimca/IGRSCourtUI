@@ -9,10 +9,11 @@ export class TableConstants {
         { field: 'caseyear', header: 'Year' },
         { field: 'courtname', header: 'Highcourt Name' },
         { field: 'petitionername', header: 'Petitioner Name' },
-        { field: 'mainrespondents', header: 'Respondents Name' },
-        { field: 'mainprayer', header: 'Gist of Case' },
+        { field: 'mainrespondents', header: 'Respondents' },
+        { field: 'mainprayer', header: 'Gist of Case/ main prayer' },
         { field: 'countervalue', header: 'Counter Filed' },
         { field: 'casestatusname', header: 'Case Status' },
+        { field: 'judgement', header: 'Judgement (For/Against)' },
         { field: 'remarks', header: 'Remarks' }
     ];
 
@@ -65,7 +66,7 @@ export class TableConstants {
         { field: 'highcourtname', header: 'Highcourt Name' },
         { field: 'petitionername', header: 'Petitioner Name' },
         { field: 'respondentsname', header: 'Respondents Name' },
-        { field: 'stageofcase', header: 'Stage of Case' },
+        { field: 'stageofcase', header: 'Case Status' },
         { field: 'gistofcase', header: 'Gist of Case' },
         { field: 'subject', header: 'Subject' },
         { field: 'refno', header: 'DIG/DR/SR-RefNo' }
@@ -89,6 +90,7 @@ export class TableConstants {
     public static readonly writeAppealsColumns: any[] = [
         { field: 'zone', header: 'Zone' },
         { field: 'district', header: 'District' },
+        { field: 'sro', header: 'SRO' },
         { field: 'casetype', header: 'Case Type' },
         { field: 'caseno', header: 'Case No.' },
         { field: 'year', header: 'Year' },
@@ -222,6 +224,26 @@ export class TableConstants {
         { field: 'flag', header: 'Status'}
     ];
 
+    public static readonly SroMasterColumns: any[] = [
+        {field:'zonename',header: 'ZoneName'},
+        {field:'districtName',header: 'DistrictName'},
+        {field:'sroname',header: 'SROName'},
+        {field:'flag',header: 'Status'}
+    ];
+
+    public static readonly UserMasterColumns: any[] = [
+        { field: 'username', header: 'User Name'},
+        { field: 'mailid', header: 'mailid'},
+        {field: 'password', header: 'Password'},
+        { field: 'mobile', header: 'Mobile'},
+        { field: 'flag', header: 'Status'}
+    ];
+
+    public static readonly RoleMasterColumns: any[] = [
+        { field: 'rolename', header: 'Role Name'},
+        { field: 'flag', header: 'Status'}
+    ];
+
 
     public static readonly RespondentMaster: any[] = [
         { field: 'respondentsname', header: 'Respondents Name'},
@@ -229,4 +251,20 @@ export class TableConstants {
         { field: 'flag', header: 'Status'}
     ];
 
+    public static readonly SlpMaster: any[] = [
+        
+        { field: 'name', header: 'Name'},
+        { field: 'createddate',header:'Created Date'},
+        { field: 'flag', header: 'Status'}
+    ];
+ 
+
+    public static readonly MenuMasterColumns: any[] = [
+        { field: 'menuName', header: 'Menu Name'},
+        { field: 'url', header: 'URL'},
+        { field: 'parentId',header:'Parent Id'},
+        { field: 'icon',header:'Icon'},
+        { field: 'roleId',header:'role Id'},
+        { field: 'flag', header: 'Status'}
+    ];
 }

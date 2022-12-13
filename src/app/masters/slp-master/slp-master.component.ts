@@ -6,40 +6,34 @@ import { TableConstants } from 'src/app/constants/table-constants';
 import { RestapiService } from 'src/app/services/restapi.service';
 
 @Component({
-  selector: 'app-courttype',
-  templateUrl: './courttype.component.html',
-  styleUrls: ['./courttype.component.scss']
+  selector: 'app-slp-master',
+  templateUrl: './slp-master.component.html',
+  styleUrls: ['./slp-master.component.scss']
 })
-export class CourtTypeComponent implements OnInit {
-
-  courtName:any;
+export class SlpMasterComponent implements OnInit {
+  Name:any;
   selectedType:any;
   cols: any[] = [];
   data: any[] = [];
   loading: boolean = false;
   responseMsg: Message[] = [];
-  caseId: any;
+  slpid: any;
 
   @ViewChild('f', {static: false}) _respondentForm!: NgForm;
-  
-  
-
   constructor(private _restApiService: RestapiService) { }
 
   ngOnInit(): void {
-    this.cols = TableConstants.CourtTypeMaster;
+    this.cols = TableConstants.SlpMaster;
     this.onView();
   }
-
-
   onSubmit() {
     const params = {
-      'courtid': this.caseId,
-      'courtname': this.courtName,
+      'slpid': this.slpid,
+      'name': this.Name,
       'createddate': new Date(),
       'flag': (this.selectedType == 1) ? true : false
     }
-    this._restApiService.post('CourtMaster/SaveCourtMaster', params).subscribe(res => {
+    this._restApiService.post('SlpMaster/SaveSlpMaster', params).subscribe(res => {
       if (res) {
         this.onView();
         this.onClear();
@@ -55,8 +49,7 @@ export class CourtTypeComponent implements OnInit {
     })
   }
 onView(){
-  this.loading = true;
-  this._restApiService.get('CourtMaster/GetCourtMaster').subscribe(res => {
+  this._restApiService.get('SlpMaster/GetSlpMaster').subscribe(res => {
     if(res) {
       res.forEach((i:any) => {
         i.flag = (i.flag == true) ? 'Active' : 'InActive'
@@ -64,20 +57,18 @@ onView(){
 
     }
     this.data = res;
-    this.loading = false;
   })
 }
 
 onClear() {
-  this.courtName  = null;
+  this.Name  = null;
   this.selectedType = null;
-  this.caseId = 0;
+  this.slpid=0;
 }
 
 onEdit(row:any) {
-  this.caseId = row.courtid;
-  this.courtName = row.courtname;
+  this.slpid = row.slpid;
+  this.Name = row.name;
   this.selectedType = (row.flag === 'Active') ? 1 : 0;
 }
-
 }

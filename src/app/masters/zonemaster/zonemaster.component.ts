@@ -58,6 +58,7 @@ export class ZoneMasterComponent implements OnInit {
     this._restApiService.post('ZoneMaster/SaveZoneMaster', params).subscribe(res => {
       if (res) {
         this.onView();
+        this.onClear();
         this._respondentForm.reset();
         this._respondentForm.form.markAsUntouched();
         this._respondentForm.form.markAsPristine();
@@ -73,6 +74,7 @@ export class ZoneMasterComponent implements OnInit {
   onClear() {
     this.zoneName = null;
     this.selectedType = null;
+    this.RowId = 0;
     
   }
 
