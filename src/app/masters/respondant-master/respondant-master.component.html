@@ -12,7 +12,7 @@
                                     <div class="grid">
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <input name="_name" type="text" [(ngModel)]="respondentsname"
+                                                <input name="_name" type="text" (change)="onCheck()" [(ngModel)]="respondentsname"
                                                     pInputText>
                                                 <label for="float-input">Respondent Name</label>
                                             </span>

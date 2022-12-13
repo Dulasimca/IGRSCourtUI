@@ -258,11 +258,11 @@ export class TableConstants {
  
 
     public static readonly MenuMasterColumns: any[] = [
-        { field: 'menuName', header: 'Menu Name'},
+        { field: 'name', header: 'Menu Name'},
         { field: 'url', header: 'URL'},
-        { field: 'parentId',header:'Parent Id'},
+        { field: 'parentid',header:'Parent Id'},
         { field: 'icon',header:'Icon'},
-        { field: 'roleId',header:'role Id'},
-        { field: 'flag', header: 'Status'}
+        { field: 'rolename', header: 'Role Name'},
+        { field: 'isactive', header: 'Status'}        
     ];
 }
