@@ -29,14 +29,15 @@ export class UsermasterComponent implements OnInit {
   sro: any;
   sroOptions: any;
   roleOptions: any;
-  createdDate: any;
-
   masters?: any;
   roleId: any;
   cols: any[] = [];
   data: any[] = [];
   loading: boolean = false;
   responseMsg: Message[] = [];
+  hideSro: boolean = false;
+  hideDistrict: boolean = false;
+  hideZone: boolean = false;
 
   @ViewChild('f', {static: false}) _respondentForm!: NgForm;
   RowId: any;
@@ -57,11 +58,10 @@ export class UsermasterComponent implements OnInit {
       'mailid': this.mailId,
       'password': this.password,
       'mobile': this.mobileNo,
-      'zoneid': this.zone,
-      'districtid': this.district,
-      'sroid': this.sro,
+      'zoneid': (this.zone !== null && this.zone !== undefined) ? this.zone : 0,
+      'districtid': (this.district !== null && this.district !== undefined) ? this.district : 0,
+      'sroid': (this.sro !== null && this.sro !== undefined) ? this.sro : 0,
       'roleid': this.roleId,      
-      'createddate': new Date(),
       'flag': (this.selectedType == 1) ? true : false
     }
     this._restApiService.post('UserMaster/SaveUserMaster', params).subscribe(res => {
@@ -106,7 +106,6 @@ export class UsermasterComponent implements OnInit {
     this.sroOptions = [];
     this.roleId = null;
     this.roleOptions  = [];
-    this.createdDate = new Date();
     this.RowId = 0;
   }
 
@@ -157,11 +156,33 @@ export class UsermasterComponent implements OnInit {
           break;
         case 'R':
           if(this.masters.rolemaster) {
-            this.masters.rolemaster.forEach((r:any) => {
-              roleList.push(
-                { label: r.rolename, value: r.roleid}
-              )
-            })
+            if(this.roleId === 3) {
+              this.hideSro = true;
+              this.hideDistrict = false;
+              this.sro = null;
+            } else {
+              this.hideSro = false;
+          }
+          if(this.roleId === 2) {
+            this.hideDistrict = true;
+            this.hideSro = true;
+            this.district = null;
+          } else {
+            this.hideDistrict = false;
+          }
+          if(this.roleId === 1) {
+            this.hideZone = true;
+            this.hideDistrict = true;
+            this.hideSro  = true;
+            this.zone = null;
+          } else {
+            this.hideZone = false;
+          }
+          this.masters.rolemaster.forEach((r:any) => {
+            roleList.push(
+              { label: r.rolename, value: r.roleid}
+            )
+          })
           }
           this.roleOptions = roleList;
       }
@@ -194,7 +215,7 @@ export class UsermasterComponent implements OnInit {
     this.sroOptions = [{ label: row.sroname, value: row.sroid}];
     this.roleId = row.roleid;
     this.roleOptions  = [{ label: row.rolename, value: row.roleid}];
-    this.createdDate = row.createddate;
+    this.selectedType = (row.flag == 'Active') ? 1 : 0;
   }
 
 }
