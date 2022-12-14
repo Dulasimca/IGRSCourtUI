@@ -10,7 +10,6 @@ import { HttpParams } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 import { AuthService } from 'src/app/services/auth.service';
 import { DateConverter } from 'src/app/helper/date-converter';
-import { DropdownModule } from 'primeng/dropdown';
 
 
 @Component({
@@ -53,6 +52,7 @@ export class GovernmentRespondentComponent implements OnInit {
   toDate: any;
   roleId: any;
   isEditable: boolean = false;
+
   @ViewChild('f', {static: false}) _respondentForm!: NgForm;
   constructor(private _restApiService: RestapiService, private _masterService: MasterService,
     private _datePipe: DatePipe, private _authService: AuthService, private _converter: DateConverter) { }
@@ -149,9 +149,9 @@ export class GovernmentRespondentComponent implements OnInit {
           break;
           case 'RC':
             if (this.masters.respondentsmaster) {
-              this.masters.respondentsmaster.forEach((cs: any) => {
+              this.masters.respondentsmaster.forEach((rc: any) => {
                 respondentList.push(
-                  { label: cs.respondentsname, value: cs.respondentsid }
+                  { label: rc.respondentsname, value: rc.respondentsid }
                 )
               })
               this.respondentCadreOptions = respondentList;
@@ -183,14 +183,14 @@ export class GovernmentRespondentComponent implements OnInit {
   }
   }
 
-  // onChangeRespondent() {
-  //   if(this.respondentCadre) {
-  //     this.respondents += this.respondentCadre.label + ' , ';
-  //   }
-  //   if(this.respondentCadre.value === ) {
-  //   this.isEditable = true;
-  //   }
-  // }
+  onChangeRespondent() {
+    if(this.respondentCadre) {
+      this.respondents += this.respondentCadre.label + ' , ';
+    }
+    if(this.respondentCadre.value === 15) {
+    this.isEditable = true;
+    }
+  }
 
   onEdit(row: any) {
     if(row) {
@@ -212,7 +212,7 @@ export class GovernmentRespondentComponent implements OnInit {
       this.caseNo = row.casenumber;
       this.petitionerName = row.petitionername;
       this.selectedValue = (row.counterfiled) ? '1' : '0';
-      this.gistOfCase = row.mainprayer;     
+      this.gistOfCase = row.mainprayer; 
       this.respondentCadre = row.respondentsid;
       this.respondentCadreOptions = [{ label: row.respondentsname, value: row.respondentsid }];
       this.remarks = row.remarks;
@@ -238,6 +238,7 @@ export class GovernmentRespondentComponent implements OnInit {
       'judgement': (this.judgementValue === '1') ? true : false,
       'casetypeid': this.caseType.value,
       'caseyear': (_caseyear * 1),
+      'mainrespondents': this.respondents,
       'counterfiled': (this.selectedValue === '1') ? true : false,
       'flag': true,
       'createdate': new Date(),
