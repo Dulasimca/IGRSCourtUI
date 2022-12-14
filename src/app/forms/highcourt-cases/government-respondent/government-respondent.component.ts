@@ -34,7 +34,7 @@ export class GovernmentRespondentComponent implements OnInit {
   stateOfCaseOptions: SelectItem[] = [];
   stateOfCase: any;
   petitionerName: any;
-  respondentsList: any;
+  respondents: any;
   respondentCadre: any;
   respondentCadreOptions: any;
   gistOfCase: any;
@@ -51,6 +51,8 @@ export class GovernmentRespondentComponent implements OnInit {
   fromDate: any;
   toDate: any;
   roleId: any;
+  isEditable: boolean = false;
+
   @ViewChild('f', {static: false}) _respondentForm!: NgForm;
   constructor(private _restApiService: RestapiService, private _masterService: MasterService,
     private _datePipe: DatePipe, private _authService: AuthService, private _converter: DateConverter) { }
@@ -75,6 +77,7 @@ export class GovernmentRespondentComponent implements OnInit {
       let districtList: any = [];
       let sroList: any = [];
       let courtList: any = [];
+      let respondentList: any = [];
       switch (value) {
         case 'ZN':
           if (this.masters.zone_Masters) {
@@ -144,6 +147,16 @@ export class GovernmentRespondentComponent implements OnInit {
             this.stateOfCaseOptions = caseStatusList;
           }
           break;
+          case 'RC':
+            if (this.masters.respondentsmaster) {
+              this.masters.respondentsmaster.forEach((rc: any) => {
+                respondentList.push(
+                  { label: rc.respondentsname, value: rc.respondentsid }
+                )
+              })
+              this.respondentCadreOptions = respondentList;
+            }
+            break;
       }
     }
   }
@@ -170,6 +183,15 @@ export class GovernmentRespondentComponent implements OnInit {
   }
   }
 
+  onChangeRespondent() {
+    if(this.respondentCadre) {
+      this.respondents += this.respondentCadre.label + ' , ';
+    }
+    if(this.respondentCadre.value === 15) {
+    this.isEditable = true;
+    }
+  }
+
   onEdit(row: any) {
     if(row) {
       this.caseId = row.courtcaseid;
@@ -190,10 +212,9 @@ export class GovernmentRespondentComponent implements OnInit {
       this.caseNo = row.casenumber;
       this.petitionerName = row.petitionername;
       this.selectedValue = (row.counterfiled) ? '1' : '0';
-      this.gistOfCase = row.mainprayer;
-      this.respondentsList = row.mainrespondents;
-      this.respondentCadre = { label: row.respondentCadrename, value: row.respondentCadreid };
-      this.respondentCadreOptions = [{ label: row.respondentCadrename, value: row.respondentCadreid }];
+      this.gistOfCase = row.mainprayer; 
+      this.respondentCadre = row.respondentsid;
+      this.respondentCadreOptions = [{ label: row.respondentsname, value: row.respondentsid }];
       this.remarks = row.remarks;
       const date = '01/01/'+row.caseyear;
       this.caseYear = new Date(date);
@@ -210,7 +231,6 @@ export class GovernmentRespondentComponent implements OnInit {
       'petitionername': this.petitionerName,
       'remarks': this.remarks,
       'mainprayer': this.gistOfCase,
-      'mainrespondents': this.respondentsList,
       'courtid': this.highCourtName.value,
       'casedate': this._converter.convertDate(this.caseDate),
       'casenumber': this.caseNo,
@@ -218,6 +238,7 @@ export class GovernmentRespondentComponent implements OnInit {
       'judgement': (this.judgementValue === '1') ? true : false,
       'casetypeid': this.caseType.value,
       'caseyear': (_caseyear * 1),
+      'mainrespondents': this.respondents,
       'counterfiled': (this.selectedValue === '1') ? true : false,
       'flag': true,
       'createdate': new Date(),

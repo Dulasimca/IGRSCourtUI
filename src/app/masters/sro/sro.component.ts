@@ -12,22 +12,23 @@ import { RestapiService } from 'src/app/services/restapi.service';
   styleUrls: ['./sro.component.scss']
 })
 export class SroComponent implements OnInit {
- zoneName:any;
- districtName:any;
- sroName:any;
- selectedType:any;
- zoneOptions:SelectItem[] = [];
- districtOptions:SelectItem[] = [];
- cols: any[] = [];
- data: any[] = [];
- loading: boolean = false;
- responseMsg: Message[] = [];
- masters?: any;
+  zoneName: any;
+  districtName: any;
+  sroName: any;
+  selectedType: any;
+  zoneOptions: SelectItem[] = [];
+  districtOptions: SelectItem[] = [];
+  cols: any[] = [];
+  data: any[] = [];
+  loading: boolean = false;
+  responseMsg: Message[] = [];
+  masters?: any;
 
 
- @ViewChild('f', {static: false}) _respondentForm!: NgForm;
+  @ViewChild('f', { static: false }) _respondentForm!: NgForm;
   RowId: any;
- 
+  respondentsname: any;
+
 
   constructor(private _masterService: MasterService, private _restApiService: RestapiService) { }
 
@@ -38,11 +39,11 @@ export class SroComponent implements OnInit {
   }
 
   onSelect(value: string) {
-    if(this.masters) {
+    if (this.masters) {
       let zoneList: any = [];
       let districtList: any = [];
 
-      switch(value) {
+      switch (value) {
         case 'ZN':
           if (this.masters.zone_Masters) {
             this.masters.zone_Masters.forEach((zn: any) => {
@@ -53,20 +54,20 @@ export class SroComponent implements OnInit {
             this.zoneOptions = zoneList;
           }
           break;
-          case 'DT':
-            if (this.masters.district_Masters) {
-              if (this.zoneName) {
-                this.masters.district_Masters.forEach((dt: any) => {
-                  if (dt.zoneid === this.zoneName) {
-                    districtList.push(
-                      { label: dt.districtname, value: dt.districtid, zoneId: dt.zoneid }
-                    )
-                  }
-                })
-              }
-              this.districtOptions = districtList;
+        case 'DT':
+          if (this.masters.district_Masters) {
+            if (this.zoneName) {
+              this.masters.district_Masters.forEach((dt: any) => {
+                if (dt.zoneid === this.zoneName) {
+                  districtList.push(
+                    { label: dt.districtname, value: dt.districtid, zoneId: dt.zoneid }
+                  )
+                }
+              })
             }
-            break;
+            this.districtOptions = districtList;
+          }
+          break;
       }
     }
 
@@ -95,15 +96,15 @@ export class SroComponent implements OnInit {
         setTimeout(() => this.responseMsg = [], 3000)
       }
     })
-    }
+  }
 
-  onView(){
+  onView() {
     this.loading = true;
     this._restApiService.get('SROMaster/GetSroMaster').subscribe(res => {
-      if(res) {
-        res.forEach((i:any) => {
+      if (res) {
+        res.forEach((i: any) => {
           i.flag = (i.flag == true) ? 'Active' : 'InActive'
-        })  
+        })
       }
       this.data = res;
       this.loading = false;
@@ -112,7 +113,7 @@ export class SroComponent implements OnInit {
 
   onClear() {
     this.zoneName = null;
-    this.zoneOptions  = [];
+    this.zoneOptions = [];
     this.districtName = null;
     this.districtOptions = [];
     this.sroName = null;
@@ -123,14 +124,19 @@ export class SroComponent implements OnInit {
   onEdit(row: any) {
     this.RowId = row.sroid;
     this.zoneName = row.zoneid;
-    this.zoneOptions = [{ label: row.zonename, value: row.zoneid}];
+    this.zoneOptions = [{ label: row.zonename, value: row.zoneid }];
     this.districtName = row.districtid;
-    this.districtOptions  = [{ label: row.districtname, value: row.districtid}];
+    this.districtOptions = [{ label: row.districtname, value: row.districtid }];
     this.sroName = row.sroname;
-    this.selectedType = (row.flag === 'Active')? 1 : 0;
-  }
-  
-
+    this.selectedType = (row.flag === 'Active') ? 1 : 0;
   }
 
-
+  onCheck() {
+    this.data.forEach(i => {
+      if (i.sroname === this.sroName) {
+        this.responseMsg = [{ severity: ResponseMessage.WarnSeverity, detail: 'Sroname is already exist, Please input different name' }];
+        this.sroName = null;
+      }
+    })
+  }
+}

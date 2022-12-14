@@ -73,4 +73,12 @@ onEdit(row:any) {
   this.Name = row.name;
   this.selectedType = (row.flag === 'Active') ? 1 : 0;
 }
+onCheck() {
+  this.data.forEach( i => {
+    if(i.name  === this.Name ) {
+      this.responseMsg = [{ severity: ResponseMessage.WarnSeverity, detail: 'Name is already exist, Please input different name' }];
+        this.Name = null;
+    }
+  })
+}
 }

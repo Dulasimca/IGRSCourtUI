@@ -76,4 +76,13 @@ export class RolemasterComponent implements OnInit {
     this.selectedType = null;
   }
 
+  onCheck() {
+    this.data.forEach( i => {
+      if(i.rolename  === this.roleName ) {
+        this.responseMsg = [{ severity: ResponseMessage.WarnSeverity, detail: 'Role name is already exist, Please input different name' }];
+          this.roleName = null;
+      }
+    })
+  }
+
 }

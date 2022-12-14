@@ -27,9 +27,9 @@ export class MenumasterComponent implements OnInit {
   masters?: any;
   responseMsg: Message[] = [];
   @ViewChild('f', {static: false}) _respondentForm!: NgForm;
-  data: any;
   loading: boolean = false;
   cols:any;
+  data: any[] = [];
   priority: any;
   priorityOptions: any;
   constructor(private _restApiService: RestapiService, private _masterService: MasterService) { }
@@ -111,6 +111,7 @@ export class MenumasterComponent implements OnInit {
     })
     }
   onView(){
+    this.loading = true;
     this._restApiService.get('MenuMaster/GetMenuMasterCase').subscribe(res => {
       if(res) {
         res.forEach((i:any) => {
@@ -146,6 +147,13 @@ export class MenumasterComponent implements OnInit {
     this.priority = row.priorities;
     console.log('parent',this.parentId)
   }
-
+  onCheck() {
+    this.data.forEach( i => {
+      if(i.name  === this.menuName ) {
+        this.responseMsg = [{ severity: ResponseMessage.WarnSeverity, detail: 'Respondent name is already exist, Please input different name' }];
+          this.menuName = null;
+      }
+    })
+  }
   }
 

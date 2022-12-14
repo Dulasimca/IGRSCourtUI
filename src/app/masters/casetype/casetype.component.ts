@@ -109,5 +109,13 @@ export class CaseTypeComponent implements OnInit {
     this.caseType = row.casetypename;
     this.selectedType = (row.flag === 'true') ? 1 : 0;
   }
+  onCheck() {
+    this.data.forEach( i => {
+      if(i.casetypename  === this.caseType ) {
+        this.responseMsg = [{ severity: ResponseMessage.WarnSeverity, detail: 'casetypename is already exist, Please input different name' }];
+          this.caseType = null;
+      }
+    })
+  }
+  }
   
-}

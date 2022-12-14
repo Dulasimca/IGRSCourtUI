@@ -79,5 +79,13 @@ export class CasestatusComponent implements OnInit {
     this.caseStatus = row.casestatusname;
     this.selectedType = (row.flag === 'Active') ? 1 : 0;
   }
-
-}
+  onCheck() {
+    this.data.forEach( i => {
+      if(i.casestatusname  === this.caseStatus ) {
+        this.responseMsg = [{ severity: ResponseMessage.WarnSeverity, detail: 'casestatusname is already exist, Please input different name' }];
+          this.caseStatus = null;
+      }
+    })
+  }
+  }
+  

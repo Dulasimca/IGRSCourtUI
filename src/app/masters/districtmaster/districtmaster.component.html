@@ -20,7 +20,7 @@
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                                 <span class="p-float-label">
-                                                    <input name="_districtname" type="text" [(ngModel)]="districtName" pInputText>
+                                                    <input name="_districtname" type="text" (change)="onCheck()" [(ngModel)]="districtName" pInputText>
                                                     <label for="float-input">District Name</label>
                                                 </span>
                                             </div>

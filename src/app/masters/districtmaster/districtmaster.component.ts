@@ -111,5 +111,13 @@ export class DistrictMasterComponent implements OnInit {
     this.districtName = row.districtname;
     this.selectedType = (row.flag === 'Active') ? 1 : 0;
   }
+  onCheck() {
+    this.data.forEach( i => {
+      if(i.districtname  === this.districtName ) {
+        this.responseMsg = [{ severity: ResponseMessage.WarnSeverity, detail: 'Respondent name is already exist, Please input different name' }];
+          this.districtName = null;
+      }
+    })
+  }
   
 }
