@@ -1,5 +1,6 @@
 import { HttpParams } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { AuthService } from '../services/auth.service';
 import { RestapiService } from '../services/restapi.service';
@@ -13,18 +14,20 @@ export class MenuComponent implements OnInit {
   @Input() status: boolean = false;
   @Output() public sidenavToggle = new EventEmitter();
 
-  constructor(private _authService: AuthService, private _restApiService: RestapiService) { }
+  constructor(private _authService: AuthService, private _restApiService: RestapiService,
+    private _router: Router) { }
 
   items: MenuItem[] = [];
 
   ngOnInit() {
     this._authService.isLoggedIn.subscribe(value => {
       if (value) {
-     const params = new HttpParams().append('roleid', this._authService.getUserInfo().roleId);
+     const params = new HttpParams().append('roleid', this._authService.getUserInfo().roleid);
         this._restApiService.getByParameters('Masters/GetMenuMasters', params).subscribe(res => {
             this.checkChildItems(res);
             this.items = res;
             this._authService.setMenuStatus(true);
+            this._router.navigate(['/dashboard']);
         });
       }
     });

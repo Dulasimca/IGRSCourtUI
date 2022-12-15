@@ -1,13 +1,14 @@
 <div class="col-12 md:col-12 lg:col-12" style="padding: 4.2rem 1rem;
 background: linear-gradient(#06ef70, #0a8b44);height: 100vh;">
     <div class="grid p-fluid to-center">
-
         <div class="col-11 md:col-10 lg:col-6 bdr-box-light-blue" style="background: white; border-radius: 10px;">
             <div class="col-12 md:col-12 lg:col-12 login-title hdr-shdw-btm">
                 <div class="col-12 md:col-12 lg:col-12">
                     Login
                 </div>
             </div>
+            <p-messages [(value)]="responseMsg" [enableService]="false"
+                [hideTransitionOptions]="'500ms cubic-bezier(0.86, 0, 0.076, 1)'"></p-messages>
             <form #f="ngForm" name="loginForm">
                 <div class="col-12 md:col-12 lg:col-12" style="margin-top: 1.5rem;">
                     <div class="grid p-fluid to-center">
@@ -18,7 +19,7 @@ background: linear-gradient(#06ef70, #0a8b44);height: 100vh;">
                                         <span class="p-inputgroup-addon" style="background: #18A558; color: white;
     border: 0.5px solid #4ed39e !important;"><i class="pi pi-user"></i></span>
                                         <span class="p-float-label p-input-icon-right">
-                                            <input name="_username" type="text" style="background: white !important;"
+                                            <input #uname id="uname" name="_username" type="text" style="background: white !important;"
                                                 pInputText [(ngModel)]="username" placeholder="Username"
                                                 autocomplete="off" required>
                                             <label for="float-input">Username</label>
