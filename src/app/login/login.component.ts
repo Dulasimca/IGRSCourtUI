@@ -1,8 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { HttpParams } from '@angular/common/http';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { ResponseMessage } from '../constants/message-constants';
 import { User } from '../interfaces/user.interface';
 import { AuthService } from '../services/auth.service';
 import { MasterService } from '../services/master.service';
+import { RestapiService } from '../services/restapi.service';
 
 @Component({
   selector: 'app-login',
@@ -13,8 +16,11 @@ export class LoginComponent implements OnInit {
   username: any;
   password: any;
   showPwd: boolean = false;
+  responseMsg: any;
   userInfo!: User;
-  constructor(private _authService: AuthService, private _router: Router, private _masterService: MasterService) { }
+  @ViewChild('uname', {static: false}) _username!: HTMLInputElement;
+  constructor(private _authService: AuthService, private _router: Router,
+    private _masterService: MasterService, private _restApiService: RestapiService) { }
 
   ngOnInit(): void {
     this._authService.logout();
@@ -22,19 +28,24 @@ export class LoginComponent implements OnInit {
 
   onLogin() {
     this._masterService.getMasters();
-    this.userInfo = {
-      roleId: 1
-    }
-    this._authService.login(this.userInfo);
-    this._authService.isLoggedIn.subscribe(value => {
-      if (value) {
-        // this._authService.isMenuLoaded.subscribe(check => {
-        //   if(check) {
-              this._router.navigate(['/dashboard']);
-          // }
-        // })
+    const params = new HttpParams().append('username', this.username)
+      .set('password', this.password);
+    this._restApiService.getByParameters('Login', params).subscribe(response => {
+      if (response.item1) {
+        this.userInfo = response.item3;
+        this._authService.login(this.userInfo);
+        console.log('info', this.userInfo)
+        this._authService.isLoggedIn.subscribe(value => {
+          if (value) {
+            this._router.navigate(['/dashboard']);
+          }
+        });
+      } else {
+        this.responseMsg = [{ severity: ResponseMessage.ErrorSeverity, detail: response.item2 }];
+        setTimeout(() => this.responseMsg = [], 3000);
       }
-    });
+    })
+
   }
 
   onShowPwd() {
