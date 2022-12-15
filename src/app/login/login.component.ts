@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   responseMsg: any;
   userInfo!: User;
   @ViewChild('uname', {static: false}) _username!: HTMLInputElement;
-  constructor(private _authService: AuthService, private _router: Router,
+  constructor(private _authService: AuthService,
     private _masterService: MasterService, private _restApiService: RestapiService) { }
 
   ngOnInit(): void {
@@ -34,12 +34,6 @@ export class LoginComponent implements OnInit {
       if (response.item1) {
         this.userInfo = response.item3;
         this._authService.login(this.userInfo);
-        console.log('info', this.userInfo)
-        this._authService.isLoggedIn.subscribe(value => {
-          if (value) {
-            this._router.navigate(['/dashboard']);
-          }
-        });
       } else {
         this.responseMsg = [{ severity: ResponseMessage.ErrorSeverity, detail: response.item2 }];
         setTimeout(() => this.responseMsg = [], 3000);
