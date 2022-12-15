@@ -34,7 +34,7 @@ export class GovernmentRespondentComponent implements OnInit {
   stateOfCaseOptions: SelectItem[] = [];
   stateOfCase: any;
   petitionerName: any;
-  respondents: any;
+  respondents: string = '';
   respondentCadre: any;
   respondentCadreOptions: any;
   gistOfCase: any;
@@ -186,6 +186,7 @@ export class GovernmentRespondentComponent implements OnInit {
   onChangeRespondent() {
     if(this.respondentCadre) {
       this.respondents += this.respondentCadre.label + ' , ';
+
     }
     if(this.respondentCadre.value === 15) {
     this.isEditable = true;

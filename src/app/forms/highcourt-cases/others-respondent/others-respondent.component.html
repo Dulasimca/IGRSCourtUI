@@ -90,19 +90,19 @@
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_respondentcadre" [autoDisplayFirst]="false"
-                                                    optionLabel="label" (onClick)="onSelect('CT')"
+                                                <p-dropdown name="_respondentcadre" [autoDisplayFirst]="false" 
+                                                    optionLabel="label" (onClick)="onSelect('RC')" (onChange)="onChangeRespondent()"
                                                     [options]="respondentCadreOptions" [(ngModel)]="respondentCadre"
-                                                    [required]="true">
+                                                    [required]="true" [editable]="isEditable">
                                                 </p-dropdown>
                                                 <label for="float-input">Respondent Designation</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-4">
                                             <span class="p-float-label">
-                                                <input name="_respondentlist" type="text" [(ngModel)]="respondentsList"
+                                                <input name="_respondents" type="text" [(ngModel)]="respondents"
                                                     pInputText>
-                                                <label for="float-input">Respondents List</label>
+                                                <label for="float-input">Respondents</label>
                                             </span>
                                         </div>
                                     </div>

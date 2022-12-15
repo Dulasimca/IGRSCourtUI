@@ -88,19 +88,16 @@ export class TableConstants {
     ];
 
     public static readonly writeAppealsColumns: any[] = [
-        { field: 'zone', header: 'Zone' },
-        { field: 'district', header: 'District' },
-        { field: 'sro', header: 'SRO' },
-        { field: 'casetype', header: 'Case Type' },
-        { field: 'caseno', header: 'Case No.' },
-        { field: 'year', header: 'Year' },
-        { field: 'highcourtreference', header: 'Highcourt Reference' },
+               { field: 'casenumber', header: 'Case No.' },
+        { field: 'casedate', header: 'Case Date'},
+        { field: 'caseyear', header: 'Year' },
+        { field: 'courtname', header: 'Courtname' },
         { field: 'petitionername', header: 'Petitioner Name' },
-        { field: 'respondentsname', header: 'Respondents Name' },
-        { field: 'gistofcase', header: 'Gist of Case' },
-        { field: 'regularnoreceived', header: 'Regular No. Received' },
-        { field: 'stageofcase', header: 'Case Status' },
-        { field: 'natureofdisposal', header: 'Nature Of Disposal' },
+        { field: 'mainrespondents', header: 'Respondents Name' },
+        { field: 'mainprayer', header: 'Gist of Case/ main prayer' },
+        { field: 'counterfiled', header: 'Counter Filed' },
+        { field: 'casestatusname', header: 'Case Status' },
+        { field: 'regularnumber', header: 'Regular No. Received' },
         { field: 'remarks', header: 'Remarks' }
     ];
 

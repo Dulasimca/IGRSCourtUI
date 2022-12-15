@@ -35,7 +35,7 @@ export class IgrRespondentComponent implements OnInit {
   stateOfCase: any;
   judgementValue: string = '1';
   petitionerName: any;
-  respondents: any;
+  respondents: string = '';
   respondentCadre: any;
   respondentCadreOptions: any;
   gistOfCase: any;
