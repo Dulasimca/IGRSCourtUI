@@ -83,7 +83,7 @@ onEdit(row:any) {
 onCheck() {
   this.data.forEach( i => {
     if(i.courtname  === this.courtName ) {
-      this.responseMsg = [{ severity: ResponseMessage.WarnSeverity, detail: 'courtname is already exist, Please input different name' }];
+      this.responseMsg = [{ severity: ResponseMessage.WarnSeverity, detail: 'court name is already exist, Please input different name' }];
         this.courtName = null;
     }
   })

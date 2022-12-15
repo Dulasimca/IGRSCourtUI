@@ -8,7 +8,6 @@ import { MasterService } from './master.service';
   providedIn: 'root'
 })
 export class AuthService {
-  roleId: any;
 
   private loggedIn = new BehaviorSubject<boolean>(false);
   private hasMenu = new BehaviorSubject<boolean>(false); 

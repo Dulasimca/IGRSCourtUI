@@ -29,17 +29,20 @@ export class UsermasterComponent implements OnInit {
   sro: any;
   sroOptions: any;
   roleOptions: any;
-  createdDate: any;
-
   masters?: any;
   roleId: any;
   cols: any[] = [];
   data: any[] = [];
   loading: boolean = false;
   responseMsg: Message[] = [];
+  hideSro: boolean = false;
+  hideDistrict: boolean = false;
+  hideZone: boolean = false;
+  checkEmail: boolean = false;
 
   @ViewChild('f', {static: false}) _respondentForm!: NgForm;
   RowId: any;
+  value: string = '';
 
     constructor(private _restApiService: RestapiService, private _masterService: MasterService,
     private _datePipe: DatePipe, private _authService: AuthService) { }
@@ -57,11 +60,10 @@ export class UsermasterComponent implements OnInit {
       'mailid': this.mailId,
       'password': this.password,
       'mobile': this.mobileNo,
-      'zoneid': this.zone,
-      'districtid': this.district,
-      'sroid': this.sro,
+      'zoneid': (this.zone !== null && this.zone !== undefined) ? this.zone : 0,
+      'districtid': (this.district !== null && this.district !== undefined) ? this.district : 0,
+      'sroid': (this.sro !== null && this.sro !== undefined) ? this.sro : 0,
       'roleid': this.roleId,      
-      'createddate': new Date(),
       'flag': (this.selectedType == 1) ? true : false
     }
     this._restApiService.post('UserMaster/SaveUserMaster', params).subscribe(res => {
@@ -106,7 +108,6 @@ export class UsermasterComponent implements OnInit {
     this.sroOptions = [];
     this.roleId = null;
     this.roleOptions  = [];
-    this.createdDate = new Date();
     this.RowId = 0;
   }
 
@@ -155,15 +156,40 @@ export class UsermasterComponent implements OnInit {
             this.sroOptions = sroList;
           }
           break;
-        case 'R':
-          if(this.masters.rolemaster) {
-            this.masters.rolemaster.forEach((r:any) => {
-              roleList.push(
-                { label: r.rolename, value: r.roleid}
-              )
-            })
+        case 'R':        
+          this.masters.rolemaster.forEach((r:any) => {
+            roleList.push(
+              { label: r.rolename, value: r.roleid}
+            )
+          })
           }
           this.roleOptions = roleList;
+      }
+    }
+
+    onRoleChange() {
+      if(this.masters.rolemaster) {
+        if(this.roleId === 3) {
+          this.hideSro = true;
+          this.hideDistrict = false;
+          this.sro = null;
+        } else {
+          this.hideSro = false;
+      }
+      if(this.roleId === 2) {
+        this.hideDistrict = true;
+        this.hideSro = true;
+        this.district = null;
+      } else {
+        this.hideDistrict = false;
+      }
+      if(this.roleId === 1) {
+        this.hideZone = true;
+        this.hideDistrict = true;
+        this.hideSro  = true;
+        this.zone = null;
+      } else {
+        this.hideZone = false;
       }
     }
   }
@@ -191,18 +217,41 @@ export class UsermasterComponent implements OnInit {
     this.district = row.districtid;
     this.districtOptions  = [{ label: row.districtname, value: row.districtid}];
     this.sro = row.sroid;
-    this.sroOptions = [{ label: row.sroname, value: row.sroid}];
+    this.sroOptions = [{ label: row.sroname, value: row.sroid}]; 
     this.roleId = row.roleid;
     this.roleOptions  = [{ label: row.rolename, value: row.roleid}];
-    this.createdDate = row.createddate;
+    this.selectedType = (row.flag == 'Active') ? 1 : 0;
+    this.onRoleChange();
   }
+
   onCheck() {
     this.data.forEach( i => {
-      if(i.username  === this.userName && i.mailid === this.mailId) {
-        this.responseMsg = [{ severity: ResponseMessage.WarnSeverity, detail: ' Username & emailId  already exists, Please enter valid Username & emailId' }];
+      if(i.username  === this.userName) {
+        this.responseMsg = [{ severity: ResponseMessage.WarnSeverity, detail: ' Username already exists, Please enter valid Username' }];
           this.userName = null;
-          this.mailId=null;
+      } else{
+      if (i.mailid === this.mailId) {
+        this.responseMsg = [{ severity: ResponseMessage.WarnSeverity, detail: ' EmailId  already exists, Please enter valid Email' }];
+        this.mailId=null;
       }
+    }
     })
-  }
+  }    
+
+  
+  // checkIfEmailExists() {
+  //   if (this.mailId !== undefined && this.mailId !== null && this.mailId.trim() !== '' &&
+  //     this.data.length !== 0) {
+  //     this.checkEmail = true;
+  //     const entered_email: string = this.mailId.trim();
+  //     const substr = entered_email.split('@');
+  //     if (substr !== undefined && substr.length > 1) {
+  //       const last_str = substr[1].split('.');
+  //       if (last_str !== undefined && last_str.length > 1) {
+  //         if (last_str[1].toLowerCase() === 'com' || last_str[1].toLowerCase() === 'in') {
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
 }

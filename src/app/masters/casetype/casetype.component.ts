@@ -37,7 +37,6 @@ export class CaseTypeComponent implements OnInit {
 
   ngOnInit(): void {
     this.cols = TableConstants.CaseTypeColumn;
-    //this.masters = this._masterService.masterData;
     this.roleId = this._authService.getUserInfo().roleId;   
     this.selectedType = 1;
     this.RowId = 0
@@ -88,6 +87,9 @@ export class CaseTypeComponent implements OnInit {
     this.loading = true;
     this._restApiService.get('CasetypeMaster/GetCasetypeMaster').subscribe(res => {
       if(res) {
+        res.forEach((i: any) => {
+          i.flag = (i.flag == true) ? 'Active' : 'InActive'
+        })
          this.data = res;
          this.loading = false;
       } else {
@@ -107,7 +109,7 @@ export class CaseTypeComponent implements OnInit {
   onEdit(row: any) {
     this.RowId = row.casetypeid;
     this.caseType = row.casetypename;
-    this.selectedType = (row.flag === 'true') ? 1 : 0;
+    this.selectedType = (row.flag === 'Active') ? 1 : 0;
   }
   onCheck() {
     this.data.forEach( i => {

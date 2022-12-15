@@ -5,65 +5,40 @@
                 <p-messages [(value)]="responseMsg" [enableService]="false"
                 [hideTransitionOptions]="'500ms cubic-bezier(0.86, 0, 0.076, 1)'"></p-messages>
                 <div class="col-12 md:col-12 lg:col-12 box" style="margin-top: 5px;">
-                    <form #f="ngForm" name="userForm">
+                    <form #f="ngForm" name="userMasterForm">
                         <div #main class="col-12 md:col-12 lg:col-12">
                             <div class="grid to-center">
                                 <div #row1 class="col-12 md:col-11 lg:col-11">
                                     <div class="grid">
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <input name="_username" type="text" (change)="onCheck()" [(ngModel)]="userName" pInputText>
-                                                <label for="float-input">Username</label>      
+                                                <p-dropdown name="_role" [autoDisplayFirst]="false" [options]="roleOptions" 
+                                                    (onChange)="onRoleChange()"(onClick)="onSelect('R')" [(ngModel)]="roleId"
+                                                [required]="true">
+                                                </p-dropdown>
+                                                <label for="float-input">Role</label>
                                             </span>
                                         </div>
-                                        <div class="col-12 md:col-4 lg:col-2">
-                                            <span class="p-float-label">
-                                                <input name="_mailid" type="text" (change)="onCheck()" [(ngModel)]="mailId" pInputText>
-                                                <label for="float-input">e-mail ID</label>      
-                                            </span>
-                                        </div>
-                                        <div class="col-12 md:col-4 lg:col-2">
-                                        <div class="p-inputgroup">
-                                            <span class="p-float-label p-input-icon-right">
-                                                <i *ngIf="!showPwd" class="pi pi-eye" (click)="onShowPwd()"></i>
-                                                <i *ngIf="showPwd" class="pi pi-eye-slash" (click)="onShowPwd()"></i>
-                                                <input #pwd id="pwd" name="_password" type="password" pInputText
-                                                    [(ngModel)]="password" placeholder="Password" autocomplete="off"
-                                                    required>
-                                                <label for="float-input">Password</label>
-                                            </span>
-           	                            </div>
-                                        </div>
-                                        <div class="col-12 md:col-4 lg:col-2">
-                                            <span class="p-float-label">
-                                                <input name="_mobileno" type="text" [(ngModel)]="mobileNo" pInputText>
-                                                <label for="float-input">Mobile No.</label>      
-                                            </span>
-                                        </div>
-                                        <div class="col-12 md:col-4 lg:col-2">
+                                        <div *ngIf="!hideZone" class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <p-dropdown name="_zone" [autoDisplayFirst]="false" 
-                                                    (onClick)="onSelect('ZN')" [options]="zoneOptions"
+                                                 (onClick)="onSelect('ZN')" [options]="zoneOptions"
                                                     [(ngModel)]="zone" [required]="true">
                                                 </p-dropdown>
                                                 <label for="float-input">Zone</label>
                                             </span>
                                         </div>
-                                    </div>
-                                </div>
-                                <div #row2 class="col-12 md:col-11 lg:col-11">
-                                    <div class="grid">
-                                        <div class="col-12 md:col-4 lg:col-2">
+                                        <div *ngIf="!hideDistrict" class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <p-dropdown name="_district" [autoDisplayFirst]="false"
-                                                    (onClick)="onSelect('DT')"
+                                                (onClick)="onSelect('DT')"
                                                     [options]="districtOptions" [(ngModel)]="district"
                                                     [required]="true">
                                                 </p-dropdown>
                                                 <label for="float-input">District</label>
                                             </span>
                                         </div>
-                                        <div class="col-12 md:col-4 lg:col-2">
+                                        <div *ngIf="!hideSro" class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <p-dropdown name="_sro" [autoDisplayFirst]="false"
                                                     (onClick)="onSelect('SR')" [options]="sroOptions" [(ngModel)]="sro"
@@ -71,23 +46,42 @@
                                                 </p-dropdown>
                                                 <label for="float-input">SRO</label>
                                             </span>
-                                        </div>
+                                        </div>                             
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_role" [autoDisplayFirst]="false" [options]="roleOptions" 
-                                                 (onClick)="onSelect('R')" [(ngModel)]="roleId"
-                                                [required]="true">
-                                                </p-dropdown>
-                                                <label for="float-input">Role</label>
+                                                <input name="_username" type="text" [(ngModel)]="userName" (change)="onCheck()" pInputText>
+                                                <label for="float-input">Username</label>      
                                             </span>
-                                        </div>
+                                        </div>                                                                                                                                                                 
+                                    </div>
+                                </div>
+                                <div #row2 class="col-12 md:col-11 lg:col-11">
+                                    <div class="grid">
+                                        <div class="col-12 md:col-4 lg:col-2">
+                                            <div class="p-inputgroup">
+                                                <span class="p-float-label p-input-icon-right">
+                                                    <i *ngIf="!showPwd" class="pi pi-eye" (click)="onShowPwd()"></i>
+                                                    <i *ngIf="showPwd" class="pi pi-eye-slash" (click)="onShowPwd()"></i>
+                                                    <input #pwd id="pwd" name="_password" type="password" pInputText
+                                                        [(ngModel)]="password" placeholder="Password" autocomplete="off"
+                                                        required>
+                                                    <label for="float-input">Password</label>
+                                                </span>
+                                               </div>
+                                            </div>   
+                                        <div class="col-12 md:col-4 lg:col-2">                                           
+                                            <span class="p-float-label">
+                                                <i *ngIf="checkEmail" class="pi pi-spin pi-spinner"></i>
+                                                <input name="_mailid" type="text" (change)="onCheck()" [(ngModel)]="mailId" pInputText>
+                                                <label for="float-input">e-mail ID</label>      
+                                            </span>
+                                        </div>    
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-calendar name="_createddate" [(ngModel)]="createdDate" [showIcon]="true"
-                                                   [required]="true"></p-calendar>
-                                                <label for="float-input">Created Date</label>
+                                                <input name="_mobileno" type="text" [(ngModel)]="mobileNo" maxlength="10" pInputText>
+                                                <label for="float-input">Mobile No.</label>      
                                             </span>
-                                        </div>
+                                        </div>                                                              
                                         <div class="p-col-12 p-md-12 p-lg-3" style="margin-top: 23px;">
                                             <p-radioButton name="Flag" label="ACTIVE" value=1 [(ngModel)]="selectedType" required>
                                             </p-radioButton>&nbsp;
@@ -98,7 +92,7 @@
                                 </div>
                                 <div #row3 class="col-12 md:col-11 lg:col-11 txt-to-center no-padding">
                                         <button pButton name="save" type="button" label="Submit" icon="pi pi-save"
-                                            (click)="onSubmit()"></button>&nbsp;
+                                        [disabled]="!f.valid || !f.dirty"  (click)="onSubmit()"></button>&nbsp;
                                         <button pButton type="button" label="View" icon="pi pi-eye" (click)="onView()"></button>&nbsp;
                                         <button pButton type="button" label="Clear" icon="pi pi-trash" (click)="onClear()"></button>
                                 </div>
@@ -108,8 +102,14 @@
                 </div>
                 <div class="col-12 md:col-12 lg:col-12">
                     <p-table #dt [columns]="cols" [value]="data" styleClass="p-datatable-gridlines" [loading]="loading" [paginator]="true" [rows]="10"
-                    [rowsPerPageOptions]="[5,10,15,20]" responsiveLayout="scroll">
+                    [globalFilterFields]="['username','roleid']" [rowsPerPageOptions]="[5,10,15,20]" responsiveLayout="scroll">
                         <ng-template pTemplate="caption">
+                            <!-- <div class="p-d-flex">
+                                <span class="p-input-icon-left p-ml-auto">
+                                    <i class="pi pi-search"></i>
+                                    <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search keyword" />
+                                </span>
+                            </div> -->
                             <div class="grid" style="width: -webkit-fill-available;">
                                 <div class="lg:col-6 no-pad-top no-pad-btm"></div>
                                 <div class="lg:col-6 table-hdr-export">

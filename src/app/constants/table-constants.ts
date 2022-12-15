@@ -199,7 +199,6 @@ export class TableConstants {
     ];
 
     public static readonly CaseTypeColumn: any[] = [       
-        { field: 'casetypeid', header: 'Case Type ID' },
         { field: 'casetypename', header: 'Case Type Name' },
         { field: 'createddate', header: 'Created Date' },
         { field: 'flag', header: 'Active Flag' }    
@@ -216,14 +215,14 @@ export class TableConstants {
         { field: 'flag', header: 'Status'}
     ];
     public static readonly judgementMaster: any[] = [
-        { field: 'judgementname', header: 'judgement Name'},
-        { field: 'createddate', header: 'Create Date'},
+        { field: 'judgementname', header: 'Judgement Name'},
+        { field: 'createddate', header: 'Created Date'},
         { field: 'flag', header: 'Status'}
     ];
 
     public static readonly SroMasterColumns: any[] = [
         {field:'zonename',header: 'ZoneName'},
-        {field:'districtName',header: 'DistrictName'},
+        {field:'districtname',header: 'DistrictName'},
         {field:'sroname',header: 'SROName'},
         {field:'flag',header: 'Status'}
     ];
@@ -233,6 +232,10 @@ export class TableConstants {
         { field: 'mailid', header: 'mailid'},
         {field: 'password', header: 'Password'},
         { field: 'mobile', header: 'Mobile'},
+        { field: 'zonename', header: 'Zone Name'},
+        { field: 'districtname', header: 'District Name'},
+        { field: 'sroname', header: 'Sro Name'},
+        { field: 'rolename', header: 'Role Name'},
         { field: 'flag', header: 'Status'}
     ];
 

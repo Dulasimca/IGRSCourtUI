@@ -114,7 +114,7 @@ export class DistrictMasterComponent implements OnInit {
   onCheck() {
     this.data.forEach( i => {
       if(i.districtname  === this.districtName ) {
-        this.responseMsg = [{ severity: ResponseMessage.WarnSeverity, detail: 'Respondent name is already exist, Please input different name' }];
+        this.responseMsg = [{ severity: ResponseMessage.WarnSeverity, detail: 'District name is already exist, Please input different name' }];
           this.districtName = null;
       }
     })
