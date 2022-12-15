@@ -82,7 +82,7 @@ export class CasestatusComponent implements OnInit {
   onCheck() {
     this.data.forEach( i => {
       if(i.casestatusname  === this.caseStatus ) {
-        this.responseMsg = [{ severity: ResponseMessage.WarnSeverity, detail: 'casestatusname is already exist, Please input different name' }];
+        this.responseMsg = [{ severity: ResponseMessage.WarnSeverity, detail: 'case status name is already exist, Please input different name' }];
           this.caseStatus = null;
       }
     })

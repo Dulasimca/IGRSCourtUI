@@ -202,7 +202,6 @@ export class TableConstants {
     ];
 
     public static readonly CaseTypeColumn: any[] = [       
-        { field: 'casetypeid', header: 'Case Type ID' },
         { field: 'casetypename', header: 'Case Type Name' },
         { field: 'createddate', header: 'Created Date' },
         { field: 'flag', header: 'Active Flag' }    
