@@ -60,7 +60,7 @@ export class GovernmentRespondentComponent implements OnInit {
   ngOnInit(): void {
     this.cols = TableConstants.respondentColumns;
     this.masters = this._masterService.masterData;
-    this.roleId = this._authService.getUserInfo().roleId;
+    this.roleId = this._authService.getUserInfo().roleid;
   }
 
   assignDefault() {
