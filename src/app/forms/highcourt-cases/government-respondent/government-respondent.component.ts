@@ -213,7 +213,8 @@ export class GovernmentRespondentComponent implements OnInit {
       this.caseNo = row.casenumber;
       this.petitionerName = row.petitionername;
       this.selectedValue = (row.counterfiled) ? '1' : '0';
-      this.gistOfCase = row.mainprayer; 
+      this.gistOfCase = row.mainprayer;
+      this.respondents = row.respondent;
       this.respondentCadre = row.respondentsid;
       this.respondentCadreOptions = [{ label: row.respondentsname, value: row.respondentsid }];
       this.remarks = row.remarks;

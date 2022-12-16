@@ -142,7 +142,7 @@ onSave() {
     'districtid': this.district.value,
     'sroid': this.sro.value,
     'regularnumber': this.regularNumber,
-    'writ_remarks': this.remarks,
+    'remarks': this.remarks,
     'casetypeid': this.caseType.value,
     'flag': true,
     'createddate': new Date(),
@@ -150,14 +150,16 @@ onSave() {
   }
   this._restApiService.post('Writappeals/SaveWritappealsMaster', params).subscribe(res => {
     if (res) {
+      this.onView();
       this._writAppealsForm.reset();
       this._writAppealsForm.form.markAsUntouched();
       this._writAppealsForm.form.markAsPristine();
+      this.isDisabled = false;
       this.responseMsg = [{ severity: ResponseMessage.SuccessSeverity, detail: ResponseMessage.SuccessMessage }];
       setTimeout(() => this.responseMsg = [], 3000);
       this.writId = 0;
       this.caseId = 0;
-      this.onView();
+      this.onSave();
     } else {
       this.responseMsg = [{ severity: ResponseMessage.ErrorSeverity, detail: ResponseMessage.ErrorMessage }];
       setTimeout(() => this.responseMsg = [], 3000)
