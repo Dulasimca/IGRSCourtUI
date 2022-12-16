@@ -35,7 +35,7 @@ export class GovernmentRespondentComponent implements OnInit {
   stateOfCaseOptions: SelectItem[] = [];
   stateOfCase: any;
   petitionerName: any;
-  respondents: any;
+  respondents: string = '';
   respondentCadre: any;
   respondentCadreOptions: any;
   gistOfCase: any;
@@ -62,7 +62,6 @@ export class GovernmentRespondentComponent implements OnInit {
     this.cols = TableConstants.respondentColumns;
     this.masters = this._masterService.masterData;
     this.userInfo = this._authService.getUserInfo();
-    console.log('role', this.userInfo)
   }
 
   assignDefault() {
@@ -191,6 +190,7 @@ export class GovernmentRespondentComponent implements OnInit {
   onChangeRespondent() {
     if(this.respondentCadre) {
       this.respondents += this.respondentCadre.label + ' , ';
+
     }
     if(this.respondentCadre.value === 15) {
     this.isEditable = true;

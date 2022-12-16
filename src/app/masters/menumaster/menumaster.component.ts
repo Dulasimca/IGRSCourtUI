@@ -147,10 +147,11 @@ export class MenumasterComponent implements OnInit {
     this.priority = row.priorities;
     console.log('parent',this.parentId)
   }
+  
   onCheck() {
     this.data.forEach( i => {
       if(i.name  === this.menuName ) {
-        this.responseMsg = [{ severity: ResponseMessage.WarnSeverity, detail: 'Respondent name is already exist, Please input different name' }];
+        this.responseMsg = [{ severity: ResponseMessage.WarnSeverity, detail: 'Menu name is already exist, Please input different name' }];
           this.menuName = null;
       }
     })
