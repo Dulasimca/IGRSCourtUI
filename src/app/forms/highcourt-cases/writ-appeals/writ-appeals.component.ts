@@ -44,7 +44,7 @@ export class WritAppealsComponent implements OnInit {
 
   ngOnInit(): void {
     this.cols = TableConstants.writeAppealsColumns;
-    this.masters = this._masterService.masterData;
+    this.masters = this._masterService.getMasters();
     this.roleId = this._authService.getUserInfo().roleId;
   }
 

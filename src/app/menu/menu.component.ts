@@ -1,9 +1,6 @@
-import { HttpParams } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { AuthService } from '../services/auth.service';
-import { RestapiService } from '../services/restapi.service';
 
 @Component({
   selector: 'app-menu',
@@ -11,40 +8,40 @@ import { RestapiService } from '../services/restapi.service';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
+  items!: MenuItem[];
   @Input() status: boolean = false;
   @Output() public sidenavToggle = new EventEmitter();
 
-  constructor(private _authService: AuthService, private _restApiService: RestapiService,
-    private _router: Router) { }
-
-  items: MenuItem[] = [];
-
-  ngOnInit() {
+  constructor(private _authService: AuthService) {
     this._authService.isLoggedIn.subscribe(value => {
+      console.log('log', value)
       if (value) {
-     const params = new HttpParams().append('roleid', this._authService.getUserInfo().roleid);
-        this._restApiService.getByParameters('Masters/GetMenuMasters', params).subscribe(res => {
-            this.checkChildItems(res);
-            this.items = res;
-            this._authService.setMenuStatus(true);
-            this._router.navigate(['/dashboard']);
-        });
+        var menuList = this._authService.fetchMenu;
+        if(this.items === undefined || this.items === null) {
+        this.checkChildItems(menuList);
+        this.items = menuList;
+        }
       }
     });
   }
 
+
+  ngOnInit() { }
+
   checkChildItems(data: any) {
     if (data.length !== 0) {
-        for (let i = 0; i < data.length; i++) {
-            if (data[i].items.length !== 0) {
-                //  continue;
-                this.checkChildItems(data[i].items);
-            } else {
-                delete data[i].items;
-            }
+      for (let i = 0; i < data.length; i++) {
+        if (data[i]) {
+          if (data[i].items.length !== 0) {
+            //  continue;
+            this.checkChildItems(data[i].items);
+          } else {
+            delete data[i].items;
+          }
         }
+      }
     }
-}
+  }
 
   public onToggleSidenav = () => {
     this.status = !this.status; //closing menu once its been clicked

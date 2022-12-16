@@ -8,7 +8,7 @@ import { MasterService } from './master.service';
   providedIn: 'root'
 })
 export class AuthService {
-
+  menuObj: any = [];
   private loggedIn = new BehaviorSubject<boolean>(false);
   private hasMenu = new BehaviorSubject<boolean>(false); 
   /// To control if the user is logged in or not
@@ -26,13 +26,22 @@ export class AuthService {
     return this.hasMenu.asObservable();
   }
 
+  get fetchMenu() {
+    return this.menuObj;
+  }
+
   setMenuStatus(value: boolean) {
     this.hasMenu.next(value);
+  }
+
+  setMenu(obj: any) {
+    this.menuObj = obj;
   }
 
   login(user: User) {
     localStorage.setItem('UserInfo', JSON.stringify(user));
     this.loggedIn.next(true);
+    this._router.navigate(['/dashboard']);
   }
 
   getUserInfo(): any {
