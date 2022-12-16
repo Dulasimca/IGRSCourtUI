@@ -10,6 +10,7 @@ import { HttpParams } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 import { AuthService } from 'src/app/services/auth.service';
 import { DateConverter } from 'src/app/helper/date-converter';
+import { User } from 'src/app/interfaces/user.interface';
 
 @Component({
   selector: 'app-igr-respondent',
@@ -49,8 +50,8 @@ export class IgrRespondentComponent implements OnInit {
   loading: boolean = false;
   fromDate: any;
   toDate: any;
-  roleId: any;
   isEditable: boolean = false;
+  userInfo!: User;
 
   @ViewChild('f', {static: false}) _respondentForm!: NgForm;
 
@@ -60,7 +61,7 @@ export class IgrRespondentComponent implements OnInit {
   ngOnInit(): void {
     this.cols = TableConstants.respondentColumns;
     this.masters = this._masterService.masterData;
-    this.roleId = this._authService.getUserInfo().roleid;
+    this.userInfo = this._authService.getUserInfo();
   }
   assignDefault() {
     this.selectedValue = '1';
@@ -167,6 +168,9 @@ export class IgrRespondentComponent implements OnInit {
     const params = new HttpParams().append('userid',this._authService.getUserInfo().roleId)
     .set('fromdate', this._datePipe.transform(this.fromDate, 'MM/dd/yyyy') as any)
     .set('todate', this._datePipe.transform(this.toDate, 'MM/dd/yyyy') as any)
+    .set('zoneid', this.userInfo.zoneid)
+    .set('sroid', this.userInfo.sroid)
+    .set('districtid', this.userInfo.districtid)
     .set('respondentType', 2);
     this._restApiService.getByParameters('Respondent/GetRespondentCase', params).subscribe(res => {
       if(res) {
@@ -241,7 +245,7 @@ export class IgrRespondentComponent implements OnInit {
       'counterfiled': (this.selectedValue === '1') ? true : false,
       'flag': true,
       'createdate': new Date(),
-      'userId': this.roleId,
+      'userId': this.userInfo.roleid,
       'responsetypeid': 2, //for igr respondent
     }
     this._restApiService.post('Respondent/SaveRespondentCase', params).subscribe(res => {
