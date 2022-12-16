@@ -18,8 +18,8 @@ export class LoginComponent implements OnInit {
   showPwd: boolean = false;
   responseMsg: any;
   userInfo!: User;
-  @ViewChild('uname', {static: false}) _username!: HTMLInputElement;
-  constructor(private _authService: AuthService,
+  @ViewChild('uname', { static: false }) _username!: HTMLInputElement;
+  constructor(private _authService: AuthService, private _router: Router,
     private _masterService: MasterService, private _restApiService: RestapiService) { }
 
   ngOnInit(): void {
@@ -32,8 +32,24 @@ export class LoginComponent implements OnInit {
       .set('password', this.password);
     this._restApiService.getByParameters('Login', params).subscribe(response => {
       if (response.item1) {
-        this.userInfo = response.item3;
-        this._authService.login(this.userInfo);
+        if (response.item3.length !== 0) {
+          ///user login info null check
+          [response.item3].forEach((key: any) => {
+            key.districtid = (key.districtid !== null && key.districtid !== undefined) ? key.districtid : 0;
+            key.sroid = (key.sroid !== null && key.sroid !== undefined) ? key.sroid : 0;
+            key.zoneid = (key.zoneid !== null && key.zoneid !== undefined) ? key.zoneid : 0;
+          })
+          this.userInfo = response.item3;
+          ///loading menu & setting menu object to authservice to consume later
+          const params = new HttpParams().append('roleid', this._authService.getUserInfo().roleid);
+          this._restApiService.getByParameters('Masters/GetMenuMasters', params).subscribe(res => {
+            this._authService.setMenu(res);
+            this._authService.setMenuStatus(true);
+            this._authService.login(this.userInfo);
+          });
+          ///setting user info in user object
+          ///navigating to dashboard once logged in successfully & setting all essential objects globally
+        }
       } else {
         this.responseMsg = [{ severity: ResponseMessage.ErrorSeverity, detail: response.item2 }];
         setTimeout(() => this.responseMsg = [], 3000);
