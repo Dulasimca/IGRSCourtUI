@@ -11,16 +11,19 @@ import { RestapiService } from '../services/restapi.service';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
-  items: MenuItem[] = [];
+  items!: MenuItem[];
   @Input() status: boolean = false;
   @Output() public sidenavToggle = new EventEmitter();
 
   constructor(private _authService: AuthService) {
     this._authService.isLoggedIn.subscribe(value => {
+      console.log('log', value)
       if (value) {
         var menuList = this._authService.fetchMenu;
+        if(this.items === undefined || this.items === null) {
         this.checkChildItems(menuList);
         this.items = menuList;
+        }
       }
     });
   }
