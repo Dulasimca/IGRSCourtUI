@@ -35,7 +35,7 @@ export class DistrictMasterComponent implements OnInit {
   constructor(private _masterService: MasterService, private _restApiService: RestapiService) { }
 
   ngOnInit(): void {
-    this.masters = this._masterService.masterData;
+    this.masters = this._masterService.getMastersAll();
     this.cols = TableConstants.DistrictMasterColumns;
     this.onView();
   }

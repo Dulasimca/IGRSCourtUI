@@ -27,11 +27,11 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin() {
-    this._masterService.getMasters();
     const params = new HttpParams().append('username', this.username)
       .set('password', this.password);
     this._restApiService.getByParameters('Login', params).subscribe(response => {
       if (response.item1) {
+        this._masterService.invokeMasterData();
         if (response.item3.length !== 0) {
           ///user login info null check
           [response.item3].forEach((key: any) => {
@@ -68,6 +68,4 @@ export class LoginComponent implements OnInit {
       inputValue.type = 'password';
     }
   }
-
-
 }
