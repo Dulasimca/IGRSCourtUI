@@ -15,15 +15,15 @@ export class MenuComponent implements OnInit {
   @Input() status: boolean = false;
   @Output() public sidenavToggle = new EventEmitter();
 
-  constructor(private _authService: AuthService) { 
-      this._authService.isLoggedIn.subscribe(value => {
-        if (value) {
-          var menuList = this._authService.fetchMenu;
-          this.checkChildItems(menuList);
-          this.items = menuList;
-        }
-      });
-    }
+  constructor(private _authService: AuthService) {
+    this._authService.isLoggedIn.subscribe(value => {
+      if (value) {
+        var menuList = this._authService.fetchMenu;
+        this.checkChildItems(menuList);
+        this.items = menuList;
+      }
+    });
+  }
 
 
   ngOnInit() { }
@@ -31,11 +31,13 @@ export class MenuComponent implements OnInit {
   checkChildItems(data: any) {
     if (data.length !== 0) {
       for (let i = 0; i < data.length; i++) {
-        if (data[i].items.length !== 0) {
-          //  continue;
-          this.checkChildItems(data[i].items);
-        } else {
-          delete data[i].items;
+        if (data[i]) {
+          if (data[i].items.length !== 0) {
+            //  continue;
+            this.checkChildItems(data[i].items);
+          } else {
+            delete data[i].items;
+          }
         }
       }
     }
