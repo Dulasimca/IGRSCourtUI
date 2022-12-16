@@ -1,9 +1,6 @@
-import { HttpParams } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { AuthService } from '../services/auth.service';
-import { RestapiService } from '../services/restapi.service';
 
 @Component({
   selector: 'app-menu',
