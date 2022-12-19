@@ -132,10 +132,19 @@ export class WritAppealsComponent implements OnInit {
     this.caseId = row.courtcaseid;
     this.remarks = row.remarks;
     this.regularNumber = row.regularnumber;
+    this.zone = { label: row.zonename, value: row.zoneid, };
+    this.zoneOptions = [ { label: row.zonename, value: row.zoneid, }];
+    this.district = { label: row.districtname, value: row.districtid};
+    this.districtOptions = [{ label: row.districtname, value: row.districtid}];
+    this.sro = {label:row.sroname, value:row.sroid};
+    this.sroOptions = [{label: row.sroname, value:row.sroid}];
+    this.caseType = { label:row.casetypeid, value:row.casetypename};
+    this.caseTypeOptions = [{ label:row.casetypeid, value:row.casetypename}]
   }
 
+
 onSave() {
-  const params = {
+   const params = {
     'writappealsid': this.writId,
     'courtcaseid': this.caseId,
     'zoneid': this.zone.value,
@@ -155,6 +164,8 @@ onSave() {
       this._writAppealsForm.form.markAsUntouched();
       this._writAppealsForm.form.markAsPristine();
       this.isDisabled = false;
+      this.data = [];
+      this.loading = true;
       this.responseMsg = [{ severity: ResponseMessage.SuccessSeverity, detail: ResponseMessage.SuccessMessage }];
       setTimeout(() => this.responseMsg = [], 3000);
       this.writId = 0;
