@@ -166,8 +166,8 @@ export class IgrRespondentComponent implements OnInit {
     this.data = [];
     this.loading = true;
     const params = new HttpParams().append('userid',this._authService.getUserInfo().roleId)
-    .set('fromdate', this._datePipe.transform(this.fromDate, 'MM/dd/yyyy') as any)
-    .set('todate', this._datePipe.transform(this.toDate, 'MM/dd/yyyy') as any)
+    .set('fromdate', this._datePipe.transform(this.fromDate, 'yyyy-MM-dd') as any)
+    .set('todate', this._datePipe.transform(this.toDate, 'yyyy-MM-dd') as any)
     .set('zoneid', this.userInfo.zoneid)
     .set('sroid', this.userInfo.sroid)
     .set('districtid', this.userInfo.districtid)
@@ -177,6 +177,7 @@ export class IgrRespondentComponent implements OnInit {
         this.loading = false;
         res.forEach((i: any) => {
           i.countervalue = i.counterfiled ? 'Yes' : 'No';
+          i.judgement = i.judgementvalue ? 'For' : 'Against';
         })
         this.data = res;
       } else {
@@ -240,7 +241,7 @@ export class IgrRespondentComponent implements OnInit {
       'casestatusid': this.stateOfCase.value,
       'casetypeid': this.caseType.value,
       'mainrespondents': this.respondents,
-      'judgement': (this.judgementValue === '1') ? true : false,
+      'judgementvalue': (this.judgementValue === '1') ? true : false,
       'caseyear': (_caseyear * 1),
       'counterfiled': (this.selectedValue === '1') ? true : false,
       'flag': true,

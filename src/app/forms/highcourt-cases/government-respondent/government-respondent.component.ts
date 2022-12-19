@@ -69,8 +69,7 @@ export class GovernmentRespondentComponent implements OnInit {
     this.selectedValue = '1';
     this.caseDate = new Date();
     this.caseId = 0;
-    // this.judgementId = 0;
-  }
+   }
 
   onSelect(value: string) {
     if (this.masters) {
@@ -169,8 +168,8 @@ export class GovernmentRespondentComponent implements OnInit {
     this.data = [];
     this.loading = true;
     const params = new HttpParams().append('userid', this.userInfo.roleid)
-    .set('fromdate', this._datePipe.transform(this.fromDate, 'MM/dd/yyyy') as any)
-    .set('todate', this._datePipe.transform(this.toDate, 'MM/dd/yyyy') as any)
+    .set('fromdate', this._datePipe.transform(this.fromDate, 'yyyy-MM-dd') as any)
+    .set('todate', this._datePipe.transform(this.toDate, 'yyyy-MM-dd') as any)
     .set('zoneid', this.userInfo.zoneid)
     .set('sroid', this.userInfo.sroid)
     .set('districtid', this.userInfo.districtid)
@@ -180,6 +179,7 @@ export class GovernmentRespondentComponent implements OnInit {
         this.loading = false;
         res.forEach((i: any) => {
           i.countervalue = i.counterfiled ? 'Yes' : 'No';
+          i.judgement = i.judgementvalue ? 'For' : 'Against';
         })
         this.data = res;
       } else {
@@ -200,7 +200,8 @@ export class GovernmentRespondentComponent implements OnInit {
   }
 
   onEdit(row: any) {
-    if(row) {
+    // this._respondentForm.reset();
+    // if(row !== undefined && row !== null) {
       this.caseId = row.courtcaseid;
       this.zone = { label: row.zonename, value: row.zoneid };
       this.zoneOptions = [{ label: row.zonename, value: row.zoneid }];
@@ -214,20 +215,21 @@ export class GovernmentRespondentComponent implements OnInit {
       this.caseTypeOptions = [{ label: row.casetypename, value: row.casetypeid }];
       this.stateOfCase = { label: row.casestatusname, value: row.casestatusid };
       this.stateOfCaseOptions = [{ label: row.casestatusname, value: row.casestatusid }];
-      this.judgementValue = (row.judgement) ? '1' : '0';
+      this.judgementValue = (row.judgementvalue) ? '1' : '0';
       this.caseDate = new Date(row.casedate);
       this.caseNo = row.casenumber;
       this.petitionerName = row.petitionername;
       this.selectedValue = (row.counterfiled) ? '1' : '0';
+      console.log('radio', this.selectedValue, this.judgementValue)
       this.gistOfCase = row.mainprayer;
-      this.respondents = row.respondent;
+      this.respondents = row.mainrespondents;
       this.respondentCadre = row.respondentsid;
       this.respondentCadreOptions = [{ label: row.respondentsname, value: row.respondentsid }];
       this.remarks = row.remarks;
       const date = '01/01/'+row.caseyear;
       this.caseYear = new Date(date);
-    }
-  }
+  // }
+}
 
   onSave() {
     let _caseyear: any = this._datePipe.transform(this.caseYear, 'yyyy');
@@ -244,7 +246,6 @@ export class GovernmentRespondentComponent implements OnInit {
       'casenumber': this.caseNo,
       'casestatusid': this.stateOfCase.value,
       'judgementvalue': (this.judgementValue === '1') ? true : false,
-      // 'judgementid': this.judgementId,
       'casetypeid': this.caseType.value,
       'caseyear': (_caseyear * 1),
       'mainrespondents': this.respondents,

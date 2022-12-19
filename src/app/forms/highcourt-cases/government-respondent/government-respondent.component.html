@@ -94,7 +94,6 @@
                                                 <p-dropdown name="_respondentcadre" [autoDisplayFirst]="false"
                                                     optionLabel="label" (onClick)="onSelect('RC')" (onChange)="onChangeRespondent()"
                                                     [options]="respondentCadreOptions" [(ngModel)]="respondentCadre"
-                                                    [required]="true"
                                                     [editable]="isEditable">
                                                 </p-dropdown>
                                                 <label for="float-input">Respondent Designation</label>
@@ -103,7 +102,7 @@
                                         <div class="col-12 md:col-4 lg:col-4">
                                             <span class="p-float-label">
                                                 <input name="_respondents" type="text" [(ngModel)]="respondents"
-                                                    pInputText>
+                                                   required pInputText>
                                                 <label for="float-input">Respondents</label>
                                             </span>
                                         </div>
@@ -207,7 +206,8 @@
                                     {{rowData[col.field]}}
                                 </td>
                                 <td>
-                                    <p-button icon="pi pi-pencil" (onClick)="onEdit(rowData)"></p-button>
+                                    <button type="button" pButton pRipple icon="pi pi-pencil" (click)="onEdit(rowData)"
+                                        label="Edit" tooltipPosition="bottom"></button>
                                 </td>
                             </tr>
                         </ng-template>

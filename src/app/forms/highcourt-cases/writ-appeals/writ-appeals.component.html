@@ -66,9 +66,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div #row3 class="col-12 md:col-11 lg:col-11 txt-to-center no-padding">
+                                <div  #row3  *ngIf="isDisabled" class="col-12 md:col-11 lg:col-11 txt-to-center no-padding">
                                             <button pButton pRipple type="button" label="Save" (click)="onSave()"
-                                            [disabled]="(!f.valid || !f.dirty || !isDisabled)"></button>
+                                            [disabled]="(!f.valid || !f.dirty)"></button>
                                 </div>
                             </div>
                         </div>
