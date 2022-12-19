@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RestapiService } from '../services/restapi.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,35 +11,38 @@ export class DashboardComponent implements OnInit {
   caItems: any[] = [];
   scCaseItems: any[] = [];
   contemptItems: any[] = [];
-  constructor() { 
+  constructor(private _restApiService: RestapiService) { 
   }
 
   ngOnInit(): void {
+    this._restApiService.get('Dashboard').subscribe(res => {
+      if(res) {
+        res.forEach((item: any) => {
+          item.title = item.key;
+        })
+        this.caItems = res;
+      }
+    })
     this.deputyItems = [
-      { 'title': 'No of CA not filed', 'value': '93' },
-      { 'title': 'New affidavits received', 'value': '18' },
-      { 'title': 'No of  CA filed', 'value': '25' },
-      { 'title': 'No of  CA pending', 'value': '39' },
+      { 'title': 'No of CA not filed', 'value': '0' },
+      { 'title': 'New affidavits received', 'value': '0' },
+      { 'title': 'No of  CA filed', 'value': '0' },
+      { 'title': 'No of  CA pending', 'value': '0' },
     ];
-    this.caItems = [
-      { 'title': 'GOVT Respondent', 'value': '12' },
-      { 'title': 'IGR Respondent', 'value': '31' },
-      { 'title': 'OTHERS Respondent', 'value': '43' },
-      { 'title': 'Pending with G.P for vetting', 'value': '39' },
-    ];
+    
     this.scCaseItems = [
-      { 'title': 'Government as petitioner', 'value': '-' },
-      { 'title': 'IGR as petitioner', 'value': '19' },
-      { 'title': 'Others as petitioner', 'value': '1' },
-      { 'title': 'Individual as petitioner', 'value': '5' },
+      { 'title': 'Government as petitioner', 'value': '0' },
+      { 'title': 'IGR as petitioner', 'value': '0' },
+      { 'title': 'Others as petitioner', 'value': '0' },
+      { 'title': 'Individual as petitioner', 'value': '0' },
     ];
     this.contemptItems = [
-      { 'title': 'Implemented', 'value': '1' },
-      { 'title': 'Not Implemented', 'value': '-' },
-      { 'title': 'Appealed', 'value': '7' },
-      { 'title': 'Not Appealed', 'value': '-' },
-      { 'title': 'Affidavit filed', 'value': '15' },
-      { 'title': 'Affidavit not filed', 'value': '7' },
+      { 'title': 'Implemented', 'value': '0' },
+      { 'title': 'Not Implemented', 'value': '0' },
+      { 'title': 'Appealed', 'value': '0' },
+      { 'title': 'Not Appealed', 'value': '0' },
+      { 'title': 'Affidavit filed', 'value': '0' },
+      { 'title': 'Affidavit not filed', 'value': '0' },
 
     ];
 

@@ -36,7 +36,7 @@ export class MenumasterComponent implements OnInit {
 
   ngOnInit(): void {
     this.cols = TableConstants.MenuMasterColumns;
-    this.masters = this._masterService.masterData;
+    this.masters = this._masterService.getMastersAll();
     this.priorityOptions = [
       {label: '1', value: 1},
       {label: '2',value: 2},

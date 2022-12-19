@@ -10,6 +10,7 @@ import { HttpParams } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 import { AuthService } from 'src/app/services/auth.service';
 import { DateConverter } from 'src/app/helper/date-converter';
+import { User } from 'src/app/interfaces/user.interface';
 
 
 @Component({
@@ -39,6 +40,7 @@ export class GovernmentRespondentComponent implements OnInit {
   respondentCadreOptions: any;
   gistOfCase: any;
   remarks: any;
+  // judgementId: any;
   selectedValue: string = '1';
   judgementValue: string = '1';
   dateValue: any;
@@ -50,8 +52,8 @@ export class GovernmentRespondentComponent implements OnInit {
   loading: boolean = false;
   fromDate: any;
   toDate: any;
-  roleId: any;
   isEditable: boolean = false;
+  userInfo!: User;
 
   @ViewChild('f', {static: false}) _respondentForm!: NgForm;
   constructor(private _restApiService: RestapiService, private _masterService: MasterService,
@@ -59,15 +61,15 @@ export class GovernmentRespondentComponent implements OnInit {
 
   ngOnInit(): void {
     this.cols = TableConstants.respondentColumns;
-    this.masters = this._masterService.masterData;
-    this.roleId = this._authService.getUserInfo().roleid;
+    this.masters = this._masterService.getMasters();
+    this.userInfo = this._authService.getUserInfo();
   }
 
   assignDefault() {
     this.selectedValue = '1';
     this.caseDate = new Date();
     this.caseId = 0;
-  }
+   }
 
   onSelect(value: string) {
     if (this.masters) {
@@ -165,15 +167,19 @@ export class GovernmentRespondentComponent implements OnInit {
     if(this.fromDate && this.toDate) {
     this.data = [];
     this.loading = true;
-    const params = new HttpParams().append('userid', this.roleId)
-    .set('fromdate', this._datePipe.transform(this.fromDate, 'MM/dd/yyyy') as any)
-    .set('todate', this._datePipe.transform(this.toDate, 'MM/dd/yyyy') as any)
+    const params = new HttpParams().append('userid', this.userInfo.roleid)
+    .set('fromdate', this._datePipe.transform(this.fromDate, 'yyyy-MM-dd') as any)
+    .set('todate', this._datePipe.transform(this.toDate, 'yyyy-MM-dd') as any)
+    .set('zoneid', this.userInfo.zoneid)
+    .set('sroid', this.userInfo.sroid)
+    .set('districtid', this.userInfo.districtid)
     .set('respondentType', 1);
     this._restApiService.getByParameters('Respondent/GetRespondentCase', params).subscribe(res => {
       if(res) {
         this.loading = false;
         res.forEach((i: any) => {
           i.countervalue = i.counterfiled ? 'Yes' : 'No';
+          i.judgement = i.judgementvalue ? 'For' : 'Against';
         })
         this.data = res;
       } else {
@@ -194,7 +200,8 @@ export class GovernmentRespondentComponent implements OnInit {
   }
 
   onEdit(row: any) {
-    if(row) {
+    // this._respondentForm.reset();
+    // if(row !== undefined && row !== null) {
       this.caseId = row.courtcaseid;
       this.zone = { label: row.zonename, value: row.zoneid };
       this.zoneOptions = [{ label: row.zonename, value: row.zoneid }];
@@ -208,19 +215,21 @@ export class GovernmentRespondentComponent implements OnInit {
       this.caseTypeOptions = [{ label: row.casetypename, value: row.casetypeid }];
       this.stateOfCase = { label: row.casestatusname, value: row.casestatusid };
       this.stateOfCaseOptions = [{ label: row.casestatusname, value: row.casestatusid }];
-      this.judgementValue = (row.judgement) ? '1' : '0';
+      this.judgementValue = (row.judgementvalue) ? '1' : '0';
       this.caseDate = new Date(row.casedate);
       this.caseNo = row.casenumber;
       this.petitionerName = row.petitionername;
       this.selectedValue = (row.counterfiled) ? '1' : '0';
-      this.gistOfCase = row.mainprayer; 
+      console.log('radio', this.selectedValue, this.judgementValue)
+      this.gistOfCase = row.mainprayer;
+      this.respondents = row.mainrespondents;
       this.respondentCadre = row.respondentsid;
       this.respondentCadreOptions = [{ label: row.respondentsname, value: row.respondentsid }];
       this.remarks = row.remarks;
       const date = '01/01/'+row.caseyear;
       this.caseYear = new Date(date);
-    }
-  }
+  // }
+}
 
   onSave() {
     let _caseyear: any = this._datePipe.transform(this.caseYear, 'yyyy');
@@ -236,17 +245,16 @@ export class GovernmentRespondentComponent implements OnInit {
       'casedate': this._converter.convertDate(this.caseDate),
       'casenumber': this.caseNo,
       'casestatusid': this.stateOfCase.value,
-      'judgement': (this.judgementValue === '1') ? true : false,
+      'judgementvalue': (this.judgementValue === '1') ? true : false,
       'casetypeid': this.caseType.value,
       'caseyear': (_caseyear * 1),
       'mainrespondents': this.respondents,
       'counterfiled': (this.selectedValue === '1') ? true : false,
       'flag': true,
       'createdate': new Date(),
-      'userId': this.roleId,
+      'userId': this.userInfo.roleid,
       'responsetypeid': 1, //for government respondent
     }
-    console.log('case save', this.caseDate)
     this._restApiService.post('Respondent/SaveRespondentCase', params).subscribe(res => {
       if (res) {
         this._respondentForm.reset();

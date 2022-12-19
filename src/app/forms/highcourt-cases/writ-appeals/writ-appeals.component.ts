@@ -44,7 +44,7 @@ export class WritAppealsComponent implements OnInit {
 
   ngOnInit(): void {
     this.cols = TableConstants.writeAppealsColumns;
-    this.masters = this._masterService.masterData;
+    this.masters = this._masterService.getMasters();
     this.roleId = this._authService.getUserInfo().roleId;
   }
 
@@ -132,17 +132,26 @@ export class WritAppealsComponent implements OnInit {
     this.caseId = row.courtcaseid;
     this.remarks = row.remarks;
     this.regularNumber = row.regularnumber;
-  }
+    this.zone = { label: row.zonename, value: row.zoneid, };
+    this.zoneOptions = [ { label: row.zonename, value: row.zoneid, }];
+    this.district = { label: row.districtname, value: row.districtid };
+    this.districtOptions = [{ label: row.districtname, value: row.districtid }];
+    this.sro = {label:row.sroname, value:row.sroid};
+    this.sroOptions = [{label: row.sroname, value:row.sroid}];
+    this.caseType = { label:row.casetypename, value:row.casetypeid};
+    this.caseTypeOptions = [{ label:row.casetypename, value:row.casetypeid }]
+  } 
+
 
 onSave() {
-  const params = {
+   const params = {
     'writappealsid': this.writId,
     'courtcaseid': this.caseId,
     'zoneid': this.zone.value,
     'districtid': this.district.value,
     'sroid': this.sro.value,
     'regularnumber': this.regularNumber,
-    'writ_remarks': this.remarks,
+    'remarks': this.remarks,
     'casetypeid': this.caseType.value,
     'flag': true,
     'createddate': new Date(),
@@ -150,14 +159,18 @@ onSave() {
   }
   this._restApiService.post('Writappeals/SaveWritappealsMaster', params).subscribe(res => {
     if (res) {
+      this.onView();
       this._writAppealsForm.reset();
       this._writAppealsForm.form.markAsUntouched();
       this._writAppealsForm.form.markAsPristine();
+      this.isDisabled = false;
+      this.data = [];
+      this.loading = true;
       this.responseMsg = [{ severity: ResponseMessage.SuccessSeverity, detail: ResponseMessage.SuccessMessage }];
       setTimeout(() => this.responseMsg = [], 3000);
       this.writId = 0;
       this.caseId = 0;
-      this.onView();
+      this.onSave();
     } else {
       this.responseMsg = [{ severity: ResponseMessage.ErrorSeverity, detail: ResponseMessage.ErrorMessage }];
       setTimeout(() => this.responseMsg = [], 3000)

@@ -191,6 +191,10 @@ label {
     border: none !important;
     // border-color: #1a9967  !important;
 }
+.p-dropdown-panel .p-dropdown-header .p-dropdown-filter {
+    margin-right: 0 !important;
+    padding: 0.25rem 0.45rem !important;
+}
 
 .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight {
     color: #18A558 !important;

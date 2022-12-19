@@ -18,8 +18,8 @@ export class LoginComponent implements OnInit {
   showPwd: boolean = false;
   responseMsg: any;
   userInfo!: User;
-  @ViewChild('uname', {static: false}) _username!: HTMLInputElement;
-  constructor(private _authService: AuthService,
+  @ViewChild('uname', { static: false }) _username!: HTMLInputElement;
+  constructor(private _authService: AuthService, private _router: Router,
     private _masterService: MasterService, private _restApiService: RestapiService) { }
 
   ngOnInit(): void {
@@ -27,19 +27,46 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin() {
-    this._masterService.getMasters();
-    const params = new HttpParams().append('username', this.username)
+    const login_params = new HttpParams().append('username', this.username)
       .set('password', this.password);
-    this._restApiService.getByParameters('Login', params).subscribe(response => {
+    this._restApiService.getByParameters('Login', login_params).subscribe(response => {
       if (response.item1) {
-        this.userInfo = response.item3;
-        this._authService.login(this.userInfo);
+        this._masterService.invokeMasterData();
+        if (response.item3.length !== 0) {
+          ///user login info null check
+          [response.item3].forEach((key: any) => {
+            key.districtid = (key.districtid !== null && key.districtid !== undefined) ? key.districtid : 0;
+            key.sroid = (key.sroid !== null && key.sroid !== undefined) ? key.sroid : 0;
+            key.zoneid = (key.zoneid !== null && key.zoneid !== undefined) ? key.zoneid : 0;
+          })
+          this.userInfo = response.item3;
+          ///setting user info in local storage via authservice
+          this._authService.setUserInfo(this.userInfo);
+        }
+        ///loading menu & setting menu object to authservice to consume later
+        const menu_params = new HttpParams().append('roleid', this._authService.getUserInfo().roleid);
+        this._restApiService.getByParameters('Masters/GetMenuMasters', menu_params).subscribe(res => {
+          ///setting menu in authservice as object to load after login
+          this._authService.setMenu(res);
+          this._authService.setMenuStatus(true);
+          ///setting loggedin value as true after loading successfully all dependencies
+          this._authService.login();
+        });
       } else {
         this.responseMsg = [{ severity: ResponseMessage.ErrorSeverity, detail: response.item2 }];
         setTimeout(() => this.responseMsg = [], 3000);
       }
     })
 
+  }
+
+  onEnter($event: any) {
+    if ($event.key === 'Enter') {
+      if (this.username !== null && this.username !== undefined && this.password !== null
+        && this.password !== undefined) {
+        this.onLogin();
+      }
+    }
   }
 
   onShowPwd() {
@@ -52,6 +79,4 @@ export class LoginComponent implements OnInit {
       inputValue.type = 'password';
     }
   }
-
-
 }

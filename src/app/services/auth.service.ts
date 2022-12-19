@@ -8,14 +8,14 @@ import { MasterService } from './master.service';
   providedIn: 'root'
 })
 export class AuthService {
-
+  menuObj: any = [];
   private loggedIn = new BehaviorSubject<boolean>(false);
-  private hasMenu = new BehaviorSubject<boolean>(false); 
+  private hasMenu = new BehaviorSubject<boolean>(false);
   /// To control if the user is logged in or not
   /// The BehaviorSubject keeps the latest value cached (in our case when the service is created the initial value is going to be false). 
   /// So when an Observer subscribes to the isLoggedIn(), the cached valued is going to be emitted right away.
 
-  constructor(private _router: Router) { 
+  constructor(private _router: Router) {
   }
 
   get isLoggedIn() {
@@ -26,13 +26,26 @@ export class AuthService {
     return this.hasMenu.asObservable();
   }
 
+  get fetchMenu() {
+    return this.menuObj;
+  }
+
   setMenuStatus(value: boolean) {
     this.hasMenu.next(value);
   }
 
-  login(user: User) {
+  setMenu(obj: any) {
+    this.menuObj = obj;
+  }
+
+  setUserInfo(user: User) {
     localStorage.setItem('UserInfo', JSON.stringify(user));
+  }
+
+  login() {
     this.loggedIn.next(true);
+    ///navigating to dashboard once logged in successfully & setting all essential objects globally
+    this._router.navigate(['/dashboard']);
   }
 
   getUserInfo(): any {
@@ -44,5 +57,6 @@ export class AuthService {
   public logout() {
     this._router.navigate(['/login']);
     this.loggedIn.next(false);
+    localStorage.removeItem('UserInfo');
   }
 }

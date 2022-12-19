@@ -48,7 +48,7 @@ export class UsermasterComponent implements OnInit {
     private _datePipe: DatePipe, private _authService: AuthService) { }
 
   ngOnInit(): void {
-    this.masters = this._masterService.masterData;
+    this.masters = this._masterService.getMastersAll();
     this.cols = TableConstants.UserMasterColumns;
     this.onView();
       }
