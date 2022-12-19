@@ -31,6 +31,7 @@ import { SlpMasterComponent } from './masters/slp-master/slp-master.component';
 import { JudgementMasterComponent } from './masters/judgement-master/judgement-master.component';
 import { RespondantMasterComponent } from './masters/respondant-master/respondant-master.component';
 import { MenumasterComponent } from './masters/menumaster/menumaster.component';
+import { ChangePasswordComponent } from './masters/change-password/change-password.component';
 
 
 
@@ -66,6 +67,8 @@ const routes: Routes = [
   {path:'rolemaster',component:RolemasterComponent},
   {path:'slp-master',component:SlpMasterComponent},
   {path:'respondant-master',component:RespondantMasterComponent},
+  {path:'change-password',component:ChangePasswordComponent},
+
 
 ];
 
