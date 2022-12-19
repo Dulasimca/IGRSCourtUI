@@ -40,6 +40,7 @@ export class GovernmentRespondentComponent implements OnInit {
   respondentCadreOptions: any;
   gistOfCase: any;
   remarks: any;
+  // judgementId: any;
   selectedValue: string = '1';
   judgementValue: string = '1';
   dateValue: any;
@@ -68,6 +69,7 @@ export class GovernmentRespondentComponent implements OnInit {
     this.selectedValue = '1';
     this.caseDate = new Date();
     this.caseId = 0;
+    // this.judgementId = 0;
   }
 
   onSelect(value: string) {
@@ -241,7 +243,8 @@ export class GovernmentRespondentComponent implements OnInit {
       'casedate': this._converter.convertDate(this.caseDate),
       'casenumber': this.caseNo,
       'casestatusid': this.stateOfCase.value,
-      'judgement': (this.judgementValue === '1') ? true : false,
+      'judgementvalue': (this.judgementValue === '1') ? true : false,
+      // 'judgementid': this.judgementId,
       'casetypeid': this.caseType.value,
       'caseyear': (_caseyear * 1),
       'mainrespondents': this.respondents,
