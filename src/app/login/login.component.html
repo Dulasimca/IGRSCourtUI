@@ -21,7 +21,7 @@ background: linear-gradient(#06ef70, #0a8b44);height: 100vh;">
                                         <span class="p-float-label p-input-icon-right">
                                             <input #uname id="uname" name="_username" type="text" style="background: white !important;"
                                                 pInputText [(ngModel)]="username" placeholder="Username"
-                                                autocomplete="off" required>
+                                                autocomplete="off" (keypress)="onEnter($event)" required>
                                             <label for="float-input">Username</label>
                                         </span>
                                     </div>
@@ -40,7 +40,7 @@ background: linear-gradient(#06ef70, #0a8b44);height: 100vh;">
                                             <i *ngIf="showPwd" class="pi pi-eye-slash" (click)="onShowPwd()"></i>
                                             <input #pwd id="pwd" name="_password" type="password" pInputText
                                                 [(ngModel)]="password" placeholder="Password" autocomplete="off"
-                                                required>
+                                                (keypress)="onEnter($event)" required>
                                             <label for="float-input">Password</label>
                                         </span>
                                     </div>

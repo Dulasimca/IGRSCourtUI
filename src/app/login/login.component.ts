@@ -57,6 +57,15 @@ export class LoginComponent implements OnInit {
 
   }
 
+  onEnter($event: any) {
+    if($event.key === 'Enter') {
+      if(this.username !== null && this.username !== undefined && this.password !== null
+      && this.password !== undefined) {
+          this.onLogin();
+        }
+      }
+  }
+
   onShowPwd() {
     var inputValue = (<HTMLInputElement>document.getElementById('pwd'));
     if (inputValue.type === 'password') {
