@@ -38,8 +38,11 @@ export class AuthService {
     this.menuObj = obj;
   }
 
-  login(user: User) {
+  setUserInfo(user: User) {
     localStorage.setItem('UserInfo', JSON.stringify(user));
+  }
+
+  login() {
     this.loggedIn.next(true);
     ///navigating to dashboard once logged in successfully & setting all essential objects globally
     this._router.navigate(['/dashboard']);

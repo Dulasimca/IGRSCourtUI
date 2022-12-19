@@ -41,13 +41,16 @@ export class LoginComponent implements OnInit {
           })
           this.userInfo = response.item3;
           ///setting user info in local storage via authservice
-          this._authService.login(this.userInfo);
+          this._authService.setUserInfo(this.userInfo);
         }
         ///loading menu & setting menu object to authservice to consume later
         const menu_params = new HttpParams().append('roleid', this._authService.getUserInfo().roleid);
         this._restApiService.getByParameters('Masters/GetMenuMasters', menu_params).subscribe(res => {
+          ///setting menu in authservice as object to load after login
           this._authService.setMenu(res);
           this._authService.setMenuStatus(true);
+          ///setting loggedin value as true after loading successfully all dependencies
+          this._authService.login();
         });
       } else {
         this.responseMsg = [{ severity: ResponseMessage.ErrorSeverity, detail: response.item2 }];
