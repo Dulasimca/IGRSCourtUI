@@ -14,7 +14,6 @@ export class MenuComponent implements OnInit {
 
   constructor(private _authService: AuthService) {
     this._authService.isLoggedIn.subscribe(value => {
-      console.log('log', value)
       if (value) {
         var menuList = this._authService.fetchMenu;
         if(this.items === undefined || this.items === null) {

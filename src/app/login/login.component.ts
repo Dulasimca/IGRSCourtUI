@@ -40,16 +40,15 @@ export class LoginComponent implements OnInit {
             key.zoneid = (key.zoneid !== null && key.zoneid !== undefined) ? key.zoneid : 0;
           })
           this.userInfo = response.item3;
-          ///loading menu & setting menu object to authservice to consume later
-          const params = new HttpParams().append('roleid', this._authService.getUserInfo().roleid);
-          this._restApiService.getByParameters('Masters/GetMenuMasters', params).subscribe(res => {
-            this._authService.setMenu(res);
-            this._authService.setMenuStatus(true);
-            this._authService.login(this.userInfo);
-          });
-          ///setting user info in user object
-          ///navigating to dashboard once logged in successfully & setting all essential objects globally
         }
+         ///loading menu & setting menu object to authservice to consume later
+         const params = new HttpParams().append('roleid', this._authService.getUserInfo().roleid);
+         this._restApiService.getByParameters('Masters/GetMenuMasters', params).subscribe(res => {
+           this._authService.setMenu(res);
+           this._authService.setMenuStatus(true);
+           ///setting user info in user object
+           this._authService.login(this.userInfo);
+         });
       } else {
         this.responseMsg = [{ severity: ResponseMessage.ErrorSeverity, detail: response.item2 }];
         setTimeout(() => this.responseMsg = [], 3000);
