@@ -69,7 +69,7 @@ export class IgrRespondentComponent implements OnInit {
     this.selectedValue = '1';
     this.judgementValue = '1';
     this.caseDate = new Date();
-    // this.caseId = 0;
+    this.caseId = 0;
   }
 
   onSelect(value: string) {
