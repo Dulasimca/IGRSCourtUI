@@ -134,13 +134,13 @@ export class WritAppealsComponent implements OnInit {
     this.regularNumber = row.regularnumber;
     this.zone = { label: row.zonename, value: row.zoneid, };
     this.zoneOptions = [ { label: row.zonename, value: row.zoneid, }];
-    this.district = { label: row.districtname, value: row.districtid};
-    this.districtOptions = [{ label: row.districtname, value: row.districtid}];
+    this.district = { label: row.districtname, value: row.districtid };
+    this.districtOptions = [{ label: row.districtname, value: row.districtid }];
     this.sro = {label:row.sroname, value:row.sroid};
     this.sroOptions = [{label: row.sroname, value:row.sroid}];
-    this.caseType = { label:row.casetypeid, value:row.casetypename};
-    this.caseTypeOptions = [{ label:row.casetypeid, value:row.casetypename}]
-  }
+    this.caseType = { label:row.casetypename, value:row.casetypeid};
+    this.caseTypeOptions = [{ label:row.casetypename, value:row.casetypeid }]
+  } 
 
 
 onSave() {

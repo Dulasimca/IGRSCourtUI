@@ -236,22 +236,5 @@ export class UsermasterComponent implements OnInit {
       }
     }
     })
-  }    
-
-  
-  // checkIfEmailExists() {
-  //   if (this.mailId !== undefined && this.mailId !== null && this.mailId.trim() !== '' &&
-  //     this.data.length !== 0) {
-  //     this.checkEmail = true;
-  //     const entered_email: string = this.mailId.trim();
-  //     const substr = entered_email.split('@');
-  //     if (substr !== undefined && substr.length > 1) {
-  //       const last_str = substr[1].split('.');
-  //       if (last_str !== undefined && last_str.length > 1) {
-  //         if (last_str[1].toLowerCase() === 'com' || last_str[1].toLowerCase() === 'in') {
-  //         }
-  //       }
-  //     }
-  //   }
-  // }
+  }  
 }

@@ -49,7 +49,7 @@
                                         </div>                             
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <input name="_username" type="text" [(ngModel)]="userName" (change)="onCheck()" pInputText>
+                                                <input name="_username" type="text" [(ngModel)]="userName" autocomplete="off" (change)="onCheck()" pInputText>
                                                 <label for="float-input">Username</label>      
                                             </span>
                                         </div>                                                                                                                                                                 
@@ -71,7 +71,6 @@
                                             </div>   
                                         <div class="col-12 md:col-4 lg:col-2">                                           
                                             <span class="p-float-label">
-                                                <i *ngIf="checkEmail" class="pi pi-spin pi-spinner"></i>
                                                 <input name="_mailid" type="text" (change)="onCheck()" [(ngModel)]="mailId" pInputText>
                                                 <label for="float-input">e-mail ID</label>      
                                             </span>
@@ -104,12 +103,6 @@
                     <p-table #dt [columns]="cols" [value]="data" styleClass="p-datatable-gridlines" [loading]="loading" [paginator]="true" [rows]="10"
                     [globalFilterFields]="['username','roleid']" [rowsPerPageOptions]="[5,10,15,20]" responsiveLayout="scroll">
                         <ng-template pTemplate="caption">
-                            <!-- <div class="p-d-flex">
-                                <span class="p-input-icon-left p-ml-auto">
-                                    <i class="pi pi-search"></i>
-                                    <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search keyword" />
-                                </span>
-                            </div> -->
                             <div class="grid" style="width: -webkit-fill-available;">
                                 <div class="lg:col-6 no-pad-top no-pad-btm"></div>
                                 <div class="lg:col-6 table-hdr-export">
