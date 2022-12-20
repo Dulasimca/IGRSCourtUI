@@ -16,6 +16,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { TableModule } from 'primeng/table';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
+import { TooltipModule } from 'primeng/tooltip';
 
 import { AppComponent } from './app.component';
 import { GovernmentRespondentComponent } from './forms/highcourt-cases/government-respondent/government-respondent.component';
@@ -115,6 +116,7 @@ import { PaginatorModule } from 'primeng/paginator';
     MessagesModule,
     MessageModule,
     PaginatorModule,
+    TooltipModule
   ],
   providers: [AuthService, AuthGuard, MasterService, RestapiService, DatePipe, DateConverter],
   bootstrap: [AppComponent]
