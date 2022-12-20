@@ -40,7 +40,6 @@ export class GovernmentRespondentComponent implements OnInit {
   respondentCadreOptions: any;
   gistOfCase: any;
   remarks: any;
-  // judgementId: any;
   selectedValue: string = '1';
   judgementValue: string = '1';
   dateValue: any;
@@ -53,9 +52,10 @@ export class GovernmentRespondentComponent implements OnInit {
   fromDate: any;
   toDate: any;
   isEditable: boolean = false;
+  disableAutoDisplay: boolean = false;
   userInfo!: User;
 
-  @ViewChild('f', {static: false}) _respondentForm!: NgForm;
+  @ViewChild('f', { static: false }) _respondentForm!: NgForm;
   constructor(private _restApiService: RestapiService, private _masterService: MasterService,
     private _datePipe: DatePipe, private _authService: AuthService, private _converter: DateConverter) { }
 
@@ -66,10 +66,12 @@ export class GovernmentRespondentComponent implements OnInit {
   }
 
   assignDefault() {
+    this.disableAutoDisplay = false;
     this.selectedValue = '1';
+    this.judgementValue = '1';
     this.caseDate = new Date();
-    this.caseId = 0;
-   }
+    // this.caseId = 0;
+  }
 
   onSelect(value: string) {
     if (this.masters) {
@@ -149,59 +151,59 @@ export class GovernmentRespondentComponent implements OnInit {
             this.stateOfCaseOptions = caseStatusList;
           }
           break;
-          case 'RC':
-            if (this.masters.respondentsmaster) {
-              this.masters.respondentsmaster.forEach((rc: any) => {
-                respondentList.push(
-                  { label: rc.respondentsname, value: rc.respondentsid }
-                )
-              })
-              this.respondentCadreOptions = respondentList;
-            }
-            break;
+        case 'RC':
+          if (this.masters.respondentsmaster) {
+            this.masters.respondentsmaster.forEach((rc: any) => {
+              respondentList.push(
+                { label: rc.respondentsname, value: rc.respondentsid }
+              )
+            })
+            this.respondentCadreOptions = respondentList;
+          }
+          break;
       }
     }
   }
 
   onLoadCases() {
-    if(this.fromDate && this.toDate) {
-    this.data = [];
-    this.loading = true;
-    const params = new HttpParams().append('userid', this.userInfo.roleid)
-    .set('fromdate', this._datePipe.transform(this.fromDate, 'yyyy-MM-dd') as any)
-    .set('todate', this._datePipe.transform(this.toDate, 'yyyy-MM-dd') as any)
-    .set('zoneid', this.userInfo.zoneid)
-    .set('sroid', this.userInfo.sroid)
-    .set('districtid', this.userInfo.districtid)
-    .set('respondentType', 1);
-    this._restApiService.getByParameters('Respondent/GetRespondentCase', params).subscribe(res => {
-      if(res) {
-        this.loading = false;
-        res.forEach((i: any) => {
-          i.countervalue = i.counterfiled ? 'Yes' : 'No';
-          i.judgement = i.judgementvalue ? 'For' : 'Against';
-        })
-        this.data = res;
-      } else {
-        this.loading = false;
-      }
-    })
-  }
+    if (this.fromDate && this.toDate) {
+      this.data = [];
+      this.loading = true;
+      const params = new HttpParams().append('userid', this.userInfo.roleid)
+        .set('fromdate', this._datePipe.transform(this.fromDate, 'yyyy-MM-dd') as any)
+        .set('todate', this._datePipe.transform(this.toDate, 'yyyy-MM-dd') as any)
+        .set('zoneid', this.userInfo.zoneid)
+        .set('sroid', this.userInfo.sroid)
+        .set('districtid', this.userInfo.districtid)
+        .set('respondentType', 1);
+      this._restApiService.getByParameters('Respondent/GetRespondentCase', params).subscribe(res => {
+        if (res) {
+          this.loading = false;
+          res.forEach((i: any) => {
+            i.countervalue = i.counterfiled ? 'Yes' : 'No';
+            i.judgement = i.judgementvalue ? 'For' : 'Against';
+          })
+          this.data = res;
+        } else {
+          this.loading = false;
+        }
+      })
+    }
   }
 
   onChangeRespondent() {
-    if(this.respondentCadre) {
+    if (this.respondentCadre) {
       this.respondents += this.respondentCadre.label + ' , ';
 
     }
-    if(this.respondentCadre.value === 15) {
-    this.isEditable = true;
+    if (this.respondentCadre.value === 15) {
+      this.isEditable = true;
     }
   }
 
   onEdit(row: any) {
-    // this._respondentForm.reset();
-    // if(row !== undefined && row !== null) {
+    if (row !== undefined && row !== null) {
+      this.disableAutoDisplay = true;
       this.caseId = row.courtcaseid;
       this.zone = { label: row.zonename, value: row.zoneid };
       this.zoneOptions = [{ label: row.zonename, value: row.zoneid }];
@@ -220,16 +222,15 @@ export class GovernmentRespondentComponent implements OnInit {
       this.caseNo = row.casenumber;
       this.petitionerName = row.petitionername;
       this.selectedValue = (row.counterfiled) ? '1' : '0';
-      console.log('radio', this.selectedValue, this.judgementValue)
       this.gistOfCase = row.mainprayer;
       this.respondents = row.mainrespondents;
       this.respondentCadre = row.respondentsid;
       this.respondentCadreOptions = [{ label: row.respondentsname, value: row.respondentsid }];
       this.remarks = row.remarks;
-      const date = '01/01/'+row.caseyear;
+      const date = '01/01/' + row.caseyear;
       this.caseYear = new Date(date);
-  // }
-}
+    }
+  }
 
   onSave() {
     let _caseyear: any = this._datePipe.transform(this.caseYear, 'yyyy');
@@ -257,9 +258,7 @@ export class GovernmentRespondentComponent implements OnInit {
     }
     this._restApiService.post('Respondent/SaveRespondentCase', params).subscribe(res => {
       if (res) {
-        this._respondentForm.reset();
-        this._respondentForm.form.markAsUntouched();
-        this._respondentForm.form.markAsPristine();
+        this.clearForm();
         this.responseMsg = [{ severity: ResponseMessage.SuccessSeverity, detail: ResponseMessage.SuccessMessage }];
         setTimeout(() => this.responseMsg = [], 3000);
         this.assignDefault();
@@ -269,6 +268,18 @@ export class GovernmentRespondentComponent implements OnInit {
         setTimeout(() => this.responseMsg = [], 3000)
       }
     })
+  }
+
+  clearForm() {
+    this._respondentForm.reset();
+    this._respondentForm.form.markAsUntouched();
+    this._respondentForm.form.markAsPristine();
+    this.zoneOptions = [];
+    this.sroOptions = [];
+    this.districtOptions = [];
+    this.caseTypeOptions = [];
+    this.respondentCadreOptions = [];
+    this.highCourtNameOptions = [];
   }
 
 }

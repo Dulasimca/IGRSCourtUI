@@ -98,6 +98,7 @@ export class TableConstants {
         { field: 'counterfiled', header: 'Counter Filed' },
         { field: 'casestatusname', header: 'Case Status' },
         { field: 'regularnumber', header: 'Regular No. Received' },
+        {field:'writappealstatus', header: 'WritappealStatus'},
         { field: 'remarks', header: 'Remarks' }
     ];
 

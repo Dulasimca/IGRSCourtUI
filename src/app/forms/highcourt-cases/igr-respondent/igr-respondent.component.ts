@@ -51,6 +51,7 @@ export class IgrRespondentComponent implements OnInit {
   fromDate: any;
   toDate: any;
   isEditable: boolean = false;
+  disableAutoDisplay: boolean = false;
   userInfo!: User;
 
   @ViewChild('f', {static: false}) _respondentForm!: NgForm;
@@ -64,9 +65,11 @@ export class IgrRespondentComponent implements OnInit {
     this.userInfo = this._authService.getUserInfo();
   }
   assignDefault() {
+    this.disableAutoDisplay = false;
     this.selectedValue = '1';
+    this.judgementValue = '1';
     this.caseDate = new Date();
-    this.caseId = 0;
+    // this.caseId = 0;
   }
 
   onSelect(value: string) {
@@ -197,7 +200,8 @@ export class IgrRespondentComponent implements OnInit {
   }
 
   onEdit(row: any) {
-    if(row) {
+    if (row !== undefined && row !== null) {
+      this.disableAutoDisplay = true;
       this.caseId = row.courtcaseid;
       this.zone = { label: row.zonename, value: row.zoneid };
       this.zoneOptions = [{ label: row.zonename, value: row.zoneid }];
@@ -251,9 +255,7 @@ export class IgrRespondentComponent implements OnInit {
     }
     this._restApiService.post('Respondent/SaveRespondentCase', params).subscribe(res => {
       if (res) {
-        this._respondentForm.reset();
-        this._respondentForm.form.markAsUntouched();
-        this._respondentForm.form.markAsPristine();
+        this.clearForm();
         this.responseMsg = [{ severity: ResponseMessage.SuccessSeverity, detail: ResponseMessage.SuccessMessage }];
         setTimeout(() => this.responseMsg = [], 3000);
         this.assignDefault();
@@ -263,6 +265,18 @@ export class IgrRespondentComponent implements OnInit {
         setTimeout(() => this.responseMsg = [], 3000)
       }
     })
+  }
+
+  clearForm() {
+  this._respondentForm.reset();
+  this._respondentForm.form.markAsUntouched();
+  this._respondentForm.form.markAsPristine();
+  this.zoneOptions = [];
+  this.sroOptions = [];
+  this.districtOptions = [];
+  this.caseTypeOptions = [];
+  this.respondentCadreOptions = [];
+  this.highCourtNameOptions = [];
   }
 
 }

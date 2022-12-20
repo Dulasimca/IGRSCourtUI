@@ -28,6 +28,8 @@ export class WritAppealsComponent implements OnInit {
   caseTypeOptions: SelectItem[] = [];
   regularNumber: any;
   remarks:any;
+  writappealstatus: any;
+  writappealstatusOptions: SelectItem[] = [];
   caseId: number = 0;
   writId: number = 0;
   masters?: any;
@@ -139,7 +141,9 @@ export class WritAppealsComponent implements OnInit {
     this.sro = {label:row.sroname, value:row.sroid};
     this.sroOptions = [{label: row.sroname, value:row.sroid}];
     this.caseType = { label:row.casetypename, value:row.casetypeid};
-    this.caseTypeOptions = [{ label:row.casetypename, value:row.casetypeid }]
+    this.caseTypeOptions = [{ label:row.casetypename, value:row.casetypeid }];
+    // this.writappealstatus = [{ label: row.writappealsname, value:row.writappealsid }];
+    // this.writappealstatusOptions = [{ label: row.writappealsname, value:row.writappealsid }]
   } 
 
 
@@ -152,6 +156,7 @@ onSave() {
     'sroid': this.sro.value,
     'regularnumber': this.regularNumber,
     'remarks': this.remarks,
+    'writappealstatusid': this.writappealstatus,
     'casetypeid': this.caseType.value,
     'flag': true,
     'createddate': new Date(),
