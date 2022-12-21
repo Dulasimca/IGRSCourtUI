@@ -18,10 +18,10 @@
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_district"
+                                                <p-dropdown name="_district" [autoDisplayFirst]="disableAutoDisplay"
                                                     optionLabel="label" (onClick)="onSelect('DT')"
-                                                    [options]="districtOptions" [(ngModel)]="district"
-                                                    [autoDisplayFirst]="disableAutoDisplay" [required]="true">
+                                                    [options]="districtOptions" [(ngModel)]="district" [filter]="true" filterBy="label" 
+                                                    [readonly]="isDisabled" [required]="true">
                                                 </p-dropdown>
                                                 <label for="float-input">District</label>
                                             </span>
@@ -59,7 +59,7 @@
                                         </div>
                                         <div *ngIf="isDisabled" class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_writappealstatus" [options]="writappealstatusOptions"  
+                                                <p-dropdown name="_writappealstatus" [autoDisplayFirst]="false" [options]="writappealstatusOptions"  
                                                 optionLabel="label" (onClick)="onSelect('WS')" [(ngModel)]="writappealStatus" [required]="true">
                                                 </p-dropdown>
                                                 <label for="float-input">WritappealStatus</label>
