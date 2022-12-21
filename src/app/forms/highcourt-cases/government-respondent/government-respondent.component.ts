@@ -74,7 +74,7 @@ export class GovernmentRespondentComponent implements OnInit {
   }
 
   onSelect(value: string) {
-    if (this.masters) {
+    if (this.masters !== undefined && this.masters !== null) {
       let caseStatusList: any = [];
       let caseTypeList: any = [];
       let zoneList: any = [];
@@ -84,7 +84,7 @@ export class GovernmentRespondentComponent implements OnInit {
       let respondentList: any = [];
       switch (value) {
         case 'ZN':
-          if (this.masters.zone_Masters) {
+          if (this.masters.zone_Masters !== undefined && this.masters.zone_Masters !== null) {
             this.masters.zone_Masters.forEach((zn: any) => {
               zoneList.push(
                 { label: zn.zonename, value: zn.zoneid, }
@@ -94,7 +94,7 @@ export class GovernmentRespondentComponent implements OnInit {
           }
           break;
         case 'DT':
-          if (this.masters.district_Masters) {
+          if (this.masters.district_Masters !== undefined && this.masters.district_Masters !== null) {
             if (this.zone) {
               this.masters.district_Masters.forEach((dt: any) => {
                 if (dt.zoneid === this.zone.value) {
@@ -108,7 +108,7 @@ export class GovernmentRespondentComponent implements OnInit {
           }
           break;
         case 'SR':
-          if (this.masters.sro_Masters) {
+          if (this.masters.sro_Masters !== undefined && this.masters.sro_Masters !== null) {
             if (this.zone && this.district) {
               this.masters.sro_Masters.forEach((sr: any) => {
                 if (sr.zoneid === this.zone.value && sr.districtid === this.district.value) {
@@ -122,7 +122,7 @@ export class GovernmentRespondentComponent implements OnInit {
           }
           break;
         case 'CT':
-          if (this.masters.casetype_Masters) {
+          if (this.masters.casetype_Masters !== undefined && this.masters.casetype_Masters !== null) {
             this.masters.casetype_Masters.forEach((ct: any) => {
               caseTypeList.push(
                 { label: ct.casetypename, value: ct.casetypeid }
@@ -132,7 +132,7 @@ export class GovernmentRespondentComponent implements OnInit {
           }
           break;
         case 'HC':
-          if (this.masters.court_Masters) {
+          if (this.masters.court_Masters !== undefined && this.masters.court_Masters !== null) {
             this.masters.court_Masters.forEach((hc: any) => {
               courtList.push(
                 { label: hc.courtname, value: hc.courtid }
@@ -142,7 +142,7 @@ export class GovernmentRespondentComponent implements OnInit {
           }
           break;
         case 'SC':
-          if (this.masters.casestatus_Masters) {
+          if (this.masters.casestatus_Masters !== undefined && this.masters.casestatus_Masters !== null) {
             this.masters.casestatus_Masters.forEach((cs: any) => {
               caseStatusList.push(
                 { label: cs.casestatusname, value: cs.casestatusid }
@@ -152,7 +152,7 @@ export class GovernmentRespondentComponent implements OnInit {
           }
           break;
         case 'RC':
-          if (this.masters.respondentsmaster) {
+          if (this.masters.respondentsmaster !== undefined && this.masters.respondentsmaster !== null) {
             this.masters.respondentsmaster.forEach((rc: any) => {
               respondentList.push(
                 { label: rc.respondentsname, value: rc.respondentsid }
@@ -166,7 +166,7 @@ export class GovernmentRespondentComponent implements OnInit {
   }
 
   onLoadCases() {
-    if (this.fromDate && this.toDate) {
+    if (this.fromDate !== undefined && this.fromDate !== null && this.toDate !== undefined && this.toDate !== null) {
       this.data = [];
       this.loading = true;
       const params = new HttpParams().append('userid', this.userInfo.roleid)
@@ -192,12 +192,11 @@ export class GovernmentRespondentComponent implements OnInit {
   }
 
   onChangeRespondent() {
-    if (this.respondentCadre) {
+    if (this.respondentCadre !== undefined && this.respondentCadre !== null) {
       this.respondents += this.respondentCadre.label + ' , ';
-
-    }
-    if (this.respondentCadre.value === 15) {
-      this.isEditable = true;
+      if (this.respondentCadre.value === 15) {
+        this.isEditable = true;
+      }
     }
   }
 
