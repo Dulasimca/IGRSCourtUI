@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {RadioButtonModule} from 'primeng/radiobutton';
+import { RadioButtonModule } from 'primeng/radiobutton';
 import { MasterService } from 'src/app/services/master.service';
 import { RestapiService } from 'src/app/services/restapi.service';
 import { AuthService } from 'src/app/services/auth.service';
@@ -30,40 +30,37 @@ export class UsermasterComponent implements OnInit {
   sroOptions: any;
   roleOptions: any;
   masters?: any;
-  roleId: any;
+  roleId: any = null;
   cols: any[] = [];
   data: any[] = [];
   loading: boolean = false;
   responseMsg: Message[] = [];
-  hideSro: boolean = false;
-  hideDistrict: boolean = false;
-  hideZone: boolean = false;
   checkEmail: boolean = false;
-
-  @ViewChild('f', {static: false}) _respondentForm!: NgForm;
+  @ViewChild('f', { static: false }) _respondentForm!: NgForm;
   RowId: any;
   value: string = '';
+  readOnlyUsername: boolean = false;
 
-    constructor(private _restApiService: RestapiService, private _masterService: MasterService,
+  constructor(private _restApiService: RestapiService, private _masterService: MasterService,
     private _datePipe: DatePipe, private _authService: AuthService) { }
 
   ngOnInit(): void {
     this.masters = this._masterService.getMastersAll();
     this.cols = TableConstants.UserMasterColumns;
     this.onView();
-      }
+  }
 
   onSubmit() {
     const params = {
       'userid': this.RowId,
       'username': this.userName,
-      'mailid': this.mailId,
+      'mailid': (this.mailId !== null && this.mailId !== undefined) ? this.mailId : '',
       'password': this.password,
-      'mobile': this.mobileNo,
+      'mobile': (this.mobileNo !== null && this.mobileNo !== undefined) ? this.mobileNo : '',
       'zoneid': (this.zone !== null && this.zone !== undefined) ? this.zone : 0,
       'districtid': (this.district !== null && this.district !== undefined) ? this.district : 0,
       'sroid': (this.sro !== null && this.sro !== undefined) ? this.sro : 0,
-      'roleid': this.roleId,      
+      'roleid': this.roleId,
       'flag': (this.selectedType == 1) ? true : false
     }
     this._restApiService.post('UserMaster/SaveUserMaster', params).subscribe(res => {
@@ -80,15 +77,15 @@ export class UsermasterComponent implements OnInit {
         setTimeout(() => this.responseMsg = [], 3000)
       }
     })
-    }
+  }
 
-  onView(){
+  onView() {
     this.loading = true;
     this._restApiService.get('UserMaster/GetUserMaster').subscribe(res => {
-      if(res) {
-        res.forEach((i:any) => {
+      if (res) {
+        res.forEach((i: any) => {
           i.flag = (i.flag == true) ? 'Active' : 'InActive'
-        })  
+        })
       }
       this.data = res;
       this.loading = false;
@@ -103,12 +100,13 @@ export class UsermasterComponent implements OnInit {
     this.zone = null;
     this.zoneOptions = [];
     this.district = null;
-    this.districtOptions  = [];
+    this.districtOptions = [];
     this.sro = null;
     this.sroOptions = [];
     this.roleId = null;
-    this.roleOptions  = [];
+    this.roleOptions = [];
     this.RowId = 0;
+    this.readOnlyUsername = false;
   }
 
   onSelect(value: string) {
@@ -134,7 +132,7 @@ export class UsermasterComponent implements OnInit {
               this.masters.district_Masters.forEach((dt: any) => {
                 if (dt.zoneid === this.zone) {
                   districtList.push(
-                    { label: dt.districtname, value: dt.districtid}
+                    { label: dt.districtname, value: dt.districtid }
                   )
                 }
               })
@@ -148,7 +146,7 @@ export class UsermasterComponent implements OnInit {
               this.masters.sro_Masters.forEach((sr: any) => {
                 if (sr.zoneid === this.zone && sr.districtid === this.district) {
                   sroList.push(
-                    { label: sr.sroname, value: sr.sroid}
+                    { label: sr.sroname, value: sr.sroid }
                   )
                 }
               })
@@ -156,44 +154,17 @@ export class UsermasterComponent implements OnInit {
             this.sroOptions = sroList;
           }
           break;
-        case 'R':        
-          this.masters.rolemaster.forEach((r:any) => {
+        case 'R':
+          this.masters.rolemaster.forEach((r: any) => {
             roleList.push(
-              { label: r.rolename, value: r.roleid}
+              { label: r.rolename, value: r.roleid }
             )
           })
-          }
           this.roleOptions = roleList;
-      }
-    }
-
-    onRoleChange() {
-      if(this.masters.rolemaster) {
-        if(this.roleId === 3) {
-          this.hideSro = true;
-          this.hideDistrict = false;
-          this.sro = null;
-        } else {
-          this.hideSro = false;
-      }
-      if(this.roleId === 2) {
-        this.hideDistrict = true;
-        this.hideSro = true;
-        this.district = null;
-      } else {
-        this.hideDistrict = false;
-      }
-      if(this.roleId === 1) {
-        this.hideZone = true;
-        this.hideDistrict = true;
-        this.hideSro  = true;
-        this.zone = null;
-      } else {
-        this.hideZone = false;
+          break;
       }
     }
   }
-
 
   onShowPwd() {
     var inputValue = (<HTMLInputElement>document.getElementById('pwd'));
@@ -207,34 +178,40 @@ export class UsermasterComponent implements OnInit {
   }
 
   onEdit(row: any) {
+    this.readOnlyUsername = true;
     this.RowId = row.userid;
     this.userName = row.username;
     this.mailId = row.mailid;
     this.password = row.password;
     this.mobileNo = row.mobile;
     this.zone = row.zoneid;
-    this.zoneOptions = [{ label: row.zonename, value: row.zoneid}];
+    this.zoneOptions = [{ label: row.zonename, value: row.zoneid }];
     this.district = row.districtid;
-    this.districtOptions  = [{ label: row.districtname, value: row.districtid}];
+    this.districtOptions = [{ label: row.districtname, value: row.districtid }];
     this.sro = row.sroid;
-    this.sroOptions = [{ label: row.sroname, value: row.sroid}]; 
+    this.sroOptions = [{ label: row.sroname, value: row.sroid }];
     this.roleId = row.roleid;
-    this.roleOptions  = [{ label: row.rolename, value: row.roleid}];
+    this.roleOptions = [{ label: row.rolename, value: row.roleid }];
     this.selectedType = (row.flag == 'Active') ? 1 : 0;
-    this.onRoleChange();
   }
 
   onCheck() {
-    this.data.forEach( i => {
-      if(i.username  === this.userName) {
+    if(this.RowId === 0) {
+    this.data.forEach(i => {
+      if (i.username === this.userName) {
         this.responseMsg = [{ severity: ResponseMessage.WarnSeverity, detail: ' Username already exists, Please enter valid Username' }];
-          this.userName = null;
-      } else{
-      if (i.mailid === this.mailId) {
-        this.responseMsg = [{ severity: ResponseMessage.WarnSeverity, detail: ' EmailId  already exists, Please enter valid Email' }];
-        this.mailId=null;
+        this.userName = null;
+      } else {
+       
       }
-    }
+      if (i.mailid === this.mailId) {
+        console.log('mail',this.mailId)
+        this.responseMsg = [{ severity: ResponseMessage.WarnSeverity, detail: ' EmailId  already exists, Please enter valid Email' }];
+        this.mailId = null;
+      } else{
+
+      }
     })
-  }  
+  }
+}
 }

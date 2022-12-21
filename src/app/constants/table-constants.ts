@@ -228,14 +228,14 @@ export class TableConstants {
     ];
 
     public static readonly UserMasterColumns: any[] = [
-        { field: 'username', header: 'User Name'},
-        { field: 'mailid', header: 'mailid'},
-        {field: 'password', header: 'Password'},
-        { field: 'mobile', header: 'Mobile'},
+        { field: 'rolename', header: 'Role Name'},
         { field: 'zonename', header: 'Zone Name'},
         { field: 'districtname', header: 'District Name'},
         { field: 'sroname', header: 'Sro Name'},
-        { field: 'rolename', header: 'Role Name'},
+        { field: 'username', header: 'User Name'},
+        {field: 'password', header: 'Password'},
+        { field: 'mailid', header: 'mailid'},
+        { field: 'mobile', header: 'Mobile'},          
         { field: 'flag', header: 'Status'}
     ];
 
