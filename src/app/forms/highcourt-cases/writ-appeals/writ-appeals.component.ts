@@ -27,9 +27,9 @@ export class WritAppealsComponent implements OnInit {
   caseType: any;
   caseTypeOptions: SelectItem[] = [];
   regularNumber: any;
-  remarks:any;
-  writappealstatus: any;
+  writappealStatus: any;
   writappealstatusOptions: SelectItem[] = [];
+  remarks:any;
   caseId: number = 0;
   writId: number = 0;
   masters?: any;
@@ -39,6 +39,7 @@ export class WritAppealsComponent implements OnInit {
   loading: boolean = false;
   roleId: any;
   isDisabled: boolean = false;
+  disableAutoDisplay: boolean = false;
 
   @ViewChild('f', {static: false}) _writAppealsForm!: NgForm;
   constructor(private _restApiService: RestapiService, private _masterService: MasterService,
@@ -50,14 +51,16 @@ export class WritAppealsComponent implements OnInit {
     this.roleId = this._authService.getUserInfo().roleId;
   }
 
+  assignDefault() {
+    this.disableAutoDisplay = false;
+  }
+
   onSelect(value: string) {
     if (this.masters) {
-      let caseStatusList: any = [];
       let caseTypeList: any = [];
       let zoneList: any = [];
       let districtList: any = [];
       let sroList: any = [];
-      // let courtList: any = [];
       switch (value) {
         case 'ZN':
           if (this.masters.zone_Masters) {
@@ -128,12 +131,15 @@ export class WritAppealsComponent implements OnInit {
     })
   }
 
-  onEdit(row: any) {
+  onEdit(row: any){
+    if (row !== undefined && row !== null) {
+    this.disableAutoDisplay = true;
     this.isDisabled = true;
     this.writId = row.writappealsid;
     this.caseId = row.courtcaseid;
     this.remarks = row.remarks;
     this.regularNumber = row.regularnumber;
+    this.writappealStatus = row.writappealstatus;
     this.zone = { label: row.zonename, value: row.zoneid, };
     this.zoneOptions = [ { label: row.zonename, value: row.zoneid, }];
     this.district = { label: row.districtname, value: row.districtid };
@@ -142,10 +148,8 @@ export class WritAppealsComponent implements OnInit {
     this.sroOptions = [{label: row.sroname, value:row.sroid}];
     this.caseType = { label:row.casetypename, value:row.casetypeid};
     this.caseTypeOptions = [{ label:row.casetypename, value:row.casetypeid }];
-    // this.writappealstatus = [{ label: row.writappealsname, value:row.writappealsid }];
-    // this.writappealstatusOptions = [{ label: row.writappealsname, value:row.writappealsid }]
   } 
-
+  }
 
 onSave() {
    const params = {
@@ -156,7 +160,7 @@ onSave() {
     'sroid': this.sro.value,
     'regularnumber': this.regularNumber,
     'remarks': this.remarks,
-    'writappealstatusid': this.writappealstatus,
+    'writappealstatusid': this.writappealStatus,
     'casetypeid': this.caseType.value,
     'flag': true,
     'createddate': new Date(),
@@ -165,9 +169,7 @@ onSave() {
   this._restApiService.post('Writappeals/SaveWritappealsMaster', params).subscribe(res => {
     if (res) {
       this.onView();
-      this._writAppealsForm.reset();
-      this._writAppealsForm.form.markAsUntouched();
-      this._writAppealsForm.form.markAsPristine();
+      this.clearForm();
       this.isDisabled = false;
       this.data = [];
       this.loading = true;
@@ -176,11 +178,22 @@ onSave() {
       this.writId = 0;
       this.caseId = 0;
       this.onSave();
-    } else {
+    } 
+    else {
       this.responseMsg = [{ severity: ResponseMessage.ErrorSeverity, detail: ResponseMessage.ErrorMessage }];
       setTimeout(() => this.responseMsg = [], 3000)
     }
   })
-
 }
+
+clearForm() {
+  this._writAppealsForm.reset();
+  this._writAppealsForm.form.markAsUntouched();
+  this._writAppealsForm.form.markAsPristine();
+  this.zoneOptions = [];
+  this.sroOptions = [];
+  this.districtOptions = [];
+  this.caseTypeOptions = [];
+}
+  
 }

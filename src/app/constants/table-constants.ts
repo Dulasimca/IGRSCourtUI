@@ -66,7 +66,7 @@ export class TableConstants {
         { field: 'highcourtname', header: 'Highcourt Name' },
         { field: 'petitionername', header: 'Petitioner Name' },
         { field: 'respondentsname', header: 'Respondents Name' },
-        { field: 'stageofcase', header: 'Case Status' },
+        { field: 'casestatus', header: 'Case Status' },
         { field: 'gistofcase', header: 'Gist of Case' },
         { field: 'subject', header: 'Subject' },
         { field: 'refno', header: 'DIG/DR/SR-RefNo' }
@@ -79,12 +79,13 @@ export class TableConstants {
         { field: 'caseno', header: 'DiaryNo/SLP Case No.' },
         { field: 'casedate', header: 'CaseDate' },
         { field: 'highcourtreference', header: 'Highcourt Reference' },
-        { field: 'petitionername', header: 'Petitioner Name' },
-        { field: 'respondentsname', header: 'Respondents Name' },
+        { field: 'petitionername', header: 'Petitioner' },
+        { field: 'respondentsname', header: 'Respondents' },
         { field: 'casefiledby', header: 'Casefiled By' },
         { field: 'counterfiled', header: 'Counter Filed' },
         { field: 'stageofcase', header: 'Stage of Case' },
-        { field: 'gistofcase', header: 'Gist of Case' }
+        { field: 'gistofcase', header: 'Gist of Case & Main prayer' },
+        { field: 'remarks', header: 'Remarks'}
     ];
 
     public static readonly writeAppealsColumns: any[] = [
@@ -229,14 +230,14 @@ export class TableConstants {
     ];
 
     public static readonly UserMasterColumns: any[] = [
-        { field: 'username', header: 'User Name'},
-        { field: 'mailid', header: 'mailid'},
-        {field: 'password', header: 'Password'},
-        { field: 'mobile', header: 'Mobile'},
+        { field: 'rolename', header: 'Role Name'},
         { field: 'zonename', header: 'Zone Name'},
         { field: 'districtname', header: 'District Name'},
         { field: 'sroname', header: 'Sro Name'},
-        { field: 'rolename', header: 'Role Name'},
+        { field: 'username', header: 'User Name'},
+        {field: 'password', header: 'Password'},
+        { field: 'mailid', header: 'mailid'},
+        { field: 'mobile', header: 'Mobile'},          
         { field: 'flag', header: 'Status'}
     ];
 

@@ -22,6 +22,7 @@ export class CasestatusComponent implements OnInit {
   caseId: any;
 
   @ViewChild('f', {static: false}) _respondentForm!: NgForm;
+  table: any;
   
   constructor(private _restApiService: RestapiService) { }
 
