@@ -39,6 +39,8 @@ export class SupremecourtCaseDetailsComponent implements OnInit {
   cols: any[] = [];
   data: any[] = [];
   isEditable: boolean = false;
+  slpType: any;
+  slpOptions: SelectItem[] = [];
 
   constructor() { }
 

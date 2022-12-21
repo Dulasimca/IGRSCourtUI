@@ -38,10 +38,18 @@
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_slpnumber" optionLabel="label"
-                                                     [options]="slpnumberOptions" [(ngModel)]="slpNumber"
+                                                <p-dropdown name="_slp" optionLabel="label"
+                                                    [options]="slpOptions" [(ngModel)]="slpType"
                                                     [autoDisplayFirst]="disableAutoDisplay" [required]="true">
                                                 </p-dropdown>
+                                                <label for="float-input">SLP Type</label>
+                                            </span>
+                                        </div>
+                                        <div class="col-12 md:col-4 lg:col-2">
+                                            <span class="p-float-label">
+                                                <input name="_slpnumber"  
+                                                    [(ngModel)]="slpNumber" pInputText
+                                                  [required]="true"/>
                                                 <label for="float-input">Diary No./SLP Case No.</label>
                                             </span>
                                         </div>
@@ -52,16 +60,17 @@
                                                 <label for="float-input">Case Date</label>
                                             </span>
                                         </div>
+                                        
+                                    </div>
+                                </div>
+                                <div #row2 class="col-12 md:col-11 lg:col-11">
+                                    <div class="grid">
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <input name="_caseno" type="text" [(ngModel)]="caseNo" pInputText>
                                                 <label for="float-input">HighCourt Ref No.</label>
                                             </span>
                                         </div>
-                                    </div>
-                                </div>
-                                <div #row2 class="col-12 md:col-11 lg:col-11">
-                                    <div class="grid">
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <input name="_petitionername" type="text" [(ngModel)]="petitionerName" pInputText>
@@ -96,6 +105,11 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        
+                                    </div>
+                                </div>
+                                <div #row3 class="col-12 md:col-11 lg:col-11">
+                                    <div class="grid">
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <div class="div-radio-box">
                                                 <label for="_counterFiled">Counter Filed</label><br>
@@ -107,10 +121,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div #row3 class="col-12 md:col-11 lg:col-11">
-                                    <div class="grid">
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <p-dropdown name="_stateofcase"
