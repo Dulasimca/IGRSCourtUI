@@ -15,10 +15,12 @@ export class SupremecourtCaseDetailsComponent implements OnInit {
   district: any;
   sroOptions: SelectItem[] = [];
   sro: any;
-  caseTypeOptions: SelectItem[] = [];
-  caseType: any;
+  caseno: any;
   caseNo: any;
   caseDate: any;
+  respondents: string = '';
+  respondentCadre: any;
+  respondentCadreOptions: any;
   highCourtNameOptions: SelectItem[] = [];
   highCourtName: any;
   stateOfCaseOptions: SelectItem[] = [];
@@ -27,18 +29,24 @@ export class SupremecourtCaseDetailsComponent implements OnInit {
   petitionerName: any;
   respondentsName: any;
   gistOfCase: any;
-  Referencenumber:any;
+  remarks: any;
   casefiled:any;
-  diarycaseNo:any;
+  slpNumber: any;
+  slpnumberOptions: SelectItem[] = [];
+  filedValue: string = '1';
   selectedValue: string = '1';
+  disableAutoDisplay: boolean = false;
   cols: any[] = [];
   data: any[] = [];
+  isEditable: boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {
     this.cols = TableConstants.supremeCourtCaseColumns;
     this.data = [];
   }
+
 
   onSave() { }
 
