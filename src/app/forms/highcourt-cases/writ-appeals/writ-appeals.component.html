@@ -60,7 +60,7 @@
                                         <div *ngIf="isDisabled" class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <p-dropdown name="_writappealstatus" [options]="writappealstatusOptions"  
-                                                 [(ngModel)]="writappealStatus" [required]="true">
+                                                optionLabel="label" (onClick)="onSelect('WS')" [(ngModel)]="writappealStatus" [required]="true">
                                                 </p-dropdown>
                                                 <label for="float-input">WritappealStatus</label>
                                             </span>

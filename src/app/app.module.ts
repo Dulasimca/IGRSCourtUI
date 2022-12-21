@@ -60,6 +60,7 @@ import { SlpMasterComponent } from './masters/slp-master/slp-master.component';
 import { JudgementMasterComponent } from './masters/judgement-master/judgement-master.component';
 import { RespondantMasterComponent } from './masters/respondant-master/respondant-master.component';
 import { ChangePasswordComponent } from './masters/change-password/change-password.component';
+import { WritappealstatusMasterComponent } from './masters/writappealstatus-master/writappealstatus-master.component';
 
 
 
@@ -100,6 +101,7 @@ import { ChangePasswordComponent } from './masters/change-password/change-passwo
     JudgementMasterComponent,
     RespondantMasterComponent,
     ChangePasswordComponent,
+    WritappealstatusMasterComponent,
   ],
   imports: [
     BrowserModule,

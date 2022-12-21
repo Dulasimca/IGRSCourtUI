@@ -61,6 +61,7 @@ export class WritAppealsComponent implements OnInit {
       let zoneList: any = [];
       let districtList: any = [];
       let sroList: any = [];
+      let writappealStatusList: any = [];
       switch (value) {
         case 'ZN':
           if (this.masters.zone_Masters) {
@@ -110,6 +111,16 @@ export class WritAppealsComponent implements OnInit {
             this.caseTypeOptions = caseTypeList;
           }
           break;
+          case 'WS':
+            if (this.masters.writappealstatus_Masters) {
+              this.masters.writappealstatus_Masters.forEach((ws: any) => {
+                writappealStatusList.push(
+                  { label: ws.writappealstatusname, value: ws.writappealstatusid }
+                )
+              })
+              this.writappealstatusOptions = writappealStatusList;
+            }
+            break;
       }
     }
   }
@@ -139,7 +150,8 @@ export class WritAppealsComponent implements OnInit {
     this.caseId = row.courtcaseid;
     this.remarks = row.remarks;
     this.regularNumber = row.regularnumber;
-    this.writappealStatus = row.writappealstatus;
+    this.writappealStatus = { label: row.writappealstatusname, value: row.writappealstatusid };
+    this.writappealstatusOptions = [{ label: row.writappealstatusname, value: row.writappealstatusid }];
     this.zone = { label: row.zonename, value: row.zoneid, };
     this.zoneOptions = [ { label: row.zonename, value: row.zoneid, }];
     this.district = { label: row.districtname, value: row.districtid };

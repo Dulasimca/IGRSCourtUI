@@ -44,10 +44,10 @@ export class TableConstants {
         { field: 'casetype', header: 'Case Type' },
         { field: 'caseno', header: 'Case No' },
         { field: 'casedate', header: 'Case Date' },
-        { field: 'nameofcourt', header: 'Name of Court' },
+        { field: 'courtname', header: 'Name of Court' },
         { field: 'gistofcase', header: 'Gist of Case' },
-        { field: 'petitionername', header: 'Petitioner Name' },
-        { field: 'respondentsname', header: 'Respondents Name' },
+        { field: 'petitionername', header: 'Petitioner' },
+        { field: 'mainrespondents', header: 'Respondents' },
         { field: 'gistofopinionsought', header: 'Gistof Opinion Sought' },
         { field: 'gistofopinionreceived', header: 'Gistof Opinion Received' },
         { field: 'opinionreceived', header: 'Opinion Received' },
@@ -63,9 +63,9 @@ export class TableConstants {
         { field: 'caseno', header: 'CaseNo' },
         { field: 'casedate', header: 'CaseDate' },
         { field: 'year', header: 'Year' },
-        { field: 'highcourtname', header: 'Highcourt Name' },
+        { field: 'courtname', header: 'Highcourt Name' },
         { field: 'petitionername', header: 'Petitioner Name' },
-        { field: 'respondentsname', header: 'Respondents Name' },
+        { field: 'mainrespondents', header: 'Respondents Name' },
         { field: 'casestatus', header: 'Case Status' },
         { field: 'gistofcase', header: 'Gist of Case' },
         { field: 'subject', header: 'Subject' },
@@ -269,5 +269,10 @@ export class TableConstants {
         { field: 'icon',header:'Icon'},
         { field: 'rolename', header: 'Role Name'},   
         { field: 'isactive', header: 'Status'}        
+    ];
+
+    public static readonly writappealstatusmasterColumns: any[] = [
+        { field: 'Writappealstatusname', header: 'Writappealstatus Name'},
+        { field: 'flag', header: 'Status'}
     ];
 }
