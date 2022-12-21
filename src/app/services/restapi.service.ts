@@ -7,9 +7,7 @@ import { catchError, Observable, throwError } from 'rxjs';
 })
 export class RestapiService {
   BASEURL = 'https://localhost:44352/api/';
-  // BASEURL = 'http://49.249.169.114:81/api/';
-   BASEURL = 'https://localhost:44352/api/';
-  // BASEURL = 'http://49.249.169.114:81/api/';
+  //BASEURL = 'http://49.249.169.114:81/api/';
   public HttpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded',

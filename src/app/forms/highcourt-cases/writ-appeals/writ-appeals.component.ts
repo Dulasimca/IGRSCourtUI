@@ -155,10 +155,8 @@ export class WritAppealsComponent implements OnInit {
     this.writappealstatusOptions = [{ label: row.writappealstatusname, value: row.writappealstatusid }];
     this.zone = { label: row.zonename, value: row.zoneid, };
     this.zoneOptions = [ { label: row.zonename, value: row.zoneid, }];
-    console.log('onDT,', this.district,this.districtOptions)
     this.district = { label: row.districtname, value: row.districtid };
     this.districtOptions = [{ label: row.districtname, value: row.districtid }];
-    console.log('onDT,', this.district,this.districtOptions)
     this.sro = {label:row.sroname, value:row.sroid};
     this.sroOptions = [{label: row.sroname, value:row.sroid}];
     this.caseType = { label:row.casetypename, value:row.casetypeid};

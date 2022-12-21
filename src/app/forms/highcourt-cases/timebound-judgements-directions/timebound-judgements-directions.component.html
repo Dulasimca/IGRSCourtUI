@@ -11,65 +11,59 @@
                                     <div class="grid">
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_zone" [autoDisplayFirst]="false"
-                                                    [options]="zoneOptions" [(ngModel)]="zone" [required]="true">
+                                                <p-dropdown name="_zone" optionLabel="label"
+                                                    (onClick)="onSelect('ZN')" [options]="zoneOptions"
+                                                    [autoDisplayFirst]="disableAutoDisplay" [(ngModel)]="zone" [required]="true">
                                                 </p-dropdown>
                                                 <label for="float-input">Zone</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_district" [autoDisplayFirst]="false"
+                                                <p-dropdown name="_district"
+                                                    optionLabel="label" (onClick)="onSelect('DT')"
                                                     [options]="districtOptions" [(ngModel)]="district"
-                                                    [required]="true">
+                                                    [autoDisplayFirst]="disableAutoDisplay" [required]="true">
                                                 </p-dropdown>
                                                 <label for="float-input">District</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_sro" [autoDisplayFirst]="false"
-                                                    [options]="sroOptions" [(ngModel)]="sro" [required]="true">
+                                                <p-dropdown name="_sro" optionLabel="label"
+                                                    (onClick)="onSelect('SR')" [options]="sroOptions" [(ngModel)]="sro"
+                                                    [autoDisplayFirst]="disableAutoDisplay" [required]="true">
                                                 </p-dropdown>
                                                 <label for="float-input">SRO</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_casetype" [autoDisplayFirst]="false"
+                                                <p-dropdown name="_casetype"
+                                                    optionLabel="label" (onClick)="onSelect('CT')"
                                                     [options]="caseTypeOptions" [(ngModel)]="caseType"
-                                                    [required]="true">
+                                                    [autoDisplayFirst]="disableAutoDisplay" [required]="true">
                                                 </p-dropdown>
                                                 <label for="float-input">Case Type</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_courttype" [autoDisplayFirst]="false"
-                                                    [options]="courtTypeOptions" [(ngModel)]="courtType"
-                                                    [required]="true">
+                                                <p-dropdown name="_writappealstatus" [autoDisplayFirst]="false" [options]="writappealstatusOptions"  
+                                                optionLabel="label" (onClick)="onSelect('WS')" [(ngModel)]="writappealStatus" [required]="true">
                                                 </p-dropdown>
-                                                <label for="float-input">Court Type</label>
+                                                <label for="float-input">WritappealStatus</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
-                                            <span class="p-float-label">
-                                                <input name="_caseno" type="text" [(ngModel)]="caseNo" pInputText>
-                                                <label for="float-input">Case No.</label>
-                                            </span>
+                                            <button pButton pRipple type="button" label="View" (click)="onView()"
+                                            [disabled]="!f.valid"></button>
                                         </div>
                                     </div>
                                 </div>
                                 <div #row2 class="col-12 md:col-11 lg:col-11">
-                                    <div class="grid">
-                                        <div class="col-12 md:col-4 lg:col-2">
-                                            <span class="p-float-label">
-                                                <p-calendar name="_caseyear" [(ngModel)]="caseYear" view="year" dateFormat="yy"
-                                                    inputId="yearpicker"></p-calendar>
-                                                <label for="float-input">Case Year</label>
-                                            </span>
-                                        </div>
-                                        <div class="col-12 md:col-4 lg:col-2">
+                                    <div class="grid">                                       
+                                        <div *ngIf="isDisabled" class="col-12 md:col-4 lg:col-2">
                                             <div>
                                                 <span class="p-float-label">
                                                     <p-calendar name="_judgementdate" [showIcon]="true"
@@ -78,66 +72,62 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <div class="col-12 md:col-4 lg:col-2">
-                                            <span class="p-float-label">
-                                                <input name="_petitionername" type="text" [(ngModel)]="petitionerName"
-                                                    pInputText>
-                                                <label for="float-input" s>Petitioner Name</label>
-                                            </span>
-                                        </div>
-                                        <div class="col-12 md:col-4 lg:col-2">
-                                            <span class="p-float-label">
-                                                <input name="_respondentsname" type="text" [(ngModel)]="respondentsName"
-                                                    pInputText>
-                                                <label for="float-input">Respondents Name</label>
-                                            </span>
-                                        </div>
-                                        <div class="col-12 md:col-4 lg:col-2">
+                                        <div *ngIf="isDisabled" class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <p-calendar name="_receiptdate" [showIcon]="true"
                                                     [(ngModel)]="receiptDate"></p-calendar>
                                                 <label for="float-input">Receipt Date</label>
                                             </span>
                                         </div>
-                                        <div class="col-12 md:col-4 lg:col-2">
+                                        <div *ngIf="isDisabled" class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <input name="_timelimit" type="text" [(ngModel)]="timeLimit" pInputText>
                                                 <label for="float-input">TimeLimit (weeks/months)</label>
+                                            </span>
+                                        </div>
+                                        <div *ngIf="isDisabled" class="col-12 md:col-4 lg:col-2">
+                                            <span class="p-float-label">
+                                                <p-dropdown name="_respondentcadre"
+                                                    optionLabel="label" (onClick)="onSelect('RC')" (onChange)="onChangeRespondent()"
+                                                    [options]="respondentCadreOptions" [(ngModel)]="respondentCadre"
+                                                    [autoDisplayFirst]="disableAutoDisplay" [editable]="isEditable">
+                                                </p-dropdown>
+                                                <label for="float-input">Directed To</label>
+                                            </span>
+                                        </div>
+                                        <div *ngIf="isDisabled" class="col-12 md:col-4 lg:col-4">
+                                            <span class="p-float-label">
+                                                <input name="_respondents" type="text" [(ngModel)]="respondents"
+                                                   required pInputText>
+                                                <label for="float-input">Direction List</label>
                                             </span>
                                         </div>
                                     </div>
                                 </div>
                                 <div #row3 class="col-12 md:col-11 lg:col-11">
                                     <div class="grid">
-                                        <div class="col-12 md:col-4 lg:col-2">
+                                        <div *ngIf="isDisabled" class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <p-calendar name="_expirydate" [showIcon]="true"
                                                     [(ngModel)]="expiryDate"></p-calendar>
                                                 <label for="float-input">Expiry Date</label>
                                             </span>
-                                        </div>
-                                        <div class="col-12 md:col-4 lg:col-2">
-                                            <span class="p-float-label">
-                                                <input name="_directedto" type="text" [(ngModel)]="directedTo"
-                                                    pInputText>
-                                                <label for="float-input">Directed To</label>
-                                            </span>
-                                        </div>
-                                        <div class="col-12 md:col-4 lg:col-2">
+                                        </div>  
+                                        <div *ngIf="isDisabled" class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <input name="_natureofdirection" type="text"
                                                     [(ngModel)]="natureofDirection" pInputText>
                                                 <label for="float-input">Nature of Direction</label>
                                             </span>
                                         </div>
-                                        <div class="col-12 md:col-4 lg:col-3">
+                                        <div *ngIf="isDisabled" class="col-12 md:col-4 lg:col-3">
                                             <span class="p-float-label">
                                                 <input name="_compliedornot" type="text" [(ngModel)]="compliedorNot"
                                                     pInputText>
                                                 <label for="float-input">CompliedOrNot/Reason</label>
                                             </span>
                                         </div>
-                                        <div class="col-12 md:col-4 lg:col-3">
+                                        <div *ngIf="isDisabled" class="col-12 md:col-4 lg:col-3">
                                             <span class="p-float-label">
                                                 <input name="_remarks" type="text" [(ngModel)]="remarks" pInputText>
                                                 <label for="float-input">Remarks</label>

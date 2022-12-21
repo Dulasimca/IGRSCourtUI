@@ -27,11 +27,11 @@ export class TableConstants {
         { field: 'year', header: 'Year' },
         { field: 'judgementdate', header: 'Judgement Date' },
         { field: 'petitionername', header: 'Petitioner Name' },
-        { field: 'respondentsname', header: 'Respondents Name' },
+        { field: 'mainrespondents', header: 'Respondents Name' },
         { field: 'receiptdate', header: 'Receipt Date' },
         { field: 'timelimit', header: 'Time Limit' },
         { field: 'expirydate', header: 'Expiry Date' },
-        { field: 'directedto', header: 'Directed To' },
+        { field: 'mainrespondents', header: 'Directed To' },
         { field: 'natureofdirection', header: 'Nature of Direction' },
         { field: 'compliedornot', header: 'Complied(or)Not' },
         { field: 'remarks', header: 'Remarks' },
@@ -99,7 +99,7 @@ export class TableConstants {
         { field: 'counterfiled', header: 'Counter Filed' },
         { field: 'casestatusname', header: 'Case Status' },
         { field: 'regularnumber', header: 'Regular No. Received' },
-        {field:'writappealstatus', header: 'WritappealStatus'},
+        {field:'writappealstatusname', header: 'WritappealStatus'},
         { field: 'remarks', header: 'Remarks' }
     ];
 
