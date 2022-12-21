@@ -16,6 +16,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { TableModule } from 'primeng/table';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
+import { TooltipModule } from 'primeng/tooltip';
+import { KeyFilterModule } from 'primeng/keyfilter';
+import { PaginatorModule } from 'primeng/paginator';
 
 import { AppComponent } from './app.component';
 import { GovernmentRespondentComponent } from './forms/highcourt-cases/government-respondent/government-respondent.component';
@@ -56,9 +59,7 @@ import { RolemasterComponent } from './masters/rolemaster/rolemaster.component';
 import { SlpMasterComponent } from './masters/slp-master/slp-master.component';
 import { JudgementMasterComponent } from './masters/judgement-master/judgement-master.component';
 import { RespondantMasterComponent } from './masters/respondant-master/respondant-master.component';
-import { PaginatorModule } from 'primeng/paginator';
 import { ChangePasswordComponent } from './masters/change-password/change-password.component';
-import {KeyFilterModule} from 'primeng/keyfilter';
 
 
 
@@ -119,6 +120,7 @@ import {KeyFilterModule} from 'primeng/keyfilter';
     MessagesModule,
     MessageModule,
     PaginatorModule,
+    TooltipModule,
     KeyFilterModule
   ],
   providers: [AuthService, AuthGuard, MasterService, RestapiService, DatePipe, DateConverter],

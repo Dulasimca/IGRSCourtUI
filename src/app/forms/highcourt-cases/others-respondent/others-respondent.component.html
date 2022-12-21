@@ -11,7 +11,7 @@
                                     <div class="grid">
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_zone" [autoDisplayFirst]="false" optionLabel="label"
+                                                <p-dropdown name="_zone" [autoDisplayFirst]="disableAutoDisplay" optionLabel="label"
                                                     (onClick)="onSelect('ZN')" [options]="zoneOptions"
                                                     [(ngModel)]="zone" [required]="true">
                                                 </p-dropdown>
@@ -20,7 +20,7 @@
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_district" [autoDisplayFirst]="false"
+                                                <p-dropdown name="_district" [autoDisplayFirst]="disableAutoDisplay"
                                                     optionLabel="label" (onClick)="onSelect('DT')"
                                                     [options]="districtOptions" [(ngModel)]="district"
                                                     [required]="true">
@@ -30,7 +30,7 @@
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_sro" [autoDisplayFirst]="false" optionLabel="label"
+                                                <p-dropdown name="_sro" [autoDisplayFirst]="disableAutoDisplay" optionLabel="label"
                                                     (onClick)="onSelect('SR')" [options]="sroOptions" [(ngModel)]="sro"
                                                     [required]="true">
                                                 </p-dropdown>
@@ -39,7 +39,7 @@
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_casetype" [autoDisplayFirst]="false"
+                                                <p-dropdown name="_casetype" [autoDisplayFirst]="disableAutoDisplay"
                                                     optionLabel="label" (onClick)="onSelect('CT')"
                                                     [options]="caseTypeOptions" [(ngModel)]="caseType"
                                                     [required]="true">
@@ -73,7 +73,7 @@
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_highcourtname" [autoDisplayFirst]="false"
+                                                <p-dropdown name="_highcourtname" [autoDisplayFirst]="disableAutoDisplay"
                                                     optionLabel="label" (onClick)="onSelect('HC')"
                                                     [options]="highCourtNameOptions" [(ngModel)]="highCourtName"
                                                     [required]="true">
@@ -90,10 +90,10 @@
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_respondentcadre" [autoDisplayFirst]="false" 
+                                                <p-dropdown name="_respondentcadre" [autoDisplayFirst]="disableAutoDisplay" 
                                                     optionLabel="label" (onClick)="onSelect('RC')" (onChange)="onChangeRespondent()"
                                                     [options]="respondentCadreOptions" [(ngModel)]="respondentCadre"
-                                                     [editable]="isEditable">
+                                                     [editable]="isEditable"  [required]="true">
                                                 </p-dropdown>
                                                 <label for="float-input">Respondent Designation</label>
                                             </span>
@@ -131,7 +131,7 @@
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_stateofcase" [autoDisplayFirst]="false"
+                                                <p-dropdown name="_stateofcase" [autoDisplayFirst]="disableAutoDisplay"
                                                     optionLabel="label" (onClick)="onSelect('SC')"
                                                     [options]="stateOfCaseOptions" [(ngModel)]="stateOfCase"
                                                     [required]="true">
@@ -205,7 +205,8 @@
                                     {{rowData[col.field]}}
                                 </td>
                                 <td>
-                                    <p-button icon="pi pi-pencil" (onClick)="onEdit(rowData)"></p-button>
+                                    <button type="button" pButton pRipple icon="pi pi-pencil" (click)="onEdit(rowData)"
+                                    label="Edit" tooltipPosition="bottom"></button>
                                 </td>
                             </tr>
                         </ng-template>

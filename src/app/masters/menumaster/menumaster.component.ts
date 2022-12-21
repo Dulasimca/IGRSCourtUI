@@ -145,7 +145,6 @@ export class MenumasterComponent implements OnInit {
     this.roleidOptions = [{ label: row.rolename, value: row.roleid}];
     this.selectedType = (row.isactive === 'Active') ? 1 : 0;
     this.priority = row.priorities;
-    console.log('parent',this.parentId)
   }
   
   onCheck() {

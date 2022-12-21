@@ -51,11 +51,12 @@ export class OthersRespondentComponent implements OnInit {
   fromDate: any;
   toDate: any;
   isEditable: boolean = false;
+  disableAutoDisplay: boolean = false;
   userInfo!: User;
 
-  @ViewChild('f', {static: false}) _respondentForm!: NgForm;
+  @ViewChild('f', { static: false }) _respondentForm!: NgForm;
   constructor(private _restApiService: RestapiService, private _masterService: MasterService,
-    private _datePipe: DatePipe,  private _authService: AuthService, private _converter: DateConverter) { }
+    private _datePipe: DatePipe, private _authService: AuthService, private _converter: DateConverter) { }
 
   ngOnInit(): void {
     this.cols = TableConstants.respondentColumns;
@@ -64,13 +65,15 @@ export class OthersRespondentComponent implements OnInit {
   }
 
   assignDefault() {
+    this.disableAutoDisplay = false;
     this.selectedValue = '1';
+    this.judgementValue = '1';
     this.caseDate = new Date();
     this.caseId = 0;
   }
 
   onSelect(value: string) {
-    if (this.masters) {
+    if (this.masters !== undefined && this.masters !== null) {
       let caseStatusList: any = [];
       let caseTypeList: any = [];
       let zoneList: any = [];
@@ -80,7 +83,7 @@ export class OthersRespondentComponent implements OnInit {
       let respondentList: any = [];
       switch (value) {
         case 'ZN':
-          if (this.masters.zone_Masters) {
+          if (this.masters.zone_Masters !== undefined && this.masters.zone_Masters !== null) {
             this.masters.zone_Masters.forEach((zn: any) => {
               zoneList.push(
                 { label: zn.zonename, value: zn.zoneid, }
@@ -90,7 +93,7 @@ export class OthersRespondentComponent implements OnInit {
           }
           break;
         case 'DT':
-          if (this.masters.district_Masters) {
+          if (this.masters.district_Masters !== undefined && this.masters.district_Masters !== null) {
             if (this.zone) {
               this.masters.district_Masters.forEach((dt: any) => {
                 if (dt.zoneid === this.zone.value) {
@@ -104,7 +107,7 @@ export class OthersRespondentComponent implements OnInit {
           }
           break;
         case 'SR':
-          if (this.masters.sro_Masters) {
+          if (this.masters.sro_Masters !== undefined && this.masters.sro_Masters !== null) {
             if (this.zone && this.district) {
               this.masters.sro_Masters.forEach((sr: any) => {
                 if (sr.zoneid === this.zone.value && sr.districtid === this.district.value) {
@@ -118,7 +121,7 @@ export class OthersRespondentComponent implements OnInit {
           }
           break;
         case 'CT':
-          if (this.masters.casetype_Masters) {
+          if (this.masters.casetype_Masters !== undefined && this.masters.casetype_Masters !== null) {
             this.masters.casetype_Masters.forEach((ct: any) => {
               caseTypeList.push(
                 { label: ct.casetypename, value: ct.casetypeid }
@@ -128,7 +131,7 @@ export class OthersRespondentComponent implements OnInit {
           }
           break;
         case 'HC':
-          if (this.masters.court_Masters) {
+          if (this.masters.court_Masters !== undefined && this.masters.court_Masters !== null) {
             this.masters.court_Masters.forEach((hc: any) => {
               courtList.push(
                 { label: hc.courtname, value: hc.courtid }
@@ -138,7 +141,7 @@ export class OthersRespondentComponent implements OnInit {
           }
           break;
         case 'SC':
-          if (this.masters.casestatus_Masters) {
+          if (this.masters.casestatus_Masters !== undefined && this.masters.casestatus_Masters !== null) {
             this.masters.casestatus_Masters.forEach((cs: any) => {
               caseStatusList.push(
                 { label: cs.casestatusname, value: cs.casestatusid }
@@ -147,57 +150,58 @@ export class OthersRespondentComponent implements OnInit {
             this.stateOfCaseOptions = caseStatusList;
           }
           break;
-          case 'RC':
-            if (this.masters.respondentsmaster) {
-              this.masters.respondentsmaster.forEach((rc: any) => {
-                respondentList.push(
-                  { label: rc.respondentsname, value: rc.respondentsid }
-                )
-              })
-              this.respondentCadreOptions = respondentList;
-            }
-            break;
+        case 'RC':
+          if (this.masters.respondentsmaster !== undefined && this.masters.respondentsmaster !== null) {
+            this.masters.respondentsmaster.forEach((rc: any) => {
+              respondentList.push(
+                { label: rc.respondentsname, value: rc.respondentsid }
+              )
+            })
+            this.respondentCadreOptions = respondentList;
+          }
+          break;
       }
     }
   }
 
   onLoadCases() {
-    if(this.fromDate && this.toDate) {
-    this.data = [];
-    this.loading = true;
-    const params = new HttpParams().append('userid',this._authService.getUserInfo().roleId)
-    .set('fromdate', this._datePipe.transform(this.fromDate, 'yyyy-MM-dd') as any)
-    .set('todate', this._datePipe.transform(this.toDate, 'yyyy-MM-dd') as any)
-    .set('zoneid', this.userInfo.zoneid)
-    .set('sroid', this.userInfo.sroid)
-    .set('districtid', this.userInfo.districtid)
-    .set('respondentType', 3);
-    this._restApiService.getByParameters('Respondent/GetRespondentCase', params).subscribe(res => {
-      if(res) {
-        this.loading = false;
-        res.forEach((i: any) => {
-          i.countervalue = i.counterfiled ? 'Yes' : 'No';
-          i.judgement = i.judgementvalue ? 'For' : 'Against';
-        })
-        this.data = res;
-      } else {
-        this.loading = false;
-      }
-    })
-  }
+    if (this.fromDate !== undefined && this.fromDate !== null && this.toDate !== undefined && this.toDate !== null) {
+      this.data = [];
+      this.loading = true;
+      const params = new HttpParams().append('userid', this._authService.getUserInfo().roleId)
+        .set('fromdate', this._datePipe.transform(this.fromDate, 'yyyy-MM-dd') as any)
+        .set('todate', this._datePipe.transform(this.toDate, 'yyyy-MM-dd') as any)
+        .set('zoneid', this.userInfo.zoneid)
+        .set('sroid', this.userInfo.sroid)
+        .set('districtid', this.userInfo.districtid)
+        .set('respondentType', 3);
+      this._restApiService.getByParameters('Respondent/GetRespondentCase', params).subscribe(res => {
+        if (res) {
+          this.loading = false;
+          res.forEach((i: any) => {
+            i.countervalue = i.counterfiled ? 'Yes' : 'No';
+            i.judgement = i.judgementvalue ? 'For' : 'Against';
+          })
+          this.data = res;
+        } else {
+          this.loading = false;
+        }
+      })
+    }
   }
 
   onChangeRespondent() {
-    if(this.respondentCadre) {
+    if (this.respondentCadre !== undefined && this.respondentCadre !== null) {
       this.respondents += this.respondentCadre.label + ' , ';
-    }
-    if(this.respondentCadre.value === 15) {
-    this.isEditable = true;
+      if (this.respondentCadre.value === 15) {
+        this.isEditable = true;
+      }
     }
   }
-    
+
   onEdit(row: any) {
-    if(row) {
+    if (row !== undefined && row !== null) {
+      this.disableAutoDisplay = true;
       this.caseId = row.courtcaseid;
       this.zone = { label: row.zonename, value: row.zoneid };
       this.zoneOptions = [{ label: row.zonename, value: row.zoneid }];
@@ -220,7 +224,7 @@ export class OthersRespondentComponent implements OnInit {
       this.respondentCadre = row.respondentsid;
       this.respondentCadreOptions = [{ label: row.respondentsname, value: row.respondentsid }];
       this.remarks = row.remarks;
-      const date = '01/01/'+row.caseyear;
+      const date = '01/01/' + row.caseyear;
       this.caseYear = new Date(date);
     }
   }
@@ -251,9 +255,7 @@ export class OthersRespondentComponent implements OnInit {
     }
     this._restApiService.post('Respondent/SaveRespondentCase', params).subscribe(res => {
       if (res) {
-        this._respondentForm.reset();
-        this._respondentForm.form.markAsUntouched();
-        this._respondentForm.form.markAsPristine();
+        this.clearForm();
         this.responseMsg = [{ severity: ResponseMessage.SuccessSeverity, detail: ResponseMessage.SuccessMessage }];
         setTimeout(() => this.responseMsg = [], 3000);
         this.assignDefault();
@@ -263,6 +265,18 @@ export class OthersRespondentComponent implements OnInit {
         setTimeout(() => this.responseMsg = [], 3000)
       }
     })
+  }
+
+  clearForm() {
+    this._respondentForm.reset();
+    this._respondentForm.form.markAsUntouched();
+    this._respondentForm.form.markAsPristine();
+    this.zoneOptions = [];
+    this.sroOptions = [];
+    this.districtOptions = [];
+    this.caseTypeOptions = [];
+    this.respondentCadreOptions = [];
+    this.highCourtNameOptions = [];
   }
 
 }

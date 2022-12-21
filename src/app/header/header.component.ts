@@ -7,11 +7,17 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  username: string = '';
   @Input() public toggle: boolean = true; 
   @Output() public sidenavToggle = new EventEmitter();
   constructor(private _authService: AuthService) { }
 
   ngOnInit(): void {
+    this._authService.isLoggedIn.subscribe(value => {
+      if(value) {
+        this.username = this._authService.getUserInfo().username;
+      }
+    })
   }
 
   public onToggleSidenav = () => {
