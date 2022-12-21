@@ -28,7 +28,7 @@ export class IgrRespondentComponent implements OnInit {
   caseTypeOptions: SelectItem[] = [];
   caseType: any;
   caseNo: any;
-  caseYear:any;
+  caseYear: any;
   caseDate: Date = new Date();
   highCourtNameOptions: SelectItem[] = [];
   highCourtName: any;
@@ -54,7 +54,7 @@ export class IgrRespondentComponent implements OnInit {
   disableAutoDisplay: boolean = false;
   userInfo!: User;
 
-  @ViewChild('f', {static: false}) _respondentForm!: NgForm;
+  @ViewChild('f', { static: false }) _respondentForm!: NgForm;
 
   constructor(private _restApiService: RestapiService, private _masterService: MasterService,
     private _datePipe: DatePipe, private _authService: AuthService, private _converter: DateConverter) { }
@@ -165,29 +165,29 @@ export class IgrRespondentComponent implements OnInit {
   }
 
   onLoadCases() {
-    if(this.fromDate !== undefined && this.fromDate !== null && this.toDate !== undefined && this.toDate !== null) {
-    this.data = [];
-    this.loading = true;
-    const params = new HttpParams().append('userid',this._authService.getUserInfo().roleId)
-    .set('fromdate', this._datePipe.transform(this.fromDate, 'yyyy-MM-dd') as any)
-    .set('todate', this._datePipe.transform(this.toDate, 'yyyy-MM-dd') as any)
-    .set('zoneid', this.userInfo.zoneid)
-    .set('sroid', this.userInfo.sroid)
-    .set('districtid', this.userInfo.districtid)
-    .set('respondentType', 2);
-    this._restApiService.getByParameters('Respondent/GetRespondentCase', params).subscribe(res => {
-      if(res) {
-        this.loading = false;
-        res.forEach((i: any) => {
-          i.countervalue = i.counterfiled ? 'Yes' : 'No';
-          i.judgement = i.judgementvalue ? 'For' : 'Against';
-        })
-        this.data = res;
-      } else {
-        this.loading = false;
-      }
-    })
-  }
+    if (this.fromDate !== undefined && this.fromDate !== null && this.toDate !== undefined && this.toDate !== null) {
+      this.data = [];
+      this.loading = true;
+      const params = new HttpParams().append('userid', this._authService.getUserInfo().roleId)
+        .set('fromdate', this._datePipe.transform(this.fromDate, 'yyyy-MM-dd') as any)
+        .set('todate', this._datePipe.transform(this.toDate, 'yyyy-MM-dd') as any)
+        .set('zoneid', this.userInfo.zoneid)
+        .set('sroid', this.userInfo.sroid)
+        .set('districtid', this.userInfo.districtid)
+        .set('respondentType', 2);
+      this._restApiService.getByParameters('Respondent/GetRespondentCase', params).subscribe(res => {
+        if (res) {
+          this.loading = false;
+          res.forEach((i: any) => {
+            i.countervalue = i.counterfiled ? 'Yes' : 'No';
+            i.judgement = i.judgementvalue ? 'For' : 'Against';
+          })
+          this.data = res;
+        } else {
+          this.loading = false;
+        }
+      })
+    }
   }
 
   onChangeRespondent() {
@@ -224,7 +224,7 @@ export class IgrRespondentComponent implements OnInit {
       this.respondentCadre = row.respondentsid;
       this.respondentCadreOptions = [{ label: row.respondentsname, value: row.respondentsid }];
       this.remarks = row.remarks;
-      const date = '01/01/'+row.caseyear;
+      const date = '01/01/' + row.caseyear;
       this.caseYear = new Date(date);
     }
   }
@@ -268,15 +268,15 @@ export class IgrRespondentComponent implements OnInit {
   }
 
   clearForm() {
-  this._respondentForm.reset();
-  this._respondentForm.form.markAsUntouched();
-  this._respondentForm.form.markAsPristine();
-  this.zoneOptions = [];
-  this.sroOptions = [];
-  this.districtOptions = [];
-  this.caseTypeOptions = [];
-  this.respondentCadreOptions = [];
-  this.highCourtNameOptions = [];
+    this._respondentForm.reset();
+    this._respondentForm.form.markAsUntouched();
+    this._respondentForm.form.markAsPristine();
+    this.zoneOptions = [];
+    this.sroOptions = [];
+    this.districtOptions = [];
+    this.caseTypeOptions = [];
+    this.respondentCadreOptions = [];
+    this.highCourtNameOptions = [];
   }
 
 }

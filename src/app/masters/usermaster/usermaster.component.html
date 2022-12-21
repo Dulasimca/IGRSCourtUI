@@ -13,13 +13,13 @@
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <p-dropdown name="_role" [autoDisplayFirst]="false" [options]="roleOptions" 
-                                                    (onChange)="onRoleChange()"(onClick)="onSelect('R')" [(ngModel)]="roleId"
+                                                   (onClick)="onSelect('R')" [(ngModel)]="roleId"
                                                 [required]="true">
                                                 </p-dropdown>
                                                 <label for="float-input">Role</label>
                                             </span>
                                         </div>
-                                        <div *ngIf="!hideZone" class="col-12 md:col-4 lg:col-2">
+                                        <div *ngIf="(roleId==null || roleId==2 || roleId==3 || roleId==4 || roleId==5)" class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <p-dropdown name="_zone" [autoDisplayFirst]="false" 
                                                  (onClick)="onSelect('ZN')" [options]="zoneOptions"
@@ -28,7 +28,7 @@
                                                 <label for="float-input">Zone</label>
                                             </span>
                                         </div>
-                                        <div *ngIf="!hideDistrict" class="col-12 md:col-4 lg:col-2">
+                                        <div *ngIf="(roleId==null || roleId==3 || roleId==4 || roleId==5)" class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <p-dropdown name="_district" [autoDisplayFirst]="false"
                                                 (onClick)="onSelect('DT')"
@@ -38,7 +38,7 @@
                                                 <label for="float-input">District</label>
                                             </span>
                                         </div>
-                                        <div *ngIf="!hideSro" class="col-12 md:col-4 lg:col-2">
+                                        <div *ngIf="(roleId==null || roleId==4 || roleId==5)" class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <p-dropdown name="_sro" [autoDisplayFirst]="false"
                                                     (onClick)="onSelect('SR')" [options]="sroOptions" [(ngModel)]="sro"
@@ -49,7 +49,7 @@
                                         </div>                             
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <input name="_username" type="text" [(ngModel)]="userName" autocomplete="off" (change)="onCheck()" pInputText>
+                                                <input name="_username" type="text" [(ngModel)]="userName" autocomplete="off" [readonly]="readOnlyUsername" (change)="onCheck()" pInputText [required]="true">
                                                 <label for="float-input">Username</label>      
                                             </span>
                                         </div>                                                                                                                                                                 
@@ -64,7 +64,7 @@
                                                     <i *ngIf="showPwd" class="pi pi-eye-slash" (click)="onShowPwd()"></i>
                                                     <input #pwd id="pwd" name="_password" type="password" pInputText
                                                         [(ngModel)]="password" placeholder="Password" autocomplete="off"
-                                                        required>
+                                                        [required]="true">
                                                     <label for="float-input">Password</label>
                                                 </span>
                                                </div>

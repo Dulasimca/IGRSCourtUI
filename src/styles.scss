@@ -506,3 +506,6 @@ color: inherit  !important;
 .p-message.p-message-warn {
     background: #fbf17b !important;
 }
+.p-paginator .p-paginator-first, .p-paginator .p-paginator-prev, .p-paginator .p-paginator-next, .p-paginator .p-paginator-last {
+    min-width: 1.75rem !important;
+}
