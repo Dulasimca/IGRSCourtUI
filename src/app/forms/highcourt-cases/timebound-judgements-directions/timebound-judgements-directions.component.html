@@ -11,50 +11,51 @@
                                     <div class="grid">
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_zone" optionLabel="label"
+                                                <p-dropdown name="_zone" [autoDisplayFirst]="disableAutoDisplay" optionLabel="label"
                                                     (onClick)="onSelect('ZN')" [options]="zoneOptions"
-                                                    [autoDisplayFirst]="disableAutoDisplay" [(ngModel)]="zone" [required]="true">
+                                                     [(ngModel)]="zone" [required]="true">
                                                 </p-dropdown>
                                                 <label for="float-input">Zone</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_district"
+                                                <p-dropdown name="_district" [autoDisplayFirst]="disableAutoDisplay"
                                                     optionLabel="label" (onClick)="onSelect('DT')"
                                                     [options]="districtOptions" [(ngModel)]="district"
-                                                    [autoDisplayFirst]="disableAutoDisplay" [required]="true">
+                                                    [required]="true">
                                                 </p-dropdown>
                                                 <label for="float-input">District</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_sro" optionLabel="label"
+                                                <p-dropdown name="_sro" [autoDisplayFirst]="disableAutoDisplay" optionLabel="label"
                                                     (onClick)="onSelect('SR')" [options]="sroOptions" [(ngModel)]="sro"
-                                                    [autoDisplayFirst]="disableAutoDisplay" [required]="true">
+                                                     [required]="true">
                                                 </p-dropdown>
                                                 <label for="float-input">SRO</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_casetype"
+                                                <p-dropdown name="_casetype" [autoDisplayFirst]="disableAutoDisplay"
                                                     optionLabel="label" (onClick)="onSelect('CT')"
                                                     [options]="caseTypeOptions" [(ngModel)]="caseType"
-                                                    [autoDisplayFirst]="disableAutoDisplay" [required]="true">
+                                                     [required]="true">
                                                 </p-dropdown>
                                                 <label for="float-input">Case Type</label>
                                             </span>
                                         </div>
-                                        <div class="col-12 md:col-4 lg:col-2">
+                                        <!-- <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_writappealstatus" [autoDisplayFirst]="false" [options]="writappealstatusOptions"  
-                                                optionLabel="label" (onClick)="onSelect('WS')" [(ngModel)]="writappealStatus" [required]="true">
+                                                <p-dropdown name="_writappealstatus" [autoDisplayFirst]="disableAutoDisplay" 
+                                                optionLabel="label" [options]="writappealstatusOptions" (onClick)="onSelect('WS')" 
+                                                [(ngModel)]="writappealStatus" [required]="true">
                                                 </p-dropdown>
                                                 <label for="float-input">WritappealStatus</label>
                                             </span>
-                                        </div>
+                                        </div> -->
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <button pButton pRipple type="button" label="View" (click)="onView()"
                                             [disabled]="!f.valid"></button>
@@ -87,10 +88,10 @@
                                         </div>
                                         <div *ngIf="isDisabled" class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_respondentcadre"
+                                                <p-dropdown name="_respondentcadre" [autoDisplayFirst]="disableAutoDisplay" 
                                                     optionLabel="label" (onClick)="onSelect('RC')" (onChange)="onChangeRespondent()"
                                                     [options]="respondentCadreOptions" [(ngModel)]="respondentCadre"
-                                                    [autoDisplayFirst]="disableAutoDisplay" [editable]="isEditable">
+                                                    [editable]="isEditable">
                                                 </p-dropdown>
                                                 <label for="float-input">Directed To</label>
                                             </span>
@@ -164,6 +165,9 @@
                                             <td>{{rowIndex+1}}</td>
                                             <td *ngFor="let col of columns">
                                                 {{rowData[col.field]}}
+                                            </td>
+                                            <td>
+                                            <p-button icon="pi pi-pencil" (onClick)="onEdit(rowData)"></p-button>
                                             </td>
                                         </tr>
                                     </ng-template>

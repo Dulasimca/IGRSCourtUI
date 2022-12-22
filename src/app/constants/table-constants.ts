@@ -18,13 +18,13 @@ export class TableConstants {
     ];
 
     public static readonly timeBoundJudgementColumns: any[] = [
-        { field: 'zone', header: 'Zone' },
-        { field: 'district', header: 'District' },
-        { field: 'sro', header: 'SRO' },
-        { field: 'casetype', header: 'Case Type' },
-        { field: 'courttype', header: 'Court Type' },
-        { field: 'caseno', header: 'Case No.' },
-        { field: 'year', header: 'Year' },
+        { field: 'zonename', header: 'Zone' },
+        { field: 'districtname', header: 'District' },
+        { field: 'sroname', header: 'SRO' },
+        { field: 'casetypename', header: 'Case Type' },
+        { field: 'casenumber', header: 'Case No.' },
+        { field: 'courtname', header: 'Highcourt Name' },
+        { field: 'caseyear', header: 'Year' },
         { field: 'judgementdate', header: 'Judgement Date' },
         { field: 'petitionername', header: 'Petitioner Name' },
         { field: 'mainrespondents', header: 'Respondents Name' },
@@ -33,7 +33,7 @@ export class TableConstants {
         { field: 'expirydate', header: 'Expiry Date' },
         { field: 'mainrespondents', header: 'Directed To' },
         { field: 'natureofdirection', header: 'Nature of Direction' },
-        { field: 'compliedornot', header: 'Complied(or)Not' },
+        { field: 'compiledornot', header: 'Complied(or)Not' },
         { field: 'remarks', header: 'Remarks' },
     ];  
 
@@ -89,17 +89,20 @@ export class TableConstants {
     ];
 
     public static readonly writeAppealsColumns: any[] = [
-               { field: 'casenumber', header: 'Case No.' },
-        { field: 'casedate', header: 'Case Date'},
+        { field: 'zonename', header: 'Zone' },
+        { field: 'districtname', header: 'District' },
+        { field: 'casetypename', header: 'CaseType' },
+        { field: 'casenumber', header: 'Case No.' },
         { field: 'caseyear', header: 'Year' },
-        { field: 'courtname', header: 'Courtname' },
+        { field: 'hcreferenceno', header: 'HC Reference No.' },
         { field: 'petitionername', header: 'Petitioner Name' },
         { field: 'mainrespondents', header: 'Respondents Name' },
         { field: 'mainprayer', header: 'Gist of Case/ main prayer' },
         { field: 'counterfiled', header: 'Counter Filed' },
         { field: 'casestatusname', header: 'Case Status' },
+        { field: 'natureofdisposal', header: 'Nature of disposal' },
         { field: 'regularnumber', header: 'Regular No. Received' },
-        {field:'writappealstatusname', header: 'WritappealStatus'},
+        { field:'writappealstatusname', header: 'WritappealStatus'},
         { field: 'remarks', header: 'Remarks' }
     ];
 

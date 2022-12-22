@@ -8,6 +8,7 @@ import { DateConverter } from 'src/app/helper/date-converter';
 import { AuthService } from 'src/app/services/auth.service';
 import { MasterService } from 'src/app/services/master.service';
 import { RestapiService } from 'src/app/services/restapi.service';
+import { ResponseMessage } from 'src/app/constants/message-constants';
 
 @Component({
   selector: 'app-timebound-judgements-directions',
@@ -63,7 +64,6 @@ export class TimeboundJudgementsDirectionsComponent implements OnInit {
 
   onSelect(value: string) {
     if (this.masters !== undefined && this.masters !== null) {
-      let caseStatusList: any = [];
       let caseTypeList: any = [];
       let zoneList: any = [];
       let districtList: any = [];
@@ -129,16 +129,16 @@ export class TimeboundJudgementsDirectionsComponent implements OnInit {
             this.respondentCadreOptions = respondentList;
           }
           break;
-          case 'WS':
-            if (this.masters.writappealstatus_Masters) {
-              this.masters.writappealstatus_Masters.forEach((ws: any) => {
-                writappealStatusList.push(
-                  { label: ws.writappealstatusname, value: ws.writappealstatusid }
-                )
-              })
-              this.writappealstatusOptions = writappealStatusList;
-            }
-            break;
+          // case 'WS':
+          //   if (this.masters.writappealstatus_Masters) {
+          //     this.masters.writappealstatus_Masters.forEach((ws: any) => {
+          //       writappealStatusList.push(
+          //         { label: ws.writappealstatusname, value: ws.writappealstatusid }
+          //       )
+          //     })
+          //     this.writappealstatusOptions = writappealStatusList;
+          //   }
+          //   break;
       }
     }
   }
@@ -149,16 +149,15 @@ export class TimeboundJudgementsDirectionsComponent implements OnInit {
     const params = new HttpParams().append('zoneid', this.zone.value)
     .set('districtid', this.district.value)
     .set('sroid', this.sro.value)
-    .set('casetypeid', this.caseType.value)
-    .set('writappealstatusid',this.writappealStatus.value);
-    // this._restApiService.getByParameters('Writappeals/GetWritappealsMaster', params).subscribe(res => {
-    //   if(res) {
-    //     this.loading = false;
-    //     this.data = res;
-    //   } else {
-    //     this.loading = false;
-    //   }
-    // })
+    .set('casetypeid', this.caseType.value);
+    this._restApiService.getByParameters('Timebound/GetTimebound', params).subscribe(res => {
+      if(res) {
+        this.loading = false;
+        this.data = res;
+      } else {
+        this.loading = false;
+      }
+    })
   }
 
   onChangeRespondent() {
@@ -171,7 +170,6 @@ export class TimeboundJudgementsDirectionsComponent implements OnInit {
   }
   onEdit(row: any){
     if (row !== undefined && row !== null) {
-      console.log('row',row)
     this.disableAutoDisplay = true;
     this.isDisabled = true;
     this.writId = row.writappealsid;
@@ -220,24 +218,24 @@ export class TimeboundJudgementsDirectionsComponent implements OnInit {
       'createddate': new Date(),
       'userId': this.roleId,
     }
-    // this._restApiService.post('Writappeals/SaveWritappealsMaster', params).subscribe(res => {
-    //   if (res) {
-    //     this.onView();
-    //     this.clearForm();
-    //     this.isDisabled = false;
-    //     this.data = [];
-    //     this.loading = true;
-    //     this.responseMsg = [{ severity: ResponseMessage.SuccessSeverity, detail: ResponseMessage.SuccessMessage }];
-    //     setTimeout(() => this.responseMsg = [], 3000);
-    //     this.writId = 0;
-    //     this.caseId = 0;
-    //     this.onSave();
-    //   } 
-    //   else {
-    //     this.responseMsg = [{ severity: ResponseMessage.ErrorSeverity, detail: ResponseMessage.ErrorMessage }];
-    //     setTimeout(() => this.responseMsg = [], 3000)
-    //   }
-    // })
+    this._restApiService.post('Timebound/SaveTimebound', params).subscribe(res => {
+      if (res) {
+        this.onView();
+        this.clearForm();
+        this.isDisabled = false;
+        this.data = [];
+        this.loading = true;
+        this.responseMsg = [{ severity: ResponseMessage.SuccessSeverity, detail: ResponseMessage.SuccessMessage }];
+        setTimeout(() => this.responseMsg = [], 3000);
+        this.writId = 0;
+        this.caseId = 0;
+        this.onSave();
+      } 
+      else {
+        this.responseMsg = [{ severity: ResponseMessage.ErrorSeverity, detail: ResponseMessage.ErrorMessage }];
+        setTimeout(() => this.responseMsg = [], 3000)
+      }
+    })
   }
 
   clearForm() {
