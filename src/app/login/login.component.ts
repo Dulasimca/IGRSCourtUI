@@ -19,8 +19,8 @@ export class LoginComponent implements OnInit {
   responseMsg: any;
   userInfo!: User;
   @ViewChild('uname', { static: false }) _username!: HTMLInputElement;
-  constructor(private _authService: AuthService, private _router: Router,
-    private _masterService: MasterService, private _restApiService: RestapiService) { }
+  constructor(private _authService: AuthService, private _masterService: MasterService,
+    private _restApiService: RestapiService) { }
 
   ngOnInit(): void {
     this._authService.logout();

@@ -16,7 +16,6 @@ export class MenuComponent implements OnInit {
     this._authService.isLoggedIn.subscribe(value => {
       if (value) {
         var menuList = this._authService.fetchMenu;
-        console.log('menu', menuList)
         if(this.items === undefined || this.items === null) {
         this.checkChildItems(menuList);
         this.items = menuList;
@@ -33,6 +32,9 @@ export class MenuComponent implements OnInit {
       for (let i = 0; i < data.length; i++) {
         if (data[i]) {
           if (data[i].items.length !== 0) {
+            if(data[i].routerLink !== undefined && data[i].routerLink !== null) {
+              data[i].command = ()=> this.onToggleSidenav();
+            }
             //  continue;
             this.checkChildItems(data[i].items);
           } else {

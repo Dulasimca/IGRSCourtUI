@@ -32,12 +32,14 @@ import { JudgementMasterComponent } from './masters/judgement-master/judgement-m
 import { RespondantMasterComponent } from './masters/respondant-master/respondant-master.component';
 import { MenumasterComponent } from './masters/menumaster/menumaster.component';
 import { ChangePasswordComponent } from './masters/change-password/change-password.component';
+import { MainDashboardComponent } from './main-dashboard/main-dashboard.component';
 
 
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
+  { path: 'home', component: MainDashboardComponent, canActivate: [AuthGuard] },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'government-respondent-hight-court-cases', component: GovernmentRespondentComponent, canActivate: [AuthGuard] },
   { path: 'pending-enquiry-hight-court-cases', component: PendingEnquiryComponent, canActivate: [AuthGuard] },

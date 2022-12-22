@@ -45,7 +45,7 @@ export class AuthService {
   login() {
     this.loggedIn.next(true);
     ///navigating to dashboard once logged in successfully & setting all essential objects globally
-    this._router.navigate(['/dashboard']);
+    this._router.navigate(['/home']);
   }
 
   getUserInfo(): any {
