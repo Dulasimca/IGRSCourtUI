@@ -33,7 +33,7 @@ import { RespondantMasterComponent } from './masters/respondant-master/respondan
 import { MenumasterComponent } from './masters/menumaster/menumaster.component';
 import { ChangePasswordComponent } from './masters/change-password/change-password.component';
 import { MainDashboardComponent } from './main-dashboard/main-dashboard.component';
-
+import { WritappealstatusMasterComponent } from './masters/writappealstatus-master/writappealstatus-master.component';
 
 
 const routes: Routes = [
@@ -70,7 +70,7 @@ const routes: Routes = [
   {path:'slp-master',component:SlpMasterComponent},
   {path:'respondant-master',component:RespondantMasterComponent},
   {path:'change-password',component:ChangePasswordComponent},
-
+  {path:'writappealstatus-master',component: WritappealstatusMasterComponent}
 
 ];
 

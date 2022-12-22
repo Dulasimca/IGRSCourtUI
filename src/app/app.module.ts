@@ -61,8 +61,7 @@ import { JudgementMasterComponent } from './masters/judgement-master/judgement-m
 import { RespondantMasterComponent } from './masters/respondant-master/respondant-master.component';
 import { ChangePasswordComponent } from './masters/change-password/change-password.component';
 import { MainDashboardComponent } from './main-dashboard/main-dashboard.component';
-
-
+import { WritappealstatusMasterComponent } from './masters/writappealstatus-master/writappealstatus-master.component';
 
 @NgModule({
   declarations: [
@@ -102,6 +101,7 @@ import { MainDashboardComponent } from './main-dashboard/main-dashboard.componen
     RespondantMasterComponent,
     ChangePasswordComponent,
     MainDashboardComponent,
+    WritappealstatusMasterComponent,
   ],
   imports: [
     BrowserModule,

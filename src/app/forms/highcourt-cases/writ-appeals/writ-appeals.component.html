@@ -18,10 +18,10 @@
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_district"
+                                                <p-dropdown name="_district" [autoDisplayFirst]="disableAutoDisplay"
                                                     optionLabel="label" (onClick)="onSelect('DT')"
-                                                    [options]="districtOptions" [(ngModel)]="district"
-                                                    [autoDisplayFirst]="disableAutoDisplay" [required]="true">
+                                                    [options]="districtOptions" [(ngModel)]="district" [filter]="true" filterBy="label" 
+                                                    [readonly]="isDisabled" [required]="true">
                                                 </p-dropdown>
                                                 <label for="float-input">District</label>
                                             </span>
@@ -52,6 +52,13 @@
                                     <div class="grid">
                                         <div *ngIf="isDisabled" class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
+                                                <input name="_hcreferenceno" type="text"
+                                                    [(ngModel)]="hcreferenceNo" pInputText>
+                                                <label for="float-input">HC Reference No.</label>
+                                            </span>
+                                        </div>
+                                        <div *ngIf="isDisabled" class="col-12 md:col-4 lg:col-2">
+                                            <span class="p-float-label">
                                                 <input name="_regularnumber" type="text" [(ngModel)]="regularNumber"
                                                     pInputText required>
                                                 <label for="float-input">Regular No. Received</label>
@@ -59,10 +66,17 @@
                                         </div>
                                         <div *ngIf="isDisabled" class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_writappealstatus" [options]="writappealstatusOptions"  
-                                                 [(ngModel)]="writappealStatus" [required]="true">
+                                                <p-dropdown name="_writappealstatus" [autoDisplayFirst]="false" [options]="writappealstatusOptions"  
+                                                optionLabel="label" (onClick)="onSelect('WS')" [(ngModel)]="writappealStatus" [required]="true">
                                                 </p-dropdown>
                                                 <label for="float-input">WritappealStatus</label>
+                                            </span>
+                                        </div>
+                                        <div *ngIf="isDisabled" class="col-12 md:col-4 lg:col-2">
+                                            <span class="p-float-label">
+                                                <input name="_natureofdisposal" type="text"
+                                                    [(ngModel)]="natureofDisposal" pInputText>
+                                                <label for="float-input">Nature of Disposal</label>
                                             </span>
                                         </div>
                                         <div *ngIf="isDisabled" class="col-12 md:col-4 lg:col-4">
