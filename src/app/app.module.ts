@@ -60,9 +60,8 @@ import { SlpMasterComponent } from './masters/slp-master/slp-master.component';
 import { JudgementMasterComponent } from './masters/judgement-master/judgement-master.component';
 import { RespondantMasterComponent } from './masters/respondant-master/respondant-master.component';
 import { ChangePasswordComponent } from './masters/change-password/change-password.component';
+import { MainDashboardComponent } from './main-dashboard/main-dashboard.component';
 import { WritappealstatusMasterComponent } from './masters/writappealstatus-master/writappealstatus-master.component';
-
-
 
 @NgModule({
   declarations: [
@@ -101,6 +100,7 @@ import { WritappealstatusMasterComponent } from './masters/writappealstatus-mast
     JudgementMasterComponent,
     RespondantMasterComponent,
     ChangePasswordComponent,
+    MainDashboardComponent,
     WritappealstatusMasterComponent,
   ],
   imports: [

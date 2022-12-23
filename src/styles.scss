@@ -170,6 +170,43 @@ label {
     text-align: end !important;
 }
 
+.main-dsh-grid {
+    width: 150px !important;
+    height: 150px;
+    border-radius: 16px;
+    background-color: #f7f8fa;
+    border: solid 1px #dbe1e8;
+    margin: 25px auto 5px;
+    transition: all 0.5s ease;
+    position: relative;
+}
+.main-dsh-img {
+    margin-top: 5px;
+    box-shadow: 0 10px 30px 0 rgba(99, 99, 99, 0.08), 0 30px 30px 0 rgba(0, 0, 0, 0.08) !important;
+}
+.main-dsh-grid:hover {
+    box-shadow: 0 10px 30px 0 rgba(20, 20, 20, 0.08), 0 30px 30px 0 rgba(15, 18, 22, 0.08) !important;
+    transition: box-shadow 0.5s ease !important;
+}
+.main-dsh-count {
+    text-shadow: 1px 3px #c7c7c7;
+    margin: 0.5rem auto auto;
+    color: #242222;
+    font-size: 22px;
+    // border: 1px solid lightgrey;
+    border-radius: 50%;
+    height: 40px !important;
+    width: 40px !important;
+    display: flex;
+    justify-content: center;
+    // background: #fbfbfb;
+    // box-shadow: 0 10px 30px 0 rgba(99, 99, 99, 0.08), 0 30px 30px 0 rgba(0, 0, 0, 0.08) !important;
+}
+.main-dsh-title {
+    font-size: 14px;
+    color: #2a333e;
+}
+
 // primeng styles
 
 .p-dropdown {
@@ -245,10 +282,12 @@ label {
     border-color: red;
 }
 
-.p-input-filled .p-inputtext {
-    background-color: white !important;
+.p-inputwrapper-filled {
+    background: white !important;
 }
-
+.p-inputtext.p-filled {
+    background: white !important;
+}
 .p-float-label input:focus~label,
 .p-float-label .p-inputwrapper-focus~label {
     color: #1a9967 !important;
