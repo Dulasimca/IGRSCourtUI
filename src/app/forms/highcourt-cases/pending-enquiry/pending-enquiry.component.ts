@@ -44,6 +44,7 @@ export class PendingEnquiryComponent implements OnInit {
   data: any[] = [];
   caseId: number = 0;
   writId: number = 0;
+  pendingId: number = 0;
   dateValue: any;
   masters?: any;
   loading: boolean = false;
@@ -57,7 +58,7 @@ export class PendingEnquiryComponent implements OnInit {
 
   @ViewChild('f', {static: false}) _pendingEnquiryCaseDetailsForm!: NgForm;
   responseMsg: { severity: string; detail: string; }[] | undefined;
-  pendingenquiryid: any;
+
   constructor(private _restApiService: RestapiService, private _masterService: MasterService,
     private _datePipe: DatePipe, private _authService: AuthService, private _converter: DateConverter) { }
 
@@ -152,9 +153,9 @@ export class PendingEnquiryComponent implements OnInit {
     onEdit(row: any){
       if (row !== undefined && row !== null) {
       this.disableAutoDisplay = true;
+      this.pendingId = row.pendingenquiryid;
       this.writId = row.writappealsid;
       this.caseId = row.courtcaseid;
-      this.pendingenquiryid = row.pendingenquiryid;
       this.remarks = row.remarks;
       this.isDisabled = true;
       this.subject = row.subject;
@@ -181,28 +182,17 @@ export class PendingEnquiryComponent implements OnInit {
     onSave() {
       let _caseyear: any = this._datePipe.transform(this.caseYear, 'yyyy');
       const params = {
-        'pendingenquiryid': this.pendingenquiryid,
-        'writappealsid': this.writId,
-        'courtcaseid': this.caseId,
+        'pendingenquiryid': this.pendingId,
         'zoneid': this.zone.value,
         'districtid': this.district.value,
         'sroid': this.sro.value,
-        'casetypeid': this.caseType.value,
-        'writappealstatusid': this.writappealStatus.value,
-        'casenumber': this.caseNo,
-        'casedate': this._converter.convertDate(this.caseDate),
-        'caseyear': (_caseyear * 1),
-        'courtid': this.highCourtName,
-        'petitionername': this.petitionerName,
-        'mainrespondents': this.respondents,
-        'casestatusid': this.stateOfCase,
-        'mainprayer': this.gistOfCase,   
+        'writappealsid': this.writId,
+        'courtcaseid': this.caseId,
         'subject': this.subject,
         'referenceno': this.referenceNo,
         'remarks': this.remarks,
         'flag': true,
         'createddate': new Date(),
-        'userId': this.roleId,
       }
       this._restApiService.post('Pendingenquiry/SavePendingenquiry', params).subscribe(res => {
         if (res) {
@@ -213,6 +203,7 @@ export class PendingEnquiryComponent implements OnInit {
           this.isDisabled = false;
           this.responseMsg = [{ severity: ResponseMessage.SuccessSeverity, detail: ResponseMessage.SuccessMessage }];
           setTimeout(() => this.responseMsg = [], 3000);
+          this.pendingId = 0;
           this.writId = 0;
           this.caseId = 0;
           this.onSave();

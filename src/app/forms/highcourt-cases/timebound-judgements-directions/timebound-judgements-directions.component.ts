@@ -38,6 +38,7 @@ export class TimeboundJudgementsDirectionsComponent implements OnInit {
   remarks: any;
   caseId: number = 0;
   writId: number = 0;
+  timeId: number = 0;
   masters?: any;
   responseMsg: Message[] = [];
   cols: any[] = [];
@@ -161,6 +162,7 @@ export class TimeboundJudgementsDirectionsComponent implements OnInit {
     if (row !== undefined && row !== null) {
     this.disableAutoDisplay = true;
     this.isDisabled = true;
+    this.timeId = row.timeboundid;
     this.writId = row.writappealsid;
     this.caseId = row.courtcaseid;
     this.remarks = row.remarks;
@@ -188,16 +190,17 @@ export class TimeboundJudgementsDirectionsComponent implements OnInit {
 
   onSave() {
     const params = {
+      'timeboundid': this.timeId,
       'writappealsid': this.writId,
       'courtcaseid': this.caseId,
       'zoneid': this.zone.value,
       'districtid': this.district.value,
       'sroid': this.sro.value,
       'casetypeid': this.caseType.value,
-      'writappealstatusid': this.writappealStatus.value,
       'judgementdate': this.judgementDate,
       'receiptdate': this.receiptDate,
       'timelimit': this.timeLimit,
+      'directedto': this.respondents,
       'expirydate': this.expiryDate,
       'mainrespondents': this.respondents,
       'natureofdirection': this.natureofDirection,
@@ -216,6 +219,7 @@ export class TimeboundJudgementsDirectionsComponent implements OnInit {
         this.loading = true;
         this.responseMsg = [{ severity: ResponseMessage.SuccessSeverity, detail: ResponseMessage.SuccessMessage }];
         setTimeout(() => this.responseMsg = [], 3000);
+        this.timeId = 0;
         this.writId = 0;
         this.caseId = 0;
         this.onSave();
