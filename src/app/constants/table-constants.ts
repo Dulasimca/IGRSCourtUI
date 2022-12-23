@@ -41,10 +41,10 @@ export class TableConstants {
         { field: 'zone', header: 'Zone' },
         { field: 'district', header: 'District' },
         { field: 'sro', header: 'SRO' },
-        { field: 'casetype', header: 'Case Type' },
-        { field: 'caseno', header: 'Case No' },
-        { field: 'casedate', header: 'Case Date' },
+        { field: 'casetypename', header: 'Case Type' },
         { field: 'courtname', header: 'Name of Court' },
+        { field: 'caseno', header: 'Case No' },
+        { field: 'caseyear', header: 'Year' },
         { field: 'gistofcase', header: 'Gist of Case' },
         { field: 'petitionername', header: 'Petitioner' },
         { field: 'mainrespondents', header: 'Respondents' },
@@ -56,20 +56,20 @@ export class TableConstants {
     ];
 
     public static readonly pendingEnquiryColumns: any[] = [
-        { field: 'zone', header: 'Zone' },
-        { field: 'district', header: 'District' },
-        { field: 'sro', header: 'SRO' },
-        { field: 'casetype', header: 'CaseType' },
-        { field: 'caseno', header: 'CaseNo' },
-        { field: 'casedate', header: 'CaseDate' },
-        { field: 'year', header: 'Year' },
+        { field: 'zonename', header: 'Zone' },
+        { field: 'districtname', header: 'District' },
+        { field: 'sroname', header: 'SRO' },
+        { field: 'casetypename', header: 'CaseType' },
+        { field: 'casenumber', header: 'CaseNo.' },
+        { field: 'caseyear', header: 'Year' },
         { field: 'courtname', header: 'Highcourt Name' },
         { field: 'petitionername', header: 'Petitioner Name' },
         { field: 'mainrespondents', header: 'Respondents Name' },
-        { field: 'casestatus', header: 'Case Status' },
-        { field: 'gistofcase', header: 'Gist of Case' },
+        { field: 'casestatusname', header: 'Case Status' },
+        { field: 'mainprayer', header: 'Gist of Case' },
         { field: 'subject', header: 'Subject' },
-        { field: 'refno', header: 'DIG/DR/SR-RefNo' }
+        { field: 'referenceno', header: 'DIG/DR/SR-RefNo' },
+        { field: 'remarks', header: 'Remarks' }
     ];
 
     public static readonly supremeCourtCaseColumns: any[] = [

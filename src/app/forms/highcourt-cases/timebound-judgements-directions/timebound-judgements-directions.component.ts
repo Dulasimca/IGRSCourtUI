@@ -69,7 +69,6 @@ export class TimeboundJudgementsDirectionsComponent implements OnInit {
       let districtList: any = [];
       let sroList: any = [];
       let respondentList: any = [];
-      let writappealStatusList: any = [];
       switch (value) {
         case 'ZN':
           if (this.masters.zone_Masters !== undefined && this.masters.zone_Masters !== null) {
@@ -129,16 +128,6 @@ export class TimeboundJudgementsDirectionsComponent implements OnInit {
             this.respondentCadreOptions = respondentList;
           }
           break;
-          // case 'WS':
-          //   if (this.masters.writappealstatus_Masters) {
-          //     this.masters.writappealstatus_Masters.forEach((ws: any) => {
-          //       writappealStatusList.push(
-          //         { label: ws.writappealstatusname, value: ws.writappealstatusid }
-          //       )
-          //     })
-          //     this.writappealstatusOptions = writappealStatusList;
-          //   }
-          //   break;
       }
     }
   }
