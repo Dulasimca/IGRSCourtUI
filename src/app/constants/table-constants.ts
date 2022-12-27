@@ -11,9 +11,9 @@ export class TableConstants {
         { field: 'petitionername', header: 'Petitioner Name' },
         { field: 'mainrespondents', header: 'Respondents' },
         { field: 'mainprayer', header: 'Gist of Case/ main prayer' },
-        { field: 'countervalue', header: 'Counter Filed' },
+        { field: 'counterfiledname', header: 'Counter Filed' },
         { field: 'casestatusname', header: 'Case Status' },
-        { field: 'judgement', header: 'Judgement (For/Against)' },
+        { field: 'judgementname', header: 'Judgement (For/Against)' },
         { field: 'remarks', header: 'Remarks' }
     ];
 
@@ -118,9 +118,9 @@ export class TableConstants {
         { field: 'petitionername', header: 'Petitioner Name' },
         { field: 'mainrespondents', header: 'Respondents' },
         { field: 'mainprayer', header: 'Gist of Case/ main prayer' },
-        { field: 'countervalue', header: 'Counter Filed' },
+        { field: 'counterfiledname', header: 'Counter Filed' },
         { field: 'casestatusname', header: 'Case Status' },
-        { field: 'judgement', header: 'Judgement (For/Against)' },
+        { field: 'judgementname', header: 'Judgement' },
         { field: 'remarks', header: 'Remarks' }
     ];
 
@@ -232,6 +232,12 @@ export class TableConstants {
     ];
     public static readonly judgementMaster: any[] = [
         { field: 'judgementname', header: 'Judgement Name'},
+        { field: 'createddate', header: 'Created Date'},
+        { field: 'flag', header: 'Status'}
+    ];
+
+    public static readonly counterfiledMaster: any[] = [
+        { field: 'counterfiledname', header: 'Counterfiled Name'},
         { field: 'createddate', header: 'Created Date'},
         { field: 'flag', header: 'Status'}
     ];

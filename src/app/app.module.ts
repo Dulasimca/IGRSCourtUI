@@ -62,6 +62,7 @@ import { ChangePasswordComponent } from './masters/change-password/change-passwo
 import { MainDashboardComponent } from './main-dashboard/main-dashboard.component';
 import { WritappealstatusMasterComponent } from './masters/writappealstatus-master/writappealstatus-master.component';
 import { GovtrespReportComponent } from './reports/govtresp-report/govtresp-report.component';
+import { CounterfiledMasterComponent } from './masters/counterfiled-master/counterfiled-master.component';
 
 @NgModule({
   declarations: [
@@ -103,6 +104,7 @@ import { GovtrespReportComponent } from './reports/govtresp-report/govtresp-repo
     MainDashboardComponent,
     WritappealstatusMasterComponent,
     GovtrespReportComponent,
+    CounterfiledMasterComponent,
   ],
   imports: [
     BrowserModule,

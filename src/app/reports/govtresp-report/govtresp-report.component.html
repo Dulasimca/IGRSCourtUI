@@ -8,7 +8,17 @@
                             <div class="grid to-center">
                                 <div #row1 class="col-12 md:col-11 lg:col-11">
                                     <div class="grid">
-                                        <!-- <div class="col-12 md:col-4 lg:col-2">
+                                        <div class="col-12 md:col-4 lg:col-2">
+                                            <span class="p-float-label">
+                                                <p-dropdown name="_respondenttype" [autoDisplayFirst]="disableAutoDisplay" 
+                                                    optionLabel="label" (onClick)="onSelect('RT')"  
+                                                    [options]="respondentTypeOptions" [(ngModel)]="respondentType"
+                                                    [required]="true">
+                                                </p-dropdown>
+                                                <label for="float-input">Respondent Type</label>
+                                            </span>
+                                        </div>
+                                        <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <p-dropdown name="_zone" optionLabel="label" [autoDisplayFirst]="disableAutoDisplay" 
                                                     (onClick)="onSelect('ZN')" [options]="zoneOptions"
@@ -45,7 +55,7 @@
                                                 </p-dropdown>
                                                 <label for="float-input">Case Type</label>
                                             </span>
-                                        </div> -->
+                                        </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <p-calendar name="_fdate" [showIcon]="true"
