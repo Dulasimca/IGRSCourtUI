@@ -107,10 +107,21 @@ export class TableConstants {
     ];
 
     public static readonly reportsColumns: any[] = [
-        { field: 'zone', header: 'Zone' },
-        { field: 'district', header: 'District' },
-        { field: 'sro', header: 'SRO' }
-
+        { field: 'zonename', header: 'Zone' },
+        { field: 'districtname', header: 'District' },
+        { field: 'sroname', header: 'SRO' },
+        { field: 'casetypename', header: 'Case Type' },
+        { field: 'casenumber', header: 'Case No.' },
+        { field: 'casedate', header: 'Case Date' },
+        { field: 'caseyear', header: 'Year' },
+        { field: 'courtname', header: 'Highcourt Name' },
+        { field: 'petitionername', header: 'Petitioner Name' },
+        { field: 'mainrespondents', header: 'Respondents' },
+        { field: 'mainprayer', header: 'Gist of Case/ main prayer' },
+        { field: 'countervalue', header: 'Counter Filed' },
+        { field: 'casestatusname', header: 'Case Status' },
+        { field: 'judgement', header: 'Judgement (For/Against)' },
+        { field: 'remarks', header: 'Remarks' }
     ];
 
     public static readonly caNotFiledReportColumns : any[] = [

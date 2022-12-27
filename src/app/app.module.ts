@@ -40,7 +40,6 @@ import { DistrictMasterComponent } from './masters/districtmaster/districtmaster
 import { CourtTypeComponent } from './masters/courttype/courttype.component';
 import { CaseTypeComponent } from './masters/casetype/casetype.component';
 import { SroComponent } from './masters/sro/sro.component';
-import { ReportsComponent } from './reports/reports.component';
 import { MasterService } from './services/master.service';
 import { RestapiService } from './services/restapi.service';
 import { DatePipe } from '@angular/common';
@@ -62,6 +61,7 @@ import { RespondantMasterComponent } from './masters/respondant-master/respondan
 import { ChangePasswordComponent } from './masters/change-password/change-password.component';
 import { MainDashboardComponent } from './main-dashboard/main-dashboard.component';
 import { WritappealstatusMasterComponent } from './masters/writappealstatus-master/writappealstatus-master.component';
+import { GovtrespReportComponent } from './reports/govtresp-report/govtresp-report.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +84,7 @@ import { WritappealstatusMasterComponent } from './masters/writappealstatus-mast
     CourtTypeComponent,
     CaseTypeComponent,
     SroComponent,
-    ReportsComponent,
+    GovtrespReportComponent,
     CaNotFiledReportComponent,
     DroSdcReportComponent,
     CasestatusComponent,
@@ -102,6 +102,7 @@ import { WritappealstatusMasterComponent } from './masters/writappealstatus-mast
     ChangePasswordComponent,
     MainDashboardComponent,
     WritappealstatusMasterComponent,
+    GovtrespReportComponent,
   ],
   imports: [
     BrowserModule,

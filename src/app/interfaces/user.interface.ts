@@ -9,4 +9,6 @@ export interface User {
     zonename: string;
     sroid: any;
     sroname: string;
+    casetypeid: any;
+    casetypename: string;
 }

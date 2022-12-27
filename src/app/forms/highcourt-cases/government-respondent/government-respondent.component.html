@@ -91,19 +91,29 @@
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
+                                                <p-dropdown name="_respondenttype" [autoDisplayFirst]="disableAutoDisplay" 
+                                                    optionLabel="label" (onClick)="onSelect('RT')"
+                                                    [options]="respondentTypeOptions" [(ngModel)]="respondentType"
+                                                    [required]="true">
+                                                </p-dropdown>
+                                                <label for="float-input">Respondent Type</label>
+                                            </span>
+                                        </div>
+                                        <div class="col-12 md:col-4 lg:col-2">
+                                            <span class="p-float-label">
                                                 <p-dropdown name="_respondentcadre"
                                                     optionLabel="label" (onClick)="onSelect('RC')" (onChange)="onChangeRespondent()"
                                                     [options]="respondentCadreOptions" [(ngModel)]="respondentCadre"
                                                     [autoDisplayFirst]="disableAutoDisplay" [editable]="isEditable">
                                                 </p-dropdown>
-                                                <label for="float-input">Respondent Designation</label>
+                                                <label for="float-input">Respondent</label>
                                             </span>
                                         </div>
-                                        <div class="col-12 md:col-4 lg:col-4">
+                                        <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <input name="_respondents" type="text" [(ngModel)]="respondents"
                                                    required pInputText>
-                                                <label for="float-input">Respondents</label>
+                                                <label for="float-input">Respondents Name</label>
                                             </span>
                                         </div>
                                     </div>

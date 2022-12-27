@@ -38,6 +38,8 @@ export class GovernmentRespondentComponent implements OnInit {
   respondents: string = '';
   respondentCadre: any;
   respondentCadreOptions: any;
+  respondentType: any;
+  respondentTypeOptions: SelectItem[] = [];
   gistOfCase: any;
   remarks: any;
   selectedValue: string = '1';
@@ -82,6 +84,7 @@ export class GovernmentRespondentComponent implements OnInit {
       let sroList: any = [];
       let courtList: any = [];
       let respondentList: any = [];
+      let responseTypeList: any = [];
       switch (value) {
         case 'ZN':
           if (this.masters.zone_Masters !== undefined && this.masters.zone_Masters !== null) {
@@ -161,6 +164,16 @@ export class GovernmentRespondentComponent implements OnInit {
             this.respondentCadreOptions = respondentList;
           }
           break;
+          case 'RT':
+            if (this.masters.responsetype_Masters !== undefined && this.masters.responsetype_Masters !== null) {
+              this.masters.responsetype_Masters.forEach((rt: any) => {
+                responseTypeList.push(
+                  { label: rt.responsetypename, value: rt.responsetypeid }
+                )
+              })
+              this.respondentTypeOptions = responseTypeList;
+            }
+            break;
       }
     }
   }
@@ -222,8 +235,10 @@ export class GovernmentRespondentComponent implements OnInit {
       this.petitionerName = row.petitionername;
       this.selectedValue = (row.counterfiled) ? '1' : '0';
       this.gistOfCase = row.mainprayer;
+      this.respondentType = { label: row.responsetypename, value: row.responsetypeid };
+      this.respondentTypeOptions = [{ label: row.responsetypename, value: row.responsetypeid }];
       this.respondents = row.mainrespondents;
-      this.respondentCadre = row.respondentsid;
+      this.respondentCadre = { label: row.respondentsname, value: row.respondentsid };
       this.respondentCadreOptions = [{ label: row.respondentsname, value: row.respondentsid }];
       this.remarks = row.remarks;
       const date = '01/01/' + row.caseyear;

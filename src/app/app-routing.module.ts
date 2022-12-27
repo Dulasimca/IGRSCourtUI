@@ -16,7 +16,6 @@ import { DistrictMasterComponent } from './masters/districtmaster/districtmaster
 import { CourtTypeComponent } from './masters/courttype/courttype.component';
 import { CaseTypeComponent } from './masters/casetype/casetype.component';
 import { SroComponent } from './masters/sro/sro.component';
-import { ReportsComponent } from './reports/reports.component';
 import { CaNotFiledReportComponent } from './reports/ca-not-filed-report/ca-not-filed-report.component';
 import { DroSdcReportComponent } from './reports/dro-sdc-report/dro-sdc-report.component';
 import { DIGReportComponent } from './reports/dig-report/dig-report.component';
@@ -34,6 +33,7 @@ import { MenumasterComponent } from './masters/menumaster/menumaster.component';
 import { ChangePasswordComponent } from './masters/change-password/change-password.component';
 import { MainDashboardComponent } from './main-dashboard/main-dashboard.component';
 import { WritappealstatusMasterComponent } from './masters/writappealstatus-master/writappealstatus-master.component';
+import { GovtrespReportComponent } from './reports/govtresp-report/govtresp-report.component';
 
 
 const routes: Routes = [
@@ -54,7 +54,7 @@ const routes: Routes = [
   { path: 'court-type', component: CourtTypeComponent, canActivate: [AuthGuard] },
   { path: 'sro', component: SroComponent, canActivate: [AuthGuard] },
   { path: 'case-type', component: CaseTypeComponent, canActivate: [AuthGuard] },
-  { path: 'reports', component: ReportsComponent, canActivate: [AuthGuard] },
+  { path: 'govtresp-report', component: GovtrespReportComponent},
   { path: 'aee-report', component: AeeReportComponent },
   { path: 'supreme-court-cases-report', component: SupremeCourtCasesReportComponent },
   { path: 'ca-not-filed-report', component: CaNotFiledReportComponent },
@@ -70,8 +70,7 @@ const routes: Routes = [
   {path:'slp-master',component:SlpMasterComponent},
   {path:'respondant-master',component:RespondantMasterComponent},
   {path:'change-password',component:ChangePasswordComponent},
-  {path:'writappealstatus-master',component: WritappealstatusMasterComponent}
-
+  {path:'writappealstatus-master',component: WritappealstatusMasterComponent},
 ];
 
 
