@@ -168,7 +168,7 @@ export class IgrRespondentComponent implements OnInit {
     if (this.fromDate !== undefined && this.fromDate !== null && this.toDate !== undefined && this.toDate !== null) {
       this.data = [];
       this.loading = true;
-      const params = new HttpParams().append('userid', this._authService.getUserInfo().roleId)
+      const params = new HttpParams().append('userid', this.userInfo.roleid)
         .set('fromdate', this._datePipe.transform(this.fromDate, 'yyyy-MM-dd') as any)
         .set('todate', this._datePipe.transform(this.toDate, 'yyyy-MM-dd') as any)
         .set('zoneid', this.userInfo.zoneid)

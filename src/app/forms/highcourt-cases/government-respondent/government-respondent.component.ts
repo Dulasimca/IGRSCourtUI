@@ -36,12 +36,17 @@ export class GovernmentRespondentComponent implements OnInit {
   stateOfCase: any;
   petitionerName: any;
   respondents: string = '';
+  respondentsid: string = '';
   respondentCadre: any;
   respondentCadreOptions: any;
+  respondentType: any;
+  respondentTypeOptions: SelectItem[] = [];
   gistOfCase: any;
   remarks: any;
-  selectedValue: string = '1';
-  judgementValue: string = '1';
+  counterFiled: any;
+  counterFiledOptions: SelectItem[] = [];
+  judgement: any;
+  judgementOptions: SelectItem[] = [];
   dateValue: any;
   cols: any[] = [];
   data: any[] = [];
@@ -67,8 +72,6 @@ export class GovernmentRespondentComponent implements OnInit {
 
   assignDefault() {
     this.disableAutoDisplay = false;
-    this.selectedValue = '1';
-    this.judgementValue = '1';
     this.caseDate = new Date();
     this.caseId = 0;
   }
@@ -82,6 +85,9 @@ export class GovernmentRespondentComponent implements OnInit {
       let sroList: any = [];
       let courtList: any = [];
       let respondentList: any = [];
+      let responseTypeList: any = [];
+      let counterFiledList: any = [];
+      let judgementStatusList: any = [];
       switch (value) {
         case 'ZN':
           if (this.masters.zone_Masters !== undefined && this.masters.zone_Masters !== null) {
@@ -91,6 +97,7 @@ export class GovernmentRespondentComponent implements OnInit {
               )
             })
             this.zoneOptions = zoneList;
+            this.zoneOptions.unshift({ label: '-select-', value: null });
           }
           break;
         case 'DT':
@@ -105,6 +112,7 @@ export class GovernmentRespondentComponent implements OnInit {
               })
             }
             this.districtOptions = districtList;
+            this.districtOptions.unshift({ label: '-select-', value: null });
           }
           break;
         case 'SR':
@@ -119,6 +127,7 @@ export class GovernmentRespondentComponent implements OnInit {
               })
             }
             this.sroOptions = sroList;
+            this.sroOptions.unshift({ label: '-select-', value: null });
           }
           break;
         case 'CT':
@@ -129,6 +138,7 @@ export class GovernmentRespondentComponent implements OnInit {
               )
             })
             this.caseTypeOptions = caseTypeList;
+            this.caseTypeOptions.unshift({ label: '-select-', value: null });
           }
           break;
         case 'HC':
@@ -139,6 +149,7 @@ export class GovernmentRespondentComponent implements OnInit {
               )
             })
             this.highCourtNameOptions = courtList;
+            this.highCourtNameOptions.unshift({ label: '-select-', value: null });
           }
           break;
         case 'SC':
@@ -149,40 +160,85 @@ export class GovernmentRespondentComponent implements OnInit {
               )
             })
             this.stateOfCaseOptions = caseStatusList;
+            this.stateOfCaseOptions.unshift({ label: '-select-', value: null });
           }
           break;
         case 'RC':
           if (this.masters.respondentsmaster !== undefined && this.masters.respondentsmaster !== null) {
+            
             this.masters.respondentsmaster.forEach((rc: any) => {
+              if(rc.responsetypeid === this.respondentType.value)
+              {
               respondentList.push(
                 { label: rc.respondentsname, value: rc.respondentsid }
               )
-            })
+              }
+            });            
             this.respondentCadreOptions = respondentList;
+            this.respondentCadreOptions.unshift({ label: '-select-', value: null });
           }
           break;
+          case 'RT':
+            this.respondents="";
+            this.respondentsid = "";
+            if (this.masters.responsetype_Masters !== undefined && this.masters.responsetype_Masters !== null) {
+              this.masters.responsetype_Masters.forEach((rt: any) => {
+                responseTypeList.push(
+                  { label: rt.responsetypename, value: rt.responsetypeid }
+                )
+              })
+              this.respondentTypeOptions = responseTypeList;
+              this.respondentTypeOptions.unshift({ label: '-select-', value: null });
+            }
+            break;
+            case 'CF':
+              if (this.masters.counterfiledmaster !== undefined && this.masters.counterfiledmaster !== null) {
+                this.masters.counterfiledmaster.forEach((cf: any) => {
+                  counterFiledList.push(
+                    { label: cf.counterfiledname, value: cf.counterfiledid }
+                  )
+                })
+                this.counterFiledOptions = counterFiledList;
+                this.counterFiledOptions.unshift({ label: '-select-', value: null });
+              }
+              break;
+              case 'JD':
+                if (this.masters.judgementmaster !== undefined && this.masters.judgementmaster !== null) {
+                  this.masters.judgementmaster.forEach((jd: any) => {
+                    judgementStatusList.push(
+                      { label: jd.judgementname, value: jd.judgementid }
+                    )
+                  })
+                  this.judgementOptions = judgementStatusList;
+                  this.judgementOptions.unshift({ label: '-select-', value: null });
+                }
+                break;
       }
     }
   }
 
   onLoadCases() {
-    if (this.fromDate !== undefined && this.fromDate !== null && this.toDate !== undefined && this.toDate !== null) {
+    console.log(1, "load data");
+    if (this.fromDate !== undefined && this.fromDate !== null && this.toDate !== undefined && this.toDate !== null && this.respondentType !== undefined && this.respondentType !==null) {
       this.data = [];
+      console.log(2, "call api");
       this.loading = true;
       const params = new HttpParams().append('userid', this.userInfo.roleid)
         .set('fromdate', this._datePipe.transform(this.fromDate, 'yyyy-MM-dd') as any)
+        .set('respondentType', this.respondentType.value)
         .set('todate', this._datePipe.transform(this.toDate, 'yyyy-MM-dd') as any)
         .set('zoneid', this.userInfo.zoneid)
         .set('sroid', this.userInfo.sroid)
-        .set('districtid', this.userInfo.districtid)
-        .set('respondentType', 1);
+        .set('districtid', this.userInfo.districtid);
+        console.log(3, params);
       this._restApiService.getByParameters('Respondent/GetRespondentCase', params).subscribe(res => {
-        if (res) {
+        if(res) {
           this.loading = false;
-          res.forEach((i: any) => {
-            i.countervalue = i.counterfiled ? 'Yes' : 'No';
-            i.judgement = i.judgementvalue ? 'For' : 'Against';
-          })
+          // res.forEach((i: any) => {
+          //   i.countervalue = i.counterfiled ? 'Yes' : 'No';
+          //   i.judgement = i.judgementvalue ? 'For' : 'Against';
+          // })
+          console.log(4, res);
           this.data = res;
         } else {
           this.loading = false;
@@ -194,8 +250,13 @@ export class GovernmentRespondentComponent implements OnInit {
   onChangeRespondent() {
     if (this.respondentCadre !== undefined && this.respondentCadre !== null) {
       this.respondents += this.respondentCadre.label + ' , ';
+      this.respondentsid += this.respondentCadre.value !=null ?  + this.respondentCadre.value + ',' :'' 
       if (this.respondentCadre.value === 15) {
         this.isEditable = true;
+      }
+      else
+      {
+        this.isEditable = false;
       }
     }
   }
@@ -216,15 +277,22 @@ export class GovernmentRespondentComponent implements OnInit {
       this.caseTypeOptions = [{ label: row.casetypename, value: row.casetypeid }];
       this.stateOfCase = { label: row.casestatusname, value: row.casestatusid };
       this.stateOfCaseOptions = [{ label: row.casestatusname, value: row.casestatusid }];
-      this.judgementValue = (row.judgementvalue) ? '1' : '0';
+      this.judgement = { label: row.judgementname, value: row.judgementid };
+      this.judgementOptions = [{ label: row.judgementname, value: row.judgementid }];
+      this.counterFiled = { label: row.counterfiledname, value: row.counterfiledid };
+      this.counterFiledOptions = [{ label: row.counterfiledname, value: row.counterfiledid }];
+      this.respondentCadre = { label: row.mainrespondents, value: row.id };
+      this.respondentCadreOptions = [{ label: row.mainrespondents, value: row.id }];
+      // this.judgementValue = (row.judgementvalue) ? '1' : '0';
       this.caseDate = new Date(row.casedate);
       this.caseNo = row.casenumber;
       this.petitionerName = row.petitionername;
-      this.selectedValue = (row.counterfiled) ? '1' : '0';
+      // this.selectedValue = (row.counterfiled) ? '1' : '0';
       this.gistOfCase = row.mainprayer;
+      this.respondentType = { label: row.responsetypename, value: row.responsetypeid };
+      this.respondentTypeOptions = [{ label: row.responsetypename, value: row.responsetypeid }];
       this.respondents = row.mainrespondents;
-      this.respondentCadre = row.respondentsid;
-      this.respondentCadreOptions = [{ label: row.respondentsname, value: row.respondentsid }];
+      this.respondentsid = row.mainrespondentsid;
       this.remarks = row.remarks;
       const date = '01/01/' + row.caseyear;
       this.caseYear = new Date(date);
@@ -238,30 +306,31 @@ export class GovernmentRespondentComponent implements OnInit {
       'zoneid': this.zone.value,
       'districtid': this.district.value,
       'sroid': this.sro.value,
-      'petitionername': this.petitionerName,
-      'remarks': this.remarks,
-      'mainprayer': this.gistOfCase,
-      'courtid': this.highCourtName.value,
-      'casedate': this._converter.convertDate(this.caseDate),
-      'casenumber': this.caseNo,
-      'casestatusid': this.stateOfCase.value,
-      'judgementvalue': (this.judgementValue === '1') ? true : false,
       'casetypeid': this.caseType.value,
+      'casenumber': this.caseNo,
+      'casedate': this._converter.convertDate(this.caseDate),
       'caseyear': (_caseyear * 1),
+      'courtid': this.highCourtName.value,
+      'petitionername': this.petitionerName,
       'mainrespondents': this.respondents,
-      'counterfiled': (this.selectedValue === '1') ? true : false,
+      'mainprayer': this.gistOfCase,
+      'counterfiledid': this.counterFiled.value,
+      'casestatusid': this.stateOfCase.value,
+      'judgementid':this.judgement.value,
+      'remarks': this.remarks,
       'flag': true,
       'createdate': new Date(),
       'userId': this.userInfo.roleid,
-      'responsetypeid': 1, //for government respondent
+      'responsetypeid': this.respondentType.value, //for government respondent
+      'mainrespondentsid': this.respondentsid
     }
     this._restApiService.post('Respondent/SaveRespondentCase', params).subscribe(res => {
       if (res) {
-        this.clearForm();
         this.responseMsg = [{ severity: ResponseMessage.SuccessSeverity, detail: ResponseMessage.SuccessMessage }];
         setTimeout(() => this.responseMsg = [], 3000);
-        this.assignDefault();
         this.onLoadCases();
+        this.assignDefault();
+        this.clearForm();
       } else {
         this.responseMsg = [{ severity: ResponseMessage.ErrorSeverity, detail: ResponseMessage.ErrorMessage }];
         setTimeout(() => this.responseMsg = [], 3000)
@@ -279,6 +348,8 @@ export class GovernmentRespondentComponent implements OnInit {
     this.caseTypeOptions = [];
     this.respondentCadreOptions = [];
     this.highCourtNameOptions = [];
+    this.stateOfCaseOptions = [];
+    this.judgementOptions = [];
+    this.counterFiledOptions = [];
   }
-
 }

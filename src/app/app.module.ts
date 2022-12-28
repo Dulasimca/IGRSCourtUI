@@ -40,7 +40,6 @@ import { DistrictMasterComponent } from './masters/districtmaster/districtmaster
 import { CourtTypeComponent } from './masters/courttype/courttype.component';
 import { CaseTypeComponent } from './masters/casetype/casetype.component';
 import { SroComponent } from './masters/sro/sro.component';
-import { ReportsComponent } from './reports/reports.component';
 import { MasterService } from './services/master.service';
 import { RestapiService } from './services/restapi.service';
 import { DatePipe } from '@angular/common';
@@ -60,11 +59,14 @@ import { SlpMasterComponent } from './masters/slp-master/slp-master.component';
 import { JudgementMasterComponent } from './masters/judgement-master/judgement-master.component';
 import { RespondantMasterComponent } from './masters/respondant-master/respondant-master.component';
 import { ChangePasswordComponent } from './masters/change-password/change-password.component';
+import { MainDashboardComponent } from './main-dashboard/main-dashboard.component';
 import { WritappealstatusMasterComponent } from './masters/writappealstatus-master/writappealstatus-master.component';
 import { CaseHearingDateComponent } from './forms/highcourt-cases/case-hearing-date/case-hearing-date.component';
 import { StatusOfCourtcasesReportComponent } from './reports/status-of-courtcases-report/status-of-courtcases-report.component';
 import { NgxPrintModule } from 'ngx-print';
 
+import { GovtrespReportComponent } from './reports/govtresp-report/govtresp-report.component';
+import { CounterfiledMasterComponent } from './masters/counterfiled-master/counterfiled-master.component';
 
 @NgModule({
   declarations: [
@@ -87,7 +89,7 @@ import { NgxPrintModule } from 'ngx-print';
     CourtTypeComponent,
     CaseTypeComponent,
     SroComponent,
-    ReportsComponent,
+    GovtrespReportComponent,
     CaNotFiledReportComponent,
     DroSdcReportComponent,
     CasestatusComponent,
@@ -103,9 +105,12 @@ import { NgxPrintModule } from 'ngx-print';
     JudgementMasterComponent,
     RespondantMasterComponent,
     ChangePasswordComponent,
+    MainDashboardComponent,
     WritappealstatusMasterComponent,
     CaseHearingDateComponent,
     StatusOfCourtcasesReportComponent,
+    GovtrespReportComponent,
+    CounterfiledMasterComponent,
   ],
   imports: [
     BrowserModule,

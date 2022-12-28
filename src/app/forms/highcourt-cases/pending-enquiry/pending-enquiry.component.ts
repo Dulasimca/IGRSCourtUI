@@ -1,12 +1,15 @@
 import { DatePipe } from '@angular/common';
+import { HttpParams } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { SelectItem } from 'primeng/api';
+import { ResponseMessage } from 'src/app/constants/message-constants';
 import { TableConstants } from 'src/app/constants/table-constants';
 import { DateConverter } from 'src/app/helper/date-converter';
 import { AuthService } from 'src/app/services/auth.service';
 import { MasterService } from 'src/app/services/master.service';
 import { RestapiService } from 'src/app/services/restapi.service';
+import { User } from 'src/app/interfaces/user.interface';
 
 @Component({
   selector: 'app-pending-enquiry',
@@ -32,46 +35,51 @@ export class PendingEnquiryComponent implements OnInit {
   subject:any;
   petitionerName: any;
   respondents: string = '';
-  respondentCadre: any;
-  respondentCadreOptions: any;
+  writappealStatus: any;
+  writappealstatusOptions: SelectItem[] = [];
   gistOfCase: any;
-  referenceNo:any;
+  referenceNo: any;
   remarks: any;
   cols: any[] = [];
   data: any[] = [];
+  caseId: number = 0;
+  writId: number = 0;
+  pendingId: number = 0;
   dateValue: any;
   masters?: any;
-  caseId: any;
   loading: boolean = false;
   fromDate: any;
   toDate: any;
+  roleId: any;
+  userInfo!: User;
+  isDisabled: boolean = false;
   isEditable: boolean = false;
-  // userInfo!: User;
+  disableAutoDisplay: boolean = false;
 
   @ViewChild('f', {static: false}) _pendingEnquiryCaseDetailsForm!: NgForm;
+  responseMsg: { severity: string; detail: string; }[] | undefined;
+
   constructor(private _restApiService: RestapiService, private _masterService: MasterService,
     private _datePipe: DatePipe, private _authService: AuthService, private _converter: DateConverter) { }
 
   ngOnInit(): void {
-    this.cols = TableConstants.respondentColumns;
+    this.cols = TableConstants.pendingEnquiryColumns;
     this.masters = this._masterService.getMasters();
-    // this.userInfo = this._authService.getUserInfo();
+    this.roleId = this._authService.getUserInfo().roleId;
   }
 
   assignDefault() {
+    this.disableAutoDisplay = false;
     this.caseDate = new Date();
     this.caseId = 0;
   }
 
   onSelect(value: string) {
     if (this.masters) {
-      let caseStatusList: any = [];
       let caseTypeList: any = [];
       let zoneList: any = [];
       let districtList: any = [];
       let sroList: any = [];
-      let courtList: any = [];
-      let respondentList: any = [];
       switch (value) {
         case 'ZN':
           if (this.masters.zone_Masters) {
@@ -121,76 +129,99 @@ export class PendingEnquiryComponent implements OnInit {
             this.caseTypeOptions = caseTypeList;
           }
           break;
-        case 'HC':
-          if (this.masters.court_Masters) {
-            this.masters.court_Masters.forEach((hc: any) => {
-              courtList.push(
-                { label: hc.courtname, value: hc.courtid }
-              )
-            })
-            this.highCourtNameOptions = courtList;
-          }
-          break;
-        case 'SC':
-          if (this.masters.casestatus_Masters) {
-            this.masters.casestatus_Masters.forEach((cs: any) => {
-              caseStatusList.push(
-                { label: cs.casestatusname, value: cs.casestatusid }
-              )
-            })
-            this.stateOfCaseOptions = caseStatusList;
-          }
-          break;
         }
       }
     }
 
-    onLoadCases() {
-      if(this.fromDate && this.toDate) {
+  onView() {
       this.data = [];
       this.loading = true;
-      // const params = new HttpParams().append('userid', this.userInfo.roleid)
-      // .set('fromdate', this._datePipe.transform(this.fromDate, 'yyyy-MM-dd') as any)
-      // .set('todate', this._datePipe.transform(this.toDate, 'yyyy-MM-dd') as any)
-      // .set('zoneid', this.userInfo.zoneid)
-      // .set('sroid', this.userInfo.sroid)
-      // .set('districtid', this.userInfo.districtid)
-      
-      }
+      const params = new HttpParams().append('zoneid', this.zone.value)
+      .set('districtid', this.district.value)
+      .set('sroid', this.sro.value)
+      .set('casetypeid', this.caseType.value);
+      this._restApiService.getByParameters('Pendingenquiry/GetPendingenquiry', params).subscribe(res => {
+        if(res) {
+          this.loading = false;
+          this.data = res;
+        } else {
+          this.loading = false;
+        }
+      })
     }
 
-    onChangeRespondent() {
-      if(this.respondentCadre) {
-        this.respondents += this.respondentCadre.label + ' , ';
-  
-      }
-      if(this.respondentCadre.value === 15) {
-      this.isEditable = true;
-      }
+    onEdit(row: any){
+      if (row !== undefined && row !== null) {
+      this.disableAutoDisplay = true;
+      this.pendingId = row.pendingenquiryid;
+      this.writId = row.writappealsid;
+      this.caseId = row.courtcaseid;
+      this.remarks = row.remarks;
+      this.isDisabled = true;
+      this.subject = row.subject;
+      this.referenceNo = row.referenceNo;
+      this.highCourtName = row.courtname;
+      this.stateOfCase = row.casestatusname;
+      this.respondents = row.mainrespondents;
+      this.gistOfCase = row.mainprayer;
+      this.zone = { label: row.zonename, value: row.zoneid, };
+      this.zoneOptions = [ { label: row.zonename, value: row.zoneid, }];
+      this.district = { label: row.districtname, value: row.districtid };
+      this.districtOptions = [{ label: row.districtname, value: row.districtid }];
+      this.sro = {label:row.sroname, value:row.sroid};
+      this.sroOptions = [{label: row.sroname, value:row.sroid}];
+      this.caseType = { label:row.casetypename, value:row.casetypeid};
+      this.caseTypeOptions = [{ label:row.casetypename, value:row.casetypeid }];
+      this.writappealStatus = { label: row.writappealstatusname, value: row.writappealstatusid };
+      this.writappealstatusOptions = [{ label: row.writappealstatusname, value: row.writappealstatusid }];
+      const date = '01/01/' + row.caseyear;
+      this.caseYear = new Date(date);
+    } 
     }
 
-  onSave() {
+    onSave() {
       let _caseyear: any = this._datePipe.transform(this.caseYear, 'yyyy');
       const params = {
+        'pendingenquiryid': this.pendingId,
         'zoneid': this.zone.value,
         'districtid': this.district.value,
         'sroid': this.sro.value,
-        'casetypeid': this.caseType.value,
-        'casenumber': this.caseNo,
-        'casedate': this._converter.convertDate(this.caseDate),
-        'caseyear': (_caseyear * 1),
-        'courtid': this.highCourtName.value,
-        'petitionername': this.petitionerName,
-        'mainrespondents': this.respondents,
-        'remarks': this.remarks,
-        'casestatusid': this.stateOfCase.value,
-        'mainprayer': this.gistOfCase,   
+        'writappealsid': this.writId,
+        'courtcaseid': this.caseId,
         'subject': this.subject,
-        'referenceNo': this.referenceNo,
+        'referenceno': this.referenceNo,
+        'remarks': this.remarks,
         'flag': true,
-        'createdate': new Date(),
-        // 'userId': this.userInfo.roleid,
+        'createddate': new Date(),
       }
-  }
-
+      this._restApiService.post('Pendingenquiry/SavePendingenquiry', params).subscribe(res => {
+        if (res) {
+          this.onView();
+          this.clearForm();
+          this.data = [];
+          this.loading = true;
+          this.isDisabled = false;
+          this.responseMsg = [{ severity: ResponseMessage.SuccessSeverity, detail: ResponseMessage.SuccessMessage }];
+          setTimeout(() => this.responseMsg = [], 3000);
+          this.pendingId = 0;
+          this.writId = 0;
+          this.caseId = 0;
+          this.onSave();
+        } 
+        else {
+          this.responseMsg = [{ severity: ResponseMessage.ErrorSeverity, detail: ResponseMessage.ErrorMessage }];
+          setTimeout(() => this.responseMsg = [], 3000)
+        }
+      })
+    }
+  
+    clearForm() {
+      this._pendingEnquiryCaseDetailsForm.reset();
+      this._pendingEnquiryCaseDetailsForm.form.markAsUntouched();
+      this._pendingEnquiryCaseDetailsForm.form.markAsPristine();
+      this.zoneOptions = [];
+      this.sroOptions = [];
+      this.districtOptions = [];
+      this.caseTypeOptions = [];
+    }
 }

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ReportsComponent } from './reports.component';
+import { GovtrespReportComponent } from './govtresp-report.component';
 
-describe('ReportsComponent', () => {
-  let component: ReportsComponent;
-  let fixture: ComponentFixture<ReportsComponent>;
+describe('GovtrespReportComponent', () => {
+  let component: GovtrespReportComponent;
+  let fixture: ComponentFixture<GovtrespReportComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ReportsComponent ]
+      declarations: [ GovtrespReportComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ReportsComponent);
+    fixture = TestBed.createComponent(GovtrespReportComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

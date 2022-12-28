@@ -26,9 +26,11 @@ export class WritAppealsComponent implements OnInit {
   sro: any;
   caseType: any;
   caseTypeOptions: SelectItem[] = [];
+  hcreferenceNo: any;
   regularNumber: any;
   writappealStatus: any;
   writappealstatusOptions: SelectItem[] = [];
+  natureofDisposal: any;
   remarks:any;
   caseId: number = 0;
   writId: number = 0;
@@ -150,15 +152,15 @@ export class WritAppealsComponent implements OnInit {
     this.writId = row.writappealsid;
     this.caseId = row.courtcaseid;
     this.remarks = row.remarks;
+    this.hcreferenceNo = row.hcreferenceno;
     this.regularNumber = row.regularnumber;
+    this.natureofDisposal = row.natureofdisposal;
     this.writappealStatus = { label: row.writappealstatusname, value: row.writappealstatusid };
     this.writappealstatusOptions = [{ label: row.writappealstatusname, value: row.writappealstatusid }];
     this.zone = { label: row.zonename, value: row.zoneid, };
     this.zoneOptions = [ { label: row.zonename, value: row.zoneid, }];
-    console.log('onDT,', this.district,this.districtOptions)
     this.district = { label: row.districtname, value: row.districtid };
     this.districtOptions = [{ label: row.districtname, value: row.districtid }];
-    console.log('onDT,', this.district,this.districtOptions)
     this.sro = {label:row.sroname, value:row.sroid};
     this.sroOptions = [{label: row.sroname, value:row.sroid}];
     this.caseType = { label:row.casetypename, value:row.casetypeid};
@@ -174,6 +176,8 @@ onSave() {
     'districtid': this.district.value,
     'sroid': this.sro.value,
     'casetypeid': this.caseType.value,
+    'hcreferenceno': this.hcreferenceNo,
+    'natureofdisposal': this.natureofDisposal,
     'regularnumber': this.regularNumber,
     'remarks': this.remarks,
     'writappealstatusid': this.writappealStatus.value,

@@ -11,29 +11,29 @@ export class TableConstants {
         { field: 'petitionername', header: 'Petitioner Name' },
         { field: 'mainrespondents', header: 'Respondents' },
         { field: 'mainprayer', header: 'Gist of Case/ main prayer' },
-        { field: 'countervalue', header: 'Counter Filed' },
+        { field: 'counterfiledname', header: 'Counter Filed' },
         { field: 'casestatusname', header: 'Case Status' },
-        { field: 'judgement', header: 'Judgement (For/Against)' },
+        { field: 'judgementname', header: 'Judgement (For/Against)' },
         { field: 'remarks', header: 'Remarks' }
     ];
 
     public static readonly timeBoundJudgementColumns: any[] = [
-        { field: 'zone', header: 'Zone' },
-        { field: 'district', header: 'District' },
-        { field: 'sro', header: 'SRO' },
-        { field: 'casetype', header: 'Case Type' },
-        { field: 'courttype', header: 'Court Type' },
-        { field: 'caseno', header: 'Case No.' },
-        { field: 'year', header: 'Year' },
+        { field: 'zonename', header: 'Zone' },
+        { field: 'districtname', header: 'District' },
+        { field: 'sroname', header: 'SRO' },
+        { field: 'casetypename', header: 'Case Type' },
+        { field: 'casenumber', header: 'Case No.' },
+        { field: 'courtname', header: 'Highcourt Name' },
+        { field: 'caseyear', header: 'Year' },
         { field: 'judgementdate', header: 'Judgement Date' },
         { field: 'petitionername', header: 'Petitioner Name' },
-        { field: 'respondentsname', header: 'Respondents Name' },
+        { field: 'mainrespondents', header: 'Respondents Name' },
         { field: 'receiptdate', header: 'Receipt Date' },
         { field: 'timelimit', header: 'Time Limit' },
         { field: 'expirydate', header: 'Expiry Date' },
-        { field: 'directedto', header: 'Directed To' },
+        { field: 'mainrespondents', header: 'Directed To' },
         { field: 'natureofdirection', header: 'Nature of Direction' },
-        { field: 'compliedornot', header: 'Complied(or)Not' },
+        { field: 'compiledornot', header: 'Complied(or)Not' },
         { field: 'remarks', header: 'Remarks' },
     ];  
 
@@ -41,10 +41,10 @@ export class TableConstants {
         { field: 'zone', header: 'Zone' },
         { field: 'district', header: 'District' },
         { field: 'sro', header: 'SRO' },
-        { field: 'casetype', header: 'Case Type' },
-        { field: 'caseno', header: 'Case No' },
-        { field: 'casedate', header: 'Case Date' },
+        { field: 'casetypename', header: 'Case Type' },
         { field: 'courtname', header: 'Name of Court' },
+        { field: 'caseno', header: 'Case No' },
+        { field: 'caseyear', header: 'Year' },
         { field: 'gistofcase', header: 'Gist of Case' },
         { field: 'petitionername', header: 'Petitioner' },
         { field: 'mainrespondents', header: 'Respondents' },
@@ -56,20 +56,20 @@ export class TableConstants {
     ];
 
     public static readonly pendingEnquiryColumns: any[] = [
-        { field: 'zone', header: 'Zone' },
-        { field: 'district', header: 'District' },
-        { field: 'sro', header: 'SRO' },
-        { field: 'casetype', header: 'CaseType' },
-        { field: 'caseno', header: 'CaseNo' },
-        { field: 'casedate', header: 'CaseDate' },
-        { field: 'year', header: 'Year' },
+        { field: 'zonename', header: 'Zone' },
+        { field: 'districtname', header: 'District' },
+        { field: 'sroname', header: 'SRO' },
+        { field: 'casetypename', header: 'CaseType' },
+        { field: 'casenumber', header: 'CaseNo.' },
+        { field: 'caseyear', header: 'Year' },
         { field: 'courtname', header: 'Highcourt Name' },
         { field: 'petitionername', header: 'Petitioner Name' },
         { field: 'mainrespondents', header: 'Respondents Name' },
-        { field: 'casestatus', header: 'Case Status' },
-        { field: 'gistofcase', header: 'Gist of Case' },
+        { field: 'casestatusname', header: 'Case Status' },
+        { field: 'mainprayer', header: 'Gist of Case' },
         { field: 'subject', header: 'Subject' },
-        { field: 'refno', header: 'DIG/DR/SR-RefNo' }
+        { field: 'referenceno', header: 'DIG/DR/SR-RefNo' },
+        { field: 'remarks', header: 'Remarks' }
     ];
 
     public static readonly supremeCourtCaseColumns: any[] = [
@@ -90,25 +90,40 @@ export class TableConstants {
     ];
 
     public static readonly writeAppealsColumns: any[] = [
-               { field: 'casenumber', header: 'Case No.' },
-        { field: 'casedate', header: 'Case Date'},
+        { field: 'zonename', header: 'Zone' },
+        { field: 'districtname', header: 'District' },
+        { field: 'casetypename', header: 'CaseType' },
+        { field: 'casenumber', header: 'Case No.' },
         { field: 'caseyear', header: 'Year' },
-        { field: 'courtname', header: 'Courtname' },
+        { field: 'hcreferenceno', header: 'HC Reference No.' },
         { field: 'petitionername', header: 'Petitioner Name' },
         { field: 'mainrespondents', header: 'Respondents Name' },
         { field: 'mainprayer', header: 'Gist of Case/ main prayer' },
         { field: 'counterfiled', header: 'Counter Filed' },
         { field: 'casestatusname', header: 'Case Status' },
+        { field: 'natureofdisposal', header: 'Nature of disposal' },
         { field: 'regularnumber', header: 'Regular No. Received' },
-        {field:'writappealstatus', header: 'WritappealStatus'},
+        { field:'writappealstatusname', header: 'WritappealStatus'},
         { field: 'remarks', header: 'Remarks' }
     ];
 
     public static readonly reportsColumns: any[] = [
-        { field: 'zone', header: 'Zone' },
-        { field: 'district', header: 'District' },
-        { field: 'sro', header: 'SRO' }
-
+        { field: 'responsetypename', header: 'RespondentType'},
+        { field: 'zonename', header: 'Zone' },
+        { field: 'districtname', header: 'District' },
+        { field: 'sroname', header: 'SRO' },
+        { field: 'casetypename', header: 'Case Type' },
+        { field: 'casenumber', header: 'Case No.' },
+        { field: 'casedate', header: 'Case Date' },
+        { field: 'caseyear', header: 'Year' },
+        { field: 'courtname', header: 'Highcourt Name' },
+        { field: 'petitionername', header: 'Petitioner Name' },
+        { field: 'mainrespondents', header: 'Respondents' },
+        { field: 'mainprayer', header: 'Gist of Case/ main prayer' },
+        { field: 'counterfiledname', header: 'Counter Filed' },
+        { field: 'casestatusname', header: 'Case Status' },
+        { field: 'judgementname', header: 'Judgement' },
+        { field: 'remarks', header: 'Remarks' }
     ];
 
     public static readonly caNotFiledReportColumns : any[] = [
@@ -219,6 +234,12 @@ export class TableConstants {
     ];
     public static readonly judgementMaster: any[] = [
         { field: 'judgementname', header: 'Judgement Name'},
+        { field: 'createddate', header: 'Created Date'},
+        { field: 'flag', header: 'Status'}
+    ];
+
+    public static readonly counterfiledMaster: any[] = [
+        { field: 'counterfiledname', header: 'Counterfiled Name'},
         { field: 'createddate', header: 'Created Date'},
         { field: 'flag', header: 'Status'}
     ];
