@@ -33,13 +33,15 @@ import { RespondantMasterComponent } from './masters/respondant-master/respondan
 import { MenumasterComponent } from './masters/menumaster/menumaster.component';
 import { ChangePasswordComponent } from './masters/change-password/change-password.component';
 import { WritappealstatusMasterComponent } from './masters/writappealstatus-master/writappealstatus-master.component';
+import { CaseHearingDateComponent } from './forms/highcourt-cases/case-hearing-date/case-hearing-date.component';
+import { StatusOfCourtcasesReportComponent } from './reports/status-of-courtcases-report/status-of-courtcases-report.component';
 
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
-  { path: 'government-respondent-hight-court-cases', component: GovernmentRespondentComponent, canActivate: [AuthGuard] },
+  { path: 'government-respondent-hight-court-cases', component: StatusOfCourtcasesReportComponent, canActivate: [AuthGuard] },
   { path: 'pending-enquiry-hight-court-cases', component: PendingEnquiryComponent, canActivate: [AuthGuard] },
   { path: 'supreme-court-case-details', component: SupremecourtCaseDetailsComponent, canActivate: [AuthGuard] },
   { path: 'others-respondent', component: OthersRespondentComponent, canActivate: [AuthGuard] },
@@ -68,7 +70,9 @@ const routes: Routes = [
   {path:'slp-master',component:SlpMasterComponent},
   {path:'respondant-master',component:RespondantMasterComponent},
   {path:'change-password',component:ChangePasswordComponent},
-  {path:'writappealstatus-master',component: WritappealstatusMasterComponent}
+  {path:'writappealstatus-master',component: WritappealstatusMasterComponent},
+  {path:'writappealstatus-master',component: StatusOfCourtcasesReportComponent}
+
 
 ];
 

@@ -1,0 +1,169 @@
+<div class="col-12 md:col-12 lg:col-12 container">
+    <div class="grid to-center">
+        <div class="col-12 md:col-12 lg:col-12">
+            <p-panel header="Status of Court Cases">
+                <p-messages [(value)]="responseMsg" [enableService]="false"
+                    [hideTransitionOptions]="'500ms cubic-bezier(0.86, 0, 0.076, 1)'"></p-messages>
+                <div class="col-12 md:col-12 lg:col-12 box" style="margin-top: 5px;">
+                        <div #main class="col-12 md:col-12 lg:col-12">
+                            <div class="grid to-center">
+                                <div #row1 class="col-12 md:col-11 lg:col-11">
+                                    <div class="grid">
+                                        <div class="col-12 md:col-4 lg:col-2">
+                                            <span class="p-float-label">
+                                                <p-calendar name="_fromdate" [(ngModel)]="fromDate" [showIcon]="true"
+                                                   [required]="true"></p-calendar>
+                                                <label for="float-input">From Date</label>
+                                            </span>
+                                        </div>
+                                        <div class="col-12 md:col-4 lg:col-2">
+                                            <span class="p-float-label">
+                                                <p-calendar name="_todate" [(ngModel)]="toDate" [showIcon]="true"
+                                                   [required]="true"></p-calendar>
+                                                <label for="float-input">To Date</label>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div #row4 class="col-12 md:col-11 lg:col-11 txt-to-center no-padding">
+                                    <button pButton pRipple type="button" label="Save" (click)="onSave()"
+                                        [disabled]="!f.valid || !f.dirty"></button>
+                                </div> -->
+                            </div>
+                        </div>
+                </div>
+                <div id="print" class="col-12 md:col-12 lg:col-12">
+                    <div class="tableHeader">COUNTER AFFIDAVITIS NOT FILED DETAILS RELATED TO HIGH COURT CASES</div>
+                    <p-table #dt [columns]="DeputyInspCols" [value]="DeputyInspData" styleClass="p-datatable-gridlines" [loading]="loading">
+                        <ng-template pTemplate="caption">
+                            <div class="grid" style="width: -webkit-fill-available;">
+                                <div class="lg:col-8" style=" margin-top: 2rem;
+                                padding-top: 0 !important;text-decoration-line: underline;">1.Offices of the Deputy Inspector General of Registration
+                                </div>
+                                <div class="lg:col-4 table-hdr-export">
+                                    <button printSectionId="print" ngxPrint pButton type="button" [useExistingCss]="true"
+                            label="Print"></button>
+                                </div>
+                            </div>
+                        </ng-template>
+                        <ng-template pTemplate="header" let-columns>
+                            <tr>
+                                <th>S.No:</th>
+                                <th *ngFor="let col of columns">
+                                    {{col.header}}
+                                </th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex" let-columns="columns">
+                            <tr>
+                                <td>{{rowIndex+1}}</td>
+                                <td *ngFor="let col of columns">
+                                    {{rowData[col.field]}}
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                    <div class="col-12 md:col-12 lg:col-12"></div>
+                    <!-- //table2 -->
+                    <p-table #dt [columns]="counterCols" [value]="counterData" styleClass="p-datatable-gridlines" [loading]="loading">
+                        <ng-template pTemplate="caption">
+                            <div class="grid" style="width: -webkit-fill-available;">
+                                <div class="lg:col-8" style=" margin-top: 2rem;
+                                padding-top: 0 !important;text-decoration-line: underline;">2.Number of Counter Affidavitis not filed Details(Respondent wise)
+                                </div>
+                                <div class="lg:col-4 table-hdr-export">
+                                    <!-- <button type="button" pButton pRipple icon="pi pi-file" (click)="dt.exportCSV()"
+                                        class="mr-2" pTooltip="CSV" label="Export" tooltipPosition="bottom"></button> -->
+                                </div>
+                            </div>
+                        </ng-template>
+                        <ng-template pTemplate="header" let-columns>
+                            <tr>
+                                <th rowspan="2">S.No</th>
+                                <th rowspan="2">Zone</th>
+                                <th colspan="3" style="text-align: center;">Number of Counter Affidavitis not Filed</th>
+                                <th rowspan="2">Total</th>
+                                <th rowspan="2">Pending with G.P for vetting</th>
+                            </tr>
+                            <tr>
+                                <th>GOVT Respondent</th>
+                                <th>IGR Respondent</th>
+                                <th>OTHERS Respondent</th>''
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex" let-columns="columns">
+                            <tr>
+                                <td>{{rowIndex+1}}</td>
+                                <td *ngFor="let col of columns">
+                                    {{rowData[col.field]}}
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                    <div class="col-12 md:col-12 lg:col-12"></div>
+<!-- table3 -->
+<p-table #dt [columns]="stampCols" [value]="stampData" styleClass="p-datatable-gridlines" [loading]="loading">
+    <ng-template pTemplate="caption">
+        <div class="grid" style="width: -webkit-fill-available;">
+            <div class="lg:col-8" style=" margin-top: 2rem;
+            padding-top: 0 !important;text-decoration-line: underline;">3.Offices of the District Revenue Officer & Special Deputy Collector(Stamps)
+            </div>
+            <div class="lg:col-4 table-hdr-export">
+                <!-- <button type="button" pButton pRipple icon="pi pi-file" (click)="dt.exportCSV()"
+                    class="mr-2" pTooltip="CSV" label="Export" tooltipPosition="bottom"></button> -->
+            </div>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th>S.No:</th>
+            <th *ngFor="let col of columns">
+                {{col.header}}
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex" let-columns="columns">
+        <tr>
+            <td>{{rowIndex+1}}</td>
+            <td *ngFor="let col of columns">
+                {{rowData[col.field]}}
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+<!-- table4 -->
+<div class="col-12 md:col-12 lg:col-12"></div>
+<p-table #dt [columns]="buildingCols" [value]="buildingData" styleClass="p-datatable-gridlines" [loading]="loading">
+    <ng-template pTemplate="caption">
+        <div class="grid" style="width: -webkit-fill-available;">
+            <div class="lg:col-8" style=" margin-top: 2rem;
+            padding-top: 0 !important;text-decoration-line: underline;">4.Offices of the Assistant Executive Engineer(Buildings)
+            </div>
+            <div class="lg:col-4 table-hdr-export">
+                <!-- <button type="button" pButton pRipple icon="pi pi-file" (click)="dt.exportCSV()"
+                    class="mr-2" pTooltip="CSV" label="Export" tooltipPosition="bottom"></button> -->
+            </div>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th>S.No:</th>
+            <th *ngFor="let col of columns">
+                {{col.header}}
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex" let-columns="columns">
+        <tr>
+            <td>{{rowIndex+1}}</td>
+            <td *ngFor="let col of columns">
+                {{rowData[col.field]}}
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+                </div>
+            </p-panel>
+        </div>
+    </div>
+</div>

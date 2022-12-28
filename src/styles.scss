@@ -20,9 +20,18 @@ label {
     font-size: 12px !important;
     color: rgba(0, 0, 0, 0.6) !important;
 }
+
+.note {
+    font-size: 12px;
+    font-style: italic;
+    color: red;
+}
+ 
+
 ::-webkit-scrollbar {
     scrollbar-width: thin !important;
 }
+
 .container {
     margin-top: 10px;
 }
@@ -191,6 +200,7 @@ label {
     border: none !important;
     // border-color: #1a9967  !important;
 }
+
 .p-dropdown-panel .p-dropdown-header .p-dropdown-filter {
     margin-right: 0 !important;
     padding: 0.25rem 0.45rem !important;
@@ -210,7 +220,7 @@ label {
 
 .p-dropdown-panel .p-dropdown-items .p-dropdown-item {
     padding: 0.5rem 0.75rem !important;
-    font-size: 15px!important;
+    font-size: 15px !important;
 }
 
 .p-dropdown-panel .p-dropdown-items .p-dropdown-empty-message {
@@ -318,7 +328,8 @@ label {
     // background-color: #3F51B5 !important;
     // border: 2px solid #3F51B5 !important;
 }
-.p-datepicker table td > span.p-highlight {
+
+.p-datepicker table td>span.p-highlight {
     color: #009c5f !important;
 }
 
@@ -363,10 +374,13 @@ label {
 .p-datepicker .p-datepicker-header {
     font-size: 14px !important;
 }
-.p-datepicker .p-datepicker-header .p-datepicker-prev, .p-datepicker .p-datepicker-header .p-datepicker-next {
+
+.p-datepicker .p-datepicker-header .p-datepicker-prev,
+.p-datepicker .p-datepicker-header .p-datepicker-next {
     width: 1rem !important;
     height: 1.5rem !important;
 }
+
 .p-datepicker .p-yearpicker .p-yearpicker-year {
     padding: 0.35rem 0.15rem !important;
     font-size: 14px !important;
@@ -402,8 +416,8 @@ label {
 }
 
 .p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link .p-menuitem-icon {
-//     color: #1a9967 !important;
-color: inherit  !important;
+    //     color: #1a9967 !important;
+    color: inherit !important;
 }
 
 .p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link .p-menuitem-text {
@@ -487,25 +501,41 @@ color: inherit  !important;
     padding: 0.5rem 0.5rem !important;
     font-size: 14px !important;
 }
-.p-datatable.p-datatable-gridlines:has(.p-datatable-thead):has(.p-datatable-tbody) .p-datatable-tbody > tr > td {
+
+.p-datatable.p-datatable-gridlines:has(.p-datatable-thead):has(.p-datatable-tbody) .p-datatable-tbody>tr>td {
     font-size: 14px !important;
     color: #2a2a2a !important;
 }
-.p-datatable .p-datatable-tbody > tr > td {
+
+.p-datatable .p-datatable-tbody>tr>td {
     padding: 0.25rem 0.5rem !important;
 }
+
 .p-datatable .p-datatable-header {
     // border: 1px solid transparent !important;
 }
+
 .p-message .p-message-wrapper {
     padding: 0.25rem 1.25rem !important;
 }
+
 .p-message.p-message-info {
     background: #b5dff3 !important;
 }
+
 .p-message.p-message-warn {
     background: #fbf17b !important;
 }
-.p-paginator .p-paginator-first, .p-paginator .p-paginator-prev, .p-paginator .p-paginator-next, .p-paginator .p-paginator-last {
+
+.p-paginator .p-paginator-first,
+.p-paginator .p-paginator-prev,
+.p-paginator .p-paginator-next,
+.p-paginator .p-paginator-last {
     min-width: 1.75rem !important;
+}
+
+.tableHeader {
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
 }

@@ -2,6 +2,8 @@
     <div class="grid to-center">
         <div class="col-12 md:col-12 lg:col-12">
             <p-panel header="Form-VIII Supreme Court Case Details">
+                <p-messages [(value)]="responseMsg" [enableService]="false"
+                [hideTransitionOptions]="'500ms cubic-bezier(0.86, 0, 0.076, 1)'"></p-messages>
                 <div class="col-12 md:col-12 lg:col-12 box" style="margin-top: 5px;">
                     <form #f="ngForm" name="supremeCourtCaseForm">
                         <div #main class="col-12 md:col-12 lg:col-12">
@@ -10,47 +12,39 @@
                                     <div class="grid">
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_zone" optionLabel="label"
-                                                    [options]="zoneOptions"
-                                                    [autoDisplayFirst]="disableAutoDisplay" [(ngModel)]="zone" [required]="true">
+                                                <p-dropdown name="_zone" optionLabel="label" [options]="zoneOptions"
+                                                    [autoDisplayFirst]="disableAutoDisplay" [(ngModel)]="zone"
+                                                    (onClick)="onSelect('ZN')" [required]="true">
                                                 </p-dropdown>
                                                 <label for="float-input">Zone</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_district"
-                                                    optionLabel="label" 
+                                                <p-dropdown name="_district" optionLabel="label"
                                                     [options]="districtOptions" [(ngModel)]="district"
-                                                    [autoDisplayFirst]="disableAutoDisplay" [required]="true">
+                                                    [autoDisplayFirst]="disableAutoDisplay" (onClick)="onSelect('DT')"
+                                                    [required]="true">
                                                 </p-dropdown>
                                                 <label for="float-input">District</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_sro" optionLabel="label"
-                                                    [options]="sroOptions" [(ngModel)]="sro"
-                                                    [autoDisplayFirst]="disableAutoDisplay" [required]="true">
+                                                <p-dropdown name="_sro" optionLabel="label" [options]="sroOptions"
+                                                    [(ngModel)]="sro" [autoDisplayFirst]="disableAutoDisplay"
+                                                    (onClick)="onSelect('SR')" [required]="true">
                                                 </p-dropdown>
                                                 <label for="float-input">SRO</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_slp" optionLabel="label"
-                                                    [options]="slpOptions" [(ngModel)]="slpType"
-                                                    [autoDisplayFirst]="disableAutoDisplay" [required]="true">
+                                                <p-dropdown name="_slp" optionLabel="label" [options]="slpOptions"
+                                                    [(ngModel)]="slpType" [autoDisplayFirst]="disableAutoDisplay"
+                                                    (onClick)="onSelect('SL')" [required]="true">
                                                 </p-dropdown>
                                                 <label for="float-input">SLP Type</label>
-                                            </span>
-                                        </div>
-                                        <div class="col-12 md:col-4 lg:col-2">
-                                            <span class="p-float-label">
-                                                <input name="_slpnumber"  
-                                                    [(ngModel)]="slpNumber" pInputText
-                                                  [required]="true"/>
-                                                <label for="float-input">Diary No./SLP Case No.</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
@@ -60,29 +54,38 @@
                                                 <label for="float-input">Case Date</label>
                                             </span>
                                         </div>
-                                        
+                                        <div class="col-12 md:col-4 lg:col-2">
+                                            <span class="p-float-label">
+                                                <input name="_slpnumber" [(ngModel)]="slpNumber" pInputText
+                                                    [required]="true" />
+                                                <label for="float-input">Diary No./SLP Case No.</label>
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
                                 <div #row2 class="col-12 md:col-11 lg:col-11">
                                     <div class="grid">
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <input name="_caseno" type="text" [(ngModel)]="caseNo" pInputText>
+                                                <input name="_caseno" type="text" [(ngModel)]="highCourtRefNo"
+                                                    pInputText>
                                                 <label for="float-input">HighCourt Ref No.</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <input name="_petitionername" type="text" [(ngModel)]="petitionerName" pInputText>
+                                                <input name="_petitionername" type="text" [(ngModel)]="petitionerName"
+                                                    pInputText>
                                                 <label for="float-input">Petitioner Name</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_respondentcadre"
-                                                    optionLabel="label" 
+                                                <p-dropdown name="_respondentcadre" optionLabel="label"
                                                     [options]="respondentCadreOptions" [(ngModel)]="respondentCadre"
-                                                    [autoDisplayFirst]="disableAutoDisplay" [editable]="isEditable">
+                                                    (onChange)="onChangeRespondent()"
+                                                    [autoDisplayFirst]="disableAutoDisplay" (onClick)="onSelect('RC')"
+                                                    [editable]="isEditable">
                                                 </p-dropdown>
                                                 <label for="float-input">Respondent Designation</label>
                                             </span>
@@ -90,7 +93,7 @@
                                         <div class="col-12 md:col-4 lg:col-4">
                                             <span class="p-float-label">
                                                 <input name="_respondents" type="text" [(ngModel)]="respondents"
-                                                   required pInputText>
+                                                    required pInputText>
                                                 <label for="float-input">Respondents</label>
                                             </span>
                                         </div>
@@ -98,14 +101,16 @@
                                             <div class="div-radio-box">
                                                 <label for="_casefiledby">Case Filed By</label><br>
                                                 <div style="text-align: center;">
-                                                    <p-radioButton name="_filedbygovt" value="1" label="Govt" [(ngModel)]="filedValue">
+                                                    <p-radioButton name="_filedbygovt" value="1" label="Govt"
+                                                        [(ngModel)]="filedValue">
                                                     </p-radioButton>&nbsp;
-                                                    <p-radioButton name="_filedbyindividual" value="0" label="Individual" [(ngModel)]="filedValue">
+                                                    <p-radioButton name="_filedbyindividual" value="0"
+                                                        label="Individual" [(ngModel)]="filedValue">
                                                     </p-radioButton>&nbsp;
                                                 </div>
                                             </div>
                                         </div>
-                                        
+
                                     </div>
                                 </div>
                                 <div #row3 class="col-12 md:col-11 lg:col-11">
@@ -114,26 +119,29 @@
                                             <div class="div-radio-box">
                                                 <label for="_counterFiled">Counter Filed</label><br>
                                                 <div style="text-align: center;">
-                                                    <p-radioButton name="_counteryes" value="1" label="Yes" [(ngModel)]="selectedValue">
+                                                    <p-radioButton name="_counteryes" value="1" label="Yes"
+                                                        [(ngModel)]="selectedValue">
                                                     </p-radioButton>&nbsp;
-                                                    <p-radioButton name="_counterno" value="0" label="No" [(ngModel)]="selectedValue">
+                                                    <p-radioButton name="_counterno" value="0" label="No"
+                                                        [(ngModel)]="selectedValue">
                                                     </p-radioButton>&nbsp;
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_stateofcase"
-                                                    optionLabel="label" 
+                                                <p-dropdown name="_stateofcase" optionLabel="label"
                                                     [options]="stateOfCaseOptions" [(ngModel)]="stateOfCase"
-                                                    [autoDisplayFirst]="disableAutoDisplay" [required]="true">
+                                                    [autoDisplayFirst]="disableAutoDisplay" (onClick)="onSelect('SC')"
+                                                    [required]="true">
                                                 </p-dropdown>
                                                 <label for="float-input">Case Status</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-4">
                                             <span class="p-float-label">
-                                                <input name="_gistofcase" type="text" [(ngModel)]="gistOfCase" pInputText>
+                                                <input name="_gistofcase" type="text" [(ngModel)]="gistOfCase"
+                                                    pInputText>
                                                 <label for="float-input">Gist of the case & Main prayer</label>
                                             </span>
                                         </div>
@@ -154,11 +162,29 @@
                     </form>
                 </div>
                 <div class="col-12 md:col-12 lg:col-12">
+                    <div class="note">Note*: Please select zone, district ,sro & date to view records</div>
                     <p-table #dt [columns]="cols" [value]="data" styleClass="p-datatable-gridlines">
                         <ng-template pTemplate="caption">
-                            <div class="flex">
-                                <button type="button" pButton pRipple icon="pi pi-file" (click)="dt.exportCSV()" class="mr-2" pTooltip="CSV" label="Export" tooltipPosition="bottom"></button>
+                            <div class="grid" style="width: -webkit-fill-available;">
+                                <div class="lg:col-2 no-pad-btm">
+                                    <div><label>From Date</label></div>
+                                    <p-calendar name="_fdate" [(ngModel)]="fromDate" [showIcon]="true"
+                                        (ngModelChange)="onLoadCases()"></p-calendar>
+                                </div>
+                                <div class="lg:col-2 no-pad-btm">
+                                    <div><label>To Date</label></div>
+                                    <p-calendar name="_tdate" [(ngModel)]="toDate" [showIcon]="true"
+                                        (ngModelChange)="onLoadCases()"></p-calendar>
+                                </div>
+                                <div class="lg:col-6 no-pad-top no-pad-btm"></div>
+                                <div class="lg:col-2 table-hdr-export">
+                                    <button type="button" pButton pRipple icon="pi pi-file" (click)="dt.exportCSV()"
+                                        class="mr-2" pTooltip="CSV" label="Export" tooltipPosition="bottom" [disabled]="(data.length===0)"></button>
+                                </div>
                             </div>
+                            <!-- <div class="flex">
+                                <button type="button" pButton pRipple icon="pi pi-file" (click)="dt.exportCSV()" class="mr-2" pTooltip="CSV" label="Export" tooltipPosition="bottom"></button>
+                            </div> -->
                         </ng-template>
                         <ng-template pTemplate="header" let-columns>
                             <tr>

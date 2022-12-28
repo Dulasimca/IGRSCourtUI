@@ -46,15 +46,15 @@
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <input name="_caseno" type="text" [(ngModel)]="caseNo" pInputText>
-                                                <label for="float-input">Case No.</label>
+                                                <p-calendar name="_casedate" [(ngModel)]="caseDate" [showIcon]="true"
+                                                    [required]="true"></p-calendar>
+                                                <label for="float-input">Case Date</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-calendar name="_casedate" [(ngModel)]="caseDate" [showIcon]="true"
-                                                    [required]="true"></p-calendar>
-                                                <label for="float-input">Case Date</label>
+                                                <input name="_caseno" type="text" [(ngModel)]="caseNo" pInputText>
+                                                <label for="float-input">Case No.</label>
                                             </span>
                                         </div>
                                     </div>

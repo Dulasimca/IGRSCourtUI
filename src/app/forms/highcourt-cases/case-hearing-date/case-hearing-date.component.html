@@ -1,0 +1,136 @@
+<div class="col-12 md:col-12 lg:col-12 container">
+    <div class="grid to-center">
+        <div class="col-12 md:col-12 lg:col-12">
+            <p-panel header="Case Hearing">
+                <p-messages [(value)]="responseMsg" [enableService]="false"
+                    [hideTransitionOptions]="'500ms cubic-bezier(0.86, 0, 0.076, 1)'"></p-messages>
+                <div class="col-12 md:col-12 lg:col-12 box" style="margin-top: 5px;">
+                    <form #f="ngForm" name="caseHearingForm">
+                        <div #main class="col-12 md:col-12 lg:col-12">
+                            <div class="grid to-center">
+                                <div #row1 class="col-12 md:col-11 lg:col-11">
+                                    <div class="grid">
+                                        <div class="col-12 md:col-4 lg:col-2">
+                                            <span class="p-float-label">
+                                                <p-dropdown name="_zone" optionLabel="label" (onClick)="onSelect('ZN')"
+                                                    [options]="zoneOptions" [autoDisplayFirst]="disableAutoDisplay"
+                                                    [(ngModel)]="zone" [required]="true">
+                                                </p-dropdown>
+                                                <label for="float-input">Zone</label>
+                                            </span>
+                                        </div>
+                                        <div class="col-12 md:col-4 lg:col-2">
+                                            <span class="p-float-label">
+                                                <p-dropdown name="_district" optionLabel="label"
+                                                    (onClick)="onSelect('DT')" [options]="districtOptions"
+                                                    [(ngModel)]="district" [autoDisplayFirst]="disableAutoDisplay"
+                                                    [required]="true">
+                                                </p-dropdown>
+                                                <label for="float-input">District</label>
+                                            </span>
+                                        </div>
+                                        <div class="col-12 md:col-4 lg:col-2">
+                                            <span class="p-float-label">
+                                                <p-dropdown name="_sro" optionLabel="label" (onClick)="onSelect('SR')"
+                                                    [options]="sroOptions" [(ngModel)]="sro"
+                                                    [autoDisplayFirst]="disableAutoDisplay" [required]="true">
+                                                </p-dropdown>
+                                                <label for="float-input">SRO</label>
+                                            </span>
+                                        </div>
+                                        <div class="col-12 md:col-4 lg:col-2">
+                                            <span class="p-float-label">
+                                                <p-dropdown name="_casetype" optionLabel="label"
+                                                    (onClick)="onSelect('CT')" [options]="caseTypeOptions"
+                                                    [(ngModel)]="caseType" [autoDisplayFirst]="disableAutoDisplay" (onChange)="loadCourtCase()"
+                                                    [required]="true">
+                                                </p-dropdown>
+                                                <label for="float-input">Case Type</label>
+                                            </span>
+                                        </div>
+                                        <div class="col-12 md:col-4 lg:col-3">
+                                            <span class="p-float-label">
+                                                <p-dropdown name="_courtcase" optionLabel="label"
+                                                    (onClick)="onSelect('C')" [options]="courtcaseOptions"  (onChange)="loadCaseHearings()"
+                                                    [(ngModel)]="courtcaseName" [autoDisplayFirst]="disableAutoDisplay"
+                                                    [required]="true">
+                                                </p-dropdown>
+                                                <label for="float-input">CourtCase Type</label>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div #row2 class="col-12 md:col-11 lg:col-11">
+                                    <div class="grid">
+                                        <div class="col-12 md:col-4 lg:col-2">
+                                            <span class="p-float-label">
+                                                <p-calendar name="_hearingdate" [(ngModel)]="hearingDate"
+                                                    [showIcon]="true" [required]="true"></p-calendar>
+                                                <label for="float-input">Case Date</label>
+                                            </span>
+                                        </div>
+                                        <div class="col-12 md:col-4 lg:col-2">
+                                            <span class="p-float-label">
+                                                <input name="_remarks" type="text" [(ngModel)]="remarks" pInputText>
+                                                <label for="float-input">Remarks</label>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div #row4 class="col-12 md:col-11 lg:col-11 txt-to-center no-padding">
+                                    <button pButton pRipple type="button" label="Save" (click)="onSave()"
+                                    [disabled]="!f.valid || !f.dirty"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-12 md:col-12 lg:col-12">
+                    <p-table #dt [columns]="cols" [value]="data" styleClass="p-datatable-gridlines" [loading]="loading">
+                        <!-- <ng-template pTemplate="caption">
+                            <div class="grid" style="width: -webkit-fill-available;">
+                                <div class="lg:col-2 no-pad-btm">
+                                    <div><label>From Date</label></div>
+                                    <p-calendar name="_fdate" [(ngModel)]="fromDate" [showIcon]="true"
+                                        (ngModelChange)="onLoadCases()"></p-calendar>
+                                </div>
+                                <div class="lg:col-2 no-pad-btm">
+                                    <div><label>To Date</label></div>
+                                    <p-calendar name="_tdate" [(ngModel)]="toDate" [showIcon]="true"
+                                        (ngModelChange)="onLoadCases()"></p-calendar>
+                                </div>
+                                <div class="lg:col-6 no-pad-top no-pad-btm"></div>
+                                <div class="lg:col-2 table-hdr-export">
+                                    <button type="button" pButton pRipple icon="pi pi-file" (click)="dt.exportCSV()"
+                                        class="mr-2" pTooltip="CSV" label="Export" tooltipPosition="bottom"></button>
+                                </div>
+                            </div>
+                        </ng-template> -->
+                        <ng-template pTemplate="header" let-columns>
+                            <tr>
+                                <th>S.No:</th>
+                                <th *ngFor="let col of columns">
+                                    {{col.header}}
+                                </th>
+                                <th>Edit</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex" let-columns="columns">
+                            <tr>
+                                <td>{{rowIndex+1}}</td>
+                                <td *ngFor="let col of columns">
+                                    {{rowData[col.field]}}
+                                </td>
+                                <td>
+                                    <button type="button" pButton pRipple icon="pi pi-pencil" (click)="onEdit(rowData)"
+                                        label="Edit" tooltipPosition="bottom"></button>
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </p-panel>
+        </div>
+    </div>
+</div>

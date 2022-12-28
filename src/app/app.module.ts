@@ -61,7 +61,9 @@ import { JudgementMasterComponent } from './masters/judgement-master/judgement-m
 import { RespondantMasterComponent } from './masters/respondant-master/respondant-master.component';
 import { ChangePasswordComponent } from './masters/change-password/change-password.component';
 import { WritappealstatusMasterComponent } from './masters/writappealstatus-master/writappealstatus-master.component';
-
+import { CaseHearingDateComponent } from './forms/highcourt-cases/case-hearing-date/case-hearing-date.component';
+import { StatusOfCourtcasesReportComponent } from './reports/status-of-courtcases-report/status-of-courtcases-report.component';
+import { NgxPrintModule } from 'ngx-print';
 
 
 @NgModule({
@@ -102,6 +104,8 @@ import { WritappealstatusMasterComponent } from './masters/writappealstatus-mast
     RespondantMasterComponent,
     ChangePasswordComponent,
     WritappealstatusMasterComponent,
+    CaseHearingDateComponent,
+    StatusOfCourtcasesReportComponent,
   ],
   imports: [
     BrowserModule,
@@ -123,7 +127,8 @@ import { WritappealstatusMasterComponent } from './masters/writappealstatus-mast
     MessageModule,
     PaginatorModule,
     TooltipModule,
-    KeyFilterModule
+    KeyFilterModule,
+    NgxPrintModule
   ],
   providers: [AuthService, AuthGuard, MasterService, RestapiService, DatePipe, DateConverter],
   bootstrap: [AppComponent]
