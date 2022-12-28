@@ -69,8 +69,8 @@ export class GovtrespReportComponent implements OnInit {
               )
             })
             this.zoneOptions = zoneList;
+            this.zoneOptions.unshift({ label: 'ALL', value: 0 });
             this.zoneOptions.unshift({ label: '-select-', value: null });
-            this.zoneOptions.unshift({ label: 'ALL', value: null });
           }
           break;
         case 'DT':
@@ -85,8 +85,8 @@ export class GovtrespReportComponent implements OnInit {
               })
             }
             this.districtOptions = districtList;
+            this.districtOptions.unshift({ label: 'ALL', value: 0 });
             this.districtOptions.unshift({ label: '-select-', value: null });
-            this.districtOptions.unshift({ label: 'ALL', value: null });
           }
           break;
         case 'SR':
@@ -101,8 +101,8 @@ export class GovtrespReportComponent implements OnInit {
               })
             }
             this.sroOptions = sroList;
+            this.sroOptions.unshift({ label: 'ALL', value: 0 });
             this.sroOptions.unshift({ label: '-select-', value: null });
-            this.sroOptions.unshift({ label: 'ALL', value: null });
           }
           break;
         case 'CT':
@@ -113,8 +113,8 @@ export class GovtrespReportComponent implements OnInit {
               )
             })
             this.caseTypeOptions = caseTypeList;
+            this.caseTypeOptions.unshift({ label: 'ALL', value: 0 });
             this.caseTypeOptions.unshift({ label: '-select-', value: null });
-            this.caseTypeOptions.unshift({ label: 'ALL', value: null });
           }
           break;
           case 'RT':
@@ -126,31 +126,15 @@ export class GovtrespReportComponent implements OnInit {
                 )
               })
               this.respondentTypeOptions = responseTypeList;
+              this.respondentTypeOptions.unshift({ label: 'ALL', value: 0});
               this.respondentTypeOptions.unshift({ label: '-select-', value: null });
-              this.respondentTypeOptions.unshift({ label: 'ALL', value: null });
             }
             break;
         }
       }
     }
 
-    // onView() {
-    //   this.data = [];
-    //   this.loading = true;
-    //   const params = new HttpParams().append('zoneid', this.zone.value)
-    //   .set('districtid', this.district.value)
-    //   .set('sroid', this.sro.value)
-    //   .set('respondentType', 1)
-    //   this._restApiService.getByParameters('Respondent_Report_/GetRespondentReport', params).subscribe(res => {
-    //     if(res) {
-    //       this.loading = false;
-    //       this.data = res;
-    //     } else {
-    //       this.loading = false;
-    //     }
-    //   })
-    // }
-  
+
     onLoadCases() {
       if (this.fromDate !== undefined && this.fromDate !== null && this.toDate !== undefined && this.toDate !== null) {
         this.data = [];

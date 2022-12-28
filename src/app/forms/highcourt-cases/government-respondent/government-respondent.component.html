@@ -20,6 +20,10 @@
                                                 <label for="float-input">Respondent Type</label>
                                             </span>
                                         </div>
+                                    </div>
+                                </div>
+                                <div #row2 class="col-12 md:col-11 lg:col-11">
+                                    <div class="grid">
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <p-dropdown name="_zone" optionLabel="label"
@@ -64,10 +68,6 @@
                                                 <label for="float-input">Case No.</label>
                                             </span>
                                         </div>
-                                    </div>
-                                </div>
-                                <div #row2 class="col-12 md:col-11 lg:col-11">
-                                    <div class="grid">
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <p-calendar name="_casedate" [(ngModel)]="caseDate" [showIcon]="true"
@@ -75,6 +75,10 @@
                                                 <label for="float-input">Case Date</label>
                                             </span>
                                         </div>
+                                    </div>
+                                </div>
+                                <div #row3 class="col-12 md:col-11 lg:col-11">
+                                    <div class="grid">
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <p-calendar name="_caseyear" [(ngModel)]="caseYear" view="year"
@@ -104,7 +108,7 @@
                                                 <p-dropdown name="_respondentcadre"
                                                     optionLabel="label" (onClick)="onSelect('RC')" [autoDisplayFirst]="disableAutoDisplay"  
                                                     [options]="respondentCadreOptions" [(ngModel)]="respondentCadre" 
-                                                    (onChange)="onChangeRespondent()" [editable]="isEditable">
+                                                    (onChange)="onChangeRespondent()" >
                                                 </p-dropdown>
                                                 <label for="float-input">Respondent</label>
                                             </span>
@@ -112,13 +116,23 @@
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <input name="_respondents" type="text" [(ngModel)]="respondents"
-                                                   required pInputText>
+                                                   required pInputText [readonly]="!isEditable">
                                                 <label for="float-input">Respondents Name</label>
+                                            </span>
+                                        </div>
+                                        <div class="col-12 md:col-4 lg:col-2">
+                                            <span class="p-float-label">
+                                                <p-dropdown name="_stateofcase" [autoDisplayFirst]="disableAutoDisplay"
+                                                    optionLabel="label" (onClick)="onSelect('SC')"
+                                                    [options]="stateOfCaseOptions" [(ngModel)]="stateOfCase"
+                                                     [required]="true">
+                                                </p-dropdown>
+                                                <label for="float-input">Case Status</label>
                                             </span>
                                         </div>
                                     </div>
                                 </div>
-                                <div #row3 class="col-12 md:col-11 lg:col-11">
+                                <div #row4 class="col-12 md:col-11 lg:col-11">
                                     <div class="grid">
                                         <div class="col-12 md:col-4 lg:col-4">
                                             <span class="p-float-label">
@@ -129,28 +143,18 @@
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_stateofcase"
-                                                    optionLabel="label" (onClick)="onSelect('SC')"
-                                                    [options]="stateOfCaseOptions" [(ngModel)]="stateOfCase"
-                                                    [autoDisplayFirst]="disableAutoDisplay" [required]="true">
-                                                </p-dropdown>
-                                                <label for="float-input">Case Status</label>
-                                            </span>
-                                        </div>
-                                        <div class="col-12 md:col-4 lg:col-2">
-                                            <span class="p-float-label">
-                                                <p-dropdown name="_judgement" optionLabel="label" 
-                                                    (onClick)="onSelect('JD')" [autoDisplayFirst]="disableAutoDisplay"
-                                                    [options]="judgementOptions" [(ngModel)]="judgement">
+                                                <p-dropdown name="_judgement"  [autoDisplayFirst]="disableAutoDisplay" 
+                                                    optionLabel="label" (onClick)="onSelect('JD')"
+                                                    [options]="judgementOptions" [(ngModel)]="judgement" [required]="true">
                                                 </p-dropdown>
                                                 <label for="float-input">Judgement Status</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-dropdown name="_counterfiled" optionLabel="label" 
-                                                    (onClick)="onSelect('CF')" [autoDisplayFirst]="disableAutoDisplay"
-                                                    [options]="counterFiledOptions" [(ngModel)]="counterFiled">
+                                                <p-dropdown name="_counterfiled"  [autoDisplayFirst]="disableAutoDisplay"
+                                                    optionLabel="label" (onClick)="onSelect('CF')" 
+                                                    [options]="counterFiledOptions" [(ngModel)]="counterFiled" [required]="true">
                                                 </p-dropdown>
                                                 <label for="float-input">Counter Filed</label>
                                             </span>
@@ -161,12 +165,13 @@
                                                 <label for="float-input">Remarks</label>
                                             </span>
                                         </div>
+                                        <div class="col-12 md:col-4 lg:col-2">
+                                            <button pButton pRipple type="button" label="Save" (click)="onSave()"
+                                                [disabled]="!f.valid || !f.dirty"></button>
+                                        </div>
                                     </div>
                                 </div>
-                                <div #row4 class="col-12 md:col-11 lg:col-11 txt-to-center no-padding">
-                                    <button pButton pRipple type="button" label="Save" (click)="onSave()"
-                                        [disabled]="!f.valid || !f.dirty"></button>
-                                </div>
+
                             </div>
                         </div>
                     </form>
@@ -185,31 +190,26 @@
                                     <p-calendar name="_tdate" [(ngModel)]="toDate" [showIcon]="true"
                                     (ngModelChange)="onLoadCases()"></p-calendar>
                                 </div>
-                                <!-- <div class="lg:col-6 no-pad-top no-pad-btm"></div>
-                                <div class="lg:col-2 table-hdr-export">
-                                    <button type="button" pButton pRipple icon="pi pi-file" (click)="dt.exportCSV()"
-                                        class="mr-2" pTooltip="CSV" label="Export" tooltipPosition="bottom"></button>
-                                </div> -->
                             </div>
                         </ng-template>
                         <ng-template pTemplate="header" let-columns>
                             <tr>
+                                <th>Edit</th>
                                 <th>S.No:</th>
                                 <th *ngFor="let col of columns">
                                     {{col.header}}
                                 </th>
-                                <th>Edit</th>
                             </tr>
                         </ng-template>
                         <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex" let-columns="columns">
                             <tr>
-                                <td>{{rowIndex+1}}</td>
-                                <td *ngFor="let col of columns">
-                                    {{rowData[col.field]}}
-                                </td>
                                 <td>
                                     <button type="button" pButton pRipple icon="pi pi-pencil" (click)="onEdit(rowData)"
                                         label="Edit" tooltipPosition="bottom"></button>
+                                </td>
+                                <td>{{rowIndex+1}}</td>
+                                <td *ngFor="let col of columns">
+                                    {{rowData[col.field]}}
                                 </td>
                             </tr>
                         </ng-template>

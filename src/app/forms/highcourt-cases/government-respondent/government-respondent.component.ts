@@ -47,8 +47,6 @@ export class GovernmentRespondentComponent implements OnInit {
   counterFiledOptions: SelectItem[] = [];
   judgement: any;
   judgementOptions: SelectItem[] = [];
-  // selectedValue: string = '1';
-  // judgementValue: string = '1';
   dateValue: any;
   cols: any[] = [];
   data: any[] = [];
@@ -74,8 +72,6 @@ export class GovernmentRespondentComponent implements OnInit {
 
   assignDefault() {
     this.disableAutoDisplay = false;
-    // this.selectedValue = '1';
-    // this.judgementValue = '1';
     this.caseDate = new Date();
     this.caseId = 0;
   }
@@ -222,8 +218,10 @@ export class GovernmentRespondentComponent implements OnInit {
   }
 
   onLoadCases() {
+    console.log(1, "load data");
     if (this.fromDate !== undefined && this.fromDate !== null && this.toDate !== undefined && this.toDate !== null && this.respondentType !== undefined && this.respondentType !==null) {
       this.data = [];
+      console.log(2, "call api");
       this.loading = true;
       const params = new HttpParams().append('userid', this.userInfo.roleid)
         .set('fromdate', this._datePipe.transform(this.fromDate, 'yyyy-MM-dd') as any)
@@ -232,6 +230,7 @@ export class GovernmentRespondentComponent implements OnInit {
         .set('zoneid', this.userInfo.zoneid)
         .set('sroid', this.userInfo.sroid)
         .set('districtid', this.userInfo.districtid);
+        console.log(3, params);
       this._restApiService.getByParameters('Respondent/GetRespondentCase', params).subscribe(res => {
         if(res) {
           this.loading = false;
@@ -239,6 +238,7 @@ export class GovernmentRespondentComponent implements OnInit {
           //   i.countervalue = i.counterfiled ? 'Yes' : 'No';
           //   i.judgement = i.judgementvalue ? 'For' : 'Against';
           // })
+          console.log(4, res);
           this.data = res;
         } else {
           this.loading = false;
@@ -250,9 +250,13 @@ export class GovernmentRespondentComponent implements OnInit {
   onChangeRespondent() {
     if (this.respondentCadre !== undefined && this.respondentCadre !== null) {
       this.respondents += this.respondentCadre.label + ' , ';
-      this.respondentsid += this.respondentCadre.value + ',';
+      this.respondentsid += this.respondentCadre.value !=null ?  + this.respondentCadre.value + ',' :'' 
       if (this.respondentCadre.value === 15) {
         this.isEditable = true;
+      }
+      else
+      {
+        this.isEditable = false;
       }
     }
   }
@@ -318,14 +322,15 @@ export class GovernmentRespondentComponent implements OnInit {
       'createdate': new Date(),
       'userId': this.userInfo.roleid,
       'responsetypeid': this.respondentType.value, //for government respondent
+      'mainrespondentsid': this.respondentsid
     }
     this._restApiService.post('Respondent/SaveRespondentCase', params).subscribe(res => {
       if (res) {
-        this.clearForm();
         this.responseMsg = [{ severity: ResponseMessage.SuccessSeverity, detail: ResponseMessage.SuccessMessage }];
         setTimeout(() => this.responseMsg = [], 3000);
-        this.assignDefault();
         this.onLoadCases();
+        this.assignDefault();
+        this.clearForm();
       } else {
         this.responseMsg = [{ severity: ResponseMessage.ErrorSeverity, detail: ResponseMessage.ErrorMessage }];
         setTimeout(() => this.responseMsg = [], 3000)
@@ -343,6 +348,8 @@ export class GovernmentRespondentComponent implements OnInit {
     this.caseTypeOptions = [];
     this.respondentCadreOptions = [];
     this.highCourtNameOptions = [];
+    this.stateOfCaseOptions = [];
+    this.judgementOptions = [];
+    this.counterFiledOptions = [];
   }
-
 }
