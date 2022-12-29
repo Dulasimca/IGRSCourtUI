@@ -19,6 +19,9 @@ export class RespondantMasterComponent implements OnInit {
   respondentsid: any;
   respondentsname: any;
   loading: boolean = false;
+  mailId: any;
+  mobileNo1: any;
+  mobileNo2: any;
 
   @ViewChild('f', {static: false}) _respondentForm!: NgForm;
   
@@ -33,6 +36,9 @@ export class RespondantMasterComponent implements OnInit {
     const params = {
       'respondentsid': this.respondentsid,
       'respondentsname': this.respondentsname,
+      'mobno1': this.mobileNo1,
+      'mobno2': this.mobileNo2,
+      'mailid': this.mailId,
       'createddate': new Date(),
       'flag': (this.selectedType == 1) ? true : false
     }
@@ -70,11 +76,17 @@ onClear() {
   this.respondentsid = 0;
   this.respondentsname  = null;
   this.selectedType = null;
+  this.mailId = null;
+  this.mobileNo1 = null;
+  this.mobileNo2  = null;
 }
 onEdit(row:any) {
   this.respondentsid = row.respondentsid;
   this.respondentsname = row.respondentsname;
   this.selectedType = (row.flag === 'Active') ? 1 : 0;
+  this.mailId = row.mailid;
+  this.mobileNo1 = row.mobno1;
+  this.mobileNo2  = row.mobno2;
 }
 
 onCheck() {

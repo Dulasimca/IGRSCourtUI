@@ -17,6 +17,24 @@
                                                 <label for="float-input">Respondent Name</label>
                                             </span>
                                         </div>
+                                        <div class="col-12 md:col-4 lg:col-2">                                           
+                                            <span class="p-float-label">
+                                                <input name="_mailid" type="text" (change)="onCheck()" [(ngModel)]="mailId" pInputText>
+                                                <label for="float-input">e-mail ID</label>      
+                                            </span>
+                                        </div>
+                                        <div class="col-12 md:col-4 lg:col-2">
+                                            <span class="p-float-label">
+                                                <input name="_mobileno1" type="text" [(ngModel)]="mobileNo1" maxlength="10" pInputText>
+                                                <label for="float-input">Mobile No.1</label>      
+                                            </span>
+                                        </div>   
+                                        <div class="col-12 md:col-4 lg:col-2">
+                                            <span class="p-float-label">
+                                                <input name="_mobileno2" type="text" [(ngModel)]="mobileNo2" maxlength="10" pInputText>
+                                                <label for="float-input">Mobile No.2</label>      
+                                            </span>
+                                        </div> 
                                         <div class="p-col-12 p-md-12 p-lg-3" style="margin-top: 23px;">
                                             <p-radioButton name="Flag" label="ACTIVE" value=1 [(ngModel)]="selectedType"
                                                 required>

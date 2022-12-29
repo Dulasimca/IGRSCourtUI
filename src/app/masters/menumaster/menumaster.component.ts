@@ -64,7 +64,7 @@ export class MenumasterComponent implements OnInit {
     ];
     this._restApiService.get('MenuMaster/GetMenuMasterCase').subscribe(res => {
       this.parentData = res;
-    })
+    }) 
     this.onView();
   }
   onSelect(value: string) {
