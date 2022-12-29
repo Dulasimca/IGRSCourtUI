@@ -4,6 +4,8 @@ import { Message } from 'primeng/api';
 import {RadioButtonModule} from 'primeng/radiobutton';
 import { ResponseMessage } from 'src/app/constants/message-constants';
 import { TableConstants } from 'src/app/constants/table-constants';
+import { User } from 'src/app/interfaces/user.interface';
+import { AuthService } from 'src/app/services/auth.service';
 import { MasterService } from 'src/app/services/master.service';
 import { RestapiService } from 'src/app/services/restapi.service';
 
@@ -32,11 +34,17 @@ export class MenumasterComponent implements OnInit {
   data: any[] = [];
   priority: any;
   priorityOptions: any;
-  constructor(private _restApiService: RestapiService, private _masterService: MasterService) { }
+  userInfo!: User;
+  parentData: any;
+
+
+  constructor(private _restApiService: RestapiService, private _masterService: MasterService, private _authService: AuthService) { }
 
   ngOnInit(): void {
     this.cols = TableConstants.MenuMasterColumns;
     this.masters = this._masterService.getMastersAll();
+    this.userInfo = this._authService.getUserInfo();
+    console.log('role',this.userInfo)
     this.priorityOptions = [
       {label: '1', value: 1},
       {label: '2',value: 2},
@@ -53,7 +61,10 @@ export class MenumasterComponent implements OnInit {
       {label: '13',value: 13},
       {label: '14',value: 14},
       {label: '15',value: 15}
-    ]
+    ];
+    this._restApiService.get('MenuMaster/GetMenuMasterCase').subscribe(res => {
+      this.parentData = res;
+    })
     this.onView();
   }
   onSelect(value: string) {
@@ -72,14 +83,13 @@ export class MenumasterComponent implements OnInit {
           }
           break;
           case 'M':
-            if(this.masters.menumaster) {
-              this.masters.menumaster.forEach((m: any) => {
+              this.parentData.forEach((m: any) => {
                 menuList.push(
                   { label: m.name, value: m.id }
                 )
               })
               this.parentIdOptions = menuList;
-            }
+            
       }
     }
   }
