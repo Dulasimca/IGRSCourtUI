@@ -61,7 +61,12 @@ import { RespondantMasterComponent } from './masters/respondant-master/respondan
 import { ChangePasswordComponent } from './masters/change-password/change-password.component';
 import { MainDashboardComponent } from './main-dashboard/main-dashboard.component';
 import { WritappealstatusMasterComponent } from './masters/writappealstatus-master/writappealstatus-master.component';
+import { CaseHearingDateComponent } from './forms/highcourt-cases/case-hearing-date/case-hearing-date.component';
+import { StatusOfCourtcasesReportComponent } from './reports/status-of-courtcases-report/status-of-courtcases-report.component';
+import { NgxPrintModule } from 'ngx-print';
+
 import { GovtrespReportComponent } from './reports/govtresp-report/govtresp-report.component';
+import { CounterfiledMasterComponent } from './masters/counterfiled-master/counterfiled-master.component';
 
 @NgModule({
   declarations: [
@@ -102,7 +107,10 @@ import { GovtrespReportComponent } from './reports/govtresp-report/govtresp-repo
     ChangePasswordComponent,
     MainDashboardComponent,
     WritappealstatusMasterComponent,
+    CaseHearingDateComponent,
+    StatusOfCourtcasesReportComponent,
     GovtrespReportComponent,
+    CounterfiledMasterComponent,
   ],
   imports: [
     BrowserModule,
@@ -124,7 +132,8 @@ import { GovtrespReportComponent } from './reports/govtresp-report/govtresp-repo
     MessageModule,
     PaginatorModule,
     TooltipModule,
-    KeyFilterModule
+    KeyFilterModule,
+    NgxPrintModule
   ],
   providers: [AuthService, AuthGuard, MasterService, RestapiService, DatePipe, DateConverter],
   bootstrap: [AppComponent]

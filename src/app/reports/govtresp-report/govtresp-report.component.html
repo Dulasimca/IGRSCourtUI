@@ -6,9 +6,19 @@
                     <form #f="ngForm" name="reports1Form">
                         <div #main class="col-12 md:col-12 lg:col-12">
                             <div class="grid to-center">
-                                <div #row1 class="col-12 md:col-11 lg:col-11">
+                                <div #row1 class="col-12 md:col-12 lg:col-12">
                                     <div class="grid">
-                                        <!-- <div class="col-12 md:col-4 lg:col-2">
+                                        <div class="col-12 md:col-4 lg:col-2">
+                                            <span class="p-float-label">
+                                                <p-dropdown name="_respondenttype" [autoDisplayFirst]="disableAutoDisplay" 
+                                                    optionLabel="label" (onClick)="onSelect('RT')"  
+                                                    [options]="respondentTypeOptions" [(ngModel)]="respondentType"
+                                                    [required]="true">
+                                                </p-dropdown>
+                                                <label for="float-input">Respondent Type</label>
+                                            </span>
+                                        </div>
+                                        <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <p-dropdown name="_zone" optionLabel="label" [autoDisplayFirst]="disableAutoDisplay" 
                                                     (onClick)="onSelect('ZN')" [options]="zoneOptions"
@@ -45,7 +55,7 @@
                                                 </p-dropdown>
                                                 <label for="float-input">Case Type</label>
                                             </span>
-                                        </div> -->
+                                        </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <p-calendar name="_fdate" [showIcon]="true"
@@ -60,10 +70,6 @@
                                                 <label for="float-input">To Date</label>
                                             </span>
                                         </div>
-                                        <!-- <div class="col-12 md:col-4 lg:col-2">
-                                            <button pButton pRipple type="button" label="View" (click)="onView()"
-                                            [disabled]="!f.valid"></button>
-                                        </div> -->
                                     </div>
                                 </div>
                             </div>
@@ -74,15 +80,11 @@
                         <p-table #dt [columns]="cols" [value]="data" styleClass="p-datatable-gridlines" [loading]="loading">
                             <ng-template pTemplate="caption">
                                 <div class="grid" style="width: -webkit-fill-available;">
-                                    <div class="lg:col-6 no-pad-top no-pad-btm"></div>
+                                    <div class="lg:col-0 no-pad-top no-pad-btm"></div>
                                     <div class="lg:col-1 table-hdr-export">
                                         <button type="button" pButton pRipple icon="pi pi-file" (click)="dt.exportCSV()"
                                             class="mr-2" pTooltip="CSV" label="Export" tooltipPosition="bottom"></button>
                                     </div>
-                                    <!-- <div class="lg:col-1 table-hdr-export">
-                                        <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="exportPdf()" 
-                                        class="p-button-warning mr-2" pTooltip="PDF" tooltipPosition="bottom"></button>
-                                    </div> -->
                                 </div>
                             </ng-template>
                             <ng-template pTemplate="header" let-columns>
@@ -92,21 +94,6 @@
                                         {{col.header}}
                                     </th>
                                 </tr>
-                                <!-- <tr>
-                                    <th>
-                                        <p-columnFilter field="zone" matchMode="in" [showMenu]="false">
-                                            <ng-template pTemplate="filter" let-value let-filter="filterCallback">
-                                                <p-multiSelect [ngModel]="zfilter" [options]="allzones" placeholder="Any" (onChange)="filter($event.value)" optionLabel="label">
-                                                    <ng-template let-option pTemplate="item">
-                                                        <div class="p-multiselect-zone-option">
-                                                           <span class="ml-1">{{option.name}}</span>
-                                                        </div>
-                                                    </ng-template>
-                                                </p-multiSelect>
-                                            </ng-template>
-                                        </p-columnFilter>
-                                    </th>
-                                </tr> -->
                             </ng-template>
                             <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex" let-columns="columns">
                                 <tr>

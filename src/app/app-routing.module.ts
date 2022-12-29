@@ -33,7 +33,10 @@ import { MenumasterComponent } from './masters/menumaster/menumaster.component';
 import { ChangePasswordComponent } from './masters/change-password/change-password.component';
 import { MainDashboardComponent } from './main-dashboard/main-dashboard.component';
 import { WritappealstatusMasterComponent } from './masters/writappealstatus-master/writappealstatus-master.component';
+import { CaseHearingDateComponent } from './forms/highcourt-cases/case-hearing-date/case-hearing-date.component';
+import { StatusOfCourtcasesReportComponent } from './reports/status-of-courtcases-report/status-of-courtcases-report.component';
 import { GovtrespReportComponent } from './reports/govtresp-report/govtresp-report.component';
+import { CounterfiledMasterComponent } from './masters/counterfiled-master/counterfiled-master.component';
 
 
 const routes: Routes = [
@@ -71,6 +74,9 @@ const routes: Routes = [
   {path:'respondant-master',component:RespondantMasterComponent},
   {path:'change-password',component:ChangePasswordComponent},
   {path:'writappealstatus-master',component: WritappealstatusMasterComponent},
+  {path:'case-hearing',component: CaseHearingDateComponent},
+  {path:'courtcase-status',component: StatusOfCourtcasesReportComponent, canActivate: [AuthGuard]},
+  {path:'counterfiled-master',component: CounterfiledMasterComponent, canActivate: [AuthGuard]},
 ];
 
 

@@ -11,9 +11,9 @@ export class TableConstants {
         { field: 'petitionername', header: 'Petitioner Name' },
         { field: 'mainrespondents', header: 'Respondents' },
         { field: 'mainprayer', header: 'Gist of Case/ main prayer' },
-        { field: 'countervalue', header: 'Counter Filed' },
+        { field: 'counterfiledname', header: 'Counter Filed' },
         { field: 'casestatusname', header: 'Case Status' },
-        { field: 'judgement', header: 'Judgement (For/Against)' },
+        { field: 'judgementname', header: 'Judgement (For/Against)' },
         { field: 'remarks', header: 'Remarks' }
     ];
 
@@ -73,18 +73,19 @@ export class TableConstants {
     ];
 
     public static readonly supremeCourtCaseColumns: any[] = [
-        { field: 'zone', header: 'Zone' },
-        { field: 'district', header: 'District' },
-        { field: 'sro', header: 'SRO' },
-        { field: 'caseno', header: 'DiaryNo/SLP Case No.' },
-        { field: 'casedate', header: 'CaseDate' },
-        { field: 'highcourtreference', header: 'Highcourt Reference' },
+        { field: 'zonename', header: 'Zone' },
+        { field: 'districtname', header: 'District' },
+        { field: 'sroname', header: 'SRO' },
+        { field: 'slptypename', header: 'SLP' },
+        { field: 'slpcaseno', header: 'DiaryNo/SLP Case No.' },
+        { field: 'casedateorder', header: 'CaseDate' },
+        { field: 'highcourtrefno', header: 'Highcourt Reference' },
         { field: 'petitionername', header: 'Petitioner' },
-        { field: 'respondentsname', header: 'Respondents' },
-        { field: 'casefiledby', header: 'Casefiled By' },
-        { field: 'counterfiled', header: 'Counter Filed' },
-        { field: 'stageofcase', header: 'Stage of Case' },
-        { field: 'gistofcase', header: 'Gist of Case & Main prayer' },
+        { field: 'mainrespondents', header: 'Respondents' },
+        { field: 'casefiled', header: 'Casefiled By' },
+        { field: 'countervalue', header: 'Counter Filed' },
+        { field: 'casestatusname', header: 'Stage of Case' },
+        { field: 'mainprayer', header: 'Gist of Case & Main prayer' },
         { field: 'remarks', header: 'Remarks'}
     ];
 
@@ -107,6 +108,7 @@ export class TableConstants {
     ];
 
     public static readonly reportsColumns: any[] = [
+        { field: 'responsetypename', header: 'RespondentType'},
         { field: 'zonename', header: 'Zone' },
         { field: 'districtname', header: 'District' },
         { field: 'sroname', header: 'SRO' },
@@ -118,9 +120,9 @@ export class TableConstants {
         { field: 'petitionername', header: 'Petitioner Name' },
         { field: 'mainrespondents', header: 'Respondents' },
         { field: 'mainprayer', header: 'Gist of Case/ main prayer' },
-        { field: 'countervalue', header: 'Counter Filed' },
+        { field: 'counterfiledname', header: 'Counter Filed' },
         { field: 'casestatusname', header: 'Case Status' },
-        { field: 'judgement', header: 'Judgement (For/Against)' },
+        { field: 'judgementname', header: 'Judgement' },
         { field: 'remarks', header: 'Remarks' }
     ];
 
@@ -236,6 +238,12 @@ export class TableConstants {
         { field: 'flag', header: 'Status'}
     ];
 
+    public static readonly counterfiledMaster: any[] = [
+        { field: 'counterfiledname', header: 'Counterfiled Name'},
+        { field: 'createddate', header: 'Created Date'},
+        { field: 'flag', header: 'Status'}
+    ];
+
     public static readonly SroMasterColumns: any[] = [
         {field:'zonename',header: 'ZoneName'},
         {field:'districtname',header: 'DistrictName'},
@@ -289,4 +297,54 @@ export class TableConstants {
         { field: 'Writappealstatusname', header: 'Writappealstatus Name'},
         { field: 'flag', header: 'Status'}
     ];
+
+    public static readonly casehearingColumns: any[] = [
+        { field: 'zonename', header: 'Zone'},
+        { field: 'districtname', header: 'District'},
+        { field: 'sroname', header: 'SRO'},
+        { field: 'casetypename', header: 'Case Type'},
+        { field: 'courtcaseLabel', header: 'Court Case Name'},
+        { field: 'hearingdate', header: 'Hearing Date'},
+        { field: 'flag', header: 'Remarks'},
+        // { field: 'flag', header: 'Status'},
+        // { field: 'flag', header: 'Status'}
+
+        
+    ];
+
+    public static readonly DeputyInspColumns: any[] = [
+        {field: 'zonename', header: 'DIGs'},
+        {field: 'zonename', header: 'No. of CAs not filed as on 31.10.2022'},
+        {field: 'zonename', header: 'New Affidavitis received this week'},
+        {field: 'zonename', header: 'Total'},
+        {field: 'zonename', header: 'No. of CAs filed this week'},
+        {field: 'zonename', header: 'Balance(No. of CAs to be filed as on)'},
+        {field: 'zonename', header: 'No. of CAs pending with G.P for vetting'},
+        {field: 'zonename', header: 'Remarks'}
+
+    ];
+
+    public static readonly stampColumns: any[] = [
+        {field: 'zonename', header: 'DRO/SDC(Stamps)'},
+        {field: 'zonename', header: 'No. of CAs not filed as on 31.10.2022'},
+        {field: 'zonename', header: 'New Affidavitis received this week'},
+        {field: 'zonename', header: 'Total'},
+        {field: 'zonename', header: 'No. of CAs filed this week'},
+        {field: 'zonename', header: 'Balance(No. of CAs to be filed as on)'},
+        {field: 'zonename', header: 'No. of CAs pending with G.P for vetting'},
+        {field: 'zonename', header: 'Remarks'}
+
+    ];
+
+    public static readonly buildingColumns: any[] = [
+        {field: 'zonename', header: 'A.E.E(Buildings)'},
+        {field: 'zonename', header: 'No. of CAs not filed as on 31.10.2022'},
+        {field: 'zonename', header: 'New Affidavitis received this week'},
+        {field: 'zonename', header: 'Total'},
+        {field: 'zonename', header: 'No. of CAs filed this week'},
+        {field: 'zonename', header: 'Balance(No. of CAs to be filed as on)'},
+        {field: 'zonename', header: 'No. of CAs pending with G.P for vetting'},
+        {field: 'zonename', header: 'Remarks'}
+    ]
+
 }
