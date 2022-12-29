@@ -269,7 +269,8 @@ export class TableConstants {
     ];
 
 
-    public static readonly RespondentMaster: any[] = [
+    public static readonly RespondentMaster: any[] = [  
+        { field: 'responsetypename', header: 'Response Type Name'},
         { field: 'respondentsname', header: 'Respondents Name'},
         { field: 'mailid', header: 'MailId'},
         { field: 'mobno1', header: 'Mobile Number 1'},

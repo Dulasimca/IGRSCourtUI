@@ -32,7 +32,7 @@
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <input name="_url" type="text" [(ngModel)]="url" pInputText>
+                                                <input name="_url" type="text" [(ngModel)]="url"  (keydown)="onKeydown($event)" pInputText>
                                                 <label for="float-input">Url</label>      
                                             </span>
                                         </div>

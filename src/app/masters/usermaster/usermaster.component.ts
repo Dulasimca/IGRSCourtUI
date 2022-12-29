@@ -205,7 +205,6 @@ export class UsermasterComponent implements OnInit {
        
       }
       if (i.mailid === this.mailId) {
-        console.log('mail',this.mailId)
         this.responseMsg = [{ severity: ResponseMessage.WarnSeverity, detail: ' EmailId  already exists, Please enter valid Email' }];
         this.mailId = null;
       } else{

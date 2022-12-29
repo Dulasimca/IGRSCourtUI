@@ -12,6 +12,16 @@
                                     <div class="grid">
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
+                                                <p-dropdown name="_respondenttype"
+                                                    (onClick)="onSelect('RT')"  
+                                                    [options]="respondentTypeOptions" [(ngModel)]="respondentType"
+                                                    [required]="true">
+                                                </p-dropdown>
+                                                <label for="float-input">Respondent Type</label>
+                                            </span>
+                                        </div>
+                                        <div class="col-12 md:col-4 lg:col-2">
+                                            <span class="p-float-label">
                                                 <input name="_name" type="text" (change)="onCheck()" [(ngModel)]="respondentsname"
                                                     pInputText>
                                                 <label for="float-input">Respondent Name</label>
