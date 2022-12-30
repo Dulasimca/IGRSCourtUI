@@ -44,7 +44,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'home', component: MainDashboardComponent, canActivate: [AuthGuard] },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
-  { path: 'government-respondent-hight-court-cases', component: StatusOfCourtcasesReportComponent, canActivate: [AuthGuard] },
+  { path: 'government-respondent-hight-court-cases', component: GovernmentRespondentComponent, canActivate: [AuthGuard] },
   { path: 'pending-enquiry-hight-court-cases', component: PendingEnquiryComponent, canActivate: [AuthGuard] },
   { path: 'supreme-court-case-details', component: SupremecourtCaseDetailsComponent, canActivate: [AuthGuard] },
   { path: 'others-respondent', component: OthersRespondentComponent, canActivate: [AuthGuard] },
@@ -77,6 +77,8 @@ const routes: Routes = [
   {path:'case-hearing',component: CaseHearingDateComponent},
   {path:'courtcase-status',component: StatusOfCourtcasesReportComponent, canActivate: [AuthGuard]},
   {path:'counterfiled-master',component: CounterfiledMasterComponent, canActivate: [AuthGuard]},
+  { path: 'government-respondent-hight-court-cases', component: StatusOfCourtcasesReportComponent, canActivate: [AuthGuard] },
+
 ];
 
 
