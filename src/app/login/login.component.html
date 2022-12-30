@@ -1,10 +1,13 @@
-<div class="col-12 md:col-12 lg:col-12" style="padding: 4.2rem 1rem;
-background: linear-gradient(#06ef70, #0a8b44);height: 100vh;">
+<div class="col-12 md:col-12 lg:col-12 home-image">
+    <!-- <span>
+    <img src="assets/images/layout/TN_Govt_Logo.png"/>
+</span> -->
+    <p class="app-headertopic">INSPECTOR GENERAL OF REGISTRATION STAMP - COURT CASES</p>
     <div class="grid p-fluid to-center">
-        <div class="col-11 md:col-10 lg:col-6 bdr-box-light-blue" style="background: white; border-radius: 10px;">
+        <div class="col-11 md:col-10 lg:col-6 bdr-box-light-blue" style="background: rgba(0,0,0,.3); border-radius: 10px;">
             <div class="col-12 md:col-12 lg:col-12 login-title hdr-shdw-btm">
                 <div class="col-12 md:col-12 lg:col-12">
-                    Login
+                    IGRS LOGIN
                 </div>
             </div>
             <p-messages [(value)]="responseMsg" [enableService]="false"
@@ -19,9 +22,10 @@ background: linear-gradient(#06ef70, #0a8b44);height: 100vh;">
                                         <span class="p-inputgroup-addon" style="background: #18A558; color: white;
     border: 0.5px solid #4ed39e !important;"><i class="pi pi-user"></i></span>
                                         <span class="p-float-label p-input-icon-right">
-                                            <input #uname id="uname" name="_username" type="text" style="background: white !important;"
-                                                pInputText [(ngModel)]="username" placeholder="Username"
-                                                autocomplete="off" (keypress)="onEnter($event)" required>
+                                            <input #uname id="uname" name="_username" type="text"
+                                                style="background: white !important;" pInputText [(ngModel)]="username"
+                                                placeholder="Username" autocomplete="off" (keypress)="onEnter($event)"
+                                                required>
                                             <label for="float-input">Username</label>
                                         </span>
                                     </div>
@@ -46,28 +50,29 @@ background: linear-gradient(#06ef70, #0a8b44);height: 100vh;">
                                     </div>
                                 </div>
                             </div>
-                            <div class="grid p-fluid to-center">
+                            <div class="col-12"></div>
+                            <!-- <div class="grid p-fluid to-center">
                                 <div class="field col-12 md:col-8 lg:col-6">
                                     <div>
                                         <label class="cursor"><span class="txt-link">Forget
                                                 Password?</span></label>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="grid p-fluid to-center">
                                 <div class="col-6 md:col-4 lg:col-4">
                                     <button pButton type="button" class="p-button-raised p-button-rounded" label="Login"
                                         (click)="onLogin()" [disabled]="!f.valid"></button>
                                     <!-- style="background-image: linear-gradient(to right, #709df9, #e63ae9);" -->
                                 </div>
-                                <div class="col-12 md:col-12 lg:col-12 txt-to-center">
+                                <!-- <div class="col-12 md:col-12 lg:col-12 txt-to-center">
                                     or
                                 </div>
                                 <div class="col-12 md:col-12 lg:col-12 txt-to-center txt-link">
                                     <span class="cursor">
                                         Sign Up
                                     </span>
-                                </div>
+                                </div> -->
                             </div>
                             <div class="col-12 md:col-12 lg:col-12" style="height: 50px;"></div>
                         </div>
