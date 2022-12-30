@@ -27,6 +27,7 @@ export class MenumasterComponent implements OnInit {
   parentIdOptions: any;
   menuId: any;
   masters?: any;
+  blockSpace: RegExp = /[^\s]/;
   responseMsg: Message[] = [];
   @ViewChild('f', {static: false}) _respondentForm!: NgForm;
   loading: boolean = false;
@@ -97,7 +98,7 @@ export class MenumasterComponent implements OnInit {
     const params = {
       'menuid': this.menuId,
       'name': this.menuName,
-      'url': (this.url !== null && this.url !== undefined) ? this.url : ' ',
+      'url': (this.url !== null && this.url !== undefined) ? '/' + this.url : ' ',
       'parentid':this.parentId,
       'icon': (this.icon !== null && this.icon !== undefined) ? this.icon: '' ,
       'roleid':this.role,
@@ -164,6 +165,13 @@ export class MenumasterComponent implements OnInit {
           this.menuName = null;
       }
     })
+  }
+
+  onKeydown(event:any){
+    if(event.keyCode === 191 || event.keyCode === 32 || event.keyCode === 220){
+      return false;
+    }
+    return true;
   }
   }
 

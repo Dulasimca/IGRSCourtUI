@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Message } from 'primeng/api';
+import { Message, SelectItem } from 'primeng/api';
 import { ResponseMessage } from 'src/app/constants/message-constants';
 import { TableConstants } from 'src/app/constants/table-constants';
+import { MasterService } from 'src/app/services/master.service';
 import { RestapiService } from 'src/app/services/restapi.service';
 
 
@@ -22,16 +23,41 @@ export class RespondantMasterComponent implements OnInit {
   mailId: any;
   mobileNo1: any;
   mobileNo2: any;
+  masters?: any;
+  respondentType: any;
+  respondentTypeOptions: SelectItem[] = [];
+
+
 
   @ViewChild('f', {static: false}) _respondentForm!: NgForm;
   
   
-  constructor(private _restApiService: RestapiService) { }
+  constructor(private _restApiService: RestapiService, private _masterService: MasterService) { }
 
   ngOnInit(): void {
+    this.masters = this._masterService.getMasters();
     this.cols = TableConstants.RespondentMaster;
     this.onView();
   }
+
+  onSelect(value: string) {
+    let responseTypeList: any = [];
+
+    switch(value) {
+      case 'RT':
+        if (this.masters.responsetype_Masters !== undefined && this.masters.responsetype_Masters !== null) {
+          this.masters.responsetype_Masters.forEach((rt: any) => {
+            responseTypeList.push(
+              { label: rt.responsetypename, value: rt.responsetypeid }
+            )
+          })
+          this.respondentTypeOptions = responseTypeList;
+          this.respondentTypeOptions.unshift({ label: '-select-', value: null });
+        }
+        break;
+    }
+  }
+
   onSubmit() {
     const params = {
       'respondentsid': this.respondentsid,
@@ -39,6 +65,7 @@ export class RespondantMasterComponent implements OnInit {
       'mobno1': this.mobileNo1,
       'mobno2': this.mobileNo2,
       'mailid': this.mailId,
+      'responsetypeid': this.respondentType,
       'createddate': new Date(),
       'flag': (this.selectedType == 1) ? true : false
     }
@@ -79,6 +106,8 @@ onClear() {
   this.mailId = null;
   this.mobileNo1 = null;
   this.mobileNo2  = null;
+  this.respondentType = null;
+  this.respondentTypeOptions = [];
 }
 onEdit(row:any) {
   this.respondentsid = row.respondentsid;
@@ -87,6 +116,8 @@ onEdit(row:any) {
   this.mailId = row.mailid;
   this.mobileNo1 = row.mobno1;
   this.mobileNo2  = row.mobno2;
+  this.respondentType = row.responsetypeid;
+  this.respondentTypeOptions = [{ label: row.responsetypename, value: row.responsetypeid}];
 }
 
 onCheck() {
@@ -94,7 +125,15 @@ onCheck() {
     if(i.respondentsname  === this.respondentsname ) {
       this.responseMsg = [{ severity: ResponseMessage.WarnSeverity, detail: 'Respondent name is already exist, Please input different name' }];
         this.respondentsname = null;
+    } else {
+
     }
+    // if (i.mailid === this.mailId) {
+    //   this.responseMsg = [{ severity: ResponseMessage.WarnSeverity, detail: ' EmailId  already exists, Please enter valid Email' }];
+    //   this.mailId = null;
+    // } else{
+
+    // }
   })
 }
 }
