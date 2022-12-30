@@ -26,7 +26,20 @@ label {
     font-style: italic;
     color: red;
 }
- 
+
+.app-headertopic {
+    text-align: -webkit-center;
+    font-size: 24px;
+    color: white;
+}
+ .home-image {
+    background-image: url(assets/images/layout/6881619.jpg) !important;
+    border: 0.5px solid #4ed39e !important;
+    height: 100vh !important;
+    background-size: cover !important;
+    background-position: inherit !important;
+    padding: 4rem !important;
+ }
 
 ::-webkit-scrollbar {
     scrollbar-width: thin !important;
@@ -87,9 +100,9 @@ label {
 .login-title {
     text-align: center !important;
     font-family: Times New Roman;
-    font-weight: 600;
-    color: #18A558;
-    font-size: 18px;
+    font-weight: 300;
+    color: rgb(0, 0, 0);
+    font-size: 17px;
 }
 
 .txt-link {
