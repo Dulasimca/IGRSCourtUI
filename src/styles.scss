@@ -78,10 +78,10 @@ label {
 }
 
 .header {
-    // background: #6774b9;
+      background: #18A558;
     // border: 2px solid #5e6fc7;
     // color: white;
-    color: #18A558;
+    color: #e1ede6;
 }
 
 .login-title {
@@ -112,7 +112,8 @@ label {
 }
 
 .card {
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    box-shadow: rgba(7, 179, 64, 0.24) 0px 3px 8px;
+    border: solid 3px #05a72e;
 }
 
 .dsh-box {
@@ -183,8 +184,8 @@ label {
     width: 150px !important;
     height: 150px;
     border-radius: 16px;
-    background-color: #f7f8fa;
-    border: solid 1px #dbe1e8;
+    background-color: #3fd482;
+    border: solid 3px #04020b;
     margin: 25px auto 5px;
     transition: all 0.5s ease;
     position: relative;
@@ -440,8 +441,11 @@ label {
 .p-sidebar-left {
     position: relative !important;
     width: -webkit-fill-available !important;
+    background-color: #18A558;
 }
-
+.p-sidebar{
+    background-color: #18A558;
+ }
 .p-panelmenu .p-panelmenu-header>a {
     padding: 0.85rem !important;
     // color: #1a9967  !important;
@@ -550,9 +554,7 @@ label {
     padding: 0.25rem 0.5rem !important;
 }
 
-.p-datatable .p-datatable-header {
-    // border: 1px solid transparent !important;
-}
+
 
 .p-message .p-message-wrapper {
     padding: 0.25rem 1.25rem !important;
