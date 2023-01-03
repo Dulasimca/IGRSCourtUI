@@ -178,20 +178,6 @@ export class UsermasterComponent implements OnInit {
     }
   }
 
-    // to check email pattern
-    checkIfEmailExists() {
-      this.data.forEach(i => {
-        const email: string = i.mailid;
-        if (email === this.mailId) {
-          this.responseMsg = [{ severity: ResponseMessage.ErrorSeverity, detail: 'Email-ID is already exist' }];
-          setTimeout(() => this.responseMsg = [], 3000);
-          this.mailId = '';
-        } else {
-        }
-      })
-    }
-  
-    //checking existing mailid
     emailValidationCheck() {
       if (this.mailId !== undefined && this.mailId !== null && this.mailId.trim() !== '' 
           ) {
@@ -244,12 +230,12 @@ export class UsermasterComponent implements OnInit {
       } else {
        
       }
-      // if (i.mailid === this.mailId) {
-      //   this.responseMsg = [{ severity: ResponseMessage.WarnSeverity, detail: ' EmailId  already exists, Please enter valid Email' }];
-      //   this.mailId = null;
-      // } else{
+      if (i.mailid === this.mailId) {
+        this.responseMsg = [{ severity: ResponseMessage.WarnSeverity, detail: ' EmailId  already exists, Please enter valid Email' }];
+        this.mailId = null;
+      } else{
 
-      // }
+      }
     })
   }
 }
