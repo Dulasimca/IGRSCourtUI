@@ -160,7 +160,6 @@ export class GovtrespReportComponent implements OnInit {
       this._reportsForm.form.markAsUntouched();
       this._reportsForm.form.markAsPristine()
       this.loading = false;
-
     }
 
 }
