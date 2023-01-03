@@ -8,6 +8,7 @@ import { Message } from 'primeng/api';
 import { NgForm } from '@angular/forms';
 import { TableConstants } from 'src/app/constants/table-constants';
 import { ResponseMessage } from 'src/app/constants/message-constants';
+import { KeyFilter } from 'primeng/keyfilter';
 
 @Component({
   selector: 'app-usermaster',
@@ -177,6 +178,45 @@ export class UsermasterComponent implements OnInit {
     }
   }
 
+    // to check email pattern
+    checkIfEmailExists() {
+      this.data.forEach(i => {
+        const email: string = i.mailid;
+        if (email === this.mailId) {
+          this.responseMsg = [{ severity: ResponseMessage.ErrorSeverity, detail: 'Email-ID is already exist' }];
+          setTimeout(() => this.responseMsg = [], 3000);
+          this.mailId = '';
+        } else {
+        }
+      })
+    }
+  
+    //checking existing mailid
+    emailValidationCheck() {
+      if (this.mailId !== undefined && this.mailId !== null && this.mailId.trim() !== '' 
+          ) {
+        const entered_email: string = this.mailId.trim();
+        const substr = entered_email.split('@');
+        if (substr !== undefined && substr.length > 1) {
+          const last_str = substr[1].split('.');
+          if (last_str !== undefined && last_str.length > 1) {
+            if (last_str[1].toLowerCase() === 'com' || last_str[1].toLowerCase() === 'in') {
+            } else {
+              this.responseMsg = [{ severity: ResponseMessage.ErrorSeverity, detail: 'Enter valid email address' }];
+              setTimeout(() => this.responseMsg = [], 3000);      
+            }
+          } else {
+            this.responseMsg = [{ severity: ResponseMessage.ErrorSeverity, detail: 'Enter valid email address' }];
+            setTimeout(() => this.responseMsg = [], 3000);      
+          }
+        }else {
+          this.mailId = null;
+          this.responseMsg = [{ severity: ResponseMessage.ErrorSeverity, detail: 'Enter valid email address' }];
+          setTimeout(() => this.responseMsg = [], 3000);      
+        }
+      }
+    }
+
   onEdit(row: any) {
     this.readOnlyUsername = true;
     this.RowId = row.userid;
@@ -204,12 +244,12 @@ export class UsermasterComponent implements OnInit {
       } else {
        
       }
-      if (i.mailid === this.mailId) {
-        this.responseMsg = [{ severity: ResponseMessage.WarnSeverity, detail: ' EmailId  already exists, Please enter valid Email' }];
-        this.mailId = null;
-      } else{
+      // if (i.mailid === this.mailId) {
+      //   this.responseMsg = [{ severity: ResponseMessage.WarnSeverity, detail: ' EmailId  already exists, Please enter valid Email' }];
+      //   this.mailId = null;
+      // } else{
 
-      }
+      // }
     })
   }
 }

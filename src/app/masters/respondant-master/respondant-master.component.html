@@ -35,7 +35,7 @@
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <input name="_mobileno1" type="text" [(ngModel)]="mobileNo1" maxlength="10" pInputText>
+                                                <input name="_mobileno1" type="text" [(ngModel)]="mobileNo1" [pKeyFilter]="'int'" maxlength="10" pInputText>
                                                 <label for="float-input">Mobile No.1</label>      
                                             </span>
                                         </div>   
