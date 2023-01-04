@@ -43,7 +43,7 @@ export class MainDashboardComponent implements OnInit {
         url = 'assets/images/layout/inspector.png';
         break;
       case 'OTHERS':
-        title = 'Others Respondents';
+        title = 'Other Respondents';
         url = 'assets/images/layout/others.png';
         break;
       case 'WRIT':
@@ -54,14 +54,14 @@ export class MainDashboardComponent implements OnInit {
         title = 'Pending Enquiries';
         url = 'assets/images/layout/pending.png';
         break;
-      case 'SUPREME':
-        title = 'Supreme Court Cases';
-        url = 'assets/images/layout/law.png';
-        break;
       case 'TIMEBOUND':
-        title = 'Time Bound';
+        title = 'Time Bound/Judgement';
         url = 'assets/images/layout/time-bound.png';
         break;
+      case 'SUPREME':
+          title = 'Supreme Court Cases';
+          url = 'assets/images/layout/law.png';
+          break;
       case 'LAW':
         title = 'Law Officers Opinion';
         url = 'assets/images/layout/opinion.png';
