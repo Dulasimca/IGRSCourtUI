@@ -22,7 +22,7 @@
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <input name="_name" type="text" (change)="onCheck()" [(ngModel)]="respondentsname"
+                                                <input name="_name" type="text" (change)="onCheck()" [(ngModel)]="respondentsname" [pKeyFilter]="'alpha'"
                                                     pInputText>
                                                 <label for="float-input">Respondent Name</label>
                                             </span>
@@ -41,7 +41,7 @@
                                         </div>   
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <input name="_mobileno2" type="text" [(ngModel)]="mobileNo2" maxlength="10" pInputText>
+                                                <input name="_mobileno2" type="text" [(ngModel)]="mobileNo2"  [pKeyFilter]="'int'" maxlength="10" pInputText>
                                                 <label for="float-input">Mobile No.2</label>      
                                             </span>
                                         </div> 
@@ -74,7 +74,7 @@
                             <div class="p-d-flex">
                                 <span class="p-input-icon-left p-ml-auto">
                                     <i class="pi pi-search"></i>
-                                    <input #searchInput pInputText type="text" (input)="dt.filterGlobal(searchInput.value, 'contains')" placeholder="Search By Name" />
+                                    <input #searchInput pInputText type="text" [pKeyFilter]="'alpha'" (input)="dt.filterGlobal(searchInput.value, 'contains')" placeholder="Search By Name" />
                                 </span>
                             </div>
                             <div class="grid" style="width: -webkit-fill-available;">
