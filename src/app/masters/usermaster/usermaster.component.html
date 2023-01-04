@@ -71,7 +71,7 @@
                                             </div>   
                                         <div class="col-12 md:col-4 lg:col-2">                                           
                                             <span class="p-float-label">
-                                                <input name="_mailid" type="email"  (change)="emailValidationCheck()" [(ngModel)]="mailId" 
+                                                <input name="_mailid" type="email"  (change)="emailValidationCheck()"  (input)="checkIfEmailExists()" [(ngModel)]="mailId" 
                                                 (input)="onCheck()" pInputText>
                                                 <label for="float-input">e-mail ID</label>      
                                             </span>
