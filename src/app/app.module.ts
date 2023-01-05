@@ -64,9 +64,10 @@ import { WritappealstatusMasterComponent } from './masters/writappealstatus-mast
 import { CaseHearingDateComponent } from './forms/highcourt-cases/case-hearing-date/case-hearing-date.component';
 import { StatusOfCourtcasesReportComponent } from './reports/status-of-courtcases-report/status-of-courtcases-report.component';
 import { NgxPrintModule } from 'ngx-print';
-
+import {PasswordModule} from 'primeng/password';
 import { GovtrespReportComponent } from './reports/govtresp-report/govtresp-report.component';
 import { CounterfiledMasterComponent } from './masters/counterfiled-master/counterfiled-master.component';
+import { CourtCaseComponent } from './forms/highcourt-cases/court-case/court-case.component';
 
 @NgModule({
   declarations: [
@@ -111,6 +112,7 @@ import { CounterfiledMasterComponent } from './masters/counterfiled-master/count
     StatusOfCourtcasesReportComponent,
     GovtrespReportComponent,
     CounterfiledMasterComponent,
+    CourtCaseComponent,
   ],
   imports: [
     BrowserModule,
@@ -133,7 +135,8 @@ import { CounterfiledMasterComponent } from './masters/counterfiled-master/count
     PaginatorModule,
     TooltipModule,
     KeyFilterModule,
-    NgxPrintModule
+    NgxPrintModule,
+    PasswordModule
   ],
   providers: [AuthService, AuthGuard, MasterService, RestapiService, DatePipe, DateConverter],
   bootstrap: [AppComponent]

@@ -168,7 +168,7 @@ export class CaseHearingDateComponent implements OnInit {
   onEdit(rowdata:any) {
 
   }
-
+// save method
   onSave() {
     const params = {
       'casehearingid': this.caseHearingId,
@@ -188,15 +188,13 @@ export class CaseHearingDateComponent implements OnInit {
         this.clearForm();
         this.responseMsg = [{ severity: ResponseMessage.SuccessSeverity, detail: ResponseMessage.SuccessMessage }];
         setTimeout(() => this.responseMsg = [], 3000);
-        // this.assignDefault();
-        // this.onLoadCases();
       } else {
         this.responseMsg = [{ severity: ResponseMessage.ErrorSeverity, detail: ResponseMessage.ErrorMessage }];
         setTimeout(() => this.responseMsg = [], 3000)
       }
     })
-
   }
+// to clear 
   clearForm() {
     this._caseHearingForm.reset();
     this._caseHearingForm.form.markAsUntouched();
@@ -206,7 +204,6 @@ export class CaseHearingDateComponent implements OnInit {
     this.districtOptions = [];
     this.caseTypeOptions = [];
     this.courtcaseOptions = [];
-
   }
 
 }

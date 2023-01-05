@@ -18,13 +18,15 @@ export class MainDashboardComponent implements OnInit {
   constructor(private _restApiService: RestapiService) { }
 
   ngOnInit(): void {
+    const colors = ['#ed4981', '#e67a07', '#4caf50', '#dc3545', '#459e74', '#4770ad', '#fbc02d', '#b586cd', '#d63384', '#30b5d1'];
     this._restApiService.get('Dashboard').subscribe(res => {
       if (res) {
-        res.forEach((item: any) => {
+        res.forEach((item: any, index: number) => {
           const result = this.setFields(item.key);
           item.title = result.title;
           item.src = result.url;
           item.count = item.value;
+          item.color = colors[index];
         })
         this.items = res;
       }

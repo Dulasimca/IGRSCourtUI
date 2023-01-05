@@ -40,7 +40,6 @@ export class UsermasterComponent implements OnInit {
   RowId: any;
   value: string = '';
   readOnlyUsername: boolean = false;
-
   constructor(private _restApiService: RestapiService, private _masterService: MasterService,
     private _datePipe: DatePipe, private _authService: AuthService) { }
 
@@ -166,16 +165,16 @@ export class UsermasterComponent implements OnInit {
     }
   }
 
-  onShowPwd() {
-    var inputValue = (<HTMLInputElement>document.getElementById('pwd'));
-    if (inputValue.type === 'password') {
-      inputValue.type = 'text';
-      this.showPwd = !this.showPwd;
-    } else {
-      this.showPwd = !this.showPwd;
-      inputValue.type = 'password';
-    }
-  }
+  // onShowPwd() {
+  //   var inputValue = (<HTMLInputElement>document.getElementById('pwd'));
+  //   if (inputValue.type === 'password') {
+  //     inputValue.type = 'text';
+  //     this.showPwd = !this.showPwd;
+  //   } else {
+  //     this.showPwd = !this.showPwd;
+  //     inputValue.type = 'password';
+  //   }
+  // }
 
   onEdit(row: any) {
     this.readOnlyUsername = true;

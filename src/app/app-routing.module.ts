@@ -37,6 +37,7 @@ import { CaseHearingDateComponent } from './forms/highcourt-cases/case-hearing-d
 import { StatusOfCourtcasesReportComponent } from './reports/status-of-courtcases-report/status-of-courtcases-report.component';
 import { GovtrespReportComponent } from './reports/govtresp-report/govtresp-report.component';
 import { CounterfiledMasterComponent } from './masters/counterfiled-master/counterfiled-master.component';
+import { CourtCaseComponent } from './forms/highcourt-cases/court-case/court-case.component';
 
 
 const routes: Routes = [
@@ -44,7 +45,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'home', component: MainDashboardComponent, canActivate: [AuthGuard] },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
-  { path: 'government-respondent-hight-court-cases', component: GovernmentRespondentComponent, canActivate: [AuthGuard] },
+  { path: 'government-respondent-hight-court-cases', component: CourtCaseComponent, canActivate: [AuthGuard] },
   { path: 'pending-enquiry-hight-court-cases', component: PendingEnquiryComponent, canActivate: [AuthGuard] },
   { path: 'supreme-court-case-details', component: SupremecourtCaseDetailsComponent, canActivate: [AuthGuard] },
   { path: 'others-respondent', component: OthersRespondentComponent, canActivate: [AuthGuard] },

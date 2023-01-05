@@ -88,25 +88,15 @@
                 </div>
                 <div class="col-12 md:col-12 lg:col-12">
                     <p-table #dt [columns]="cols" [value]="data" styleClass="p-datatable-gridlines" [loading]="loading">
-                        <!-- <ng-template pTemplate="caption">
+                        <ng-template pTemplate="caption">
                             <div class="grid" style="width: -webkit-fill-available;">
-                                <div class="lg:col-2 no-pad-btm">
-                                    <div><label>From Date</label></div>
-                                    <p-calendar name="_fdate" [(ngModel)]="fromDate" [showIcon]="true"
-                                        (ngModelChange)="onLoadCases()"></p-calendar>
-                                </div>
-                                <div class="lg:col-2 no-pad-btm">
-                                    <div><label>To Date</label></div>
-                                    <p-calendar name="_tdate" [(ngModel)]="toDate" [showIcon]="true"
-                                        (ngModelChange)="onLoadCases()"></p-calendar>
-                                </div>
-                                <div class="lg:col-6 no-pad-top no-pad-btm"></div>
+                                <div class="lg:col-10 no-pad-top no-pad-btm"></div>
                                 <div class="lg:col-2 table-hdr-export">
                                     <button type="button" pButton pRipple icon="pi pi-file" (click)="dt.exportCSV()"
                                         class="mr-2" pTooltip="CSV" label="Export" tooltipPosition="bottom"></button>
                                 </div>
                             </div>
-                        </ng-template> -->
+                        </ng-template>
                         <ng-template pTemplate="header" let-columns>
                             <tr>
                                 <th>S.No:</th>
