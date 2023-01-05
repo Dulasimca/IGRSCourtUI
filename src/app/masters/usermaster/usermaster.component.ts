@@ -40,14 +40,7 @@ export class UsermasterComponent implements OnInit {
   RowId: any;
   value: string = '';
   readOnlyUsername: boolean = false;
-  SpecialCharErrMsg: any;
-  validatePassword: any;
-  pswdStrongMsg: any;
-  NumericErrMsg: any;
-  UpperCaseErrMsg: any;
-  LengthErrMsg: any;
-  showMatchMsg!: boolean;
-  showErrMsg!:boolean;
+  
 
   constructor(private _restApiService: RestapiService, private _masterService: MasterService,
     private _datePipe: DatePipe, private _authService: AuthService) { }
