@@ -42,6 +42,11 @@ export class GovernmentRespondentComponent implements OnInit {
   respondentType: any;
   respondentTypeOptions: SelectItem[] = [];
   gistOfCase: any;
+  mainPrayer: any;
+  mainPrayerOptions: SelectItem[] = [];
+  lcaseDetails: any;
+  linkedCase: any;
+  linkedCaseOptions: SelectItem[] = [];
   remarks: any;
   counterFiled: any;
   counterFiledOptions: SelectItem[] = [];
@@ -54,8 +59,8 @@ export class GovernmentRespondentComponent implements OnInit {
   responseMsg: Message[] = [];
   caseId: any;
   loading: boolean = false;
-  fromDate: any;
-  toDate: any;
+  fromYear: any;
+  toYear: any;
   isEditable: boolean = false;
   disableAutoDisplay: boolean = false;
   userInfo!: User;
@@ -72,7 +77,7 @@ export class GovernmentRespondentComponent implements OnInit {
 
   assignDefault() {
     this.disableAutoDisplay = false;
-    this.caseDate = new Date();
+    // this.caseDate = new Date();
     this.caseId = 0;
   }
 
@@ -87,7 +92,9 @@ export class GovernmentRespondentComponent implements OnInit {
       let respondentList: any = [];
       let responseTypeList: any = [];
       let counterFiledList: any = [];
-      let judgementStatusList: any = [];
+      //let judgementStatusList: any = [];
+      let mainPrayerList: any = [];
+      let linkedCaseList: any = [];
       switch (value) {
         case 'ZN':
           if (this.masters.zone_Masters !== undefined && this.masters.zone_Masters !== null) {
@@ -202,50 +209,70 @@ export class GovernmentRespondentComponent implements OnInit {
                 this.counterFiledOptions.unshift({ label: '-select-', value: null });
               }
               break;
-              case 'JD':
-                if (this.masters.judgementmaster !== undefined && this.masters.judgementmaster !== null) {
-                  this.masters.judgementmaster.forEach((jd: any) => {
-                    judgementStatusList.push(
-                      { label: jd.judgementname, value: jd.judgementid }
+              // case 'JD':
+              //   if (this.masters.judgementmaster !== undefined && this.masters.judgementmaster !== null) {
+              //     this.masters.judgementmaster.forEach((jd: any) => {
+              //       judgementStatusList.push(
+              //         { label: jd.judgementname, value: jd.judgementid }
+              //       )
+              //     })
+              //     this.judgementOptions = judgementStatusList;
+              //     this.judgementOptions.unshift({ label: '-select-', value: null });
+              //   }
+              //   break;
+              case 'MP':
+                  if (this.masters.mainprayermaster !== undefined && this.masters.mainprayermaster !== null) {
+                    this.masters.mainprayermaster.forEach((mp: any) => {
+                      mainPrayerList.push(
+                        { label: mp.prayername, value: mp.prayerid }
+                      )
+                    })
+                    this.mainPrayerOptions = mainPrayerList;
+                    this.mainPrayerOptions.unshift({ label: '-select-', value: null });
+                  }
+              break;
+              case 'LC':
+                if (this.masters.linkedcasemasters !== undefined && this.masters.linkedcasemasters !== null) {
+                  this.masters.linkedcasemasters.forEach((lc: any) => {
+                    linkedCaseList.push(
+                      { label: lc.linkedcasename, value: lc.linkedcaseid }
                     )
                   })
-                  this.judgementOptions = judgementStatusList;
-                  this.judgementOptions.unshift({ label: '-select-', value: null });
+                  this.linkedCaseOptions = linkedCaseList;
+                  this.linkedCaseOptions.unshift({ label: '-select-', value: null });
                 }
-                break;
+            break;
       }
     }
   }
 
-  onLoadCases() {
-    console.log(1, "load data");
-    if (this.fromDate !== undefined && this.fromDate !== null && this.toDate !== undefined && this.toDate !== null && this.respondentType !== undefined && this.respondentType !==null) {
-      this.data = [];
-      console.log(2, "call api");
-      this.loading = true;
-      const params = new HttpParams().append('userid', this.userInfo.roleid)
-        .set('fromdate', this._datePipe.transform(this.fromDate, 'yyyy-MM-dd') as any)
-        .set('respondentType', this.respondentType.value)
-        .set('todate', this._datePipe.transform(this.toDate, 'yyyy-MM-dd') as any)
-        .set('zoneid', this.userInfo.zoneid)
-        .set('sroid', this.userInfo.sroid)
-        .set('districtid', this.userInfo.districtid);
-        console.log(3, params);
-      this._restApiService.getByParameters('Respondent/GetRespondentCase', params).subscribe(res => {
-        if(res) {
-          this.loading = false;
-          // res.forEach((i: any) => {
-          //   i.countervalue = i.counterfiled ? 'Yes' : 'No';
-          //   i.judgement = i.judgementvalue ? 'For' : 'Against';
-          // })
-          console.log(4, res);
-          this.data = res;
-        } else {
-          this.loading = false;
-        }
-      })
-    }
-  }
+  // onLoadCases() {
+  //   if (this.fromYear !== undefined && this.fromYear !== null && this.toYear !== undefined && this.toYear !== null && this.respondentType !== undefined && this.respondentType !==null) {
+  //     this.data = [];
+  //     this.loading = true;
+  //     const params = new HttpParams().append('userid', this.userInfo.roleid)
+  //       //.set('fromdate', this._datePipe.transform(this.fromYear, 'yyyy-MM-dd') as any)
+  //       //.set('todate', this._datePipe.transform(this.toYear, 'yyyy-MM-dd') as any)
+  //       .set('fromyear',this._datePipe.transform(this.fromYear, 'yyyy') as any)
+  //       .set('toyear',this._datePipe.transform(this.toYear, 'yyyy') as any)
+  //       .set('respondentType', this.respondentType.value)
+  //       .set('zoneid', this.userInfo.zoneid)
+  //       .set('sroid', this.userInfo.sroid)
+  //       .set('districtid', this.userInfo.districtid);
+  //     this._restApiService.getByParameters('Respondent/GetRespondentCase', params).subscribe(res => {
+  //       if(res) {
+  //         this.loading = false;
+  //         // res.forEach((i: any) => {
+  //         //   i.countervalue = i.counterfiled ? 'Yes' : 'No';
+  //         //   i.judgement = i.judgementvalue ? 'For' : 'Against';
+  //         // })
+  //         this.data = res;
+  //       } else {
+  //         this.loading = false;
+  //       }
+  //     })
+  //   }
+  // }
 
   onChangeRespondent() {
     if (this.respondentCadre !== undefined && this.respondentCadre !== null) {
@@ -277,18 +304,20 @@ export class GovernmentRespondentComponent implements OnInit {
       this.caseTypeOptions = [{ label: row.casetypename, value: row.casetypeid }];
       this.stateOfCase = { label: row.casestatusname, value: row.casestatusid };
       this.stateOfCaseOptions = [{ label: row.casestatusname, value: row.casestatusid }];
-      this.judgement = { label: row.judgementname, value: row.judgementid };
-      this.judgementOptions = [{ label: row.judgementname, value: row.judgementid }];
+      // this.judgement = { label: row.judgementname, value: row.judgementid };
+      // this.judgementOptions = [{ label: row.judgementname, value: row.judgementid }];
       this.counterFiled = { label: row.counterfiledname, value: row.counterfiledid };
       this.counterFiledOptions = [{ label: row.counterfiledname, value: row.counterfiledid }];
       this.respondentCadre = { label: row.mainrespondents, value: row.id };
       this.respondentCadreOptions = [{ label: row.mainrespondents, value: row.id }];
       // this.judgementValue = (row.judgementvalue) ? '1' : '0';
-      this.caseDate = new Date(row.casedate);
+      // this.caseDate = new Date(row.casedate);
       this.caseNo = row.casenumber;
       this.petitionerName = row.petitionername;
       // this.selectedValue = (row.counterfiled) ? '1' : '0';
-      this.gistOfCase = row.mainprayer;
+      this.gistOfCase = row.gistofcase;
+      this.mainPrayer = { label: row.prayername, value: row.prayerid };
+      this.mainPrayerOptions = [{ label: row.prayername, value: row.prayerid }];
       this.respondentType = { label: row.responsetypename, value: row.responsetypeid };
       this.respondentTypeOptions = [{ label: row.responsetypename, value: row.responsetypeid }];
       this.respondents = row.mainrespondents;
@@ -308,15 +337,17 @@ export class GovernmentRespondentComponent implements OnInit {
       'sroid': this.sro.value,
       'casetypeid': this.caseType.value,
       'casenumber': this.caseNo,
-      'casedate': this._converter.convertDate(this.caseDate),
+      // 'casedate': this._converter.convertDate(this.caseDate),
       'caseyear': (_caseyear * 1),
       'courtid': this.highCourtName.value,
       'petitionername': this.petitionerName,
       'mainrespondents': this.respondents,
-      'mainprayer': this.gistOfCase,
+      'prayerid': this.mainPrayer.value,
+      'gistofcase': this.gistOfCase,
       'counterfiledid': this.counterFiled.value,
       'casestatusid': this.stateOfCase.value,
-      'judgementid':this.judgement.value,
+      'linkedcaseid': this.linkedCase.value,
+      //'judgementid':this.judgement.value,
       'remarks': this.remarks,
       'flag': true,
       'createdate': new Date(),
@@ -328,7 +359,7 @@ export class GovernmentRespondentComponent implements OnInit {
       if (res) {
         this.responseMsg = [{ severity: ResponseMessage.SuccessSeverity, detail: ResponseMessage.SuccessMessage }];
         setTimeout(() => this.responseMsg = [], 3000);
-        this.onLoadCases();
+        // this.onLoadCases();
         this.assignDefault();
         this.clearForm();
       } else {
@@ -349,7 +380,9 @@ export class GovernmentRespondentComponent implements OnInit {
     this.respondentCadreOptions = [];
     this.highCourtNameOptions = [];
     this.stateOfCaseOptions = [];
-    this.judgementOptions = [];
+    // this.judgementOptions = [];
     this.counterFiledOptions = [];
+    this.mainPrayerOptions = [];
+    this.linkedCaseOptions = [];
   }
 }
