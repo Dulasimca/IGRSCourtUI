@@ -8,6 +8,7 @@ import { AuthService } from '../services/auth.service';
 })
 export class HeaderComponent implements OnInit {
   username: string = '';
+  isLoggedIn: boolean = false;
   @Input() public toggle: boolean = true; 
   @Output() public sidenavToggle = new EventEmitter();
   constructor(private _authService: AuthService) { }
@@ -15,6 +16,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this._authService.isLoggedIn.subscribe(value => {
       if(value) {
+        this.isLoggedIn = value;
         this.username = this._authService.getUserInfo().username;
       }
     })
