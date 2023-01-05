@@ -147,6 +147,7 @@ export class RespondantMasterComponent implements OnInit {
           setTimeout(() => this.responseMsg = [], 3000);      
         }
       }else {
+        this.mailId = null;
         this.responseMsg = [{ severity: ResponseMessage.ErrorSeverity, detail: 'Enter valid email address' }];
         setTimeout(() => this.responseMsg = [], 3000);      
       }

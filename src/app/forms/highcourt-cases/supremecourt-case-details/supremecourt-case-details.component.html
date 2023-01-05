@@ -56,7 +56,7 @@
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <input name="_slpnumber" [(ngModel)]="slpNumber" pInputText
+                                                <input name="_slpnumber"   [(ngModel)]="slpNumber" [pKeyFilter]="'int'" pInputText
                                                     [required]="true" />
                                                 <label for="float-input">Diary No./SLP Case No.</label>
                                             </span>
@@ -67,14 +67,14 @@
                                     <div class="grid">
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <input name="_caseno" type="text" [(ngModel)]="highCourtRefNo"
+                                                <input name="_caseno" type="text" [(ngModel)]="highCourtRefNo" [pKeyFilter]="'int'"
                                                     pInputText>
                                                 <label for="float-input">HighCourt Ref No.</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <input name="_petitionername" type="text" [(ngModel)]="petitionerName"
+                                                <input name="_petitionername" type="text" [(ngModel)]="petitionerName" [pKeyFilter]="'alpha'"
                                                     pInputText>
                                                 <label for="float-input">Petitioner Name</label>
                                             </span>
@@ -116,17 +116,13 @@
                                 <div #row3 class="col-12 md:col-11 lg:col-11">
                                     <div class="grid">
                                         <div class="col-12 md:col-4 lg:col-2">
-                                            <div class="div-radio-box">
-                                                <label for="_counterFiled">Counter Filed</label><br>
-                                                <div style="text-align: center;">
-                                                    <p-radioButton name="_counteryes" value="1" label="Yes"
-                                                        [(ngModel)]="selectedValue">
-                                                    </p-radioButton>&nbsp;
-                                                    <p-radioButton name="_counterno" value="0" label="No"
-                                                        [(ngModel)]="selectedValue">
-                                                    </p-radioButton>&nbsp;
-                                                </div>
-                                            </div>
+                                            <span class="p-float-label">
+                                                <p-dropdown name="_counterfiled"  [autoDisplayFirst]="disableAutoDisplay"
+                                                    optionLabel="label" (onClick)="onSelect('CF')" 
+                                                    [options]="counterFiledOptions" [(ngModel)]="counterFiled" [required]="true">
+                                                </p-dropdown>
+                                                <label for="float-input">Counter Filed</label>
+                                            </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">

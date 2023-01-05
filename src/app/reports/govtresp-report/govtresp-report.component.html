@@ -22,7 +22,7 @@
                                             <span class="p-float-label">
                                                 <p-dropdown name="_zone" optionLabel="label" [autoDisplayFirst]="disableAutoDisplay" 
                                                     (onClick)="onSelect('ZN')" [options]="zoneOptions"
-                                                    (ngModelChange)="onLoadCases()" [(ngModel)]="zone" [required]="true">
+                                                    [(ngModel)]="zone" [required]="true">
                                                 </p-dropdown>
                                                 <label for="float-input">Zone</label>
                                             </span>
@@ -32,7 +32,7 @@
                                                 <p-dropdown name="_district"
                                                     optionLabel="label" (onClick)="onSelect('DT')" [autoDisplayFirst]="disableAutoDisplay" 
                                                     [options]="districtOptions" [(ngModel)]="district"
-                                                    (ngModelChange)="onLoadCases()" [required]="true">
+                                                    [required]="true">
                                                 </p-dropdown>
                                                 <label for="float-input">District</label>
                                             </span>
@@ -41,7 +41,7 @@
                                             <span class="p-float-label">
                                                 <p-dropdown name="_sro" optionLabel="label" [autoDisplayFirst]="disableAutoDisplay" 
                                                     (onClick)="onSelect('SR')" [options]="sroOptions" [(ngModel)]="sro"
-                                                    (ngModelChange)="onLoadCases()" [required]="true">
+                                                    [required]="true">
                                                 </p-dropdown>
                                                 <label for="float-input">SRO</label>
                                             </span>
@@ -51,7 +51,7 @@
                                                 <p-dropdown name="_casetype" [autoDisplayFirst]="disableAutoDisplay"
                                                     optionLabel="label" (onClick)="onSelect('CT')"
                                                     [options]="caseTypeOptions" [(ngModel)]="caseType"
-                                                    (ngModelChange)="onLoadCases()" [required]="true">
+                                                    [required]="true">
                                                 </p-dropdown>
                                                 <label for="float-input">Case Type</label>
                                             </span>
@@ -63,16 +63,20 @@
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <p-calendar name="_fdate" [showIcon]="true"
-                                                   [(ngModel)]="fromDate" (ngModelChange)="onLoadCases()"></p-calendar>
+                                                   [(ngModel)]="fromDate"></p-calendar>
                                                 <label for="float-input">From Date</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <p-calendar name="_tdate" [showIcon]="true"
-                                                   [(ngModel)]="toDate" (ngModelChange)="onLoadCases()"></p-calendar>
+                                                   [(ngModel)]="toDate"></p-calendar>
                                                 <label for="float-input">To Date</label>
                                             </span>
+                                        </div>
+                                        <div class="col-12 md:col-4 lg:col-2">
+                                            <button pButton type="button" label="View" icon="pi pi-eye" (click)="onLoadCases()"></button>&nbsp;
+                                            <button pButton type="button" label="Reset" icon="pi pi-undo" (click)="reset()"></button>
                                         </div>
                                     </div>
                                 </div>
@@ -94,10 +98,10 @@
                                         <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="exportPdf()" 
                                         class="p-button-warning mr-2" pTooltip="PDF" tooltipPosition="bottom"></button>
                                     </div> -->
-                                    <div class="lg:col-2 table-hdr-export">
+                                    <!-- <div class="lg:col-2 table-hdr-export">
                                         <button type="button" pButton pRipple icon="pi pi-reset" (click)="reset()" 
                                         label= "Reset"></button>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </ng-template>
                             <ng-template pTemplate="header" let-columns>
