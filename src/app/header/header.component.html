@@ -1,8 +1,7 @@
 <div class="col-12 md:col-12 lg:col-12 no-padding header hdr-shdw-btm">
     <div class="col-12 md:col-12 lg:col-12 no-pad-btm">
-        <!-- style="margin-bottom: -5px" -->
         <div class="grid" style="background-color:white;">
-            <div fxLayout="row" class="col-7 md:col-2 lg:col-2 hdr-pad" style="font-size: 22px;">
+            <div fxLayout="row" class="col-7 md:col-4 lg:col-4 hdr-pad" style="font-size: 22px;">
                 <span>
                     <button pButton pRipple type="button" icon="pi pi-bars" class="p-button-rounded" fxHide.gt-lg
                         fxFlex.gt-md fxHide.gt-sm fxHide.md fxHide.lg fxHide.xl fxHide.lt-xl fxShow.lt-sm fxShow.xs
@@ -11,10 +10,14 @@
                         <img src="assets/images/layout/hdr_CM.jpg" />&nbsp;
                         <img src="assets/images/layout/TN_Govt_Logo.png" />
                     </span>
-                </span>&nbsp;
+                </span>&nbsp;&nbsp;
+                <span style="margin-top: 1.35rem;">
+                    <div style="font-size: 14px;">பதிவுத்துறை </div>
+                    <div style="font-size: 14px;color: rgb(240, 10, 56);">REGISTRATION DEPARTMENT</div>
+                </span>
 
             </div>
-            <div class="col-1 md:col-8 lg:col-8 txt-to-center no-padding">
+            <div class="col-1 md:col-6 lg:col-6 no-padding">
                 <span>
                     <img src="assets/images/layout/75th-independence-logo.jpg" style="margin-top: 1rem;" />
                 </span>&nbsp;
@@ -26,23 +29,18 @@
                 <!-- color: #f1ecec; -->
             </div>
             <div class="col-4 md:col-2 lg:col-2 to-end hdr-pad">
-                <div *ngIf="isLoggedIn" style="text-align: end;margin-top: .75rem;">
+                <div *ngIf="isLoggedIn" style="text-align: end;">
                     <span> Welcome ! </span> &nbsp;
-                    <div style="font-size: 20px;"> cdczczdczd{{username}}</div>&nbsp;&nbsp;
-                    <!-- <span>
+                    <div style="font-size: 18px;">{{username}}</div>&nbsp;&nbsp;
+                    <span>
                         <button pButton pRipple type="button" icon="pi pi-power-off" class="p-button-rounded"
                             (click)="onLogout()" pTooltip="Logout" tooltipPosition="bottom"
                            [fitContent]="true"></button>
-                    </span> -->
+                    </span>
                 </div>&nbsp;
                 <span>
                     <img src="assets/images/layout/hdr_Karunanidhi.jpg" />
                 </span>
-                <!-- <span>
-                    <button pButton pRipple type="button" icon="pi pi-power-off" class="p-button-rounded"
-                       style="margin-top: 1rem;" (click)="onLogout()" pTooltip="Logout" tooltipPosition="bottom"
-                       [fitContent]="true"></button>
-                </span> -->
             </div>
         </div>
     </div>
