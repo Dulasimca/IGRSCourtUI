@@ -599,6 +599,12 @@ label {
     min-width: 1.75rem !important;
 }
 
+.p-password {
+    position: relative;
+    display: inline-flex;
+    width: -webkit-fill-available !important;
+}
+/////
 .tableHeader {
     text-align: center;
     font-size: 14px;
