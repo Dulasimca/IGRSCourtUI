@@ -13,6 +13,7 @@ body {
     margin: 0 !important;
     height: auto !important;
     width: 100% !important;
+    font-family: 'primeicons' !important;
     // overflow: hidden;
 }
 
@@ -103,7 +104,7 @@ label {
 
 .hdr-pad {
     padding: 0.25rem !important;
-    margin-bottom: -.55rem;
+    margin-bottom: -.25rem;
 }
 
 .login-title {
@@ -201,6 +202,12 @@ label {
     padding-top: 0 !important;
     padding-bottom: 0 !important;
     text-align: end !important;
+}
+
+.tab-form-hdr {
+    background: beige;
+    color: #0c9616;
+    font-size: 15px;
 }
 
 .main-dsh-grid {
@@ -605,6 +612,18 @@ label {
     position: relative;
     display: inline-flex;
     width: -webkit-fill-available !important;
+}
+.p-tabview .p-tabview-nav .p-tabview-ink-bar {
+    background-color: #0c9616 !important;
+}
+.p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+    background: #5bc362 !important;
+    border-top-right-radius: 25px !important;
+    border-top-left-radius: 25px !important;
+    color: white !important;
+}
+.p-tabview-title {
+    font-size: 14px !important;
 }
 /////
 .tableHeader {
