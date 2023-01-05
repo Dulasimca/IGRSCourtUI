@@ -53,6 +53,10 @@ label {
     display: flex !important;
     justify-content: center !important;
 }
+.to-end {
+    display: flex !important;
+    justify-content: flex-end !important;
+}
 
 .txt-to-center {
     text-align: center !important;
@@ -91,10 +95,13 @@ label {
 }
 
 .header {
-      background: #18A558;
-    // border: 2px solid #5e6fc7;
-    // color: white;
-    color: #e1ede6;
+      background: white;
+    color: #18A558;
+    // color: #e1ede6;
+}
+
+.hdr-pad {
+    padding: 0.25rem !important;
 }
 
 .login-title {

@@ -56,7 +56,7 @@
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <input name="_slpnumber" [(ngModel)]="slpNumber" pInputText
+                                                <input name="_slpnumber"   [(ngModel)]="slpNumber" [pKeyFilter]="'int'" pInputText
                                                     [required]="true" />
                                                 <label for="float-input">Diary No./SLP Case No.</label>
                                             </span>
@@ -67,14 +67,14 @@
                                     <div class="grid">
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <input name="_caseno" type="text" [(ngModel)]="highCourtRefNo"
+                                                <input name="_caseno" type="text" [(ngModel)]="highCourtRefNo" [pKeyFilter]="'int'"
                                                     pInputText>
                                                 <label for="float-input">HighCourt Ref No.</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <input name="_petitionername" type="text" [(ngModel)]="petitionerName"
+                                                <input name="_petitionername" type="text" [(ngModel)]="petitionerName" [pKeyFilter]="'alpha'"
                                                     pInputText>
                                                 <label for="float-input">Petitioner Name</label>
                                             </span>
