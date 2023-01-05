@@ -40,8 +40,6 @@ export class UsermasterComponent implements OnInit {
   RowId: any;
   value: string = '';
   readOnlyUsername: boolean = false;
-  
-
   constructor(private _restApiService: RestapiService, private _masterService: MasterService,
     private _datePipe: DatePipe, private _authService: AuthService) { }
 
