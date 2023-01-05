@@ -224,7 +224,7 @@ export class GovernmentRespondentComponent implements OnInit {
                   if (this.masters.mainprayermaster !== undefined && this.masters.mainprayermaster !== null) {
                     this.masters.mainprayermaster.forEach((mp: any) => {
                       mainPrayerList.push(
-                        { label: mp.prayername, value: mp.prayerid }
+                        { label: mp.mainprayerdesc, value: mp.mainprayerid }
                       )
                     })
                     this.mainPrayerOptions = mainPrayerList;
