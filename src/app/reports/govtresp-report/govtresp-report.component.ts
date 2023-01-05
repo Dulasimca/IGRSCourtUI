@@ -43,7 +43,7 @@ export class GovtrespReportComponent implements OnInit {
   respondents: any;
   respondentTypeOptions: SelectItem[] = [];
   
-  @ViewChild('f', {static: false}) _writAppealsForm!: NgForm;
+  @ViewChild('f', {static: false}) _reportsForm!: NgForm;
   constructor(private _restApiService: RestapiService, private _masterService: MasterService,
     private _datePipe: DatePipe, private _authService: AuthService, private _converter: DateConverter) { }
 
@@ -134,7 +134,6 @@ export class GovtrespReportComponent implements OnInit {
       }
     }
 
-
     onLoadCases() {
       if (this.fromDate !== undefined && this.fromDate !== null && this.toDate !== undefined && this.toDate !== null) {
         this.data = [];
@@ -155,5 +154,12 @@ export class GovtrespReportComponent implements OnInit {
         })
       }
     }  
+
+    reset() {
+      this._reportsForm.reset();
+      this._reportsForm.form.markAsUntouched();
+      this._reportsForm.form.markAsPristine()
+      this.loading = false;
+    }
 
 }

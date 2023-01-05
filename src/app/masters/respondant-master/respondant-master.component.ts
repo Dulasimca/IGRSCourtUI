@@ -14,7 +14,7 @@ import { RestapiService } from 'src/app/services/restapi.service';
 })
 export class RespondantMasterComponent implements OnInit {
   responseMsg: Message[] = [];
-  selectedType:any;
+  selectedType: any;
   cols: any[] = [];
   data: any[] = [];
   respondentsid: any;
@@ -26,12 +26,8 @@ export class RespondantMasterComponent implements OnInit {
   masters?: any;
   respondentType: any;
   respondentTypeOptions: SelectItem[] = [];
+  @ViewChild('f', { static: false }) _respondentForm!: NgForm;
 
-
-
-  @ViewChild('f', {static: false}) _respondentForm!: NgForm;
-  
-  
   constructor(private _restApiService: RestapiService, private _masterService: MasterService) { }
 
   ngOnInit(): void {
@@ -42,8 +38,7 @@ export class RespondantMasterComponent implements OnInit {
 
   onSelect(value: string) {
     let responseTypeList: any = [];
-
-    switch(value) {
+    switch (value) {
       case 'RT':
         if (this.masters.responsetype_Masters !== undefined && this.masters.responsetype_Masters !== null) {
           this.masters.responsetype_Masters.forEach((rt: any) => {
@@ -84,56 +79,89 @@ export class RespondantMasterComponent implements OnInit {
       }
     })
   }
+
+  onView() {
+    this.loading = true;
+    this._restApiService.get('RespondantMaster/GetRespondentsMaster').subscribe(res => {
+      if (res) {
+        res.forEach((i: any) => {
+          i.flag = (i.flag == true) ? 'Active' : 'InActive'
+        })
+      }
+      this.data = res;
+      this.loading = false;
+    })
+  }
+
   
-onView(){
-  this.loading = true;
-  this._restApiService.get('RespondantMaster/GetRespondentsMaster').subscribe(res => {
-    if(res) {
-      res.forEach((i:any) => {
-        i.flag = (i.flag == true) ? 'Active' : 'InActive'
-      })
+  onEdit(row: any) {
+    this.respondentsid = row.respondentsid;
+    this.respondentsname = row.respondentsname;
+    this.selectedType = (row.flag === 'Active') ? 1 : 0;
+    this.mailId = row.mailid;
+    this.mobileNo1 = row.mobno1;
+    this.mobileNo2 = row.mobno2;
+    this.respondentType = row.responsetypeid;
+    this.respondentTypeOptions = [{ label: row.responsetypename, value: row.responsetypeid }];
+  }
 
-    }
-    this.data = res;
-    this.loading = false;
-  })
-}
-
-onClear() {
-  this.respondentsid = 0;
-  this.respondentsname  = null;
-  this.selectedType = null;
-  this.mailId = null;
-  this.mobileNo1 = null;
-  this.mobileNo2  = null;
-  this.respondentType = null;
-  this.respondentTypeOptions = [];
-}
-onEdit(row:any) {
-  this.respondentsid = row.respondentsid;
-  this.respondentsname = row.respondentsname;
-  this.selectedType = (row.flag === 'Active') ? 1 : 0;
-  this.mailId = row.mailid;
-  this.mobileNo1 = row.mobno1;
-  this.mobileNo2  = row.mobno2;
-  this.respondentType = row.responsetypeid;
-  this.respondentTypeOptions = [{ label: row.responsetypename, value: row.responsetypeid}];
-}
-
-onCheck() {
-  this.data.forEach( i => {
-    if(i.respondentsname  === this.respondentsname ) {
-      this.responseMsg = [{ severity: ResponseMessage.WarnSeverity, detail: 'Respondent name is already exist, Please input different name' }];
+//checking respondents name exists 
+  onCheck() {
+    this.data.forEach(i => {
+      if (i.respondentsname === this.respondentsname) {
+        this.responseMsg = [{ severity: ResponseMessage.WarnSeverity, detail: 'Respondent name is already exist, Please input different name' }];
         this.respondentsname = null;
-    } else {
+      }  
+    })
+  }
 
+  // to check email pattern
+  checkIfEmailExists() {
+    this.data.forEach(i => {
+      const email: string = i.mailid;
+      if (email === this.mailId) {
+        this.responseMsg = [{ severity: ResponseMessage.ErrorSeverity, detail: 'Email-ID is already exist' }];
+        setTimeout(() => this.responseMsg = [], 3000);
+        this.mailId = '';
+      } else {
+      }
+    })
+  }
+
+  //checking existing mailid
+  emailValidationCheck() {
+    if (this.mailId !== undefined && this.mailId !== null && this.mailId.trim() !== '' 
+        ) {
+      const entered_email: string = this.mailId.trim();
+      const substr = entered_email.split('@');
+      if (substr !== undefined && substr.length > 1) {
+        const last_str = substr[1].split('.');
+        if (last_str !== undefined && last_str.length > 1) {
+          if (last_str[1].toLowerCase() === 'com' || last_str[1].toLowerCase() === 'in') {
+          } else {
+            this.responseMsg = [{ severity: ResponseMessage.ErrorSeverity, detail: 'Enter valid email address' }];
+            setTimeout(() => this.responseMsg = [], 3000);      
+          }
+        } else {
+          this.responseMsg = [{ severity: ResponseMessage.ErrorSeverity, detail: 'Enter valid email address' }];
+          setTimeout(() => this.responseMsg = [], 3000);      
+        }
+      }else {
+        this.mailId = null;
+        this.responseMsg = [{ severity: ResponseMessage.ErrorSeverity, detail: 'Enter valid email address' }];
+        setTimeout(() => this.responseMsg = [], 3000);      
+      }
     }
-    // if (i.mailid === this.mailId) {
-    //   this.responseMsg = [{ severity: ResponseMessage.WarnSeverity, detail: ' EmailId  already exists, Please enter valid Email' }];
-    //   this.mailId = null;
-    // } else{
-
-    // }
-  })
-}
+  }
+  //to clearform
+  onClear() {
+    this.respondentsid = 0;
+    this.respondentsname = null;
+    this.selectedType = null;
+    this.mailId = null;
+    this.mobileNo1 = null;
+    this.mobileNo2 = null;
+    this.respondentType = null;
+    this.respondentTypeOptions = [];
+  }
 }

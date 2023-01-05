@@ -40,6 +40,8 @@ export class SupremecourtCaseDetailsComponent implements OnInit {
   slpNumber: any;
   filedValue: string = '1';
   selectedValue: string = '1';
+  counterFiled: any
+  counterFiledOptions: SelectItem[] = [];
   disableAutoDisplay: boolean = false;
   cols: any[] = [];
   data: any[] = [];
@@ -53,7 +55,7 @@ export class SupremecourtCaseDetailsComponent implements OnInit {
   toDate: any;
   loading: boolean = false;
 
-  @ViewChild('f', { static: false }) _respondentForm!: NgForm;
+  @ViewChild('f', { static: false }) _screspondentForm!: NgForm;
   constructor(private _restApiService: RestapiService, private _masterService: MasterService,
     private _datePipe: DatePipe, private _authService: AuthService, private _converter: DateConverter) { }
 
@@ -71,6 +73,7 @@ export class SupremecourtCaseDetailsComponent implements OnInit {
       let sroList: any = [];
       let slpTypeList: any = [];
       let respondentList: any = [];
+      let counterFiledList: any = [];
       switch (value) {
         case 'ZN':
           if (this.masters.zone_Masters !== undefined && this.masters.zone_Masters !== null) {
@@ -140,6 +143,16 @@ export class SupremecourtCaseDetailsComponent implements OnInit {
               this.slpOptions = slpTypeList;
             }
             break;
+            case 'CF':
+              if (this.masters.counterfiledmaster !== undefined && this.masters.counterfiledmaster !== null) {
+                this.masters.counterfiledmaster.forEach((cf: any) => {
+                  counterFiledList.push(
+                    { label: cf.counterfiledname, value: cf.counterfiledid }
+                  )
+                })
+                this.counterFiledOptions = counterFiledList;
+              }
+              break;
       }
     }
   }
@@ -164,7 +177,7 @@ export class SupremecourtCaseDetailsComponent implements OnInit {
         'mainrespondents': this.respondents,
         'remarks': this.remarks,
         'mainprayer': this.gistOfCase,
-        'counterfiled': (this.selectedValue === '1') ? true : false,
+        'counterfiledid': this.counterFiled.value,
         'casefiledby': (this.filedValue === '1') ? true : false,
         'casedate': this._converter.convertDate(this.caseDate),
         'casestatusid': this.stateOfCase.value,
@@ -204,12 +217,10 @@ export class SupremecourtCaseDetailsComponent implements OnInit {
           .set('zoneid', (this.zone.value !== null && this.zone.value !== undefined) ? this.zone.value : 0)
           .set('sroid',  (this.sro.value !== null && this.sro.value !== undefined) ? this.sro.value : 0)
           .set('districtid',  (this.district.value !== null && this.district.value !== undefined) ? this.district.value : 0)
-          // .set('respondentType', 1);
         this._restApiService.getByParameters('SupremeCourtCase/GetSupremeCourtCase', params).subscribe(res => {
           if (res) {
             this.loading = false;
             res.forEach((i: any) => {
-              i.countervalue = i.counterfiled ? 'Yes' : 'No';
               i.casefiled = i.casefiledby ? 'Government' : 'Individual';
               i.casedateorder = this._datePipe.transform(i.casedate, 'dd/MM/yyyy')
             })
@@ -227,8 +238,17 @@ export class SupremecourtCaseDetailsComponent implements OnInit {
     }
   }
 
-    clearForm() {
-
-    }
+  clearForm() {
+    this._screspondentForm.reset();
+    this._screspondentForm.form.markAsUntouched();
+    this._screspondentForm.form.markAsPristine();
+    this.zoneOptions = [];
+    this.sroOptions = [];
+    this.districtOptions = [];
+    this.slpOptions = [];
+    this.respondentCadreOptions = [];
+    this.stateOfCaseOptions = [];
+    this.counterFiledOptions = [];
+  }
 
 }

@@ -22,26 +22,26 @@
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <input name="_name" type="text" (change)="onCheck()" [(ngModel)]="respondentsname"
+                                                <input name="_name" type="text" (change)="onCheck()" [(ngModel)]="respondentsname" [pKeyFilter]="'alpha'"
                                                     pInputText>
                                                 <label for="float-input">Respondent Name</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">                                           
                                             <span class="p-float-label">
-                                                <input name="_mailid" type="text" (change)="onCheck()" [(ngModel)]="mailId" pInputText>
+                                                <input name="_mailid" type="email" (change)="emailValidationCheck()" [(ngModel)]="mailId"  (input)="checkIfEmailExists()" pInputText>
                                                 <label for="float-input">e-mail ID</label>      
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <input name="_mobileno1" type="text" [(ngModel)]="mobileNo1" maxlength="10" pInputText>
+                                                <input name="_mobileno1" type="text" [(ngModel)]="mobileNo1" [pKeyFilter]="'int'" maxlength="10" pInputText>
                                                 <label for="float-input">Mobile No.1</label>      
                                             </span>
                                         </div>   
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <input name="_mobileno2" type="text" [(ngModel)]="mobileNo2" maxlength="10" pInputText>
+                                                <input name="_mobileno2" type="text" [(ngModel)]="mobileNo2"  [pKeyFilter]="'int'" maxlength="10" pInputText>
                                                 <label for="float-input">Mobile No.2</label>      
                                             </span>
                                         </div> 
@@ -57,7 +57,7 @@
                                 </div>
                                 <div #row2 class="col-12 md:col-11 lg:col-11 txt-to-center no-padding">
                                     <button pButton name="save" type="button" label="Submit" icon="pi pi-save"
-                                        [disabled]="!f.valid || !f.dirty" (click)="onSubmit()"></button>&nbsp;
+                                        (click)="onSubmit()"></button>&nbsp;
                                     <button pButton type="button" label="View" icon="pi pi-eye"
                                         (click)="onView()"></button>&nbsp;
                                     <button pButton type="button" label="Clear" icon="pi pi-trash"
@@ -74,7 +74,7 @@
                             <div class="p-d-flex">
                                 <span class="p-input-icon-left p-ml-auto">
                                     <i class="pi pi-search"></i>
-                                    <input #searchInput pInputText type="text" (input)="dt.filterGlobal(searchInput.value, 'contains')" placeholder="Search By Name" />
+                                    <input #searchInput pInputText type="text" [pKeyFilter]="'alpha'" (input)="dt.filterGlobal(searchInput.value, 'contains')" placeholder="Search By Name" />
                                 </span>
                             </div>
                             <div class="grid" style="width: -webkit-fill-available;">
