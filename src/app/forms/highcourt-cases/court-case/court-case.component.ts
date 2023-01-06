@@ -19,6 +19,7 @@ export class CourtCaseComponent implements OnInit {
   disableCaseTab: boolean = true;
   disableWritTab: boolean = true;
   disableJudgementTab: boolean = true;
+  tabIndex: number = 0;
   ///common 
   masters?: any;
   responseMsg: Message[] = [];
@@ -340,6 +341,14 @@ export class CourtCaseComponent implements OnInit {
     this._appealForm.form.markAsPristine();
     this.writappealstatusOptions = [];
     this.writId = 0;
+  }
+
+  onNext() {
+    this.tabIndex += 1;
+  }
+
+  onPrev() {
+    this.tabIndex -= 1;
   }
 
   onSaveCase() {}
