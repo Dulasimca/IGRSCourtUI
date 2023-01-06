@@ -13,26 +13,26 @@ import { RestapiService } from 'src/app/services/restapi.service';
 export class MainprayermasterComponent implements OnInit {
   
   selectedType: any;
-  mainprayerid: any;
+  mainprayerId: any;
   mainprayerDesc: any;
   responseMsg: Message[] = [];
   cols: any[] = [];
   data: any[] = [];
   loading: boolean = false;
 
-  @ViewChild('f', { static: false }) _mainprayerForm!: NgForm;
+  @ViewChild('f', { static: false }) _mainPrayerForm!: NgForm;
 
 
   constructor(private _restApiService: RestapiService) { }
 
   ngOnInit(): void {
-    this.cols = TableConstants.judgementMaster;
+    this.cols = TableConstants.MainprayerMaster;
     this.onView();
   }
 
   onSubmit() {
     const params = {
-      'mainprayerid': this.mainprayerid,
+      'mainprayerid': this.mainprayerId,
       'mainprayerdesc': this.mainprayerDesc,
       'createddate': new Date(),
       'flag': (this.selectedType == 1) ? true : false
@@ -42,9 +42,9 @@ export class MainprayermasterComponent implements OnInit {
       if (res) {
         this.onView();
         this.onClear();
-        this._mainprayerForm.reset();
-        this._mainprayerForm.form.markAsUntouched();
-        this._mainprayerForm.form.markAsPristine();
+        this._mainPrayerForm.reset();
+        this._mainPrayerForm.form.markAsUntouched();
+        this._mainPrayerForm.form.markAsPristine();
         this.responseMsg = [{ severity: ResponseMessage.SuccessSeverity, detail: ResponseMessage.SuccessMessage }];
         setTimeout(() => this.responseMsg = [], 3000);
       } else {
@@ -72,12 +72,12 @@ export class MainprayermasterComponent implements OnInit {
   onClear() {
     this.mainprayerDesc = null;
     this.selectedType = null;
-    this.mainprayerid = 0;
+    this.mainprayerId = 0;
 
   }
 
   onEdit(row: any) {
-    this.mainprayerid = row.mainprayerid;
+    this.mainprayerId = row.mainprayerid;
     this.mainprayerDesc = row.mainprayerdesc;
     this.selectedType = (row.flag === 'Active') ? 1 : 0;
   }
