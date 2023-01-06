@@ -352,7 +352,7 @@ export class GovernmentRespondentComponent implements OnInit {
       'flag': true,
       'createdate': new Date(),
       'userId': this.userInfo.roleid,
-      'responsetypeid': this.respondentType.value, //for government respondent
+      'responsetypeid': this.respondentType.value,
       'mainrespondentsid': this.respondentsid
     }
     this._restApiService.post('Respondent/SaveRespondentCase', params).subscribe(res => {
