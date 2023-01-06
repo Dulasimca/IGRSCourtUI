@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
       .set('password', this.password);
     this._restApiService.getByParameters('Login', login_params).subscribe(response => {
       if (response.item1) {
+        ///invoking master service to utilize throughout application by avoiding multiple pi calling for each page.
         this._masterService.invokeMasterData();
         if (response.item3.length !== 0) {
           ///user login info null check

@@ -8,6 +8,7 @@ import { RestapiService } from '../services/restapi.service';
   styleUrls: ['./main-dashboard.component.scss']
 })
 export class MainDashboardComponent implements OnInit {
+  blocked: boolean = true;
   govCount: any;
   igrCount: any;
   othersCount: any;
@@ -32,6 +33,9 @@ export class MainDashboardComponent implements OnInit {
           item.color = colors[index];
         })
         this.items = res;
+        this.blocked = false;
+      } else {
+        this.blocked = false;
       }
     })
   }
