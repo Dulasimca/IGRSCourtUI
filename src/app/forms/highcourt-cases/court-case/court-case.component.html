@@ -309,11 +309,14 @@
                         </div>
                     </p-tabPanel>
                     <p-tabPanel header="Writ Appeals" [disabled]="disableWritTab">
+                        <div class="col-12 md:col-12 lg:col-12 tab-form-hdr">
+                            Form-VI Writ Appeals,Review Applications filed before the HC
+                        </div>
                         <div class="col-12 md:col-12 lg:col-12">
                             <div class="col-12 md:col-12 lg:col-12 box" style="margin-top: 5px;">
                                 <form #writForm="ngForm" name="writAppealsForm">
                                     <div #main class="col-12 md:col-12 lg:col-12">
-                                        <div #row2 class="col-12 md:col-12 lg:col-12">
+                                        <div #row1 class="col-12 md:col-12 lg:col-12">
                                             <div class="grid">
                                                 <div class="col-12 md:col-4 lg:col-2">
                                                     <span class="p-float-label">
@@ -355,7 +358,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div #row3 class="col-12 md:col-11 lg:col-11 txt-to-center no-padding">
+                                        <div #row2 class="col-12 md:col-11 lg:col-11 txt-to-center no-padding">
                                             <button pButton pRipple type="button" label="Save" (click)="onSaveAppeal()"
                                                 [disabled]="(!writForm.valid || !writForm.dirty)"></button>
                                         </div>
