@@ -352,10 +352,10 @@ export class TableConstants {
     ];
 
     public static readonly linkedCaseColumns = [
-        { field: 'courtname', header: 'Court Name' },
-        { field: 'casetype', header: 'Case Type' },
-        { field: 'caseyear', header: 'Case Year' },
-        { field: 'caseno', header: 'Case No' },
+        { field: 'courtname', header: 'Court Name', align: 'left' },
+        { field: 'casetype', header: 'Case Type', align: 'left' },
+        { field: 'caseyear', header: 'Case Year', align: 'right' },
+        { field: 'caseno', header: 'Case No', align: 'right' },
     ];
 
     public static readonly MainprayerMaster: any[] = [
