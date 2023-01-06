@@ -349,6 +349,13 @@ export class TableConstants {
         {field: 'zonename', header: 'Balance(No. of CAs to be filed as on)'},
         {field: 'zonename', header: 'No. of CAs pending with G.P for vetting'},
         {field: 'zonename', header: 'Remarks'}
-    ]
+    ];
+
+    public static readonly linkedCaseColumns = [
+        { field: 'courtname', header: 'Court Name' },
+        { field: 'casetype', header: 'Case Type' },
+        { field: 'caseyear', header: 'Case Year' },
+        { field: 'caseno', header: 'Case No' },
+    ];
 
 }

@@ -214,8 +214,7 @@ label {
     width: 160px !important;
     height: 160px;
     border-radius: 16px;
-    background-color: #e6faef;
-    border: solid 1px #f3fff5;
+    border: 1px solid #a9a1a3;
     margin: 25px auto 5px;
     transition: all 0.5s ease;
     position: relative;
@@ -261,7 +260,7 @@ label {
 // }
 .p-dropdown:not(.p-disabled).p-focus {
     border-color: #4eeb58 !important;
-    box-shadow: 0 0 0 0.1rem #7bffa7 !important;
+    box-shadow: 0 0 0 0.1rem #8cffb2 !important;
 }
 
 .p-dropdown .p-inputtext {
@@ -288,7 +287,8 @@ label {
 
 .p-dropdown-panel .p-dropdown-items .p-dropdown-item {
     padding: 0.5rem 0.75rem !important;
-    font-size: 15px !important;
+    font-size: 14px !important;
+    color: rgba(0, 0, 0, 0.6) !important;
 }
 
 .p-dropdown-panel .p-dropdown-items .p-dropdown-empty-message {
@@ -314,7 +314,7 @@ label {
 }
 
 .p-inputtext:enabled:focus {
-    box-shadow: 0 0 0 .15rem #7bffa7 !important;
+    box-shadow: 0 0 0 .15rem #8cffb2 !important;
     // border-color: #0c9616 !important;
     // border: 2px solid #0c9616 !important;
 }
@@ -331,7 +331,7 @@ label {
 }
 .p-float-label input:focus~label,
 .p-float-label .p-inputwrapper-focus~label {
-    color: #4eeb58 !important;
+    color: #54ce5c !important;
 }
 
 .p-float-label label {
@@ -346,7 +346,7 @@ label {
 .p-float-label .p-inputwrapper-focus~label,
 .p-float-label .p-inputwrapper-filled~label {
     font-weight: 500 !important;
-    color: #4eeb58 !important;
+    color: #20c52b !important;
     padding: 2px 1px 2px 2px !important;
     margin-left: -5px !important;
     font-size: 13px !important;
