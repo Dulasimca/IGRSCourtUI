@@ -70,6 +70,7 @@ import { StatusOfCourtcasesReportComponent } from './reports/status-of-courtcase
 import { GovtrespReportComponent } from './reports/govtresp-report/govtresp-report.component';
 import { CounterfiledMasterComponent } from './masters/counterfiled-master/counterfiled-master.component';
 import { CourtCaseComponent } from './forms/highcourt-cases/court-case/court-case.component';
+import { MainprayermasterComponent } from './masters/mainprayermaster/mainprayermaster.component';
 
 @NgModule({
   declarations: [
@@ -115,6 +116,7 @@ import { CourtCaseComponent } from './forms/highcourt-cases/court-case/court-cas
     GovtrespReportComponent,
     CounterfiledMasterComponent,
     CourtCaseComponent,
+    MainprayermasterComponent,
   ],
   imports: [
     BrowserModule,
