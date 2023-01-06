@@ -16,6 +16,7 @@ import { RestapiService } from 'src/app/services/restapi.service';
 })
 export class CourtCaseComponent implements OnInit {
   ///tab controls
+  disableCaseTab: boolean = true;
   disableWritTab: boolean = true;
   disableJudgementTab: boolean = true;
   ///common 
@@ -23,7 +24,6 @@ export class CourtCaseComponent implements OnInit {
   responseMsg: Message[] = [];
   userInfo!: User;
   ///court case
-  isReadOnly: boolean = false;
   courtCaseTitle: string = '';
   caseId: any;
   zoneOptions: SelectItem[] = [];
@@ -87,6 +87,12 @@ export class CourtCaseComponent implements OnInit {
     this.masters = this._masterService.getMasters();
     this.userInfo = this._authService.getUserInfo();
     this.linkedCaseCols = TableConstants.linkedCaseColumns;
+    this.linkedCaseDetails.push({
+      'courtname': 'xxx', 'courtid': 0,
+      'casetype': 'wa', 'casetypeid': 0,
+      'caseno': '009', 'casenoid': 0,
+      'caseyear': 2021
+    })
     this.assignDefault();
   }
 
@@ -268,12 +274,11 @@ export class CourtCaseComponent implements OnInit {
   }
 
   onViewCase() {
+    this.disableCaseTab = false;
     if(this.caseYear !== undefined && this.caseYear !== null && this.highCourtName !== undefined && 
       this.highCourtName !== null && this.respondentType !== undefined && this.respondentType !== null &&
       this.caseNo !== undefined && this.caseNo !== null) {
-        this.isReadOnly = false;
       } else {
-        this.isReadOnly = true;
       }
   }
 
