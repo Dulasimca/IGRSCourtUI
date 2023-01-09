@@ -27,7 +27,7 @@ export class CourtCaseComponent implements OnInit {
   responseMsg: Message[] = [];
   userInfo!: User;
   ///court case
-  courtCaseTitle: string = '';
+  courtCaseTitle: string = 'Form-I Government Respondent';
   caseId: any;
   zoneOptions: SelectItem[] = [];
   zone: any;
@@ -90,15 +90,6 @@ export class CourtCaseComponent implements OnInit {
     this.masters = this._masterService.getMasters();
     this.userInfo = this._authService.getUserInfo();
     this.linkedCaseCols = TableConstants.linkedCaseColumns;
-    this.assignDefault();
-  }
-
-  assignDefault() {
-    this.disableAutoDisplay = false;
-    this.caseId = 0;
-    this.writId = 0;
-    this.linkedCaseId = 0;
-    this.courtCaseTitle = 'Form-I Government Respondent';
   }
 
   onSelect(value: string) {
@@ -302,6 +293,7 @@ export class CourtCaseComponent implements OnInit {
             ///conditions re-check
             this.caseId = res[0].courtcaseid;
             this.disableWritTab = ((res[0].counterfiledid * 1) === 1) ? false : true;
+            this.loadLinkedCases();
           } else {
             this.onClearCaseForm();
           }
@@ -319,7 +311,12 @@ export class CourtCaseComponent implements OnInit {
       if(list !== undefined && list !== null) {
         if(list.length !== 0) {
           this.linkedCaseDetails = list;
+          this.isLinkedCaseAvailable = '1';
+        } else {
+          this.isLinkedCaseAvailable = '0';
         }
+      } else {
+        this.isLinkedCaseAvailable = '0';
       }
     })
 
@@ -402,15 +399,20 @@ export class CourtCaseComponent implements OnInit {
     this._appealForm.reset();
     this._appealForm.form.markAsUntouched();
     this._appealForm.form.markAsPristine();
-    this.writappealstatusOptions = [];
     this.writId = 0;
+    this.writappealstatusOptions = [];
   }
 
   onClearCaseForm() {
-    this.caseId = 0;
     this._caseForm.reset();
     this._caseForm.form.markAsUntouched();
     this._caseForm.form.markAsPristine();
+    this.courtCaseTitle = 'Form-I Government Respondent';
+    this.caseId = 0;
+    this.linkedCaseId = 0;
+    this.linkedCaseDetails = [];
+    this.isLinkedCaseAvailable = '0';
+    this._caseForm.controls['_linkedcase'].setValue('0');
     this.respondentTypeOptions = [];
     this.zoneOptions = [];
     this.districtOptions = [];
@@ -470,14 +472,12 @@ export class CourtCaseComponent implements OnInit {
         if(response) {
           this.responseMsg = [{ severity: ResponseMessage.SuccessSeverity, detail: ResponseMessage.SuccessMessage }];
         setTimeout(() => this.responseMsg = [], 3000);
-        this.assignDefault();
         this.onClearCaseForm();
         }
       })
     } else {
       this.responseMsg = [{ severity: ResponseMessage.SuccessSeverity, detail: ResponseMessage.SuccessMessage }];
         setTimeout(() => this.responseMsg = [], 3000);
-        this.assignDefault();
         this.onClearCaseForm();
     }
   }
