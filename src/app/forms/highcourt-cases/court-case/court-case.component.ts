@@ -415,15 +415,7 @@ export class CourtCaseComponent implements OnInit {
   }
 
   onSaveCase() {
-    if (this.isLinkedCaseAvailable === '1') {
-      let _lcaseyear: any = this._datePipe.transform(this.lCaseYear, 'yyyy');
-      const linked_case_params = {
-        'courttype': this.lCourtName.value,
-        'caseyear': _lcaseyear,
-        'casetype': this.lCaseType.value,
-        'caseno': this.caseNo,
-      }
-    }
+    
     let _caseyear: any = this._datePipe.transform(this.caseYear, 'yyyy');
     const params = {
       'courtid': this.highCourtName.value,
@@ -448,9 +440,8 @@ export class CourtCaseComponent implements OnInit {
     }
     this._restApiService.post('Respondent/SaveRespondentCase', params).subscribe(res => {
       if (res) {
-        this.responseMsg = [{ severity: ResponseMessage.SuccessSeverity, detail: ResponseMessage.SuccessMessage }];
-        setTimeout(() => this.responseMsg = [], 3000);
         // this.onLoadCases();
+        this.onSaveLinkedCase();
         this.assignDefault();
         this.onClearCaseForm();
       } else {
@@ -458,6 +449,21 @@ export class CourtCaseComponent implements OnInit {
         setTimeout(() => this.responseMsg = [], 3000)
       }
     })
+  }
+
+  onSaveLinkedCase() {
+    if (this.isLinkedCaseAvailable === '1' && this.linkedCaseDetails.length !== 0) {
+      let _lcaseyear: any = this._datePipe.transform(this.lCaseYear, 'yyyy');
+      const linked_case_params = {
+        'courtid': this.lCourtName.value,
+        'caseyear': _lcaseyear,
+        'casetype': this.lCaseType.value,
+        'caseno': this.caseNo,
+      }
+    } else {
+      this.responseMsg = [{ severity: ResponseMessage.SuccessSeverity, detail: ResponseMessage.SuccessMessage }];
+        setTimeout(() => this.responseMsg = [], 3000);
+    }
   }
 
   onSaveAppeal() { }
