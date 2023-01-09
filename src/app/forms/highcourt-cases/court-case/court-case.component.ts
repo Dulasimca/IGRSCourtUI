@@ -61,6 +61,7 @@ export class CourtCaseComponent implements OnInit {
   isEditable: boolean = false;
   isLinkedCaseAvailable: string = '0';
   ///linked case
+  linkedCaseId: any;
   caseNoList: any[] = [];
   lCourtName: any;
   lCourtNameOptions: SelectItem[] = [];
@@ -96,6 +97,7 @@ export class CourtCaseComponent implements OnInit {
     this.disableAutoDisplay = false;
     this.caseId = 0;
     this.writId = 0;
+    this.linkedCaseId = 0;
     this.courtCaseTitle = 'Form-I Government Respondent';
   }
 
@@ -298,6 +300,7 @@ export class CourtCaseComponent implements OnInit {
             this.mainPrayer = { label: res[0].mainprayername, value: res[0].mainprayerid };
             this.mainPrayerOptions = [{ label: res[0].mainprayername, value: res[0].mainprayerid }];
             ///conditions re-check
+            this.caseId = res[0].courtcaseid;
             this.disableWritTab = ((res[0].counterfiledid * 1) === 1) ? false : true;
           } else {
             this.onClearCaseForm();
@@ -308,6 +311,18 @@ export class CourtCaseComponent implements OnInit {
       })
     } else {
     }
+  }
+
+  loadLinkedCases() {
+    const params = new HttpParams().append('courtcaseid', this.caseId);
+    this._restApiService.getByParameters('LinkedCase/GetLinkedCase', params).subscribe(list => {
+      if(list !== undefined && list !== null) {
+        if(list.length !== 0) {
+          this.linkedCaseDetails = list;
+        }
+      }
+    })
+
   }
 
   onChangeRespondent(value: string) {
@@ -368,6 +383,7 @@ export class CourtCaseComponent implements OnInit {
 
   onAddLinkedCase() {
     this.linkedCaseDetails.push({
+      'caseid': this.linkedCaseId, 'created_on': new Date(),
       'courtname': this.lCourtName.label, 'courtid': this.lCourtName.value,
       'casetype': this.lCaseType.label, 'casetypeid': this.lCaseType.value,
       'caseno': this.lCaseNo.label, 'casenoid': this.lCaseNo.value,
@@ -415,7 +431,6 @@ export class CourtCaseComponent implements OnInit {
   }
 
   onSaveCase() {
-    
     let _caseyear: any = this._datePipe.transform(this.caseYear, 'yyyy');
     const params = {
       'courtid': this.highCourtName.value,
@@ -442,8 +457,6 @@ export class CourtCaseComponent implements OnInit {
       if (res) {
         // this.onLoadCases();
         this.onSaveLinkedCase();
-        this.assignDefault();
-        this.onClearCaseForm();
       } else {
         this.responseMsg = [{ severity: ResponseMessage.ErrorSeverity, detail: ResponseMessage.ErrorMessage }];
         setTimeout(() => this.responseMsg = [], 3000)
@@ -453,16 +466,19 @@ export class CourtCaseComponent implements OnInit {
 
   onSaveLinkedCase() {
     if (this.isLinkedCaseAvailable === '1' && this.linkedCaseDetails.length !== 0) {
-      let _lcaseyear: any = this._datePipe.transform(this.lCaseYear, 'yyyy');
-      const linked_case_params = {
-        'courtid': this.lCourtName.value,
-        'caseyear': _lcaseyear,
-        'casetype': this.lCaseType.value,
-        'caseno': this.caseNo,
-      }
+      this._restApiService.post('LinkedCase/SaveLinkedCase', this.linkedCaseDetails).subscribe(response => {
+        if(response) {
+          this.responseMsg = [{ severity: ResponseMessage.SuccessSeverity, detail: ResponseMessage.SuccessMessage }];
+        setTimeout(() => this.responseMsg = [], 3000);
+        this.assignDefault();
+        this.onClearCaseForm();
+        }
+      })
     } else {
       this.responseMsg = [{ severity: ResponseMessage.SuccessSeverity, detail: ResponseMessage.SuccessMessage }];
         setTimeout(() => this.responseMsg = [], 3000);
+        this.assignDefault();
+        this.onClearCaseForm();
     }
   }
 

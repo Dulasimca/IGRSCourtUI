@@ -281,7 +281,9 @@
                                                 </div>
                                             </div>
                                             <div #row5 class="col-12 md:col-11 lg:col-11 txt-to-center no-padding">
-                                                <button pButton pRipple type="button" label="Save"
+                                                <button pButton pRipple type="button" label="Clear"
+                                                    (click)="onClearCaseForm()"></button> &nbsp;
+                                                    <button pButton pRipple type="button" label="Save"
                                                     (click)="onSaveCase()"
                                                     [disabled]="!caseForm.valid || !caseForm.dirty"></button> &nbsp;
                                                     <button pButton pRipple type="button" label="Next"
@@ -346,6 +348,8 @@
                                         <div #row2 class="col-12 md:col-11 lg:col-11 txt-to-center no-padding">
                                             <button pButton pRipple type="button" label="Prev"
                                                     (click)="onPrev()"></button>&nbsp;
+                                                    <button pButton pRipple type="button" label="Clear"
+                                                    (click)="onClearAppealForm()"></button> &nbsp;
                                             <button pButton pRipple type="button" label="Save" (click)="onSaveAppeal()"
                                                 [disabled]="(!writForm.valid || !writForm.dirty)"></button>&nbsp;
                                                 <button pButton pRipple type="button" label="Next"
