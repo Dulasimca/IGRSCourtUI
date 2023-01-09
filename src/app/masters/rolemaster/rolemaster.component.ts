@@ -17,6 +17,8 @@ export class RolemasterComponent implements OnInit {
   data: any[] = [];
   loading: boolean = false;
   responseMsg: Message[] = [];
+  block: RegExp = /^[^=<>*%(){}$@#_!+0-9&?,.;'"?/]/; 
+
 
   @ViewChild('f', {static: false}) _respondentForm!: NgForm;
   RowId: any;
