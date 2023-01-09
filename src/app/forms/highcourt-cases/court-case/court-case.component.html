@@ -103,25 +103,25 @@
                                                             <label for="float-input">Case Type</label>
                                                         </span>
                                                     </div>
+                                                    <div class="col-12 md:col-4 lg:col-2">
+                                                        <span class="p-float-label">
+                                                            <input name="_petitionername" type="text" 
+                                                                [(ngModel)]="petitionerName" 
+                                                                pInputText>
+                                                            <label for="float-input">Petitioner Name</label>
+                                                        </span>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div #row2 class="col-12 md:col-11 lg:col-11">
                                                 <div class="grid">
                                                     <div class="col-12 md:col-4 lg:col-2">
                                                         <span class="p-float-label">
-                                                            <input name="_petitionername" type="text"
-                                                                [(ngModel)]="petitionerName" [pKeyFilter]="'alpha'"
-                                                                pInputText>
-                                                            <label for="float-input">Petitioner Name</label>
-                                                        </span>
-                                                    </div>
-                                                    <div class="col-12 md:col-4 lg:col-2">
-                                                        <span class="p-float-label">
                                                             <p-dropdown name="_respondentcadre" optionLabel="label"
-                                                                (onClick)="onSelect('RC')"
+                                                                (onClick)="onSelect('RC')" 
                                                                 [autoDisplayFirst]="disableAutoDisplay"
                                                                 [options]="respondentCadreOptions"
-                                                                [(ngModel)]="respondentCadre"
+                                                                [(ngModel)]="respondentCadre" [editable]="isEditable" 
                                                                 (onChange)="onChangeRespondent('R')">
                                                             </p-dropdown>
                                                             <label for="float-input">Respondent</label>
@@ -131,8 +131,19 @@
                                                         <span class="p-float-label">
                                                             <input name="_respondents" type="text"
                                                                 [(ngModel)]="respondents" required pInputText
-                                                                [readonly]="!isEditable">
+                                                                >
                                                             <label for="float-input">Respondents Name</label>
+                                                        </span>
+                                                    </div>
+                                                    <div class="col-12 md:col-4 lg:col-2">
+                                                        <span class="p-float-label">
+                                                            <p-dropdown name="_mainprayer"
+                                                                [autoDisplayFirst]="disableAutoDisplay"
+                                                                optionLabel="label" (onClick)="onSelect('MP')"
+                                                                [options]="mainPrayerOptions" [(ngModel)]="mainPrayer"
+                                                                [required]="true">
+                                                            </p-dropdown>
+                                                            <label for="float-input">Main Prayer</label>
                                                         </span>
                                                     </div>
                                                     <div class="col-12 md:col-4 lg:col-4">
@@ -142,10 +153,6 @@
                                                             <label for="float-input">Gist of the case</label>
                                                         </span>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div #row3 class="col-12 md:col-11 lg:col-11">
-                                                <div class="grid">
                                                     <div class="col-12 md:col-4 lg:col-2">
                                                         <span class="p-float-label">
                                                             <p-dropdown name="_counterfiled"
@@ -158,6 +165,11 @@
                                                             <label for="float-input">Counter Filed</label>
                                                         </span>
                                                     </div>
+                                                </div>
+                                            </div>
+                                            <div #row3 class="col-12 md:col-11 lg:col-11">
+                                                <div class="grid">
+
                                                     <div class="col-12 md:col-4 lg:col-2">
                                                         <span class="p-float-label">
                                                             <p-dropdown name="_stateofcase"
@@ -167,17 +179,6 @@
                                                                 [required]="true">
                                                             </p-dropdown>
                                                             <label for="float-input">Case Status</label>
-                                                        </span>
-                                                    </div>
-                                                    <div class="col-12 md:col-4 lg:col-2">
-                                                        <span class="p-float-label">
-                                                            <p-dropdown name="_mainprayer"
-                                                                [autoDisplayFirst]="disableAutoDisplay"
-                                                                optionLabel="label" (onClick)="onSelect('MP')"
-                                                                [options]="mainPrayerOptions" [(ngModel)]="mainPrayer"
-                                                                [required]="true">
-                                                            </p-dropdown>
-                                                            <label for="float-input">Main Prayer</label>
                                                         </span>
                                                     </div>
                                                     <div class="col-12 md:col-4 lg:col-2">
