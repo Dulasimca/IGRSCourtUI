@@ -37,6 +37,8 @@ import { CaseHearingDateComponent } from './forms/highcourt-cases/case-hearing-d
 import { StatusOfCourtcasesReportComponent } from './reports/status-of-courtcases-report/status-of-courtcases-report.component';
 import { GovtrespReportComponent } from './reports/govtresp-report/govtresp-report.component';
 import { CounterfiledMasterComponent } from './masters/counterfiled-master/counterfiled-master.component';
+import { CourtCaseComponent } from './forms/highcourt-cases/court-case/court-case.component';
+import { MainprayermasterComponent } from './masters/mainprayermaster/mainprayermaster.component';
 
 
 const routes: Routes = [
@@ -44,6 +46,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'home', component: MainDashboardComponent, canActivate: [AuthGuard] },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'court-case', component: CourtCaseComponent, canActivate: [AuthGuard] },
   { path: 'government-respondent-hight-court-cases', component: GovernmentRespondentComponent, canActivate: [AuthGuard] },
   { path: 'pending-enquiry-hight-court-cases', component: PendingEnquiryComponent, canActivate: [AuthGuard] },
   { path: 'supreme-court-case-details', component: SupremecourtCaseDetailsComponent, canActivate: [AuthGuard] },
@@ -77,8 +80,8 @@ const routes: Routes = [
   {path:'case-hearing',component: CaseHearingDateComponent},
   {path:'courtcase-status',component: StatusOfCourtcasesReportComponent, canActivate: [AuthGuard]},
   {path:'counterfiled-master',component: CounterfiledMasterComponent, canActivate: [AuthGuard]},
-  { path: 'government-respondent-hight-court-cases', component: StatusOfCourtcasesReportComponent, canActivate: [AuthGuard] },
-
+  {path: 'government-respondent-hight-court-cases', component: StatusOfCourtcasesReportComponent, canActivate: [AuthGuard] },
+  {path: 'mainprayermaster', component: MainprayermasterComponent}
 ];
 
 

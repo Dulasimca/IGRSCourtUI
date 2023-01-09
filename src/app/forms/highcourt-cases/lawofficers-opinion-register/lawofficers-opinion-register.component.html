@@ -42,7 +42,7 @@
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <input name="_caseno" type="text" [(ngModel)]="caseNo" pInputText>
+                                                <input name="_caseno" type="text" [(ngModel)]="caseNo" [pKeyFilter]="'int'" pInputText>
                                                 <label for="float-input">Case No.</label>
                                             </span>
                                         </div>
@@ -71,7 +71,7 @@
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <input name="_petitionername" type="text" [(ngModel)]="petitionerName" pInputText>
+                                                <input name="_petitionername" type="text" [(ngModel)]="petitionerName" [pKeyFilter]="'alpha'" pInputText>
                                                 <label for="float-input">Petitioner Name</label>
                                             </span>
                                         </div>
@@ -79,7 +79,7 @@
                                         <div class="lg:col-2"></div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <input name="_respondentname" type="text" [(ngModel)]="respondentsName" pInputText>
+                                                <input name="_respondentname" type="text" [(ngModel)]="respondentsName" [pKeyFilter]="'alpha'" pInputText>
                                                 <label for="float-input"> Respondents Name</label>
                                             </span>
                                         </div>

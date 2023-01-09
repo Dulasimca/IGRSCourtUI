@@ -26,13 +26,13 @@
                                 </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <input name="_name" type="text" (change)="onCheck()" [(ngModel)]="menuName" pInputText>
+                                                <input name="_name" type="text" pInputText (change)="onCheck()" [(ngModel)]="menuName"[pKeyFilter]="'alpha'">
                                                 <label for="float-input">MenuName</label>      
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <input name="_url" type="text" [(ngModel)]="url"  (keydown)="onKeydown($event)" pInputText>
+                                                <input name="_url" type="text" pInputText [(ngModel)]="url"  (keydown)="onKeydown($event)">
                                                 <label for="float-input">Url</label>      
                                             </span>
                                         </div>
@@ -75,7 +75,7 @@
                             <div class="p-d-flex">
                                 <span class="p-input-icon-left p-ml-auto">
                                     <i class="pi pi-search"></i>
-                                    <input #searchInput pInputText type="text" (input)="dt.filterGlobal(searchInput.value, 'contains')" placeholder="Search By Name" />
+                                    <input #searchInput pInputText type="text" [pKeyFilter]="'alpha'" (input)="dt.filterGlobal(searchInput.value, 'contains')" placeholder="Search By Name" />
                                 </span>
                             </div>
                             <div class="grid" style="width: -webkit-fill-available;">

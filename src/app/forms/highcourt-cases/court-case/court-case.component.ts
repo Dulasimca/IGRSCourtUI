@@ -1,24 +1,32 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { SelectItem } from 'primeng/api';
-import { ResponseMessage } from 'src/app/constants/message-constants';
-import { TableConstants } from 'src/app/constants/table-constants';
-import { MasterService } from 'src/app/services/master.service';
-import { RestapiService } from 'src/app/services/restapi.service';
-import { Message } from 'primeng/api';
-import { NgForm } from '@angular/forms';
-import { HttpParams } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
-import { AuthService } from 'src/app/services/auth.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Message, SelectItem } from 'primeng/api';
+import { TableConstants } from 'src/app/constants/table-constants';
 import { DateConverter } from 'src/app/helper/date-converter';
 import { User } from 'src/app/interfaces/user.interface';
-
+import { AuthService } from 'src/app/services/auth.service';
+import { MasterService } from 'src/app/services/master.service';
+import { RestapiService } from 'src/app/services/restapi.service';
 
 @Component({
-  selector: 'app-government-respondent',
-  templateUrl: './government-respondent.component.html',
-  styleUrls: ['./government-respondent.component.scss']
+  selector: 'app-court-case',
+  templateUrl: './court-case.component.html',
+  styleUrls: ['./court-case.component.scss']
 })
-export class GovernmentRespondentComponent implements OnInit {
+export class CourtCaseComponent implements OnInit {
+  ///tab controls
+  disableCaseTab: boolean = true;
+  disableWritTab: boolean = true;
+  disableJudgementTab: boolean = true;
+  tabIndex: number = 0;
+  ///common 
+  masters?: any;
+  responseMsg: Message[] = [];
+  userInfo!: User;
+  ///court case
+  courtCaseTitle: string = '';
+  caseId: any;
   zoneOptions: SelectItem[] = [];
   zone: any;
   districtOptions: SelectItem[] = [];
@@ -29,56 +37,71 @@ export class GovernmentRespondentComponent implements OnInit {
   caseType: any;
   caseNo: any;
   caseYear: any;
-  caseDate: Date = new Date();
   highCourtNameOptions: SelectItem[] = [];
   highCourtName: any;
   stateOfCaseOptions: SelectItem[] = [];
   stateOfCase: any;
-  petitionerName: any;
-  respondents: string = '';
-  respondentsid: string = '';
-  respondentCadre: any;
-  respondentCadreOptions: any;
-  respondentType: any;
-  respondentTypeOptions: SelectItem[] = [];
-  gistOfCase: any;
-  mainPrayer: any;
-  mainPrayerOptions: SelectItem[] = [];
-  lcaseDetails: any;
-  linkedCase: any;
-  linkedCaseOptions: SelectItem[] = [];
-  remarks: any;
   counterFiled: any;
   counterFiledOptions: SelectItem[] = [];
   judgement: any;
   judgementOptions: SelectItem[] = [];
-  dateValue: any;
-  cols: any[] = [];
-  data: any[] = [];
-  masters?: any;
-  responseMsg: Message[] = [];
-  caseId: any;
-  loading: boolean = false;
-  fromYear: any;
-  toYear: any;
-  isEditable: boolean = false;
+  respondentType: any;
+  respondentTypeOptions: SelectItem[] = [];
+  respondents: string = '';
+  respondentsid: string = '';
+  respondentCadre: any;
+  respondentCadreOptions: SelectItem[] = [];
+  gistOfCase: any;
+  mainPrayer: any;
+  mainPrayerOptions: SelectItem[] = [];
+  petitionerName: any;
   disableAutoDisplay: boolean = false;
-  userInfo!: User;
+  isEditable: boolean = false;
+  isLinkedCaseAvailable: string = '0';
+  ///linked case
+  linkedCase: any;
+  linkedCaseOptions: SelectItem[] = [];
+  lCourtName: any;
+  lCourtNameOptions: SelectItem[] = [];
+  lCaseYear: any;
+  lCaseType: any;
+  lCaseTypeOptions: SelectItem[] = [];
+  lCaseNo: any;
+  lCaseNoOptions: SelectItem[] = [];
+  linkedCaseCols: any;
+  linkedCaseDetails: any[] = [];
+  ///writ form
+  writId: any;
+  hcreferenceNo: any;
+  regularNumber: any;
+  writappealStatus: any;
+  writappealstatusOptions: SelectItem[] = [];
+  natureofDisposal: any;
+  remarks: any;
+  @ViewChild('caseForm', { static: false }) _caseForm!: NgForm;
+  @ViewChild('writForm', { static: false }) _appealForm!: NgForm;
 
-  @ViewChild('f', { static: false }) _respondentForm!: NgForm;
   constructor(private _restApiService: RestapiService, private _masterService: MasterService,
     private _datePipe: DatePipe, private _authService: AuthService, private _converter: DateConverter) { }
 
   ngOnInit(): void {
-    this.cols = TableConstants.respondentColumns;
     this.masters = this._masterService.getMasters();
     this.userInfo = this._authService.getUserInfo();
+    this.linkedCaseCols = TableConstants.linkedCaseColumns;
+    this.linkedCaseDetails.push({
+      'courtname': 'xxx', 'courtid': 0,
+      'casetype': 'wa', 'casetypeid': 0,
+      'caseno': '009', 'casenoid': 0,
+      'caseyear': 2021
+    })
+    this.assignDefault();
   }
 
   assignDefault() {
     this.disableAutoDisplay = false;
-    // this.caseDate = new Date();
     this.caseId = 0;
+    this.writId = 0;
+    this.courtCaseTitle = 'Form-I Government Respondent';
   }
 
   onSelect(value: string) {
@@ -92,7 +115,7 @@ export class GovernmentRespondentComponent implements OnInit {
       let respondentList: any = [];
       let responseTypeList: any = [];
       let counterFiledList: any = [];
-      //let judgementStatusList: any = [];
+      let writappealStatusList: any = [];
       let mainPrayerList: any = [];
       let linkedCaseList: any = [];
       switch (value) {
@@ -144,8 +167,10 @@ export class GovernmentRespondentComponent implements OnInit {
                 { label: ct.casetypename, value: ct.casetypeid }
               )
             })
-            this.caseTypeOptions = caseTypeList;
+            this.caseTypeOptions = caseTypeList.slice(0);
             this.caseTypeOptions.unshift({ label: '-select-', value: null });
+            this.lCaseTypeOptions = caseTypeList.slice(0);
+            this.lCaseTypeOptions.unshift({ label: '-select-', value: null });
           }
           break;
         case 'HC':
@@ -155,8 +180,10 @@ export class GovernmentRespondentComponent implements OnInit {
                 { label: hc.courtname, value: hc.courtid }
               )
             })
-            this.highCourtNameOptions = courtList;
+            this.highCourtNameOptions = courtList.slice(0);
             this.highCourtNameOptions.unshift({ label: '-select-', value: null });
+            this.lCourtNameOptions = courtList.slice(0);
+            this.lCourtNameOptions.unshift({ label: '-select-', value: null });
           }
           break;
         case 'SC':
@@ -209,17 +236,6 @@ export class GovernmentRespondentComponent implements OnInit {
                 this.counterFiledOptions.unshift({ label: '-select-', value: null });
               }
               break;
-              // case 'JD':
-              //   if (this.masters.judgementmaster !== undefined && this.masters.judgementmaster !== null) {
-              //     this.masters.judgementmaster.forEach((jd: any) => {
-              //       judgementStatusList.push(
-              //         { label: jd.judgementname, value: jd.judgementid }
-              //       )
-              //     })
-              //     this.judgementOptions = judgementStatusList;
-              //     this.judgementOptions.unshift({ label: '-select-', value: null });
-              //   }
-              //   break;
               case 'MP':
                   if (this.masters.mainprayermaster !== undefined && this.masters.mainprayermaster !== null) {
                     this.masters.mainprayermaster.forEach((mp: any) => {
@@ -242,39 +258,33 @@ export class GovernmentRespondentComponent implements OnInit {
                   this.linkedCaseOptions.unshift({ label: '-select-', value: null });
                 }
             break;
+            case 'WS':
+              if (this.masters.writappealstatus_Masters) {
+                this.masters.writappealstatus_Masters.forEach((ws: any) => {
+                  writappealStatusList.push(
+                    { label: ws.writappealstatusname, value: ws.writappealstatusid }
+                  )
+                })
+                this.writappealstatusOptions = writappealStatusList;
+              }
+              break;
+            case 'CN':
+              break;
       }
     }
   }
 
-  // onLoadCases() {
-  //   if (this.fromYear !== undefined && this.fromYear !== null && this.toYear !== undefined && this.toYear !== null && this.respondentType !== undefined && this.respondentType !==null) {
-  //     this.data = [];
-  //     this.loading = true;
-  //     const params = new HttpParams().append('userid', this.userInfo.roleid)
-  //       //.set('fromdate', this._datePipe.transform(this.fromYear, 'yyyy-MM-dd') as any)
-  //       //.set('todate', this._datePipe.transform(this.toYear, 'yyyy-MM-dd') as any)
-  //       .set('fromyear',this._datePipe.transform(this.fromYear, 'yyyy') as any)
-  //       .set('toyear',this._datePipe.transform(this.toYear, 'yyyy') as any)
-  //       .set('respondentType', this.respondentType.value)
-  //       .set('zoneid', this.userInfo.zoneid)
-  //       .set('sroid', this.userInfo.sroid)
-  //       .set('districtid', this.userInfo.districtid);
-  //     this._restApiService.getByParameters('Respondent/GetRespondentCase', params).subscribe(res => {
-  //       if(res) {
-  //         this.loading = false;
-  //         // res.forEach((i: any) => {
-  //         //   i.countervalue = i.counterfiled ? 'Yes' : 'No';
-  //         //   i.judgement = i.judgementvalue ? 'For' : 'Against';
-  //         // })
-  //         this.data = res;
-  //       } else {
-  //         this.loading = false;
-  //       }
-  //     })
-  //   }
-  // }
+  onViewCase() {
+    this.disableCaseTab = false;
+    if(this.caseYear !== undefined && this.caseYear !== null && this.highCourtName !== undefined && 
+      this.highCourtName !== null && this.respondentType !== undefined && this.respondentType !== null &&
+      this.caseNo !== undefined && this.caseNo !== null) {
+      } else {
+      }
+  }
 
-  onChangeRespondent() {
+  onChangeRespondent(value: string) {
+    if(value === 'R') {
     if (this.respondentCadre !== undefined && this.respondentCadre !== null) {
       this.respondents += this.respondentCadre.label + ' , ';
       this.respondentsid += this.respondentCadre.value !=null ?  + this.respondentCadre.value + ',' :'' 
@@ -286,103 +296,63 @@ export class GovernmentRespondentComponent implements OnInit {
         this.isEditable = false;
       }
     }
-  }
-
-  onEdit(row: any) {
-    if (row !== undefined && row !== null) {
-      this.disableAutoDisplay = true;
-      this.caseId = row.courtcaseid;
-      this.zone = { label: row.zonename, value: row.zoneid };
-      this.zoneOptions = [{ label: row.zonename, value: row.zoneid }];
-      this.district = { label: row.districtname, value: row.districtid };
-      this.districtOptions = [{ label: row.districtname, value: row.districtid }];
-      this.sro = { label: row.sroname, value: row.sroid };
-      this.sroOptions = [{ label: row.sroname, value: row.sroid }];
-      this.highCourtName = { label: row.courtname, value: row.courtid };
-      this.highCourtNameOptions = [{ label: row.courtname, value: row.courtid }];
-      this.caseType = { label: row.casetypename, value: row.casetypeid };
-      this.caseTypeOptions = [{ label: row.casetypename, value: row.casetypeid }];
-      this.stateOfCase = { label: row.casestatusname, value: row.casestatusid };
-      this.stateOfCaseOptions = [{ label: row.casestatusname, value: row.casestatusid }];
-      // this.judgement = { label: row.judgementname, value: row.judgementid };
-      // this.judgementOptions = [{ label: row.judgementname, value: row.judgementid }];
-      this.counterFiled = { label: row.counterfiledname, value: row.counterfiledid };
-      this.counterFiledOptions = [{ label: row.counterfiledname, value: row.counterfiledid }];
-      this.respondentCadre = { label: row.mainrespondents, value: row.id };
-      this.respondentCadreOptions = [{ label: row.mainrespondents, value: row.id }];
-      // this.judgementValue = (row.judgementvalue) ? '1' : '0';
-      // this.caseDate = new Date(row.casedate);
-      this.caseNo = row.casenumber;
-      this.petitionerName = row.petitionername;
-      // this.selectedValue = (row.counterfiled) ? '1' : '0';
-      this.gistOfCase = row.gistofcase;
-      this.mainPrayer = { label: row.prayername, value: row.prayerid };
-      this.mainPrayerOptions = [{ label: row.prayername, value: row.prayerid }];
-      this.respondentType = { label: row.responsetypename, value: row.responsetypeid };
-      this.respondentTypeOptions = [{ label: row.responsetypename, value: row.responsetypeid }];
-      this.respondents = row.mainrespondents;
-      this.respondentsid = row.mainrespondentsid;
-      this.remarks = row.remarks;
-      const date = '01/01/' + row.caseyear;
-      this.caseYear = new Date(date);
-    }
-  }
-
-  onSave() {
-    let _caseyear: any = this._datePipe.transform(this.caseYear, 'yyyy');
-    const params = {
-      'courtcaseid': this.caseId,
-      'zoneid': this.zone.value,
-      'districtid': this.district.value,
-      'sroid': this.sro.value,
-      'casetypeid': this.caseType.value,
-      'casenumber': this.caseNo,
-      // 'casedate': this._converter.convertDate(this.caseDate),
-      'caseyear': (_caseyear * 1),
-      'courtid': this.highCourtName.value,
-      'petitionername': this.petitionerName,
-      'mainrespondents': this.respondents,
-      'prayerid': this.mainPrayer.value,
-      'gistofcase': this.gistOfCase,
-      'counterfiledid': this.counterFiled.value,
-      'casestatusid': this.stateOfCase.value,
-      'linkedcaseid': this.linkedCase.value,
-      //'judgementid':this.judgement.value,
-      'remarks': this.remarks,
-      'flag': true,
-      'createdate': new Date(),
-      'userId': this.userInfo.roleid,
-      'responsetypeid': this.respondentType.value,
-      'mainrespondentsid': this.respondentsid
-    }
-    this._restApiService.post('Respondent/SaveRespondentCase', params).subscribe(res => {
-      if (res) {
-        this.responseMsg = [{ severity: ResponseMessage.SuccessSeverity, detail: ResponseMessage.SuccessMessage }];
-        setTimeout(() => this.responseMsg = [], 3000);
-        // this.onLoadCases();
-        this.assignDefault();
-        this.clearForm();
-      } else {
-        this.responseMsg = [{ severity: ResponseMessage.ErrorSeverity, detail: ResponseMessage.ErrorMessage }];
-        setTimeout(() => this.responseMsg = [], 3000)
+  } else {
+    if(this.respondentType !== undefined && this.respondentType !== null) {
+      if(this.respondentType.value !== undefined && this.respondentType.value !== null) {
+        this.courtCaseTitle = ((this.respondentType.value * 1) === 3) ? 'Form-III Others Respondent' : ((this.respondentType.value * 1) === 2)
+         ? 'Form-II IGR Respondent' : 'Form-I Government Respondent';
       }
+    }
+  }
+  }
+
+  onCounterSelect() {
+    if(this.counterFiled !== undefined && this.counterFiled !== null) {
+      if(this.counterFiled.value !== undefined && this.counterFiled.value !== null) {
+        if((this.counterFiled.value * 1) !== 1) {
+          this.disableWritTab = true;
+          this.onClearAppealForm();
+        } else {
+          this.disableWritTab = false;
+        }
+      }
+    }
+  }
+
+  onAddLinkedCase() {
+    this.linkedCaseDetails.push({
+      'courtname': this.lCourtName.label, 'courtid': this.lCourtName.value,
+      'casetype': this.lCaseType.label, 'casetypeid': this.lCaseType.value,
+      'caseno': this.lCaseNo.label, 'casenoid': this.lCaseNo.value,
+      'caseyear': this.lCaseYear
     })
   }
 
-  clearForm() {
-    this._respondentForm.reset();
-    this._respondentForm.form.markAsUntouched();
-    this._respondentForm.form.markAsPristine();
-    this.zoneOptions = [];
-    this.sroOptions = [];
-    this.districtOptions = [];
-    this.caseTypeOptions = [];
-    this.respondentCadreOptions = [];
-    this.highCourtNameOptions = [];
-    this.stateOfCaseOptions = [];
-    // this.judgementOptions = [];
-    this.counterFiledOptions = [];
-    this.mainPrayerOptions = [];
-    this.linkedCaseOptions = [];
+  onDeleteLinkedCase(index: number) {
+    if(index !== undefined && index !== null) {
+      this.linkedCaseDetails.splice(index, 1);
+    }
+
   }
+
+  onClearAppealForm() {
+    this._appealForm.reset();
+    this._appealForm.form.markAsUntouched();
+    this._appealForm.form.markAsPristine();
+    this.writappealstatusOptions = [];
+    this.writId = 0;
+  }
+
+  onNext() {
+    this.tabIndex += 1;
+  }
+
+  onPrev() {
+    this.tabIndex -= 1;
+  }
+
+  onSaveCase() {}
+
+  onSaveAppeal() {}
+
 }

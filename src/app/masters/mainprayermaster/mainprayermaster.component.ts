@@ -6,45 +6,45 @@ import { TableConstants } from 'src/app/constants/table-constants';
 import { RestapiService } from 'src/app/services/restapi.service';
 
 @Component({
-  selector: 'app-judgement-master',
-  templateUrl: './judgement-master.component.html',
-  styleUrls: ['./judgement-master.component.scss']
+  selector: 'app-mainprayermaster',
+  templateUrl: './mainprayermaster.component.html',
+  styleUrls: ['./mainprayermaster.component.scss']
 })
-export class JudgementMasterComponent implements OnInit {
+export class MainprayermasterComponent implements OnInit {
+  
   selectedType: any;
-  judgementid: any;
-  judgementName: any;
+  mainprayerId: any;
+  mainprayerDesc: any;
   responseMsg: Message[] = [];
   cols: any[] = [];
   data: any[] = [];
   loading: boolean = false;
-  block: RegExp = /^[^=<>*%(){}$@#_!+0-9&?,.;'"?/]/; 
 
-  @ViewChild('f', { static: false }) _respondentForm!: NgForm;
+  @ViewChild('f', { static: false }) _mainPrayerForm!: NgForm;
 
 
   constructor(private _restApiService: RestapiService) { }
 
   ngOnInit(): void {
-    this.cols = TableConstants.judgementMaster;
+    this.cols = TableConstants.MainprayerMaster;
     this.onView();
   }
 
   onSubmit() {
     const params = {
-      'judgementid': this.judgementid,
-      'judgementname': this.judgementName,
+      'mainprayerid': this.mainprayerId,
+      'mainprayerdesc': this.mainprayerDesc,
       'createddate': new Date(),
       'flag': (this.selectedType == 1) ? true : false
     }
 
-    this._restApiService.post('JudgementMaster/SaveJudgementMaster', params).subscribe(res => {
+    this._restApiService.post('MainprayerMaster/SaveMainprayerMaster', params).subscribe(res => {
       if (res) {
         this.onView();
         this.onClear();
-        this._respondentForm.reset();
-        this._respondentForm.form.markAsUntouched();
-        this._respondentForm.form.markAsPristine();
+        this._mainPrayerForm.reset();
+        this._mainPrayerForm.form.markAsUntouched();
+        this._mainPrayerForm.form.markAsPristine();
         this.responseMsg = [{ severity: ResponseMessage.SuccessSeverity, detail: ResponseMessage.SuccessMessage }];
         setTimeout(() => this.responseMsg = [], 3000);
       } else {
@@ -56,7 +56,7 @@ export class JudgementMasterComponent implements OnInit {
 
   onView() {
     this.loading = true;
-    this._restApiService.get('JudgementMaster/GetJudgementMaster').subscribe(res => {
+    this._restApiService.get('MainprayerMaster/GetMainprayerMaster').subscribe(res => {
       if (res) {
         res.forEach((i: any) => {
           i.flag = (i.flag == true) ? 'Active' : 'InActive'
@@ -70,23 +70,23 @@ export class JudgementMasterComponent implements OnInit {
   }
 
   onClear() {
-    this.judgementName = null;
+    this.mainprayerDesc = null;
     this.selectedType = null;
-    this.judgementid = 0;
+    this.mainprayerId = 0;
 
   }
 
   onEdit(row: any) {
-    this.judgementid = row.judgementid;
-    this.judgementName = row.judgementname;
+    this.mainprayerId = row.mainprayerid;
+    this.mainprayerDesc = row.mainprayerdesc;
     this.selectedType = (row.flag === 'Active') ? 1 : 0;
   }
 
   onCheck() {
     this.data.forEach( i => {
-      if(i.judgementname  === this.judgementName ) {
-        this.responseMsg = [{ severity: ResponseMessage.WarnSeverity, detail: 'Judgement name is already exist, Please input different name' }];
-          this.judgementName = null;
+      if(i.mainprayerdesc  === this.mainprayerDesc ) {
+        this.responseMsg = [{ severity: ResponseMessage.WarnSeverity, detail: 'Mainprayer description already exist, Please input different description' }];
+          this.mainprayerDesc = null;
       }
     })
   }
