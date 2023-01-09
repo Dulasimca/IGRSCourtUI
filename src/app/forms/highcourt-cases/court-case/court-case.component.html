@@ -207,7 +207,7 @@
                                                         <span class="p-float-label">
                                                             <p-dropdown name="_lcourtname" optionLabel="label"
                                                                 (onClick)="onSelect('HC')" [options]="lCourtNameOptions"
-                                                                [(ngModel)]="lCourtName"
+                                                                [(ngModel)]="lCourtName" (onChange)="loadCaseNo()"
                                                                 [autoDisplayFirst]="disableAutoDisplay">
                                                             </p-dropdown>
                                                             <label for="float-input">Court Type</label>
@@ -216,7 +216,7 @@
                                                     <div class="col-12 md:col-4 lg:col-2">
                                                         <span class="p-float-label">
                                                             <p-calendar name="_lcaseyear" [(ngModel)]="lCaseYear"
-                                                                view="year" dateFormat="yy"
+                                                                view="year" dateFormat="yy" (ngModelChange)="loadCaseNo()"
                                                                 inputId="yearpicker"></p-calendar>
                                                             <label for="float-input">Case Year</label>
                                                         </span>
@@ -225,7 +225,7 @@
                                                         <span class="p-float-label">
                                                             <p-dropdown name="_lcasetype" optionLabel="label"
                                                                 (onClick)="onSelect('CT')" [options]="lCaseTypeOptions"
-                                                                [(ngModel)]="lCaseType"
+                                                                [(ngModel)]="lCaseType" (onChange)="loadCaseNo()"
                                                                 [autoDisplayFirst]="disableAutoDisplay"
                                                                 [required]="true">
                                                             </p-dropdown>
@@ -239,18 +239,7 @@
                                                                 [(ngModel)]="lCaseNo"
                                                                 [autoDisplayFirst]="disableAutoDisplay">
                                                             </p-dropdown>
-                                                            <label for="float-input">Case No.</label>
-                                                        </span>
-                                                    </div>
-                                                    <div class="col-12 md:col-4 lg:col-2">
-                                                        <span class="p-float-label">
-                                                            <p-dropdown name="_linkedcase" optionLabel="label"
-                                                                (onClick)="onSelect('LC')" [options]="linkedCaseOptions"
-                                                                [(ngModel)]="linkedCase"
-                                                                [autoDisplayFirst]="disableAutoDisplay"
-                                                                [required]="true">
-                                                            </p-dropdown>
-                                                            <label for="float-input">Linked Case</label>
+                                                            <label for="float-input">Linked Case No.</label>
                                                         </span>
                                                     </div>
                                                     <div class="col-12 md:col-4 lg:col-2" style="text-align: left;">

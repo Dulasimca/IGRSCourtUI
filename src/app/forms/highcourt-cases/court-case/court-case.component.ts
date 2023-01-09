@@ -1,7 +1,9 @@
 import { DatePipe } from '@angular/common';
+import { HttpParams } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Message, SelectItem } from 'primeng/api';
+import { ResponseMessage } from 'src/app/constants/message-constants';
 import { TableConstants } from 'src/app/constants/table-constants';
 import { DateConverter } from 'src/app/helper/date-converter';
 import { User } from 'src/app/interfaces/user.interface';
@@ -59,8 +61,6 @@ export class CourtCaseComponent implements OnInit {
   isEditable: boolean = false;
   isLinkedCaseAvailable: string = '0';
   ///linked case
-  linkedCase: any;
-  linkedCaseOptions: SelectItem[] = [];
   lCourtName: any;
   lCourtNameOptions: SelectItem[] = [];
   lCaseYear: any;
@@ -247,17 +247,6 @@ export class CourtCaseComponent implements OnInit {
                     this.mainPrayerOptions.unshift({ label: '-select-', value: null });
                   }
               break;
-              case 'LC':
-                if (this.masters.linkedcasemasters !== undefined && this.masters.linkedcasemasters !== null) {
-                  this.masters.linkedcasemasters.forEach((lc: any) => {
-                    linkedCaseList.push(
-                      { label: lc.linkedcasename, value: lc.linkedcaseid }
-                    )
-                  })
-                  this.linkedCaseOptions = linkedCaseList;
-                  this.linkedCaseOptions.unshift({ label: '-select-', value: null });
-                }
-            break;
             case 'WS':
               if (this.masters.writappealstatus_Masters) {
                 this.masters.writappealstatus_Masters.forEach((ws: any) => {
@@ -279,6 +268,16 @@ export class CourtCaseComponent implements OnInit {
     if(this.caseYear !== undefined && this.caseYear !== null && this.highCourtName !== undefined && 
       this.highCourtName !== null && this.respondentType !== undefined && this.respondentType !== null &&
       this.caseNo !== undefined && this.caseNo !== null) {
+        const params = {
+          'courttype': this.highCourtName.value,
+          'caseyear': new Date(this.caseYear).getFullYear(),
+          'caseno': this.caseNo
+        }
+        this._restApiService.getByParameters('Respondent/GetCourtCase', params).subscribe(res => {
+          if(res !== undefined && res !== null) {
+            console.log('res', res);
+          }
+        })
       } else {
       }
   }
@@ -319,6 +318,19 @@ export class CourtCaseComponent implements OnInit {
     }
   }
 
+  loadCaseNo() {
+    if(this.lCaseType !== undefined && this.lCaseType !== null && this.lCourtName !== undefined &&
+      this.lCourtName !== null && this.lCaseYear !== undefined && this.lCaseYear !== null) {
+        const params = new HttpParams().append('courttype', this.lCourtName.value)
+        .set('caseyear', new Date(this.lCaseYear).getFullYear()).set('casetype', this.lCaseType.value);
+        this._restApiService.getByParameters('Respondent/GetCaseNoList', params).subscribe(res => {
+          if(res !== undefined && res !== null) {
+            console.log('res', res);
+          }
+        })
+      }
+  }
+
   onAddLinkedCase() {
     this.linkedCaseDetails.push({
       'courtname': this.lCourtName.label, 'courtid': this.lCourtName.value,
@@ -343,6 +355,22 @@ export class CourtCaseComponent implements OnInit {
     this.writId = 0;
   }
 
+  onClearCaseForm() {
+    this.caseId = 0;
+    this._caseForm.reset();
+    this._caseForm.form.markAsUntouched();
+    this._caseForm.form.markAsPristine();
+    this.respondentTypeOptions = [];
+    this.zoneOptions = [];
+    this.districtOptions = [];
+    this.sroOptions = [];
+    this.caseTypeOptions = [];
+    this.respondentCadreOptions = [];
+    this.counterFiledOptions = [];
+    this.stateOfCaseOptions = [];
+    this.mainPrayerOptions = [];
+  }
+
   onNext() {
     this.tabIndex += 1;
   }
@@ -351,7 +379,51 @@ export class CourtCaseComponent implements OnInit {
     this.tabIndex -= 1;
   }
 
-  onSaveCase() {}
+  onSaveCase() {
+    if(this.isLinkedCaseAvailable === '1') {
+    let _lcaseyear: any = this._datePipe.transform(this.lCaseYear, 'yyyy');
+    const linked_case_params = {
+        'courttype': this.lCourtName.value,
+        'caseyear': _lcaseyear,
+        'casetype': this.lCaseType.value,
+        'caseno': this.caseNo,
+      }
+    }
+    let _caseyear: any = this._datePipe.transform(this.caseYear, 'yyyy');
+    const params = {
+      'courtid': this.highCourtName.value,
+      'caseyear': (_caseyear * 1),
+      'casenumber': this.caseNo,
+      'courtcaseid': this.caseId,
+      'responsetypeid': this.respondentType.value,
+      'zoneid': this.zone.value,
+      'districtid': this.district.value,
+      'sroid': this.sro.value,
+      'casetypeid': this.caseType.value,
+      'petitionername': this.petitionerName,
+      'mainrespondents': this.respondents,
+      'gistofcase': this.gistOfCase,
+      'counterfiledid': this.counterFiled.value,
+      'casestatusid': this.stateOfCase.value,
+      'prayerid': this.mainPrayer.value,
+      'flag': true,
+      'createdate': new Date(),
+      'userId': this.userInfo.roleid,
+      'mainrespondentsid': this.respondentsid
+    }
+    this._restApiService.post('Respondent/SaveRespondentCase', params).subscribe(res => {
+      if (res) {
+        this.responseMsg = [{ severity: ResponseMessage.SuccessSeverity, detail: ResponseMessage.SuccessMessage }];
+        setTimeout(() => this.responseMsg = [], 3000);
+        // this.onLoadCases();
+        this.assignDefault();
+        this.onClearCaseForm();
+      } else {
+        this.responseMsg = [{ severity: ResponseMessage.ErrorSeverity, detail: ResponseMessage.ErrorMessage }];
+        setTimeout(() => this.responseMsg = [], 3000)
+      }
+    })
+  }
 
   onSaveAppeal() {}
 
