@@ -62,16 +62,16 @@
                                     <div class="grid">
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-calendar name="_fdate" [showIcon]="true"
-                                                   [(ngModel)]="fromDate"></p-calendar>
-                                                <label for="float-input">From Date</label>
+                                                <p-calendar name="_fyear" [(ngModel)]="fromYear" view="year"
+                                                dateFormat="yy" inputId="yearpicker" [showIcon]="true"></p-calendar>
+                                                <label for="float-input">From Year</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-calendar name="_tdate" [showIcon]="true"
-                                                   [(ngModel)]="toDate"></p-calendar>
-                                                <label for="float-input">To Date</label>
+                                                <p-calendar name="_tyear" [(ngModel)]="toYear" view="year" dateFormat="yy" 
+                                                inputId="yearpicker" [showIcon]="true"></p-calendar>
+                                                <label for="float-input">To Year</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
