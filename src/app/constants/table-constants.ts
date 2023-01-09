@@ -358,4 +358,9 @@ export class TableConstants {
         { field: 'caseno', header: 'Case No', align: 'right' },
     ];
 
+    public static readonly MainprayerMaster: any[] = [
+        { field: 'mainprayerdesc', header: 'Mainprayer Description'},
+        { field: 'createddate', header: 'Created Date'},
+        { field: 'flag', header: 'Status'}
+    ];
 }

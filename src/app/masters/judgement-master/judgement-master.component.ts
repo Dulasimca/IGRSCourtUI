@@ -18,6 +18,7 @@ export class JudgementMasterComponent implements OnInit {
   cols: any[] = [];
   data: any[] = [];
   loading: boolean = false;
+  block: RegExp = /^[^=<>*%(){}$@#_!+0-9&?,.;'"?/]/; 
 
   @ViewChild('f', { static: false }) _respondentForm!: NgForm;
 
