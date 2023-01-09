@@ -127,7 +127,7 @@
                                                             <label for="float-input">Respondent</label>
                                                         </span>
                                                     </div>
-                                                    <div class="col-12 md:col-4 lg:col-2">
+                                                    <div class="col-12 md:col-4 lg:col-4">
                                                         <span class="p-float-label">
                                                             <input name="_respondents" type="text"
                                                                 [(ngModel)]="respondents" required pInputText
@@ -153,6 +153,10 @@
                                                             <label for="float-input">Gist of the case</label>
                                                         </span>
                                                     </div>
+                                                </div>
+                                            </div>
+                                            <div #row3 class="col-12 md:col-11 lg:col-11">
+                                                <div class="grid">
                                                     <div class="col-12 md:col-4 lg:col-2">
                                                         <span class="p-float-label">
                                                             <p-dropdown name="_counterfiled"
@@ -165,11 +169,6 @@
                                                             <label for="float-input">Counter Filed</label>
                                                         </span>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div #row3 class="col-12 md:col-11 lg:col-11">
-                                                <div class="grid">
-
                                                     <div class="col-12 md:col-4 lg:col-2">
                                                         <span class="p-float-label">
                                                             <p-dropdown name="_stateofcase"
