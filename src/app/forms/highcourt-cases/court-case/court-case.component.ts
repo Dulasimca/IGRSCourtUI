@@ -237,6 +237,7 @@ export class CourtCaseComponent implements OnInit {
               }
               break;
               case 'MP':
+                console.log('mp',this.masters.mainprayermaster)
                   if (this.masters.mainprayermaster !== undefined && this.masters.mainprayermaster !== null) {
                     this.masters.mainprayermaster.forEach((mp: any) => {
                       mainPrayerList.push(
