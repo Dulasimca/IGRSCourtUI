@@ -22,6 +22,7 @@ import { PaginatorModule } from 'primeng/paginator';
 import { TabViewModule } from 'primeng/tabview';
 import { NgxPrintModule } from 'ngx-print';
 import { PasswordModule } from 'primeng/password';
+import { BlockUIModule } from 'primeng/blockui';
 
 import { AppComponent } from './app.component';
 import { GovernmentRespondentComponent } from './forms/highcourt-cases/government-respondent/government-respondent.component';
@@ -69,6 +70,7 @@ import { StatusOfCourtcasesReportComponent } from './reports/status-of-courtcase
 import { GovtrespReportComponent } from './reports/govtresp-report/govtresp-report.component';
 import { CounterfiledMasterComponent } from './masters/counterfiled-master/counterfiled-master.component';
 import { CourtCaseComponent } from './forms/highcourt-cases/court-case/court-case.component';
+import { MainprayermasterComponent } from './masters/mainprayermaster/mainprayermaster.component';
 
 @NgModule({
   declarations: [
@@ -114,6 +116,7 @@ import { CourtCaseComponent } from './forms/highcourt-cases/court-case/court-cas
     GovtrespReportComponent,
     CounterfiledMasterComponent,
     CourtCaseComponent,
+    MainprayermasterComponent,
   ],
   imports: [
     BrowserModule,
@@ -138,7 +141,8 @@ import { CourtCaseComponent } from './forms/highcourt-cases/court-case/court-cas
     KeyFilterModule,
     NgxPrintModule,
     PasswordModule,
-    TabViewModule
+    TabViewModule,
+    BlockUIModule
   ],
   providers: [AuthService, AuthGuard, MasterService, RestapiService, DatePipe, DateConverter],
   bootstrap: [AppComponent]

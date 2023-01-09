@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Message, SelectItem } from 'primeng/api';
+import { TableConstants } from 'src/app/constants/table-constants';
 import { DateConverter } from 'src/app/helper/date-converter';
 import { User } from 'src/app/interfaces/user.interface';
 import { AuthService } from 'src/app/services/auth.service';
@@ -15,8 +16,10 @@ import { RestapiService } from 'src/app/services/restapi.service';
 })
 export class CourtCaseComponent implements OnInit {
   ///tab controls
+  disableCaseTab: boolean = true;
   disableWritTab: boolean = true;
   disableJudgementTab: boolean = true;
+  tabIndex: number = 0;
   ///common 
   masters?: any;
   responseMsg: Message[] = [];
@@ -44,9 +47,6 @@ export class CourtCaseComponent implements OnInit {
   judgementOptions: SelectItem[] = [];
   respondentType: any;
   respondentTypeOptions: SelectItem[] = [];
-  lcaseDetails: any;
-  linkedCase: any;
-  linkedCaseOptions: SelectItem[] = [];
   respondents: string = '';
   respondentsid: string = '';
   respondentCadre: any;
@@ -57,6 +57,19 @@ export class CourtCaseComponent implements OnInit {
   petitionerName: any;
   disableAutoDisplay: boolean = false;
   isEditable: boolean = false;
+  isLinkedCaseAvailable: string = '0';
+  ///linked case
+  linkedCase: any;
+  linkedCaseOptions: SelectItem[] = [];
+  lCourtName: any;
+  lCourtNameOptions: SelectItem[] = [];
+  lCaseYear: any;
+  lCaseType: any;
+  lCaseTypeOptions: SelectItem[] = [];
+  lCaseNo: any;
+  lCaseNoOptions: SelectItem[] = [];
+  linkedCaseCols: any;
+  linkedCaseDetails: any[] = [];
   ///writ form
   writId: any;
   hcreferenceNo: any;
@@ -74,6 +87,13 @@ export class CourtCaseComponent implements OnInit {
   ngOnInit(): void {
     this.masters = this._masterService.getMasters();
     this.userInfo = this._authService.getUserInfo();
+    this.linkedCaseCols = TableConstants.linkedCaseColumns;
+    this.linkedCaseDetails.push({
+      'courtname': 'xxx', 'courtid': 0,
+      'casetype': 'wa', 'casetypeid': 0,
+      'caseno': '009', 'casenoid': 0,
+      'caseyear': 2021
+    })
     this.assignDefault();
   }
 
@@ -147,8 +167,10 @@ export class CourtCaseComponent implements OnInit {
                 { label: ct.casetypename, value: ct.casetypeid }
               )
             })
-            this.caseTypeOptions = caseTypeList;
+            this.caseTypeOptions = caseTypeList.slice(0);
             this.caseTypeOptions.unshift({ label: '-select-', value: null });
+            this.lCaseTypeOptions = caseTypeList.slice(0);
+            this.lCaseTypeOptions.unshift({ label: '-select-', value: null });
           }
           break;
         case 'HC':
@@ -158,8 +180,10 @@ export class CourtCaseComponent implements OnInit {
                 { label: hc.courtname, value: hc.courtid }
               )
             })
-            this.highCourtNameOptions = courtList;
+            this.highCourtNameOptions = courtList.slice(0);
             this.highCourtNameOptions.unshift({ label: '-select-', value: null });
+            this.lCourtNameOptions = courtList.slice(0);
+            this.lCourtNameOptions.unshift({ label: '-select-', value: null });
           }
           break;
         case 'SC':
@@ -244,8 +268,19 @@ export class CourtCaseComponent implements OnInit {
                 this.writappealstatusOptions = writappealStatusList;
               }
               break;
+            case 'CN':
+              break;
       }
     }
+  }
+
+  onViewCase() {
+    this.disableCaseTab = false;
+    if(this.caseYear !== undefined && this.caseYear !== null && this.highCourtName !== undefined && 
+      this.highCourtName !== null && this.respondentType !== undefined && this.respondentType !== null &&
+      this.caseNo !== undefined && this.caseNo !== null) {
+      } else {
+      }
   }
 
   onChangeRespondent(value: string) {
@@ -284,12 +319,36 @@ export class CourtCaseComponent implements OnInit {
     }
   }
 
+  onAddLinkedCase() {
+    this.linkedCaseDetails.push({
+      'courtname': this.lCourtName.label, 'courtid': this.lCourtName.value,
+      'casetype': this.lCaseType.label, 'casetypeid': this.lCaseType.value,
+      'caseno': this.lCaseNo.label, 'casenoid': this.lCaseNo.value,
+      'caseyear': this.lCaseYear
+    })
+  }
+
+  onDeleteLinkedCase(index: number) {
+    if(index !== undefined && index !== null) {
+      this.linkedCaseDetails.splice(index, 1);
+    }
+
+  }
+
   onClearAppealForm() {
     this._appealForm.reset();
     this._appealForm.form.markAsUntouched();
     this._appealForm.form.markAsPristine();
     this.writappealstatusOptions = [];
     this.writId = 0;
+  }
+
+  onNext() {
+    this.tabIndex += 1;
+  }
+
+  onPrev() {
+    this.tabIndex -= 1;
   }
 
   onSaveCase() {}
