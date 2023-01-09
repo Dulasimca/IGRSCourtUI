@@ -234,7 +234,7 @@ export class CourtCaseComponent implements OnInit {
           if (this.masters.mainPrayerMaster !== undefined && this.masters.mainPrayerMaster !== null) {
             this.masters.mainPrayerMaster.forEach((mp: any) => {
               mainPrayerList.push(
-                { label: mp.mainprayername, value: mp.mainprayerid }
+                { label: mp.mainprayerdesc, value: mp.mainprayerid }
               )
             })
             this.mainPrayerOptions = mainPrayerList;
