@@ -80,7 +80,6 @@ const routes: Routes = [
   {path:'case-hearing',component: CaseHearingDateComponent},
   {path:'courtcase-status',component: StatusOfCourtcasesReportComponent, canActivate: [AuthGuard]},
   {path:'counterfiled-master',component: CounterfiledMasterComponent, canActivate: [AuthGuard]},
-  {path: 'government-respondent-hight-court-cases', component: StatusOfCourtcasesReportComponent, canActivate: [AuthGuard] },
   {path: 'mainprayermaster', component: MainprayermasterComponent}
 ];
 

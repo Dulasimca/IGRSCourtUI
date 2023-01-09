@@ -37,6 +37,8 @@ export class MenumasterComponent implements OnInit {
   priorityOptions: any;
   userInfo!: User;
   parentData: any;
+  blockUrl: RegExp = /^[^=<>*%()/|{}$@#_!+0-9&?,|.:;'`~"?^\s]/;  
+  blockMenuName: RegExp = /^[^-=<>*%()^{}$@#_!+0-9&?,~`|.:;'"?/]/;  
 
 
   constructor(private _restApiService: RestapiService, private _masterService: MasterService, private _authService: AuthService) { }
@@ -98,7 +100,7 @@ export class MenumasterComponent implements OnInit {
     const params = {
       'menuid': this.menuId,
       'name': this.menuName,
-      'url': (this.url !== null && this.url !== undefined) ?  this.url : ' ',
+      'url': (this.url !== null && this.url !== undefined) && this.url.length>2  ? '/' + this.url : '',
       'parentid':this.parentId,
       'icon': (this.icon !== null && this.icon !== undefined) ? this.icon: '' ,
       'roleid':this.role,
@@ -148,7 +150,7 @@ export class MenumasterComponent implements OnInit {
   onEdit(row:any){
     this.menuId = row.menuid;
     this.menuName=row.name;
-    this.url=row.url;
+    this.url=row.url.replace('/','');
     this.parentId=row.parentid;
     this.parentIdOptions = [{ label: row.parentname, value: row.parentid}];
     this.icon=row.icon;

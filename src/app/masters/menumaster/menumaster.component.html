@@ -26,15 +26,16 @@
                                 </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <input name="_name" type="text" pInputText (change)="onCheck()" [(ngModel)]="menuName"[pKeyFilter]="'alpha'">
+                                                <input name="_name" type="text" pInputText (change)="onCheck()" [(ngModel)]="menuName" [pKeyFilter]="blockMenuName">
                                                 <label for="float-input">MenuName</label>      
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <input name="_url" type="text" pInputText [(ngModel)]="url" >
+                                                <input name="_url" type="text" pInputText [(ngModel)]="url" [pKeyFilter]="blockUrl" minlength="3"  required>
                                                 <label for="float-input">Url</label>      
                                             </span>
+                                            <span class="note">*Note:min 3 characters required</span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
