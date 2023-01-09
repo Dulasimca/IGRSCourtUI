@@ -1,7 +1,9 @@
 import { DatePipe } from '@angular/common';
+import { HttpParams } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Message, SelectItem } from 'primeng/api';
+import { ResponseMessage } from 'src/app/constants/message-constants';
 import { TableConstants } from 'src/app/constants/table-constants';
 import { DateConverter } from 'src/app/helper/date-converter';
 import { User } from 'src/app/interfaces/user.interface';
@@ -59,8 +61,7 @@ export class CourtCaseComponent implements OnInit {
   isEditable: boolean = false;
   isLinkedCaseAvailable: string = '0';
   ///linked case
-  linkedCase: any;
-  linkedCaseOptions: SelectItem[] = [];
+  caseNoList: any[] = [];
   lCourtName: any;
   lCourtNameOptions: SelectItem[] = [];
   lCaseYear: any;
@@ -82,18 +83,12 @@ export class CourtCaseComponent implements OnInit {
   @ViewChild('writForm', { static: false }) _appealForm!: NgForm;
 
   constructor(private _restApiService: RestapiService, private _masterService: MasterService,
-    private _datePipe: DatePipe, private _authService: AuthService, private _converter: DateConverter) { }
+    private _datePipe: DatePipe, private _authService: AuthService) { }
 
   ngOnInit(): void {
     this.masters = this._masterService.getMasters();
     this.userInfo = this._authService.getUserInfo();
     this.linkedCaseCols = TableConstants.linkedCaseColumns;
-    this.linkedCaseDetails.push({
-      'courtname': 'xxx', 'courtid': 0,
-      'casetype': 'wa', 'casetypeid': 0,
-      'caseno': '009', 'casenoid': 0,
-      'caseyear': 2021
-    })
     this.assignDefault();
   }
 
@@ -117,7 +112,7 @@ export class CourtCaseComponent implements OnInit {
       let counterFiledList: any = [];
       let writappealStatusList: any = [];
       let mainPrayerList: any = [];
-      let linkedCaseList: any = [];
+      let linkedCaseNoList: any = [];
       switch (value) {
         case 'ZN':
           if (this.masters.zone_Masters !== undefined && this.masters.zone_Masters !== null) {
@@ -199,118 +194,148 @@ export class CourtCaseComponent implements OnInit {
           break;
         case 'RC':
           if (this.masters.respondentsmaster !== undefined && this.masters.respondentsmaster !== null) {
-            
+
             this.masters.respondentsmaster.forEach((rc: any) => {
-              if(rc.responsetypeid === this.respondentType.value)
-              {
-              respondentList.push(
-                { label: rc.respondentsname, value: rc.respondentsid }
-              )
+              if (rc.responsetypeid === this.respondentType.value) {
+                respondentList.push(
+                  { label: rc.respondentsname, value: rc.respondentsid }
+                )
               }
-            });            
+            });
             this.respondentCadreOptions = respondentList;
             this.respondentCadreOptions.unshift({ label: '-select-', value: null });
           }
           break;
-          case 'RT':
-            this.respondents="";
-            this.respondentsid = "";
-            if (this.masters.responsetype_Masters !== undefined && this.masters.responsetype_Masters !== null) {
-              this.masters.responsetype_Masters.forEach((rt: any) => {
-                responseTypeList.push(
-                  { label: rt.responsetypename, value: rt.responsetypeid }
-                )
-              })
-              this.respondentTypeOptions = responseTypeList;
-              this.respondentTypeOptions.unshift({ label: '-select-', value: null });
-            }
-            break;
-            case 'CF':
-              if (this.masters.counterfiledmaster !== undefined && this.masters.counterfiledmaster !== null) {
-                this.masters.counterfiledmaster.forEach((cf: any) => {
-                  counterFiledList.push(
-                    { label: cf.counterfiledname, value: cf.counterfiledid }
-                  )
-                })
-                this.counterFiledOptions = counterFiledList;
-                this.counterFiledOptions.unshift({ label: '-select-', value: null });
-              }
-              break;
-              case 'MP':
-                console.log('mp',this.masters.mainprayermaster)
-                  if (this.masters.mainprayermaster !== undefined && this.masters.mainprayermaster !== null) {
-                    this.masters.mainprayermaster.forEach((mp: any) => {
-                      mainPrayerList.push(
-                        { label: mp.mainprayerdesc, value: mp.mainprayerid }
-                      )
-                    })
-                    this.mainPrayerOptions = mainPrayerList;
-                    this.mainPrayerOptions.unshift({ label: '-select-', value: null });
-                  }
-              break;
-              case 'LC':
-                if (this.masters.linkedcasemasters !== undefined && this.masters.linkedcasemasters !== null) {
-                  this.masters.linkedcasemasters.forEach((lc: any) => {
-                    linkedCaseList.push(
-                      { label: lc.linkedcasename, value: lc.linkedcaseid }
-                    )
-                  })
-                  this.linkedCaseOptions = linkedCaseList;
-                  this.linkedCaseOptions.unshift({ label: '-select-', value: null });
-                }
-            break;
-            case 'WS':
-              if (this.masters.writappealstatus_Masters) {
-                this.masters.writappealstatus_Masters.forEach((ws: any) => {
-                  writappealStatusList.push(
-                    { label: ws.writappealstatusname, value: ws.writappealstatusid }
-                  )
-                })
-                this.writappealstatusOptions = writappealStatusList;
-              }
-              break;
-            case 'CN':
-              break;
+        case 'RT':
+          this.respondents = "";
+          this.respondentsid = "";
+          if (this.masters.responsetype_Masters !== undefined && this.masters.responsetype_Masters !== null) {
+            this.masters.responsetype_Masters.forEach((rt: any) => {
+              responseTypeList.push(
+                { label: rt.responsetypename, value: rt.responsetypeid }
+              )
+            })
+            this.respondentTypeOptions = responseTypeList;
+            this.respondentTypeOptions.unshift({ label: '-select-', value: null });
+          }
+          break;
+        case 'CF':
+          if (this.masters.counterfiledmaster !== undefined && this.masters.counterfiledmaster !== null) {
+            this.masters.counterfiledmaster.forEach((cf: any) => {
+              counterFiledList.push(
+                { label: cf.counterfiledname, value: cf.counterfiledid }
+              )
+            })
+            this.counterFiledOptions = counterFiledList;
+            this.counterFiledOptions.unshift({ label: '-select-', value: null });
+          }
+          break;
+        case 'MP':
+          if (this.masters.mainPrayerMaster !== undefined && this.masters.mainPrayerMaster !== null) {
+            this.masters.mainPrayerMaster.forEach((mp: any) => {
+              mainPrayerList.push(
+                { label: mp.mainprayername, value: mp.mainprayerid }
+              )
+            })
+            this.mainPrayerOptions = mainPrayerList;
+            this.mainPrayerOptions.unshift({ label: '-select-', value: null });
+          }
+          break;
+        case 'WS':
+          if (this.masters.writappealstatus_Masters) {
+            this.masters.writappealstatus_Masters.forEach((ws: any) => {
+              writappealStatusList.push(
+                { label: ws.writappealstatusname, value: ws.writappealstatusid }
+              )
+            })
+            this.writappealstatusOptions = writappealStatusList;
+          }
+          break;
+        case 'CN':
+          if(this.caseNoList.length !== 0) {
+            this.caseNoList.forEach((cn: any) => {
+              linkedCaseNoList.push(
+              { label: cn.caseno, value: cn.caseno }
+            )
+          })
+          this.lCaseNoOptions = linkedCaseNoList;
+          this.lCaseNoOptions.unshift({ label: '-select-', value: null });
+          }
+          break;
       }
     }
   }
 
   onViewCase() {
     this.disableCaseTab = false;
-    if(this.caseYear !== undefined && this.caseYear !== null && this.highCourtName !== undefined && 
-      this.highCourtName !== null && this.respondentType !== undefined && this.respondentType !== null &&
-      this.caseNo !== undefined && this.caseNo !== null) {
-      } else {
+    if (this.caseYear !== undefined && this.caseYear !== null && this.highCourtName !== undefined &&
+      this.highCourtName !== null && this.caseNo !== undefined && this.caseNo !== null) {
+      const params = {
+        'courttype': this.highCourtName.value,
+        'caseyear': new Date(this.caseYear).getFullYear(),
+        'caseno': this.caseNo
       }
+      this._restApiService.getByParameters('Respondent/GetCourtCase', params).subscribe(res => {
+        if (res !== undefined && res !== null) {
+          if (res.length !== 0) {
+            this.respondentType = { label: res[0].responsetypename, value: res[0].responsetypeid };
+            this.respondentTypeOptions = [{ label: res[0].responsetypename, value: res[0].responsetypeid }];
+            this.zone = { label: res[0].zonename, value: res[0].zoneid };
+            this.zoneOptions = [{ label: res[0].zonename, value: res[0].zoneid }];
+            this.district = { label: res[0].districtname, value: res[0].districtid };
+            this.districtOptions = [{ label: res[0].districtname, value: res[0].districtid }];
+            this.sro = { label: res[0].sroname, value: res[0].sroid };
+            this.sroOptions = [{ label: res[0].sroname, value: res[0].sroid }];
+            this.caseType = { label: res[0].casetypename, value: res[0].casetypeid };
+            this.caseTypeOptions = [{ label: res[0].casetypename, value: res[0].casetypeid }];
+            this.petitionerName = res[0].petitionername;
+            this.respondents = res[0].mainrespondents;
+            this.gistOfCase = res[0].gistofcase;
+            this.counterFiled = { label: res[0].counterfiledname, value: res[0].counterfiledid };
+            this.counterFiledOptions = [{ label: res[0].counterfiledname, value: res[0].counterfiledid }];
+            this.stateOfCase = { label: res[0].casestatusname, value: res[0].casestatusid };
+            this.stateOfCaseOptions = [{ label: res[0].casestatusname, value: res[0].casestatusid }];
+            this.mainPrayer = { label: res[0].mainprayername, value: res[0].mainprayerid };
+            this.mainPrayerOptions = [{ label: res[0].mainprayername, value: res[0].mainprayerid }];
+            ///conditions re-check
+            this.disableWritTab = ((res[0].counterfiledid * 1) === 1) ? false : true;
+          } else {
+            this.onClearCaseForm();
+          }
+        } else {
+          this.onClearCaseForm();
+        }
+      })
+    } else {
+    }
   }
 
   onChangeRespondent(value: string) {
-    if(value === 'R') {
-    if (this.respondentCadre !== undefined && this.respondentCadre !== null) {
-      this.respondents += this.respondentCadre.label + ' , ';
-      this.respondentsid += this.respondentCadre.value !=null ?  + this.respondentCadre.value + ',' :'' 
-      if (this.respondentCadre.value === 15) {
-        this.isEditable = true;
+    if (value === 'R') {
+      if (this.respondentCadre !== undefined && this.respondentCadre !== null) {
+        this.respondents += this.respondentCadre.label + ' , ';
+        this.respondentsid += this.respondentCadre.value != null ? + this.respondentCadre.value + ',' : ''
+        if (this.respondentCadre.value === 15) {
+          this.isEditable = true;
+        }
+        else {
+          this.isEditable = false;
+        }
       }
-      else
-      {
-        this.isEditable = false;
+    } else {
+      if (this.respondentType !== undefined && this.respondentType !== null) {
+        if (this.respondentType.value !== undefined && this.respondentType.value !== null) {
+          this.courtCaseTitle = ((this.respondentType.value * 1) === 3) ? 'Form-III Others Respondent' : ((this.respondentType.value * 1) === 2)
+            ? 'Form-II IGR Respondent' : 'Form-I Government Respondent';
+        }
       }
     }
-  } else {
-    if(this.respondentType !== undefined && this.respondentType !== null) {
-      if(this.respondentType.value !== undefined && this.respondentType.value !== null) {
-        this.courtCaseTitle = ((this.respondentType.value * 1) === 3) ? 'Form-III Others Respondent' : ((this.respondentType.value * 1) === 2)
-         ? 'Form-II IGR Respondent' : 'Form-I Government Respondent';
-      }
-    }
-  }
   }
 
   onCounterSelect() {
-    if(this.counterFiled !== undefined && this.counterFiled !== null) {
-      if(this.counterFiled.value !== undefined && this.counterFiled.value !== null) {
-        if((this.counterFiled.value * 1) !== 1) {
+    if (this.counterFiled !== undefined && this.counterFiled !== null) {
+      if (this.counterFiled.value !== undefined && this.counterFiled.value !== null) {
+        if ((this.counterFiled.value * 1) !== 1) {
           this.disableWritTab = true;
           this.onClearAppealForm();
         } else {
@@ -320,17 +345,38 @@ export class CourtCaseComponent implements OnInit {
     }
   }
 
+  loadCaseNo() {
+    if (this.lCaseType !== undefined && this.lCaseType !== null && this.lCourtName !== undefined &&
+      this.lCourtName !== null && this.lCaseYear !== undefined && this.lCaseYear !== null) {
+      const params = new HttpParams().append('courttype', this.lCourtName.value)
+        .set('caseyear', new Date(this.lCaseYear).getFullYear()).set('casetype', this.lCaseType.value);
+      this._restApiService.getByParameters('Respondent/GetCaseNoList', params).subscribe(res => {
+        if (res !== undefined && res !== null) {
+          if(res.length !== 0) {
+            res.forEach((i: any) => {
+              this.caseNoList.push({ caseno: i });
+            })
+          } else {
+            this.caseNoList = [];
+          }
+        } else {
+          this.caseNoList = [];
+        }
+      })
+    }
+  }
+
   onAddLinkedCase() {
     this.linkedCaseDetails.push({
       'courtname': this.lCourtName.label, 'courtid': this.lCourtName.value,
       'casetype': this.lCaseType.label, 'casetypeid': this.lCaseType.value,
       'caseno': this.lCaseNo.label, 'casenoid': this.lCaseNo.value,
-      'caseyear': this.lCaseYear
+      'caseyear': new Date(this.lCaseYear).getFullYear()
     })
   }
 
   onDeleteLinkedCase(index: number) {
-    if(index !== undefined && index !== null) {
+    if (index !== undefined && index !== null) {
       this.linkedCaseDetails.splice(index, 1);
     }
 
@@ -344,6 +390,22 @@ export class CourtCaseComponent implements OnInit {
     this.writId = 0;
   }
 
+  onClearCaseForm() {
+    this.caseId = 0;
+    this._caseForm.reset();
+    this._caseForm.form.markAsUntouched();
+    this._caseForm.form.markAsPristine();
+    this.respondentTypeOptions = [];
+    this.zoneOptions = [];
+    this.districtOptions = [];
+    this.sroOptions = [];
+    this.caseTypeOptions = [];
+    this.respondentCadreOptions = [];
+    this.counterFiledOptions = [];
+    this.stateOfCaseOptions = [];
+    this.mainPrayerOptions = [];
+  }
+
   onNext() {
     this.tabIndex += 1;
   }
@@ -352,8 +414,52 @@ export class CourtCaseComponent implements OnInit {
     this.tabIndex -= 1;
   }
 
-  onSaveCase() {}
+  onSaveCase() {
+    if (this.isLinkedCaseAvailable === '1') {
+      let _lcaseyear: any = this._datePipe.transform(this.lCaseYear, 'yyyy');
+      const linked_case_params = {
+        'courttype': this.lCourtName.value,
+        'caseyear': _lcaseyear,
+        'casetype': this.lCaseType.value,
+        'caseno': this.caseNo,
+      }
+    }
+    let _caseyear: any = this._datePipe.transform(this.caseYear, 'yyyy');
+    const params = {
+      'courtid': this.highCourtName.value,
+      'caseyear': (_caseyear * 1),
+      'casenumber': this.caseNo,
+      'courtcaseid': this.caseId,
+      'responsetypeid': this.respondentType.value,
+      'zoneid': this.zone.value,
+      'districtid': this.district.value,
+      'sroid': this.sro.value,
+      'casetypeid': this.caseType.value,
+      'petitionername': this.petitionerName,
+      'mainrespondents': this.respondents,
+      'gistofcase': this.gistOfCase,
+      'counterfiledid': this.counterFiled.value,
+      'casestatusid': this.stateOfCase.value,
+      'mainprayerid': this.mainPrayer.value,
+      'flag': true,
+      'createdate': new Date(),
+      'userId': this.userInfo.roleid,
+      'mainrespondentsid': this.respondentsid
+    }
+    this._restApiService.post('Respondent/SaveRespondentCase', params).subscribe(res => {
+      if (res) {
+        this.responseMsg = [{ severity: ResponseMessage.SuccessSeverity, detail: ResponseMessage.SuccessMessage }];
+        setTimeout(() => this.responseMsg = [], 3000);
+        // this.onLoadCases();
+        this.assignDefault();
+        this.onClearCaseForm();
+      } else {
+        this.responseMsg = [{ severity: ResponseMessage.ErrorSeverity, detail: ResponseMessage.ErrorMessage }];
+        setTimeout(() => this.responseMsg = [], 3000)
+      }
+    })
+  }
 
-  onSaveAppeal() {}
+  onSaveAppeal() { }
 
 }
