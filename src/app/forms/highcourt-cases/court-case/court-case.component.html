@@ -10,7 +10,7 @@
                                 <span class="p-float-label">
                                     <p-dropdown name="_highcourtname" optionLabel="label" (onClick)="onSelect('HC')"
                                         [options]="highCourtNameOptions" [(ngModel)]="highCourtName"
-                                        [autoDisplayFirst]="disableAutoDisplay" [required]="true">
+                                        [autoDisplayFirst]="disableAutoDisplay" [filter]="true" filterBy="label" [required]="true">
                                     </p-dropdown>
                                     <label for="float-input">Court Type</label>
                                 </span>
@@ -65,7 +65,7 @@
                                                             <p-dropdown name="_zone" optionLabel="label"
                                                                 (onClick)="onSelect('ZN')" [options]="zoneOptions"
                                                                 [autoDisplayFirst]="disableAutoDisplay"
-                                                                [(ngModel)]="zone" [required]="true">
+                                                                [(ngModel)]="zone"  [filter]="true" filterBy="label" [required]="true">
                                                             </p-dropdown>
                                                             <label for="float-input">Zone</label>
                                                         </span>
@@ -76,7 +76,7 @@
                                                                 (onClick)="onSelect('DT')" [options]="districtOptions"
                                                                 [(ngModel)]="district"
                                                                 [autoDisplayFirst]="disableAutoDisplay"
-                                                                [required]="true">
+                                                                [filter]="true" filterBy="label" [required]="true">
                                                             </p-dropdown>
                                                             <label for="float-input">District</label>
                                                         </span>
@@ -87,7 +87,7 @@
                                                                 (onClick)="onSelect('SR')" [options]="sroOptions"
                                                                 [(ngModel)]="sro"
                                                                 [autoDisplayFirst]="disableAutoDisplay"
-                                                                [required]="true">
+                                                                [filter]="true" filterBy="label" [required]="true">
                                                             </p-dropdown>
                                                             <label for="float-input">SRO</label>
                                                         </span>
@@ -98,7 +98,7 @@
                                                                 (onClick)="onSelect('CT')" [options]="caseTypeOptions"
                                                                 [(ngModel)]="caseType"
                                                                 [autoDisplayFirst]="disableAutoDisplay"
-                                                                [required]="true">
+                                                                [filter]="true" filterBy="label" [required]="true">
                                                             </p-dropdown>
                                                             <label for="float-input">Case Type</label>
                                                         </span>
@@ -121,7 +121,7 @@
                                                                 (onClick)="onSelect('RC')" 
                                                                 [autoDisplayFirst]="disableAutoDisplay"
                                                                 [options]="respondentCadreOptions"
-                                                                [(ngModel)]="respondentCadre" [editable]="isEditable" 
+                                                                [(ngModel)]="respondentCadre"  [filter]="true" filterBy="label" [editable]="isEditable" 
                                                                 (onChange)="onChangeRespondent('R')">
                                                             </p-dropdown>
                                                             <label for="float-input">Respondent</label>
@@ -141,7 +141,7 @@
                                                                 [autoDisplayFirst]="disableAutoDisplay"
                                                                 optionLabel="label" (onClick)="onSelect('MP')"
                                                                 [options]="mainPrayerOptions" [(ngModel)]="mainPrayer"
-                                                                [required]="true">
+                                                                [filter]="true" filterBy="label" [required]="true">
                                                             </p-dropdown>
                                                             <label for="float-input">Main Prayer</label>
                                                         </span>
@@ -163,7 +163,7 @@
                                                                 [autoDisplayFirst]="disableAutoDisplay"
                                                                 optionLabel="label" (onClick)="onSelect('CF')"
                                                                 [options]="counterFiledOptions"
-                                                                [(ngModel)]="counterFiled"
+                                                                [(ngModel)]="counterFiled" [filter]="true" filterBy="label" 
                                                                 (ngModelChange)="onCounterSelect()" [required]="true">
                                                             </p-dropdown>
                                                             <label for="float-input">Counter Filed</label>
@@ -175,7 +175,7 @@
                                                                 [autoDisplayFirst]="disableAutoDisplay"
                                                                 optionLabel="label" (onClick)="onSelect('SC')"
                                                                 [options]="stateOfCaseOptions" [(ngModel)]="stateOfCase"
-                                                                [required]="true">
+                                                                [filter]="true" filterBy="label" [required]="true">
                                                             </p-dropdown>
                                                             <label for="float-input">Case Status</label>
                                                         </span>
@@ -208,7 +208,7 @@
                                                             <p-dropdown name="_lcourtname" optionLabel="label"
                                                                 (onClick)="onSelect('HC')" [options]="lCourtNameOptions"
                                                                 [(ngModel)]="lCourtName" (onChange)="loadCaseNo()"
-                                                                [autoDisplayFirst]="disableAutoDisplay">
+                                                                [autoDisplayFirst]="disableAutoDisplay" [filter]="true" filterBy="label" [required]="true">
                                                             </p-dropdown>
                                                             <label for="float-input">Court Type</label>
                                                         </span>
@@ -227,7 +227,7 @@
                                                                 (onClick)="onSelect('CT')" [options]="lCaseTypeOptions"
                                                                 [(ngModel)]="lCaseType" (onChange)="loadCaseNo()"
                                                                 [autoDisplayFirst]="disableAutoDisplay"
-                                                                [required]="true">
+                                                                [filter]="true" filterBy="label" [required]="true">
                                                             </p-dropdown>
                                                             <label for="float-input">Case Type</label>
                                                         </span>
@@ -237,7 +237,7 @@
                                                             <p-dropdown name="lcaseno" optionLabel="label"
                                                                 (onClick)="onSelect('CN')" [options]="lCaseNoOptions"
                                                                 [(ngModel)]="lCaseNo"
-                                                                [autoDisplayFirst]="disableAutoDisplay">
+                                                                [autoDisplayFirst]="disableAutoDisplay" [filter]="true" filterBy="label" >
                                                             </p-dropdown>
                                                             <label for="float-input">Linked Case No.</label>
                                                         </span>
