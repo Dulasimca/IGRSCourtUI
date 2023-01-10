@@ -325,7 +325,7 @@ export class CourtCaseComponent implements OnInit {
   onChangeRespondent(value: string) {
     if (value === 'R') {
       if (this.respondentCadre !== undefined && this.respondentCadre !== null) {
-        this.respondents += this.respondentCadre.label + ' , ';
+        this.respondents += (this.respondentCadre.value !== null) ? (this.respondentCadre.label + ' , ') : '';
         this.respondentsid += this.respondentCadre.value != null ? + this.respondentCadre.value + ',' : ''
         if (this.respondentCadre.value === 15) {
           this.isEditable = true;
@@ -386,6 +386,14 @@ export class CourtCaseComponent implements OnInit {
       'caseno': this.lCaseNo.label, 'casenoid': this.lCaseNo.value,
       'caseyear': new Date(this.lCaseYear).getFullYear()
     })
+    ///clearing linked case after added to the list
+    this.lCourtName = null;
+    this.lCourtNameOptions = [];
+    this.lCaseNo = null;
+    this.lCaseNoOptions = [];
+    this.lCaseType = null;
+    this.lCaseTypeOptions = [];
+    this.lCaseYear = null;
   }
 
   onDeleteLinkedCase(index: number) {
