@@ -443,10 +443,10 @@ export class CourtCaseComponent implements OnInit {
   onSaveCase() {
     let _caseyear: any = this._datePipe.transform(this.caseYear, 'yyyy');
     const params = {
+      'courtcaseid': this.caseId,
       'courtid': this.highCourtName.value,
       'caseyear': (_caseyear * 1),
       'casenumber': this.caseNo,
-      'courtcaseid': this.caseId,
       'responsetypeid': this.respondentType.value,
       'zoneid': this.zone.value,
       'districtid': this.district.value,
@@ -461,12 +461,14 @@ export class CourtCaseComponent implements OnInit {
       'flag': true,
       'createdate': new Date(),
       'userId': this.userInfo.roleid,
-      'mainrespondentsid': this.respondentsid
+      'mainrespondentsid': this.respondentsid,
+      'linkedCaseList': this.linkedCaseDetails
     }
     this._restApiService.post('Respondent/SaveRespondentCase', params).subscribe(res => {
       if (res) {
-        // this.onLoadCases();
-        this.onSaveLinkedCase();
+        this.responseMsg = [{ severity: ResponseMessage.SuccessSeverity, detail: ResponseMessage.SuccessMessage }];
+        setTimeout(() => this.responseMsg = [], 3000);
+        this.onClearCaseForm();
       } else {
         this.responseMsg = [{ severity: ResponseMessage.ErrorSeverity, detail: ResponseMessage.ErrorMessage }];
         setTimeout(() => this.responseMsg = [], 3000)
