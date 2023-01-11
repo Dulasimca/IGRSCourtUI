@@ -1,31 +1,6 @@
-<div class="col-12 md:col-12 lg:col-12" style="height: 100%; position: absolute;">
-    <app-header *ngIf="isLoggedIn" (sidenavToggle)="openMenu($event)" [toggle]="show"></app-header>
+<div class="col-12 md:col-12 lg:col-12 no-pad-top" style="height: 100%; position: absolute;">
+    <app-header (sidenavToggle)="openMenu($event)" [toggle]="show"></app-header>
     <div class="col-12 md:col-12 lg:col-12 no-padding" style="height: 100%;">
-
-        <!-- <div class="grid" style="height: 100%;">
-            <div *ngIf="show" class="col-12 md:col-3 lg:col-2" [ngStyle.gt-md]="{'height': '100%'}"
-                [ngStyle.lg]="{'height': '100%'}" [ngStyle.md]="{'height': '100%'}">
-                <app-menu [status]="show" (sidenavToggle)="onToggle($event)"></app-menu>
-            </div>
-            <div *ngIf="!show" class="col-12 md:col-3 lg:col-2" [ngStyle.gt-md]="{'height': '100%'}"
-                [ngStyle.lg]="{'height': '100%'}" [ngStyle.md]="{'height': '100%'}">
-                <app-menu [status]="show" (sidenavToggle)="onToggle($event)"></app-menu>
-            </div>
-            <div *ngIf="!show" class="col-12 md:col-9 lg:col-10" style="position: relative;">
-                <router-outlet></router-outlet>
-            </div>
-        </div> -->
-        <!-- For Mobile -->
-        <!-- <div class="grid" style="height: 100%;">
-            <div *ngIf="show" class="col-12 md:col-3 lg:col-2" [ngStyle.gt-md]="{'height': '100%'}" 
-            [ngStyle.lg]="{'height': '100%'}" [ngStyle.md]="{'height': '100%'}">
-                <app-menu [status]="show" (sidenavToggle)="onToggle($event)"></app-menu>
-            </div>
-            <div *ngIf="!show" class="col-12 md:col-9 lg:col-10" style="position: relative;">
-                <router-outlet></router-outlet>
-            </div>
-        </div> -->
-        <!-- For System -->
         <div class="grid" style="height: 100%;">
             <div *ngIf="isLoggedIn" class="col-12 md:col-3 lg:col-2" style="position: relative;">
                 <app-menu [status]="show" (sidenavToggle)="onToggle($event)"></app-menu>

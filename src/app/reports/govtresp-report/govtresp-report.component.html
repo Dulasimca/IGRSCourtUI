@@ -3,7 +3,7 @@
         <div class="col-12 md:col-12 lg:col-12">
             <p-panel header="Report - Government Respondent cases HC">
                 <div class="col-12 md:col-12 lg:col-12 box" style="margin-top: 5px;">
-                    <form #f="ngForm" name="reports1Form">
+                    <form #f="ngForm" name="reportsForm">
                         <div #main class="col-12 md:col-12 lg:col-12">
                             <div class="grid to-center">
                                 <div #row1 class="col-12 md:col-12 lg:col-12">
@@ -22,7 +22,7 @@
                                             <span class="p-float-label">
                                                 <p-dropdown name="_zone" optionLabel="label" [autoDisplayFirst]="disableAutoDisplay" 
                                                     (onClick)="onSelect('ZN')" [options]="zoneOptions"
-                                                    (ngModelChange)="onLoadCases()" [(ngModel)]="zone" [required]="true">
+                                                    [(ngModel)]="zone" [required]="true">
                                                 </p-dropdown>
                                                 <label for="float-input">Zone</label>
                                             </span>
@@ -32,7 +32,7 @@
                                                 <p-dropdown name="_district"
                                                     optionLabel="label" (onClick)="onSelect('DT')" [autoDisplayFirst]="disableAutoDisplay" 
                                                     [options]="districtOptions" [(ngModel)]="district"
-                                                    (ngModelChange)="onLoadCases()" [required]="true">
+                                                    [required]="true">
                                                 </p-dropdown>
                                                 <label for="float-input">District</label>
                                             </span>
@@ -41,7 +41,7 @@
                                             <span class="p-float-label">
                                                 <p-dropdown name="_sro" optionLabel="label" [autoDisplayFirst]="disableAutoDisplay" 
                                                     (onClick)="onSelect('SR')" [options]="sroOptions" [(ngModel)]="sro"
-                                                    (ngModelChange)="onLoadCases()" [required]="true">
+                                                    [required]="true">
                                                 </p-dropdown>
                                                 <label for="float-input">SRO</label>
                                             </span>
@@ -51,24 +51,32 @@
                                                 <p-dropdown name="_casetype" [autoDisplayFirst]="disableAutoDisplay"
                                                     optionLabel="label" (onClick)="onSelect('CT')"
                                                     [options]="caseTypeOptions" [(ngModel)]="caseType"
-                                                    (ngModelChange)="onLoadCases()" [required]="true">
+                                                    [required]="true">
                                                 </p-dropdown>
                                                 <label for="float-input">Case Type</label>
                                             </span>
                                         </div>
+                                    </div>
+                                </div>
+                                <div #row2 class="col-12 md:col-12 lg:col-12">
+                                    <div class="grid">
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-calendar name="_fdate" [showIcon]="true"
-                                                   [(ngModel)]="fromDate" (ngModelChange)="onLoadCases()"></p-calendar>
-                                                <label for="float-input">From Date</label>
+                                                <p-calendar name="_fyear" [(ngModel)]="fromYear" view="year"
+                                                dateFormat="yy" inputId="yearpicker" [showIcon]="true"></p-calendar>
+                                                <label for="float-input">From Year</label>
                                             </span>
                                         </div>
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
-                                                <p-calendar name="_tdate" [showIcon]="true"
-                                                   [(ngModel)]="toDate" (ngModelChange)="onLoadCases()"></p-calendar>
-                                                <label for="float-input">To Date</label>
+                                                <p-calendar name="_tyear" [(ngModel)]="toYear" view="year" dateFormat="yy" 
+                                                inputId="yearpicker" [showIcon]="true"></p-calendar>
+                                                <label for="float-input">To Year</label>
                                             </span>
+                                        </div>
+                                        <div class="col-12 md:col-4 lg:col-2">
+                                            <button pButton type="button" label="View" icon="pi pi-eye" (click)="onLoadCases()"></button>&nbsp;
+                                            <button pButton type="button" label="Reset" icon="pi pi-undo" (click)="reset()"></button>
                                         </div>
                                     </div>
                                 </div>
@@ -77,14 +85,23 @@
                     </form>
                 </div>
                 <div class="col-12 md:col-12 lg:col-12">
-                        <p-table #dt [columns]="cols" [value]="data" styleClass="p-datatable-gridlines" [loading]="loading">
+                        <p-table #dt [columns]="cols" [value]="data" styleClass="p-datatable-gridlines" [loading]="loading"
+                        [paginator]="true" [rowsPerPageOptions]="[10,50,100]">
                             <ng-template pTemplate="caption">
                                 <div class="grid" style="width: -webkit-fill-available;">
-                                    <div class="lg:col-0 no-pad-top no-pad-btm"></div>
                                     <div class="lg:col-1 table-hdr-export">
                                         <button type="button" pButton pRipple icon="pi pi-file" (click)="dt.exportCSV()"
                                             class="mr-2" pTooltip="CSV" label="Export" tooltipPosition="bottom"></button>
                                     </div>
+                                    <div class="lg:col-9 no-pad-top no-pad-btm"></div>
+                                    <!-- <div class="lg:col-2 table-pdf-export">
+                                        <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="exportPdf()" 
+                                        class="p-button-warning mr-2" pTooltip="PDF" tooltipPosition="bottom"></button>
+                                    </div> -->
+                                    <!-- <div class="lg:col-2 table-hdr-export">
+                                        <button type="button" pButton pRipple icon="pi pi-reset" (click)="reset()" 
+                                        label= "Reset"></button>
+                                    </div> -->
                                 </div>
                             </ng-template>
                             <ng-template pTemplate="header" let-columns>

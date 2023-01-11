@@ -34,8 +34,8 @@ export class GovtrespReportComponent implements OnInit {
   responseMsg: Message[] = [];
   caseId: any;
   loading: boolean = false;
-  fromDate: any;
-  toDate: any;
+  fromYear: any;
+  toYear: any;
   disableAutoDisplay: boolean = false;
   userInfo!: User;
   all: any;
@@ -43,7 +43,7 @@ export class GovtrespReportComponent implements OnInit {
   respondents: any;
   respondentTypeOptions: SelectItem[] = [];
   
-  @ViewChild('f', {static: false}) _writAppealsForm!: NgForm;
+  @ViewChild('f', {static: false}) _reportsForm!: NgForm;
   constructor(private _restApiService: RestapiService, private _masterService: MasterService,
     private _datePipe: DatePipe, private _authService: AuthService, private _converter: DateConverter) { }
 
@@ -134,14 +134,15 @@ export class GovtrespReportComponent implements OnInit {
       }
     }
 
-
     onLoadCases() {
-      if (this.fromDate !== undefined && this.fromDate !== null && this.toDate !== undefined && this.toDate !== null) {
+      if (this.fromYear !== undefined && this.fromYear !== null && this.toYear !== undefined && this.toYear !== null) {
         this.data = [];
         this.loading = true;
         const params = new HttpParams().append('userid', this.userInfo.roleid)
-        .set('fromdate', this._datePipe.transform(this.fromDate, 'yyyy-MM-dd') as any)
-        .set('todate', this._datePipe.transform(this.toDate, 'yyyy-MM-dd') as any)
+        // .set('fromdate', this._datePipe.transform(this.fromYear, 'yyyy-MM-dd') as any)
+        // .set('todate', this._datePipe.transform(this.toYear, 'yyyy-MM-dd') as any)
+        .set('fromyear',this._datePipe.transform(this.fromYear, 'yyyy') as any)
+        .set('toyear',this._datePipe.transform(this.toYear, 'yyyy') as any)
         .set('zoneid', this.zone.value)
         .set('sroid', this.sro.value)
         .set('districtid', this.district.value)
@@ -155,5 +156,12 @@ export class GovtrespReportComponent implements OnInit {
         })
       }
     }  
+
+    reset() {
+      this._reportsForm.reset();
+      this._reportsForm.form.markAsUntouched();
+      this._reportsForm.form.markAsPristine()
+      this.loading = false;
+    }
 
 }

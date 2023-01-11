@@ -22,6 +22,8 @@ export class ZoneMasterComponent implements OnInit {
   loading: boolean = false;
   responseMsg: Message[] = [];
   RowId: any;
+  block: RegExp = /^[^=<>*%(){}$@#_!+0-9&?,.;'"?/]/; 
+
 
   @ViewChild('f', { static: false }) _respondentForm!: NgForm;
 

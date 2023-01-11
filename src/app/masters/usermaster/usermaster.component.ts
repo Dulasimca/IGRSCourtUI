@@ -40,7 +40,7 @@ export class UsermasterComponent implements OnInit {
   RowId: any;
   value: string = '';
   readOnlyUsername: boolean = false;
-
+  block: RegExp = /^[^=<>*%(){}$@#_!+0-9&?,.;'"?/]/; 
   constructor(private _restApiService: RestapiService, private _masterService: MasterService,
     private _datePipe: DatePipe, private _authService: AuthService) { }
 
@@ -166,16 +166,16 @@ export class UsermasterComponent implements OnInit {
     }
   }
 
-  onShowPwd() {
-    var inputValue = (<HTMLInputElement>document.getElementById('pwd'));
-    if (inputValue.type === 'password') {
-      inputValue.type = 'text';
-      this.showPwd = !this.showPwd;
-    } else {
-      this.showPwd = !this.showPwd;
-      inputValue.type = 'password';
-    }
-  }
+  // onShowPwd() {
+  //   var inputValue = (<HTMLInputElement>document.getElementById('pwd'));
+  //   if (inputValue.type === 'password') {
+  //     inputValue.type = 'text';
+  //     this.showPwd = !this.showPwd;
+  //   } else {
+  //     this.showPwd = !this.showPwd;
+  //     inputValue.type = 'password';
+  //   }
+  // }
 
   onEdit(row: any) {
     this.readOnlyUsername = true;
@@ -196,21 +196,51 @@ export class UsermasterComponent implements OnInit {
   }
 
   onCheck() {
-    if(this.RowId === 0) {
     this.data.forEach(i => {
       if (i.username === this.userName) {
         this.responseMsg = [{ severity: ResponseMessage.WarnSeverity, detail: ' Username already exists, Please enter valid Username' }];
         this.userName = null;
-      } else {
-       
-      }
-      if (i.mailid === this.mailId) {
-        this.responseMsg = [{ severity: ResponseMessage.WarnSeverity, detail: ' EmailId  already exists, Please enter valid Email' }];
-        this.mailId = null;
-      } else{
-
       }
     })
+}
+
+// to check email pattern
+checkIfEmailExists() {
+  this.data.forEach(i => {
+    const email: string = i.mailid;
+    if (email === this.mailId) {
+      this.responseMsg = [{ severity: ResponseMessage.ErrorSeverity, detail: 'Email-ID is already exist' }];
+      setTimeout(() => this.responseMsg = [], 3000);
+      this.mailId = '';
+    } else {
+    }
+  })
+}
+
+//checking existing mailid
+emailValidationCheck() {
+  if (this.mailId !== undefined && this.mailId !== null && this.mailId.trim() !== '' 
+      ) {
+    const entered_email: string = this.mailId.trim();
+    const substr = entered_email.split('@');
+    if (substr !== undefined && substr.length > 1) {
+      const last_str = substr[1].split('.');
+      if (last_str !== undefined && last_str.length > 1) {
+        if (last_str[1].toLowerCase() === 'com' || last_str[1].toLowerCase() === 'in') {
+        } else {
+          this.responseMsg = [{ severity: ResponseMessage.ErrorSeverity, detail: 'Enter valid email address' }];
+          setTimeout(() => this.responseMsg = [], 3000);      
+        }
+      } else {
+        this.responseMsg = [{ severity: ResponseMessage.ErrorSeverity, detail: 'Enter valid email address' }];
+        setTimeout(() => this.responseMsg = [], 3000);      
+      }
+    }else {
+      this.mailId = null;
+      this.responseMsg = [{ severity: ResponseMessage.ErrorSeverity, detail: 'Enter valid email address' }];
+      setTimeout(() => this.responseMsg = [], 3000);      
+    }
   }
 }
+
 }

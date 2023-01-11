@@ -1,13 +1,17 @@
+<p-blockUI [blocked]="blocked">
+    <span class="loader"></span>
+</p-blockUI>
+
 <div class="col-12 md:col-12 lg:col-12 container" style="margin-top: 2rem;">
     <div class="col-12 md:col-12 lg:col-12 card">
         <div #gridmain class="grid">
             <div #col1 class="col-6 md:col-3 lg:col-3" *ngFor="let i of items">
                 <div class="txt-to-center">
-                    <div class="col-10 md:col-6 lg:col-6 main-dsh-grid">
-                        <img class="main-dsh-img" [src]="i.src">
+                    <div class="col-10 md:col-6 lg:col-6 main-dsh-grid cursor" [ngStyle]="{'background': i.color}" (click)="onNavigate(i.goto)">
+                        <div class="col-12 no-pad"><img class="main-dsh-img" [src]="i.src"></div>
+                        <div class="main-dsh-title">{{i.title}}</div>
                         <div class="main-dsh-count">{{i.count}}</div>
                     </div>
-                    <span class="main-dsh-title">{{i.title}}</span>
                 </div>
             </div>
         </div>

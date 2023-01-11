@@ -349,6 +349,18 @@ export class TableConstants {
         {field: 'zonename', header: 'Balance(No. of CAs to be filed as on)'},
         {field: 'zonename', header: 'No. of CAs pending with G.P for vetting'},
         {field: 'zonename', header: 'Remarks'}
-    ]
+    ];
 
+    public static readonly linkedCaseColumns = [
+        { field: 'courtname', header: 'Court Name', align: 'left' },
+        { field: 'casetype', header: 'Case Type', align: 'left' },
+        { field: 'caseyear', header: 'Case Year', align: 'right' },
+        { field: 'caseno', header: 'Case No', align: 'right' },
+    ];
+
+    public static readonly MainprayerMaster: any[] = [
+        { field: 'mainprayerdesc', header: 'Mainprayer Description'},
+        { field: 'createddate', header: 'Created Date'},
+        { field: 'flag', header: 'Status'}
+    ];
 }

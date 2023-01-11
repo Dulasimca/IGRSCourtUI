@@ -1,30 +1,45 @@
 <div class="col-12 md:col-12 lg:col-12 no-padding header hdr-shdw-btm">
-    <div class="col-12 md:col-12 lg:col-12 no-pad-btm" style="margin-bottom: -5px">
-        <div class="grid" style="background-color:#18A558;">
-            <div fxLayout="row" class="col-7 md:col-2 lg:col-2 padding-left:2px " style="font-size: 22px;">
+    <div class="col-12 md:col-12 lg:col-12 no-pad-btm">
+        <div class="grid" style="background-color:white;">
+            <div fxLayout="row" class="col-7 md:col-4 lg:col-4 hdr-pad" style="font-size: 22px;">
                 <span>
                     <button pButton pRipple type="button" icon="pi pi-bars" class="p-button-rounded" fxHide.gt-lg
                         fxFlex.gt-md fxHide.gt-sm fxHide.md fxHide.lg fxHide.xl fxHide.lt-xl fxShow.lt-sm fxShow.xs
                         fxShow.gt-xs (click)="onToggleSidenav()"></button>
                     <span>
-                        <img src="assets/images/layout/TN_Govt_Logo.png"/>
+                        <img src="assets/images/layout/hdr_CM.jpg" />
+                        <img src="assets/images/layout/TN_Govt_Logo.png" style="margin-left: 5px;" />
                     </span>
-                </span>&nbsp;
+                </span>&nbsp;&nbsp;
+                <span style="margin-top: 1.35rem;">
+                    <div style="font-size: 14px;">பதிவுத்துறை </div>
+                    <div style="font-size: 14px;color: rgb(240, 10, 56);">REGISTRATION DEPARTMENT</div>
+                </span>
 
             </div>
-            <div class="col-1 md:col-5 lg:col-5 txt-to-end no-padding">
+            <div class="col-1 md:col-6 lg:col-6 no-padding">
                 <span>
-                    <img src="assets/images/layout/finance.png" />
+                    <img src="assets/images/layout/75th-independence-logo.jpg" style="margin-top: 1rem;" />
                 </span>&nbsp;
-                <span style="font-size: 28px;color: #f1ecec;">IGRS-Court Case</span>
-            </div>
-            <div class="col-4 md:col-5 lg:col-5 txt-to-end padding-right:2px">
-                <span style="color: #f1ecec;"> Welcome  </span> 
-                <span style="font-size: 20px;color: #f1ecec;"> {{username}}</span>&nbsp;&nbsp;
+
+                <span style="font-size: 28px;">IGRS-Court Case Platform</span>&nbsp;
                 <span>
-                    <button pButton pRipple type="button" icon="pi pi-power-off" class="p-button-rounded"
-                       style="margin-top: 1rem;" (click)="onLogout()" pTooltip="Logout" tooltipPosition="bottom"
-                       [fitContent]="true"></button>
+                    <img src="assets/images/layout/finance.png" style="margin-top: 1rem;" />
+                </span>&nbsp;
+                <!-- color: #f1ecec; -->
+            </div>
+            <div class="col-4 md:col-2 lg:col-2 to-end hdr-pad">
+                <div *ngIf="isLoggedIn" style="text-align: end;">
+                    <span> Welcome ! </span> &nbsp;
+                    <div style="font-size: 18px;">{{username}}</div>&nbsp;&nbsp;
+                    <span>
+                        <button pButton pRipple type="button" icon="pi pi-power-off" class="p-button-rounded"
+                            (click)="onLogout()" pTooltip="Logout" tooltipPosition="bottom"
+                           [fitContent]="true"></button>
+                    </span>
+                </div>&nbsp;
+                <span>
+                    <img src="assets/images/layout/hdr_Karunanidhi.jpg" />
                 </span>
             </div>
         </div>

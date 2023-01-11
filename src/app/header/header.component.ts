@@ -8,17 +8,19 @@ import { AuthService } from '../services/auth.service';
 })
 export class HeaderComponent implements OnInit {
   username: string = '';
+  isLoggedIn: boolean = false;
   @Input() public toggle: boolean = true; 
   @Output() public sidenavToggle = new EventEmitter();
-  constructor(private _authService: AuthService) { }
-
-  ngOnInit(): void {
+  constructor(private _authService: AuthService) {
     this._authService.isLoggedIn.subscribe(value => {
       if(value) {
+        this.isLoggedIn = value;
         this.username = this._authService.getUserInfo().username;
       }
     })
-  }
+   }
+
+  ngOnInit(): void {  }
 
   public onToggleSidenav = () => {
     this.sidenavToggle.emit(this.toggle); //sends 'true' i.e) says menu to open in app component
@@ -26,6 +28,7 @@ export class HeaderComponent implements OnInit {
   }
 
   onLogout() {
+    this.isLoggedIn = false;
     this._authService.logout();
   }
 

@@ -26,7 +26,8 @@ export class RespondantMasterComponent implements OnInit {
   masters?: any;
   respondentType: any;
   respondentTypeOptions: SelectItem[] = [];
-  checkEmail: boolean = false;
+  block: RegExp = /^[^=<>*%(){}$@#_!+0-9&?,.;'"?/]/; 
+
   @ViewChild('f', { static: false }) _respondentForm!: NgForm;
 
   constructor(private _restApiService: RestapiService, private _masterService: MasterService) { }
@@ -105,6 +106,7 @@ export class RespondantMasterComponent implements OnInit {
     this.respondentType = row.responsetypeid;
     this.respondentTypeOptions = [{ label: row.responsetypename, value: row.responsetypeid }];
   }
+
 //checking respondents name exists 
   onCheck() {
     this.data.forEach(i => {
@@ -114,12 +116,12 @@ export class RespondantMasterComponent implements OnInit {
       }  
     })
   }
+
   // to check email pattern
   checkIfEmailExists() {
     this.data.forEach(i => {
       const email: string = i.mailid;
       if (email === this.mailId) {
-        console.log('msg')
         this.responseMsg = [{ severity: ResponseMessage.ErrorSeverity, detail: 'Email-ID is already exist' }];
         setTimeout(() => this.responseMsg = [], 3000);
         this.mailId = '';
@@ -130,23 +132,26 @@ export class RespondantMasterComponent implements OnInit {
 
   //checking existing mailid
   emailValidationCheck() {
-    if (this.mailId !== undefined && this.mailId !== null && this.mailId.trim() !== '' &&
-      this.data.length !== 0) {
-      this.checkEmail = false;
+    if (this.mailId !== undefined && this.mailId !== null && this.mailId.trim() !== '' 
+        ) {
       const entered_email: string = this.mailId.trim();
       const substr = entered_email.split('@');
       if (substr !== undefined && substr.length > 1) {
         const last_str = substr[1].split('.');
         if (last_str !== undefined && last_str.length > 1) {
-          console.log('cond3')
           if (last_str[1].toLowerCase() === 'com' || last_str[1].toLowerCase() === 'in') {
-            this.checkEmail = true;
-            this.responseMsg = [{ severity: ResponseMessage.ErrorSeverity, detail: 'Email-ID is not valid' }];
-            setTimeout(() => this.responseMsg = [], 3000);
           } else {
-            this.checkEmail = false;           
+            this.responseMsg = [{ severity: ResponseMessage.ErrorSeverity, detail: 'Enter valid email address' }];
+            setTimeout(() => this.responseMsg = [], 3000);      
           }
+        } else {
+          this.responseMsg = [{ severity: ResponseMessage.ErrorSeverity, detail: 'Enter valid email address' }];
+          setTimeout(() => this.responseMsg = [], 3000);      
         }
+      }else {
+        this.mailId = null;
+        this.responseMsg = [{ severity: ResponseMessage.ErrorSeverity, detail: 'Enter valid email address' }];
+        setTimeout(() => this.responseMsg = [], 3000);      
       }
     }
   }

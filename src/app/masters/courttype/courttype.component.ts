@@ -19,6 +19,8 @@ export class CourtTypeComponent implements OnInit {
   loading: boolean = false;
   responseMsg: Message[] = [];
   caseId: any;
+  block: RegExp = /^[^=<>*%(){}$@#_!+0-9&?,.;'"?/]/; 
+
 
   @ViewChild('f', {static: false}) _respondentForm!: NgForm;
   
