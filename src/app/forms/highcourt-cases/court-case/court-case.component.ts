@@ -72,6 +72,7 @@ export class CourtCaseComponent implements OnInit {
   lCaseNoOptions: SelectItem[] = [];
   linkedCaseCols: any;
   linkedCaseDetails: any[] = [];
+  lmsg: any;
   ///writ form
   writId: any;
   hcreferenceNo: any;
@@ -80,6 +81,7 @@ export class CourtCaseComponent implements OnInit {
   writappealstatusOptions: SelectItem[] = [];
   natureofDisposal: any;
   remarks: any;
+  linkedCaseListToDB: any[] = [];
   @ViewChild('caseForm', { static: false }) _caseForm!: NgForm;
   @ViewChild('writForm', { static: false }) _appealForm!: NgForm;
 
@@ -358,6 +360,7 @@ export class CourtCaseComponent implements OnInit {
   }
 
   loadCaseNo() {
+    this.caseNoList = [];
     if (this.lCaseType !== undefined && this.lCaseType !== null && this.lCourtName !== undefined &&
       this.lCourtName !== null && this.lCaseYear !== undefined && this.lCaseYear !== null) {
       const params = new HttpParams().append('courttype', this.lCourtName.value)
@@ -379,21 +382,31 @@ export class CourtCaseComponent implements OnInit {
   }
 
   onAddLinkedCase() {
+    if(this.linkedCaseDetails.length > 0) {
+      this.linkedCaseDetails.forEach((item, index) => {
+        if(item.caseno === this.lCaseNo.value) {
+          this.linkedCaseDetails.splice(index, 1);
+          this.lmsg = [{ severity: ResponseMessage.WarnSeverity, detail: 'Case no. ' + this.lCaseNo.value + ResponseMessage.CasenoExistMessage }];
+        setTimeout(() => this.lmsg = [], 2000);
+        }
+      })
+    }
     this.linkedCaseDetails.push({
-      'caseid': this.linkedCaseId, 'created_on': new Date(),
+      'caseid': this.linkedCaseId,
+      'courtcaseid': 0, 'created_on': new Date(),
       'courtname': this.lCourtName.label, 'courtid': this.lCourtName.value,
       'casetype': this.lCaseType.label, 'casetypeid': this.lCaseType.value,
-      'caseno': this.lCaseNo.label, 'casenoid': this.lCaseNo.value,
-      'caseyear': new Date(this.lCaseYear).getFullYear()
+      'caseno': this.lCaseNo.label, 'caseyear': new Date(this.lCaseYear).getFullYear()
     })
+    this.linkedCaseListToDB.push({
+      'caseid': this.linkedCaseId, 'created_on': new Date(),
+      'courtid': this.lCourtName.value,
+      'casetypeid': this.lCaseType.value,
+      'caseno': this.lCaseNo.label, 'caseyear': new Date(this.lCaseYear).getFullYear()
+    })
+    
     ///clearing linked case after added to the list
-    this.lCourtName = null;
-    this.lCourtNameOptions = [];
-    this.lCaseNo = null;
-    this.lCaseNoOptions = [];
-    this.lCaseType = null;
-    this.lCaseTypeOptions = [];
-    this.lCaseYear = null;
+    this.onClearLinkedCase('FIELDS');
   }
 
   onDeleteLinkedCase(index: number) {
@@ -432,6 +445,19 @@ export class CourtCaseComponent implements OnInit {
     this.mainPrayerOptions = [];
   }
 
+  onClearLinkedCase(value: string) {
+    this.lCourtName = null;
+    this.lCourtNameOptions = [];
+    this.lCaseNo = null;
+    this.lCaseNoOptions = [];
+    this.lCaseType = null;
+    this.lCaseTypeOptions = [];
+    this.lCaseYear = null;
+    if(value === 'ALL') {
+    this.linkedCaseDetails = [];
+    }
+  }
+
   onNext() {
     this.tabIndex += 1;
   }
@@ -468,6 +494,9 @@ export class CourtCaseComponent implements OnInit {
       if (res) {
         this.responseMsg = [{ severity: ResponseMessage.SuccessSeverity, detail: ResponseMessage.SuccessMessage }];
         setTimeout(() => this.responseMsg = [], 3000);
+        if(this.isLinkedCaseAvailable === '1') {
+          this.onClearLinkedCase('ALL');
+        }
         this.onClearCaseForm();
       } else {
         this.responseMsg = [{ severity: ResponseMessage.ErrorSeverity, detail: ResponseMessage.ErrorMessage }];

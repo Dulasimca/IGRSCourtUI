@@ -185,10 +185,10 @@
                                                             <label for="_counterFiled">LinkedCase Available</label><br>
                                                             <div style="text-align: center;">
                                                                 <p-radioButton name="_linkedcase" value="1" label="Yes"
-                                                                    [(ngModel)]="isLinkedCaseAvailable">
+                                                                    [(ngModel)]="isLinkedCaseAvailable" (ngModelChange)="onClearLinkedCase('ALL')">
                                                                 </p-radioButton>&nbsp;
                                                                 <p-radioButton name="_linkedcase" value="0" label="No"
-                                                                    [(ngModel)]="isLinkedCaseAvailable">
+                                                                    [(ngModel)]="isLinkedCaseAvailable" (ngModelChange)="onClearLinkedCase('ALL')">
                                                                 </p-radioButton>&nbsp;
                                                             </div>
                                                         </div>
@@ -203,12 +203,16 @@
                                                             Linked Case Details
                                                         </div>
                                                     </div>
+                                                    <div class="col-12 no-pad">
+                                                    <p-messages [(value)]="lmsg" [enableService]="false"
+                                                            [hideTransitionOptions]="'500ms cubic-bezier(0.86, 0, 0.076, 1)'"></p-messages>
+                                                        </div>
                                                     <div class="col-12 md:col-4 lg:col-2">
                                                         <span class="p-float-label">
                                                             <p-dropdown name="_lcourtname" optionLabel="label"
                                                                 (onClick)="onSelect('HC')" [options]="lCourtNameOptions"
                                                                 [(ngModel)]="lCourtName" (onChange)="loadCaseNo()"
-                                                                [autoDisplayFirst]="disableAutoDisplay" [filter]="true" filterBy="label" [required]="true">
+                                                                [autoDisplayFirst]="disableAutoDisplay" [filter]="true" filterBy="label">
                                                             </p-dropdown>
                                                             <label for="float-input">Court Type</label>
                                                         </span>
@@ -227,7 +231,7 @@
                                                                 (onClick)="onSelect('CT')" [options]="lCaseTypeOptions"
                                                                 [(ngModel)]="lCaseType" (onChange)="loadCaseNo()"
                                                                 [autoDisplayFirst]="disableAutoDisplay"
-                                                                [filter]="true" filterBy="label" [required]="true">
+                                                                [filter]="true" filterBy="label">
                                                             </p-dropdown>
                                                             <label for="float-input">Case Type</label>
                                                         </span>
@@ -285,7 +289,7 @@
                                                     (click)="onClearCaseForm()"></button> &nbsp;
                                                     <button pButton pRipple type="button" label="Save"
                                                     (click)="onSaveCase()"
-                                                    [disabled]="!caseForm.valid || !caseForm.dirty"></button> &nbsp;
+                                                    [disabled]="(!caseForm.valid || !caseForm.dirty || (isLinkedCaseAvailable=='1' && linkedCaseDetails.length==0))"></button> &nbsp;
                                                     <button pButton pRipple type="button" label="Next"
                                                     (click)="onNext()" [disabled]="disableWritTab"></button>
                                             </div>
