@@ -221,8 +221,8 @@ export class GovernmentRespondentComponent implements OnInit {
               //   }
               //   break;
               case 'MP':
-                  if (this.masters.mainprayermaster !== undefined && this.masters.mainprayermaster !== null) {
-                    this.masters.mainprayermaster.forEach((mp: any) => {
+                  if (this.masters.mainPrayerMaster !== undefined && this.masters.mainPrayerMaster !== null) {
+                    this.masters.mainPrayerMaster.forEach((mp: any) => {
                       mainPrayerList.push(
                         { label: mp.mainprayerdesc, value: mp.mainprayerid }
                       )
@@ -352,7 +352,7 @@ export class GovernmentRespondentComponent implements OnInit {
       'flag': true,
       'createdate': new Date(),
       'userId': this.userInfo.roleid,
-      'responsetypeid': this.respondentType.value, //for government respondent
+      'responsetypeid': this.respondentType.value,
       'mainrespondentsid': this.respondentsid
     }
     this._restApiService.post('Respondent/SaveRespondentCase', params).subscribe(res => {

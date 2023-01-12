@@ -28,6 +28,7 @@ export class DistrictMasterComponent implements OnInit {
   responseMsg: Message[] = [];
   zoneid: any;
   RowId: any;
+  block: RegExp = /^[^=<>*%(){}$@#_!+0-9&?,.;'"?/]/; 
   @ViewChild('f', {static: false}) _respondentForm!: NgForm;
 
   

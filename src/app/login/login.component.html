@@ -1,57 +1,58 @@
-<div class="col-12 md:col-12 lg:col-12 home-image">
-    <!-- <span>
-    <img src="assets/images/layout/TN_Govt_Logo.png"/>
-</span> -->
-    <p class="app-headertopic">INSPECTOR GENERAL OF REGISTRATION STAMP - COURT CASES</p>
+<div class="col-12 md:col-12 lg:col-12 b-image">
     <div class="grid p-fluid to-center">
-        <div class="col-11 md:col-10 lg:col-6 bdr-box-light-blue" style="background: rgba(0,0,0,.3); border-radius: 10px;">
-            <div class="col-12 md:col-12 lg:col-12 login-title hdr-shdw-btm">
-                <div class="col-12 md:col-12 lg:col-12">
-                    IGRS LOGIN
-                </div>
-            </div>
-            <p-messages [(value)]="responseMsg" [enableService]="false"
-                [hideTransitionOptions]="'500ms cubic-bezier(0.86, 0, 0.076, 1)'"></p-messages>
-            <form #f="ngForm" name="loginForm">
-                <div class="col-12 md:col-12 lg:col-12" style="margin-top: 1.5rem;">
-                    <div class="grid p-fluid to-center">
-                        <div class="col-12 md:col-8 lg:col-8">
+        <div class="col-11 md:col-11 lg:col-11" style="margin-top: 6rem;">
+            <div class="grid p-fluid">
+                <div class="col-12 md:col-12 lg:col-4 panel1-view"></div>
+                <div class="col-12 md:col-12 lg:col-4 bdr-box-light-blue"
+                    style="background: rgba(0,0,0,.2); border-radius: 10px;">
+                    <div class="col-12 md:col-12 lg:col-12 login-title hdr-shdw-btm">
+                        <div class="col-12 md:col-12 lg:col-12">
+                            IGRS LOGIN
+                        </div>
+                    </div>
+                    <p-messages [(value)]="responseMsg" [enableService]="false"
+                        [hideTransitionOptions]="'500ms cubic-bezier(0.86, 0, 0.076, 1)'"></p-messages>
+                    <form #f="ngForm" name="loginForm">
+                        <div class="col-12 md:col-12 lg:col-12" style="margin-top: 1.5rem;">
                             <div class="grid p-fluid to-center">
-                                <div class="field col-12 md:col-8 lg:col-6">
-                                    <div class="p-inputgroup">
-                                        <span class="p-inputgroup-addon" style="background: #0c9616; color: white;
-    border: 0.5px solid #4eeb58 !important;"><i class="pi pi-user"></i></span>
-                                        <!-- <span class="p-float-label p-input-icon-right"> -->
-                                            <input #uname id="uname" name="_username" type="text"
-                                                style="background: white !important;" pInputText [(ngModel)]="username"
-                                                placeholder="Username" autocomplete="off" (keypress)="onEnter($event)"
-                                                required>
-                                            <!-- <label for="float-input">Username</label> -->
-                                        <!-- </span> -->
+                                <div class="col-12 md:col-8 lg:col-8">
+                                    <div class="grid p-fluid to-center">
+                                        <div class="field col-12 md:col-12 lg:col-12">
+                                            <div class="p-inputgroup">
+                                                <span class="p-inputgroup-addon" style="background: #0c9616; color: white;
+    border: 0.5px solid #37d542  !important;"><i class="pi pi-user"></i></span>
+                                                <span class="p-input-icon-right">
+                                                    <input #uname id="uname" name="_username" type="text"
+                                                        style="background: white !important;" pInputText
+                                                        [(ngModel)]="username" placeholder="Username" autocomplete="off"
+                                                        (keypress)="onEnter($event)" required>
+                                                    <!-- <label for="float-input">Username</label> -->
+                                                </span>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="grid p-fluid to-center">
-                                <div class="col-12 md:col-8 lg:col-6">
-                                    <div class="p-inputgroup">
-                                        <span class="p-inputgroup-addon" style="background: #0c9616; color: white;
-    border: 1px solid #4eeb58 !important;">
-                                            <i *ngIf="!showPwd" class="pi pi-lock"></i>
-                                            <i *ngIf="showPwd" class="pi pi-unlock"></i>
-                                        </span>
-                                        <span class="p-input-icon-right">
-                                            <i *ngIf="!showPwd" class="pi pi-eye" (click)="onShowPwd()"></i>
-                                            <i *ngIf="showPwd" class="pi pi-eye-slash" (click)="onShowPwd()"></i>
-                                            <input #pwd id="pwd" name="_password" type="password" pInputText
-                                                [(ngModel)]="password" placeholder="Password" autocomplete="off"
-                                                (keypress)="onEnter($event)" required>
-                                            <!-- <label for="float-input">Password</label> -->
-                                        </span>
+                                    <div class="grid p-fluid to-center">
+                                        <div class="col-12 md:col-12 lg:col-12">
+                                            <div class="p-inputgroup">
+                                                <span class="p-inputgroup-addon" style="background: #0c9616; color: white;
+    border: 1px solid #37d542  !important;">
+                                                    <i *ngIf="!showPwd" class="pi pi-lock"></i>
+                                                    <i *ngIf="showPwd" class="pi pi-unlock"></i>
+                                                </span>
+                                                <span class="p-input-icon-right">
+                                                    <i *ngIf="!showPwd" class="pi pi-eye" (click)="onShowPwd()"></i>
+                                                    <i *ngIf="showPwd" class="pi pi-eye-slash"
+                                                        (click)="onShowPwd()"></i>
+                                                    <input #pwd id="pwd" name="_password" type="password" pInputText
+                                                        [(ngModel)]="password" placeholder="Password" autocomplete="off"
+                                                        (keypress)="onEnter($event)" required>
+                                                    <!-- <label for="float-input">Password</label> -->
+                                                </span>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-12"></div>
-                            <!-- <div class="grid p-fluid to-center">
+                                    <div class="col-12"></div>
+                                    <!-- <div class="grid p-fluid to-center">
                                 <div class="field col-12 md:col-8 lg:col-6">
                                     <div>
                                         <label class="cursor"><span class="txt-link">Forget
@@ -59,13 +60,13 @@
                                     </div>
                                 </div>
                             </div> -->
-                            <div class="grid p-fluid to-center">
-                                <div class="col-6 md:col-4 lg:col-4">
-                                    <button pButton type="button" class="p-button-raised p-button-rounded" label="Login"
-                                        (click)="onLogin()" [disabled]="!f.valid"></button>
-                                    <!-- style="background-image: linear-gradient(to right, #709df9, #e63ae9);" -->
-                                </div>
-                                <!-- <div class="col-12 md:col-12 lg:col-12 txt-to-center">
+                                    <div class="grid p-fluid to-center">
+                                        <div class="col-6 md:col-6 lg:col-6">
+                                            <button pButton type="button" class="p-button-raised p-button-rounded"
+                                                label="Login" (click)="onLogin()" [disabled]="!f.valid"></button>
+                                            <!-- style="background-image: linear-gradient(to right, #709df9, #e63ae9);" -->
+                                        </div>
+                                        <!-- <div class="col-12 md:col-12 lg:col-12 txt-to-center">
                                     or
                                 </div>
                                 <div class="col-12 md:col-12 lg:col-12 txt-to-center txt-link">
@@ -73,12 +74,15 @@
                                         Sign Up
                                     </span>
                                 </div> -->
+                                    </div>
+                                    <div class="col-12 md:col-12 lg:col-12" style="height: 50px;"></div>
+                                </div>
                             </div>
-                            <div class="col-12 md:col-12 lg:col-12" style="height: 50px;"></div>
                         </div>
-                    </div>
+                    </form>
                 </div>
-            </form>
+                <div class="col-12 md:col-12 lg:col-4 panel3-view"></div>
+            </div>
         </div>
     </div>
 </div>

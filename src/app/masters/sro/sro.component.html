@@ -32,7 +32,7 @@
                                         <div class="col-12 md:col-4 lg:col-2">
                                             <span class="p-float-label">
                                                 <input name="_districtname" type="text" (change)="onCheck()"
-                                                    [(ngModel)]="sroName"  [pKeyFilter]="'alpha'" pInputText>
+                                                    [(ngModel)]="sroName"  [pKeyFilter]="block" pInputText>
                                                 <label for="float-input">SROName</label>
                                             </span>
                                         </div>
@@ -65,7 +65,7 @@
                             <div class="p-d-flex">
                                 <span class="p-input-icon-left p-ml-auto">
                                     <i class="pi pi-search"></i>
-                                    <input #searchInput pInputText type="text" (input)="dt.filterGlobal(searchInput.value, 'contains')" [pKeyFilter]="'alpha'" placeholder="Search By Name" />
+                                    <input #searchInput pInputText type="text" (input)="dt.filterGlobal(searchInput.value, 'contains')" [pKeyFilter]="block" placeholder="Search By Name" />
                                 </span>
                             </div>
                             <div class="grid" style="width: -webkit-fill-available;">
