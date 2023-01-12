@@ -5,36 +5,35 @@
                 <p-messages [(value)]="responseMsg" [enableService]="false"
                     [hideTransitionOptions]="'500ms cubic-bezier(0.86, 0, 0.076, 1)'"></p-messages>
                 <div #row1 class="col-12 md:col-12 lg:col-12 margin-gap">
-                        <div class="grid to-center shdw-light-btm">
-                            <div class="col-12 md:col-4 lg:col-2">
-                                <span class="p-float-label">
-                                    <p-dropdown name="_highcourtname" optionLabel="label" (onClick)="onSelect('HC')"
-                                        [options]="highCourtNameOptions" [(ngModel)]="highCourtName"
-                                        [autoDisplayFirst]="disableAutoDisplay" [filter]="true" filterBy="label" [required]="true">
-                                    </p-dropdown>
-                                    <label for="float-input">Court Type</label>
-                                </span>
-                            </div>
-                            <div class="col-12 md:col-4 lg:col-2">
-                                <span class="p-float-label">
-                                    <p-calendar name="_caseyear" [(ngModel)]="caseYear" view="year" dateFormat="yy"
-                                        inputId="yearpicker"></p-calendar>
-                                    <label for="float-input">Case Year</label>
-                                </span>
-                            </div>
-                            <div class="col-12 md:col-4 lg:col-2">
-                                <span class="p-float-label">
-                                    <input name="_caseno" type="text" [(ngModel)]="caseNo" [pKeyFilter]="'int'"
-                                        pInputText>
-                                    <label for="float-input">Case No.</label>
-                                </span>
-                            </div>
-                            <div class="col-12 md:col-4 lg:col-2" style="text-align: left;">
-                                <button pButton class="btn-in-div" pRipple type="button" label="View/Add"
-                                    (click)="onViewCase()"
-                                    [disabled]="(!highCourtName || !caseYear || !caseNo)"></button>
-                            </div>
+                    <div class="grid to-center shdw-light-btm">
+                        <div class="col-12 md:col-4 lg:col-2">
+                            <span class="p-float-label">
+                                <p-dropdown name="_highcourtname" optionLabel="label" (onClick)="onSelect('HC')"
+                                    [options]="highCourtNameOptions" [(ngModel)]="highCourtName"
+                                    [autoDisplayFirst]="disableAutoDisplay" [filter]="true" filterBy="label"
+                                    [required]="true">
+                                </p-dropdown>
+                                <label for="float-input">Court Type</label>
+                            </span>
                         </div>
+                        <div class="col-12 md:col-4 lg:col-2">
+                            <span class="p-float-label">
+                                <p-calendar name="_caseyear" [(ngModel)]="caseYear" view="year" dateFormat="yy"
+                                    inputId="yearpicker"></p-calendar>
+                                <label for="float-input">Case Year</label>
+                            </span>
+                        </div>
+                        <div class="col-12 md:col-4 lg:col-2">
+                            <span class="p-float-label">
+                                <input name="_caseno" type="text" [(ngModel)]="caseNo" [pKeyFilter]="'int'" pInputText>
+                                <label for="float-input">Case No.</label>
+                            </span>
+                        </div>
+                        <div class="col-12 md:col-4 lg:col-2" style="text-align: left;">
+                            <button pButton class="btn-in-div" pRipple type="button" label="View/Add"
+                                (click)="onViewCase()" [disabled]="(!highCourtName || !caseYear || !caseNo)"></button>
+                        </div>
+                    </div>
                 </div>
                 <p-tabView [(activeIndex)]="tabIndex">
                     <p-tabPanel header="Court Case" [disabled]="disableCaseTab">
@@ -53,7 +52,7 @@
                                                             <p-dropdown name="_respondenttype" optionLabel="label"
                                                                 [autoDisplayFirst]="disableAutoDisplay"
                                                                 (onClick)="onSelect('RT')"
-                                                                (onChange)="onChangeRespondent('T')"
+                                                                (onChange)="addSelectedItem('RT')"
                                                                 [options]="respondentTypeOptions"
                                                                 [(ngModel)]="respondentType" [required]="true">
                                                             </p-dropdown>
@@ -65,7 +64,8 @@
                                                             <p-dropdown name="_zone" optionLabel="label"
                                                                 (onClick)="onSelect('ZN')" [options]="zoneOptions"
                                                                 [autoDisplayFirst]="disableAutoDisplay"
-                                                                [(ngModel)]="zone"  [filter]="true" filterBy="label" [required]="true">
+                                                                [(ngModel)]="zone" [filter]="true" filterBy="label"
+                                                                [required]="true">
                                                             </p-dropdown>
                                                             <label for="float-input">Zone</label>
                                                         </span>
@@ -75,8 +75,8 @@
                                                             <p-dropdown name="_district" optionLabel="label"
                                                                 (onClick)="onSelect('DT')" [options]="districtOptions"
                                                                 [(ngModel)]="district"
-                                                                [autoDisplayFirst]="disableAutoDisplay"
-                                                                [filter]="true" filterBy="label" [required]="true">
+                                                                [autoDisplayFirst]="disableAutoDisplay" [filter]="true"
+                                                                filterBy="label" [required]="true">
                                                             </p-dropdown>
                                                             <label for="float-input">District</label>
                                                         </span>
@@ -86,8 +86,8 @@
                                                             <p-dropdown name="_sro" optionLabel="label"
                                                                 (onClick)="onSelect('SR')" [options]="sroOptions"
                                                                 [(ngModel)]="sro"
-                                                                [autoDisplayFirst]="disableAutoDisplay"
-                                                                [filter]="true" filterBy="label" [required]="true">
+                                                                [autoDisplayFirst]="disableAutoDisplay" [filter]="true"
+                                                                filterBy="label" [required]="true">
                                                             </p-dropdown>
                                                             <label for="float-input">SRO</label>
                                                         </span>
@@ -97,17 +97,16 @@
                                                             <p-dropdown name="_casetype" optionLabel="label"
                                                                 (onClick)="onSelect('CT')" [options]="caseTypeOptions"
                                                                 [(ngModel)]="caseType"
-                                                                [autoDisplayFirst]="disableAutoDisplay"
-                                                                [filter]="true" filterBy="label" [required]="true">
+                                                                [autoDisplayFirst]="disableAutoDisplay" [filter]="true"
+                                                                filterBy="label" [required]="true">
                                                             </p-dropdown>
                                                             <label for="float-input">Case Type</label>
                                                         </span>
                                                     </div>
                                                     <div class="col-12 md:col-4 lg:col-2">
                                                         <span class="p-float-label">
-                                                            <input name="_petitionername" type="text" 
-                                                                [(ngModel)]="petitionerName" 
-                                                                pInputText>
+                                                            <input name="_petitionername" type="text"
+                                                                [(ngModel)]="petitionerName" pInputText>
                                                             <label for="float-input">Petitioner Name</label>
                                                         </span>
                                                     </div>
@@ -118,11 +117,12 @@
                                                     <div class="col-12 md:col-4 lg:col-2">
                                                         <span class="p-float-label">
                                                             <p-dropdown name="_respondentcadre" optionLabel="label"
-                                                                (onClick)="onSelect('RC')" 
+                                                                (onClick)="onSelect('RC')"
                                                                 [autoDisplayFirst]="disableAutoDisplay"
                                                                 [options]="respondentCadreOptions"
-                                                                [(ngModel)]="respondentCadre"  [filter]="true" filterBy="label" [editable]="isEditable" 
-                                                                (onChange)="onChangeRespondent('R')">
+                                                                [(ngModel)]="respondentCadre" [filter]="true"
+                                                                filterBy="label" [editable]="isEditable"
+                                                                (onChange)="addSelectedItem('RC')">
                                                             </p-dropdown>
                                                             <label for="float-input">Respondent</label>
                                                         </span>
@@ -130,8 +130,7 @@
                                                     <div class="col-12 md:col-4 lg:col-4">
                                                         <span class="p-float-label">
                                                             <input name="_respondents" type="text"
-                                                                [(ngModel)]="respondents" required pInputText
-                                                                >
+                                                                [(ngModel)]="respondents" required pInputText>
                                                             <label for="float-input">Respondents Name</label>
                                                         </span>
                                                     </div>
@@ -163,8 +162,8 @@
                                                                 [autoDisplayFirst]="disableAutoDisplay"
                                                                 optionLabel="label" (onClick)="onSelect('CF')"
                                                                 [options]="counterFiledOptions"
-                                                                [(ngModel)]="counterFiled" [filter]="true" filterBy="label" 
-                                                                [required]="true">
+                                                                [(ngModel)]="counterFiled" [filter]="true"
+                                                                filterBy="label" [required]="true">
                                                             </p-dropdown>
                                                             <label for="float-input">Counter Filed</label>
                                                         </span>
@@ -186,10 +185,12 @@
                                                             <label for="_counterFiled">LinkedCase Available</label><br>
                                                             <div style="text-align: center;">
                                                                 <p-radioButton name="_linkedcase" value="1" label="Yes"
-                                                                    [(ngModel)]="isLinkedCaseAvailable" (ngModelChange)="onClearLinkedCase('ALL')">
+                                                                    [(ngModel)]="isLinkedCaseAvailable"
+                                                                    (ngModelChange)="onClearLinkedCase('ALL')">
                                                                 </p-radioButton>&nbsp;
                                                                 <p-radioButton name="_linkedcase" value="0" label="No"
-                                                                    [(ngModel)]="isLinkedCaseAvailable" (ngModelChange)="onClearLinkedCase('ALL')">
+                                                                    [(ngModel)]="isLinkedCaseAvailable"
+                                                                    (ngModelChange)="onClearLinkedCase('ALL')">
                                                                 </p-radioButton>&nbsp;
                                                             </div>
                                                         </div>
@@ -205,15 +206,16 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-12 no-pad">
-                                                    <p-messages [(value)]="lmsg" [enableService]="false"
+                                                        <p-messages [(value)]="lmsg" [enableService]="false"
                                                             [hideTransitionOptions]="'500ms cubic-bezier(0.86, 0, 0.076, 1)'"></p-messages>
-                                                        </div>
+                                                    </div>
                                                     <div class="col-12 md:col-4 lg:col-2">
                                                         <span class="p-float-label">
                                                             <p-dropdown name="_lcourtname" optionLabel="label"
                                                                 (onClick)="onSelect('HC')" [options]="lCourtNameOptions"
                                                                 [(ngModel)]="lCourtName" (onChange)="loadCaseNo()"
-                                                                [autoDisplayFirst]="disableAutoDisplay" [filter]="true" filterBy="label">
+                                                                [autoDisplayFirst]="disableAutoDisplay" [filter]="true"
+                                                                filterBy="label">
                                                             </p-dropdown>
                                                             <label for="float-input">Court Type</label>
                                                         </span>
@@ -221,7 +223,8 @@
                                                     <div class="col-12 md:col-4 lg:col-2">
                                                         <span class="p-float-label">
                                                             <p-calendar name="_lcaseyear" [(ngModel)]="lCaseYear"
-                                                                view="year" dateFormat="yy" (ngModelChange)="loadCaseNo()"
+                                                                view="year" dateFormat="yy"
+                                                                (ngModelChange)="loadCaseNo()"
                                                                 inputId="yearpicker"></p-calendar>
                                                             <label for="float-input">Case Year</label>
                                                         </span>
@@ -231,8 +234,8 @@
                                                             <p-dropdown name="_lcasetype" optionLabel="label"
                                                                 (onClick)="onSelect('CT')" [options]="lCaseTypeOptions"
                                                                 [(ngModel)]="lCaseType" (onChange)="loadCaseNo()"
-                                                                [autoDisplayFirst]="disableAutoDisplay"
-                                                                [filter]="true" filterBy="label">
+                                                                [autoDisplayFirst]="disableAutoDisplay" [filter]="true"
+                                                                filterBy="label">
                                                             </p-dropdown>
                                                             <label for="float-input">Case Type</label>
                                                         </span>
@@ -242,7 +245,8 @@
                                                             <p-dropdown name="lcaseno" optionLabel="label"
                                                                 (onClick)="onSelect('CN')" [options]="lCaseNoOptions"
                                                                 [(ngModel)]="lCaseNo"
-                                                                [autoDisplayFirst]="disableAutoDisplay" [filter]="true" filterBy="label" >
+                                                                [autoDisplayFirst]="disableAutoDisplay" [filter]="true"
+                                                                filterBy="label">
                                                             </p-dropdown>
                                                             <label for="float-input">Linked Case No.</label>
                                                         </span>
@@ -288,11 +292,13 @@
                                             <div #row5 class="col-12 md:col-11 lg:col-11 txt-to-center no-padding">
                                                 <button pButton pRipple type="button" label="Clear"
                                                     (click)="onClearCaseForm()"></button> &nbsp;
-                                                    <button pButton pRipple type="button" label="Save"
+                                                <button pButton pRipple type="button" label="Save"
                                                     (click)="onSaveCase()"
-                                                    [disabled]="(!caseForm.valid || !caseForm.dirty || (isLinkedCaseAvailable=='1' && linkedCaseDetails.length==0))"></button> &nbsp;
-                                                    <button pButton pRipple type="button" label="Next"
-                                                    (click)="onNext()" [disabled]="disableWritTab"></button>
+                                                    [disabled]="(!caseForm.valid || !caseForm.dirty || (isLinkedCaseAvailable=='1' && linkedCaseDetails.length==0))"></button>
+                                                &nbsp;
+                                                <button pButton pRipple type="button" label="Next" (click)="onNext()"
+                                                    icon="pi pi-fw pi-angle-double-right" iconPos="right"
+                                                    [disabled]="disableWritTab  || !isCourtCaseSaved"></button>
                                             </div>
                                         </div>
                                     </div>
@@ -300,7 +306,7 @@
                             </div>
                         </div>
                     </p-tabPanel>
-                    <p-tabPanel header="Writ Appeals" [disabled]="disableWritTab">
+                    <p-tabPanel header="Writ Appeals" [disabled]="disableWritTab || !isCourtCaseSaved">
                         <div class="col-12 md:col-12 lg:col-12 tab-form-hdr">
                             Form-VI Writ Appeals,Review Applications filed before the HC
                         </div>
@@ -313,7 +319,7 @@
                                                 <div class="col-12 md:col-4 lg:col-2">
                                                     <span class="p-float-label">
                                                         <input name="_hcreferenceno" type="text"
-                                                            [(ngModel)]="hcreferenceNo" pInputText>
+                                                            [(ngModel)]="hcreferenceNo" pInputText required>
                                                         <label for="float-input">HC Reference No.</label>
                                                     </span>
                                                 </div>
@@ -337,13 +343,13 @@
                                                 <div class="col-12 md:col-4 lg:col-2">
                                                     <span class="p-float-label">
                                                         <input name="_natureofdisposal" type="text"
-                                                            [(ngModel)]="natureofDisposal" pInputText>
+                                                            [(ngModel)]="natureofDisposal" pInputText required>
                                                         <label for="float-input">Nature of Disposal</label>
                                                     </span>
                                                 </div>
                                                 <div class="col-12 md:col-4 lg:col-4">
                                                     <span class="p-float-label">
-                                                        <input name="_remarks" type="text" [(ngModel)]="remarks"
+                                                        <input name="_writremarks" type="text" [(ngModel)]="writRemarks"
                                                             pInputText>
                                                         <label for="float-input">Remarks</label>
                                                     </span>
@@ -352,21 +358,114 @@
                                         </div>
                                         <div #row2 class="col-12 md:col-11 lg:col-11 txt-to-center no-padding">
                                             <button pButton pRipple type="button" label="Prev"
-                                                    (click)="onPrev()"></button>&nbsp;
-                                                    <button pButton pRipple type="button" label="Clear"
-                                                    (click)="onClearAppealForm()"></button> &nbsp;
+                                                icon="pi pi-fw pi-angle-double-left" (click)="onPrev()"></button>&nbsp;
+                                            <button pButton pRipple type="button" label="Clear"
+                                                (click)="onClearAppealForm()"></button> &nbsp;
                                             <button pButton pRipple type="button" label="Save" (click)="onSaveAppeal()"
                                                 [disabled]="(!writForm.valid || !writForm.dirty)"></button>&nbsp;
-                                                <button pButton pRipple type="button" label="Next"
-                                                    (click)="onNext()" [disabled]="disableJudgementTab"></button>
+                                            <button pButton pRipple type="button" label="Next" (click)="onNext()"
+                                                icon="pi pi-fw pi-angle-double-right" iconPos="right"
+                                                [disabled]="disableJudgementTab"></button>
                                         </div>
                                     </div>
                                 </form>
                             </div>
                         </div>
                     </p-tabPanel>
-                    <p-tabPanel header="Post Judgement Followup" [disabled]="disableJudgementTab">
-                        Content 3
+                    <p-tabPanel header="Post Judgement Followup"[disabled]="disableJudgementTab" >
+                        <div class="col-12 md:col-12 lg:col-12 tab-form-hdr">
+                            Form-IV Time Bound/Judgements/Directions to Govt/IGR/Others of High Court of Madras/Madurai
+                        </div>
+                        <div class="col-12 md:col-12 lg:col-12">
+                            <div class="col-12 md:col-12 lg:col-12 box" style="margin-top: 5px;">
+                                <form #judgementForm="ngForm" name="writAppealsForm">
+                                    <div #main class="col-12 md:col-12 lg:col-12">
+                                        <div #row1 class="col-12 md:col-12 lg:col-12">
+                                            <div class="grid">
+                                                <div class="col-12 md:col-4 lg:col-2">
+                                                    <span class="p-float-label">
+                                                        <p-calendar name="_judgementdate" [showIcon]="true"
+                                                            [(ngModel)]="judgementDate" [required]="true"></p-calendar>
+                                                        <label for="float-input">Judgement Date</label>
+                                                    </span>
+                                                </div>
+                                                <div class="col-12 md:col-4 lg:col-2">
+                                                    <span class="p-float-label">
+                                                        <p-calendar name="_receiptdate" [showIcon]="true"
+                                                            [(ngModel)]="receiptDate" [required]="true"></p-calendar>
+                                                        <label for="float-input">Receipt Date</label>
+                                                    </span>
+                                                </div>
+                                                <div class="col-12 md:col-4 lg:col-2">
+                                                    <span class="p-float-label">
+                                                        <input name="_timelimit" type="text" [(ngModel)]="timeLimit"
+                                                           placeholder="weeks/months" pInputText required>
+                                                        <label for="float-input">TimeLimit</label>
+                                                    </span>
+                                                </div>
+                                                <div class="col-12 md:col-4 lg:col-2">
+                                                    <span class="p-float-label">
+                                                        <p-dropdown name="_directedTo"
+                                                            [autoDisplayFirst]="disableAutoDisplay" optionLabel="label"
+                                                            (onClick)="onSelect('RC')" (onChange)="addSelectedItem('DT')"
+                                                            [options]="directedToOptions"
+                                                            [(ngModel)]="directedTo">
+                                                        </p-dropdown>
+                                                        <label for="float-input">Directed To</label>
+                                                    </span>
+                                                </div>
+                                                <div class="col-12 md:col-4 lg:col-4">
+                                                    <span class="p-float-label">
+                                                        <input name="_respondents" type="text" [(ngModel)]="directedToList"
+                                                            required pInputText>
+                                                        <label for="float-input">Direction List</label>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div #row2 class="col-12 md:col-12 lg:col-12">
+                                            <div class="grid">
+                                                <div class="col-12 md:col-4 lg:col-2">
+                                                    <span class="p-float-label">
+                                                        <p-calendar name="_expirydate" [showIcon]="true"
+                                                            [(ngModel)]="expiryDate" [required]="true"></p-calendar>
+                                                        <label for="float-input">Expiry Date</label>
+                                                    </span>
+                                                </div>  
+                                                <div class="col-12 md:col-4 lg:col-2">
+                                                    <span class="p-float-label">
+                                                        <input name="_natureofdirection" type="text"
+                                                            [(ngModel)]="natureofDirection" pInputText required>
+                                                        <label for="float-input">Nature of Direction</label>
+                                                    </span>
+                                                </div>
+                                                <div class="col-12 md:col-4 lg:col-3">
+                                                    <span class="p-float-label">
+                                                        <input name="_compliedornot" type="text" [(ngModel)]="compliedorNot"
+                                                            pInputText required>
+                                                        <label for="float-input">CompliedOrNot/Reason</label>
+                                                    </span>
+                                                </div>
+                                                <div class="col-12 md:col-4 lg:col-3">
+                                                    <span class="p-float-label">
+                                                        <input name="_judgementremarks" type="text" [(ngModel)]="judgementRemarks" pInputText required>
+                                                        <label for="float-input">Remarks</label>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div #row3 class="col-12 md:col-11 lg:col-11 txt-to-center no-padding">
+                                            <button pButton pRipple type="button" label="Prev"
+                                                icon="pi pi-fw pi-angle-double-left" (click)="onPrev()"></button>&nbsp;
+                                            <button pButton pRipple type="button" label="Clear"
+                                                (click)="onClearJudgementForm()"></button> &nbsp;
+                                            <button pButton pRipple type="button" label="Save" (click)="onSaveJudgement()"
+                                                [disabled]="(!judgementForm.valid || !judgementForm.dirty)"></button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     </p-tabPanel>
                 </p-tabView>
             </div>
