@@ -45,7 +45,6 @@ export class MenumasterComponent implements OnInit {
     this.cols = TableConstants.MenuMasterColumns;
     this.masters = this._masterService.getMastersAll();
     this.userInfo = this._authService.getUserInfo();
-    console.log('role',this.userInfo)
     this.priorityOptions = [
       {label: '1', value: 1},
       {label: '2',value: 2},
