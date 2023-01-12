@@ -247,15 +247,15 @@ export class CourtCaseComponent implements OnInit {
           }
           break;
         case 'CN':
-          if(this.caseNoList.length !== 0) {
+          if (this.caseNoList.length !== 0) {
             this.caseNoList.forEach((cn: any) => {
               linkedCaseNoList.push(
-              { label: cn.caseno, value: cn.caseno }
-            )
-          })
+                { label: cn.caseno, value: cn.caseno }
+              )
+            })
+          }
           this.lCaseNoOptions = linkedCaseNoList;
           this.lCaseNoOptions.unshift({ label: '-select-', value: null });
-          }
           break;
       }
     }
@@ -310,8 +310,8 @@ export class CourtCaseComponent implements OnInit {
   loadLinkedCases() {
     const params = new HttpParams().append('courtcaseid', this.caseId);
     this._restApiService.getByParameters('LinkedCase/GetLinkedCase', params).subscribe(list => {
-      if(list !== undefined && list !== null) {
-        if(list.length !== 0) {
+      if (list !== undefined && list !== null) {
+        if (list.length !== 0) {
           this.linkedCaseDetails = list;
           this.isLinkedCaseAvailable = '1';
         } else {
@@ -363,31 +363,35 @@ export class CourtCaseComponent implements OnInit {
     this.caseNoList = [];
     if (this.lCaseType !== undefined && this.lCaseType !== null && this.lCourtName !== undefined &&
       this.lCourtName !== null && this.lCaseYear !== undefined && this.lCaseYear !== null) {
-      const params = new HttpParams().append('courttype', this.lCourtName.value)
-        .set('caseyear', new Date(this.lCaseYear).getFullYear()).set('casetype', this.lCaseType.value);
-      this._restApiService.getByParameters('Respondent/GetCaseNoList', params).subscribe(res => {
-        if (res !== undefined && res !== null) {
-          if(res.length !== 0) {
-            res.forEach((i: any) => {
-              this.caseNoList.push({ caseno: i });
-            })
+      if (this.lCaseType.value !== undefined && this.lCaseType.value !== null &&
+        this.lCourtName.value !== undefined && this.lCourtName.value !== null) {
+        const params = new HttpParams().append('courttype', this.lCourtName.value)
+          .set('caseyear', new Date(this.lCaseYear).getFullYear()).set('casetype', this.lCaseType.value);
+        this._restApiService.getByParameters('Respondent/GetCaseNoList', params).subscribe(res => {
+          if (res !== undefined && res !== null) {
+            if (res.length !== 0) {
+              res.forEach((i: any) => {
+                this.caseNoList.push({ caseno: i });
+              })
+            } else {
+              this.caseNoList = [];
+            }
           } else {
             this.caseNoList = [];
           }
-        } else {
-          this.caseNoList = [];
-        }
-      })
+        })
+      }
     }
   }
 
   onAddLinkedCase() {
-    if(this.linkedCaseDetails.length > 0) {
+    if (this.linkedCaseDetails.length > 0) {
       this.linkedCaseDetails.forEach((item, index) => {
-        if(item.caseno === this.lCaseNo.value) {
+        if (item.caseno === this.lCaseNo.value && item.caseyear === new Date(this.lCaseYear).getFullYear() &&
+          item.courtid === this.lCourtName.value) {
           this.linkedCaseDetails.splice(index, 1);
           this.lmsg = [{ severity: ResponseMessage.WarnSeverity, detail: 'Case no. ' + this.lCaseNo.value + ResponseMessage.CasenoExistMessage }];
-        setTimeout(() => this.lmsg = [], 2000);
+          setTimeout(() => this.lmsg = [], 2000);
         }
       })
     }
@@ -404,7 +408,7 @@ export class CourtCaseComponent implements OnInit {
       'casetypeid': this.lCaseType.value,
       'caseno': this.lCaseNo.label, 'caseyear': new Date(this.lCaseYear).getFullYear()
     })
-    
+
     ///clearing linked case after added to the list
     this.onClearLinkedCase('FIELDS');
   }
@@ -453,8 +457,8 @@ export class CourtCaseComponent implements OnInit {
     this.lCaseType = null;
     this.lCaseTypeOptions = [];
     this.lCaseYear = null;
-    if(value === 'ALL') {
-    this.linkedCaseDetails = [];
+    if (value === 'ALL') {
+      this.linkedCaseDetails = [];
     }
   }
 
@@ -494,7 +498,7 @@ export class CourtCaseComponent implements OnInit {
       if (res) {
         this.responseMsg = [{ severity: ResponseMessage.SuccessSeverity, detail: ResponseMessage.SuccessMessage }];
         setTimeout(() => this.responseMsg = [], 3000);
-        if(this.isLinkedCaseAvailable === '1') {
+        if (this.isLinkedCaseAvailable === '1') {
           this.onClearLinkedCase('ALL');
         }
         this.onClearCaseForm();
@@ -508,16 +512,16 @@ export class CourtCaseComponent implements OnInit {
   onSaveLinkedCase() {
     if (this.isLinkedCaseAvailable === '1' && this.linkedCaseDetails.length !== 0) {
       this._restApiService.post('LinkedCase/SaveLinkedCase', this.linkedCaseDetails).subscribe(response => {
-        if(response) {
+        if (response) {
           this.responseMsg = [{ severity: ResponseMessage.SuccessSeverity, detail: ResponseMessage.SuccessMessage }];
-        setTimeout(() => this.responseMsg = [], 3000);
-        this.onClearCaseForm();
+          setTimeout(() => this.responseMsg = [], 3000);
+          this.onClearCaseForm();
         }
       })
     } else {
       this.responseMsg = [{ severity: ResponseMessage.SuccessSeverity, detail: ResponseMessage.SuccessMessage }];
-        setTimeout(() => this.responseMsg = [], 3000);
-        this.onClearCaseForm();
+      setTimeout(() => this.responseMsg = [], 3000);
+      this.onClearCaseForm();
     }
   }
 
