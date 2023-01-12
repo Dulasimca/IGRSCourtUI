@@ -353,7 +353,7 @@ export class TableConstants {
 
     public static readonly linkedCaseColumns = [
         { field: 'courtname', header: 'Court Name', align: 'left' },
-        { field: 'casetype', header: 'Case Type', align: 'left' },
+        { field: 'casetypename', header: 'Case Type', align: 'left' },
         { field: 'caseyear', header: 'Case Year', align: 'right' },
         { field: 'caseno', header: 'Case No', align: 'right' },
     ];

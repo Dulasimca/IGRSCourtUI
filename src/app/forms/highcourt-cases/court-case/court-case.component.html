@@ -164,7 +164,7 @@
                                                                 optionLabel="label" (onClick)="onSelect('CF')"
                                                                 [options]="counterFiledOptions"
                                                                 [(ngModel)]="counterFiled" [filter]="true" filterBy="label" 
-                                                                (ngModelChange)="onCounterSelect()" [required]="true">
+                                                                [required]="true">
                                                             </p-dropdown>
                                                             <label for="float-input">Counter Filed</label>
                                                         </span>
@@ -175,6 +175,7 @@
                                                                 [autoDisplayFirst]="disableAutoDisplay"
                                                                 optionLabel="label" (onClick)="onSelect('SC')"
                                                                 [options]="stateOfCaseOptions" [(ngModel)]="stateOfCase"
+                                                                (ngModelChange)="onCaseStatusSelect('C')"
                                                                 [filter]="true" filterBy="label" [required]="true">
                                                             </p-dropdown>
                                                             <label for="float-input">Case Status</label>
@@ -328,7 +329,7 @@
                                                         <p-dropdown name="_writappealstatus" [autoDisplayFirst]="false"
                                                             [options]="writappealstatusOptions" optionLabel="label"
                                                             (onClick)="onSelect('WS')" [(ngModel)]="writappealStatus"
-                                                            [required]="true">
+                                                            (ngModelChange)="onCaseStatusSelect('W')" [required]="true">
                                                         </p-dropdown>
                                                         <label for="float-input">WritappealStatus</label>
                                                     </span>

@@ -81,9 +81,9 @@ export class CourtCaseComponent implements OnInit {
   writappealstatusOptions: SelectItem[] = [];
   natureofDisposal: any;
   remarks: any;
-  linkedCaseListToDB: any[] = [];
   @ViewChild('caseForm', { static: false }) _caseForm!: NgForm;
   @ViewChild('writForm', { static: false }) _appealForm!: NgForm;
+  @ViewChild('judgementForm', { static: false }) _judgementForm!: NgForm;
 
   constructor(private _restApiService: RestapiService, private _masterService: MasterService,
     private _datePipe: DatePipe, private _authService: AuthService) { }
@@ -237,14 +237,23 @@ export class CourtCaseComponent implements OnInit {
           }
           break;
         case 'WS':
-          if (this.masters.writappealstatus_Masters) {
-            this.masters.writappealstatus_Masters.forEach((ws: any) => {
-              writappealStatusList.push(
-                { label: ws.writappealstatusname, value: ws.writappealstatusid }
+          if (this.masters.casestatus_Masters !== undefined && this.masters.casestatus_Masters !== null) {
+            this.masters.casestatus_Masters.forEach((cs: any) => {
+              caseStatusList.push(
+                { label: cs.casestatusname, value: cs.casestatusid }
               )
             })
-            this.writappealstatusOptions = writappealStatusList;
+            this.writappealstatusOptions = caseStatusList;
+            this.writappealstatusOptions.unshift({ label: '-select-', value: null });
           }
+          // if (this.masters.writappealstatus_Masters) {
+          //   this.masters.writappealstatus_Masters.forEach((ws: any) => {
+          //     writappealStatusList.push(
+          //       { label: ws.writappealstatusname, value: ws.writappealstatusid }
+          //     )
+          //   })
+          //   this.writappealstatusOptions = writappealStatusList;
+          // }
           break;
         case 'CN':
           if (this.caseNoList.length !== 0) {
@@ -346,14 +355,23 @@ export class CourtCaseComponent implements OnInit {
     }
   }
 
-  onCounterSelect() {
-    if (this.counterFiled !== undefined && this.counterFiled !== null) {
-      if (this.counterFiled.value !== undefined && this.counterFiled.value !== null) {
-        if ((this.counterFiled.value * 1) !== 1) {
-          this.disableWritTab = true;
-          this.onClearAppealForm();
+  onCaseStatusSelect(value: string) {
+    if (this.stateOfCase !== undefined && this.stateOfCase !== null) {
+      if (this.stateOfCase.value !== undefined && this.stateOfCase.value !== null) {
+        if (value === 'C') {
+          if ((this.stateOfCase.value * 1) !== 4) {
+            this.disableWritTab = true;
+            this.onClearAppealForm();
+          } else {
+            this.disableWritTab = false;
+          }
         } else {
-          this.disableWritTab = false;
+          if ((this.writappealStatus.value * 1) === 4) {
+            this.disableJudgementTab = true;
+            this.onClearJudgementForm();
+          } else {
+            this.disableJudgementTab = false;
+          }
         }
       }
     }
@@ -399,16 +417,9 @@ export class CourtCaseComponent implements OnInit {
       'caseid': this.linkedCaseId,
       'courtcaseid': 0, 'created_on': new Date(),
       'courtname': this.lCourtName.label, 'courtid': this.lCourtName.value,
-      'casetype': this.lCaseType.label, 'casetypeid': this.lCaseType.value,
+      'casetypename': this.lCaseType.label, 'casetypeid': this.lCaseType.value,
       'caseno': this.lCaseNo.label, 'caseyear': new Date(this.lCaseYear).getFullYear()
     })
-    this.linkedCaseListToDB.push({
-      'caseid': this.linkedCaseId, 'created_on': new Date(),
-      'courtid': this.lCourtName.value,
-      'casetypeid': this.lCaseType.value,
-      'caseno': this.lCaseNo.label, 'caseyear': new Date(this.lCaseYear).getFullYear()
-    })
-
     ///clearing linked case after added to the list
     this.onClearLinkedCase('FIELDS');
   }
@@ -417,6 +428,10 @@ export class CourtCaseComponent implements OnInit {
     if (index !== undefined && index !== null) {
       this.linkedCaseDetails.splice(index, 1);
     }
+
+  }
+
+  onClearJudgementForm() {
 
   }
 
