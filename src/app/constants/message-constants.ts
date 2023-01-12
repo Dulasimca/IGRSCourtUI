@@ -14,6 +14,7 @@ export class ResponseMessage {
     public static readonly ErrorMessage = 'Error occurred, Please try again !';
     public static readonly WarningMessage = 'Warning Message !';
     public static readonly NoRecordMessage = 'No Record Found !';
-    public static readonly DropdownMessage = 'Please select appropriate casetype to load dropdown!'
+    public static readonly DropdownMessage = 'Please select appropriate casetype to load dropdown !';
+    public static readonly CasenoExistMessage = ' already exists in the table !';
 
 }

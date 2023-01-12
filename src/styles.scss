@@ -289,7 +289,9 @@ label {
     border: 1px solid #4eeb58 !important;
     box-shadow: inherit !important;
 }
-
+.p-dropdown-panel {
+    text-align: left !important;
+}
 // .p-dropdown-open {
 //     border: .2px solid #4eeb58  !important;
 //     box-shadow:  0 0 0 .15rem #7bffa7 !important;
@@ -677,7 +679,7 @@ label {
     // margin-top: .5rem;
 }
 .panel3-view {
-    background-image: url(assets/images/layout/1506463.jpg) !important;
+    background-image: url(assets/images/layout/justice-statue.jpg) !important;
     // border: 0.5px solid #4ed39e !important;
     background-size: cover !important;
     background-position: inherit !important;
