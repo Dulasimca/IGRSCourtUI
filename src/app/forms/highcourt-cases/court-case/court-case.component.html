@@ -172,7 +172,7 @@
                                                         <span class="p-float-label">
                                                             <p-dropdown name="_stateofcase"
                                                                 [autoDisplayFirst]="disableAutoDisplay"
-                                                                optionLabel="label" (onClick)="onSelect('SC')"
+                                                                optionLabel="label" (onClick)="onSelect('CS')"
                                                                 [options]="stateOfCaseOptions" [(ngModel)]="stateOfCase"
                                                                 (ngModelChange)="onCaseStatusSelect('C')"
                                                                 [filter]="true" filterBy="label" [required]="true">
@@ -334,7 +334,7 @@
                                                     <span class="p-float-label">
                                                         <p-dropdown name="_writappealstatus" [autoDisplayFirst]="false"
                                                             [options]="writappealstatusOptions" optionLabel="label"
-                                                            (onClick)="onSelect('WS')" [(ngModel)]="writappealStatus"
+                                                            (onClick)="onSelect('CS')" [(ngModel)]="writappealStatus"
                                                             (ngModelChange)="onCaseStatusSelect('W')" [required]="true">
                                                         </p-dropdown>
                                                         <label for="float-input">WritappealStatus</label>

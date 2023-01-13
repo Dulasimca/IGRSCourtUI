@@ -188,7 +188,7 @@ export class CourtCaseComponent implements OnInit {
             this.lCourtNameOptions.unshift({ label: '-select-', value: null });
           }
           break;
-        case 'SC':
+        case 'CS':
           if (this.masters.casestatus_Masters !== undefined && this.masters.casestatus_Masters !== null) {
             this.masters.casestatus_Masters.forEach((cs: any) => {
               caseStatusList.push(
