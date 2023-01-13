@@ -377,11 +377,11 @@ export class CourtCaseComponent implements OnInit {
       if (res !== undefined && res !== null) {
         if (res.length !== 0) {
           this.judgementId = res[0].judgementid;
-          this.judgementDate = res[0].judgementdate;
-          this.receiptDate = res[0].receiptdate;
+          this.judgementDate = new Date(res[0].judgementdate);
+          this.receiptDate = new Date(res[0].receiptdate);
           this.timeLimit = res[0].timelimit;
           this.directedToList = res[0].directionlist;
-          this.expiryDate = res[0].expirydate;
+          this.expiryDate = new Date(res[0].expirydate);
           this.natureofDirection = res[0].natureofdirection;
           this.compliedorNot = res[0].compiledornot;
           this.judgementRemarks = res[0].remarks;
