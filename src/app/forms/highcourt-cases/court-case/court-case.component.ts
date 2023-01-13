@@ -29,7 +29,7 @@ export class CourtCaseComponent implements OnInit {
   ///court case
   isCourtCaseSaved: boolean = false;
   courtCaseTitle: string = 'Form-I Government Respondent';
-  caseId: any;
+  caseId: any = 0;
   zoneOptions: SelectItem[] = [];
   zone: any;
   districtOptions: SelectItem[] = [];
@@ -62,7 +62,7 @@ export class CourtCaseComponent implements OnInit {
   isEditable: boolean = false;
   isLinkedCaseAvailable: string = '0';
   ///linked case
-  linkedCaseId: any;
+  linkedCaseId: any = 0;
   caseNoList: any[] = [];
   lCourtName: any;
   lCourtNameOptions: SelectItem[] = [];
@@ -75,7 +75,8 @@ export class CourtCaseComponent implements OnInit {
   linkedCaseDetails: any[] = [];
   lmsg: any;
   ///writ form
-  writId: any;
+  isWritCaseSaved: boolean = false;
+  writId: any = 0;
   hcreferenceNo: any;
   regularNumber: any;
   writappealStatus: any;
@@ -83,6 +84,7 @@ export class CourtCaseComponent implements OnInit {
   natureofDisposal: any;
   writRemarks: any;
   //judgement form
+  judgementId: any = 0;
   judgementDate: any;
   receiptDate: any;
   timeLimit: any;
@@ -313,7 +315,9 @@ export class CourtCaseComponent implements OnInit {
             this.disableWritTab = ((res[0].casestatusid * 1) !== 4) ? true : false;
             this.isCourtCaseSaved = ((res[0].casestatusid * 1) === 4) ? true : false; //temporary
             this.loadLinkedCases();
-            this.loadWritAppeals();
+            if((res[0].casestatusid * 1) === 4) {
+              this.loadWritAppeals();
+            }
           } else {
             this.onClearCaseForm();
           }
@@ -354,12 +358,38 @@ export class CourtCaseComponent implements OnInit {
           this.writappealStatus = { label: res[0].statusname, value: res[0].statusid };
           this.writappealstatusOptions = [{ label: res[0].statusname, value: res[0].statusid }];
           this.disableJudgementTab = ((res[0].statusid * 1) !== 4) ? false : true;
-          // this.isCourtCaseSaved = ((res[0].statusid * 1) === 4) ? true : false; //temporary
+          this.isWritCaseSaved = ((res[0].statusid * 1) !== 4) ? true : false; //temporary
+          if((res[0].statusid * 1) !== 4) {
+            this.loadPostJjudgement();
+          }
         } else {
           this.onClearAppealForm();
         }
       } else {
         this.onClearAppealForm();
+      }
+    })
+  }
+
+  loadPostJjudgement() {
+    const params = new HttpParams().append('courtcaseid', this.caseId);
+    this._restApiService.getByParameters('PostJudgementCourtCase/GetPostJudgement', params).subscribe(res => {
+      if (res !== undefined && res !== null) {
+        if (res.length !== 0) {
+          this.judgementId = res[0].judgementid;
+          this.judgementDate = res[0].judgementdate;
+          this.receiptDate = res[0].receiptdate;
+          this.timeLimit = res[0].timelimit;
+          this.directedToList = res[0].directionlist;
+          this.expiryDate = res[0].expirydate;
+          this.natureofDirection = res[0].natureofdirection;
+          this.compliedorNot = res[0].compiledornot;
+          this.judgementRemarks = res[0].remarks;
+        } else {
+          this.onClearJudgementForm();
+        }
+      } else {
+        this.onClearJudgementForm();
       }
     })
   }
@@ -387,8 +417,8 @@ export class CourtCaseComponent implements OnInit {
         }
         break;
       case 'DT':
-        if(this.directedTo !== undefined && this.directedTo !== null) {
-          if(this.directedTo.value !== undefined && this.directedTo.value !== null) {
+        if (this.directedTo !== undefined && this.directedTo !== null) {
+          if (this.directedTo.value !== undefined && this.directedTo.value !== null) {
             this.directedToList += this.directedTo.label + ',';
           }
         }
@@ -475,15 +505,28 @@ export class CourtCaseComponent implements OnInit {
   }
 
   onClearJudgementForm() {
-
+    this.caseId = 0;
+    this.writId = 0;
+    this.judgementId = 0;
+    this._judgementForm.reset();
+    this._judgementForm.form.markAsUntouched();
+    this._judgementForm.form.markAsPristine();
+    this.directedTo = null;
+    this.directedToOptions = [];
+    this.isCourtCaseSaved = false;
+    this.isWritCaseSaved = false;
+    this.disableCaseTab = true;
+    this.disableWritTab = true;
+    this.disableJudgementTab = true;
+    this.tabIndex = 0;
   }
 
   onClearAppealForm() {
     this._appealForm.reset();
     this._appealForm.form.markAsUntouched();
     this._appealForm.form.markAsPristine();
-    this.writId = 0;
-    this.caseId = 0; //clearing courtcaseid after inserting data into writappeal
+    // this.writId = 0;
+    // this.caseId = 0; //clearing courtcaseid after inserting data into writappeal
     this.writappealstatusOptions = [];
   }
 
@@ -560,11 +603,14 @@ export class CourtCaseComponent implements OnInit {
           this.caseId = ((this.stateOfCase.value * 1) === 4) ? (res * 1) : 0;
           this.responseMsg = [{ severity: ResponseMessage.SuccessSeverity, detail: ResponseMessage.SuccessMessage }];
           setTimeout(() => this.responseMsg = [], 3000);
-          if (this.isLinkedCaseAvailable === '1') {
-            this.onClearLinkedCase('ALL');
+          if ((this.stateOfCase.value * 1) !== 4 && this.disableWritTab) {
+            if (this.isLinkedCaseAvailable === '1') {
+              this.onClearLinkedCase('ALL');
+            }
+            this.onClearCaseForm();
+          } else {
+            this.tabIndex += 1;
           }
-          this.onClearCaseForm();
-          this.tabIndex += 1;
         } else {
           this.isCourtCaseSaved = false;
           this.responseMsg = [{ severity: ResponseMessage.ErrorSeverity, detail: ResponseMessage.ErrorMessage }];
@@ -592,10 +638,24 @@ export class CourtCaseComponent implements OnInit {
         'flag': true
       }
       this._restApiService.post('WritAppealCourtCase/SaveWritappeals', params).subscribe(res => {
-        if (res) {
-          this.responseMsg = [{ severity: ResponseMessage.SuccessSeverity, detail: ResponseMessage.SuccessMessage }];
-          setTimeout(() => this.responseMsg = [], 3000);
-          this.onClearAppealForm();
+        if (res !== undefined && res !== null) {
+          if ((res * 1) > 0) {
+            this.writId = ((this.writappealStatus.value * 1) !== 4) ? (res * 1) : 0;
+            this.responseMsg = [{ severity: ResponseMessage.SuccessSeverity, detail: ResponseMessage.SuccessMessage }];
+            setTimeout(() => this.responseMsg = [], 3000);
+            if ((this.writappealStatus.value * 1) === 4 && this.disableJudgementTab) {
+              this.onClearCaseForm();
+              this.onClearAppealForm();
+              this.caseId = 0; //resetting courtcaseid to '0'
+              this.writId = 0; //resetting writid to '0'
+            } else {
+              this.tabIndex += 1;
+            }
+          } else {
+            this.isCourtCaseSaved = false;
+            this.responseMsg = [{ severity: ResponseMessage.ErrorSeverity, detail: ResponseMessage.ErrorMessage }];
+            setTimeout(() => this.responseMsg = [], 3000)
+          }
         } else {
           this.isCourtCaseSaved = false;
           this.responseMsg = [{ severity: ResponseMessage.ErrorSeverity, detail: ResponseMessage.ErrorMessage }];
@@ -605,6 +665,43 @@ export class CourtCaseComponent implements OnInit {
     }
   }
 
-  onSaveJudgement() { }
+  onSaveJudgement() {
+    if (this.caseId > 0 && this.writId > 0) {
+      const params = {
+        'judgementid': this.judgementId,
+        'writid': this.writId,
+        'courtcaseid': this.caseId,
+        'judgementdate': this.judgementDate,
+        'receiptdate': this.receiptDate,
+        'expirydate': this.expiryDate,
+        'timelimit': this.timeLimit,
+        'directionlist': this.directedToList,
+        'natureofdirection': this.natureofDirection,
+        'compiledornot': this.compliedorNot,
+        'remarks': this.judgementRemarks,
+        'createddate': new Date(),
+        'flag': true
+      }
+      this._restApiService.post('PostJudgementCourtCase/SavePostJudgement', params).subscribe(res => {
+        if (res !== undefined && res !== null) {
+          if ((res * 1) > 0) {
+            this.responseMsg = [{ severity: ResponseMessage.SuccessSeverity, detail: ResponseMessage.SuccessMessage }];
+            setTimeout(() => this.responseMsg = [], 3000);
+            this.onClearCaseForm();
+            this.onClearAppealForm();
+            this.onClearJudgementForm();
+          } else {
+            this.isCourtCaseSaved = false;
+            this.responseMsg = [{ severity: ResponseMessage.ErrorSeverity, detail: ResponseMessage.ErrorMessage }];
+            setTimeout(() => this.responseMsg = [], 3000)
+          }
+        } else {
+          this.isCourtCaseSaved = false;
+          this.responseMsg = [{ severity: ResponseMessage.ErrorSeverity, detail: ResponseMessage.ErrorMessage }];
+          setTimeout(() => this.responseMsg = [], 3000)
+        }
+      })
+    }
+   }
 
 }
