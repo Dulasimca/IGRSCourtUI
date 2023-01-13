@@ -647,6 +647,7 @@ export class CourtCaseComponent implements OnInit {
         if (res !== undefined && res !== null) {
           if ((res * 1) > 0) {
             this.writId = ((this.writappealStatus.value * 1) !== 4) ? (res * 1) : 0;
+            this.isWritCaseSaved = true;
             this.responseMsg = [{ severity: ResponseMessage.SuccessSeverity, detail: ResponseMessage.SuccessMessage }];
             setTimeout(() => this.responseMsg = [], 3000);
             if ((this.writappealStatus.value * 1) === 4 && this.disableJudgementTab) {
@@ -658,12 +659,12 @@ export class CourtCaseComponent implements OnInit {
               this.tabIndex += 1;
             }
           } else {
-            this.isCourtCaseSaved = false;
+            this.isWritCaseSaved = false;
             this.responseMsg = [{ severity: ResponseMessage.ErrorSeverity, detail: ResponseMessage.ErrorMessage }];
             setTimeout(() => this.responseMsg = [], 3000)
           }
         } else {
-          this.isCourtCaseSaved = false;
+          this.isWritCaseSaved = false;
           this.responseMsg = [{ severity: ResponseMessage.ErrorSeverity, detail: ResponseMessage.ErrorMessage }];
           setTimeout(() => this.responseMsg = [], 3000)
         }

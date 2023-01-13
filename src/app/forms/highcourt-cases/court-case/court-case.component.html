@@ -372,7 +372,7 @@
                             </div>
                         </div>
                     </p-tabPanel>
-                    <p-tabPanel header="Post Judgement Followup"[disabled]="disableJudgementTab" >
+                    <p-tabPanel header="Post Judgement Followup" [disabled]="(disableJudgementTab || !isWritCaseSaved)" >
                         <div class="col-12 md:col-12 lg:col-12 tab-form-hdr">
                             Form-IV Time Bound/Judgements/Directions to Govt/IGR/Others of High Court of Madras/Madurai
                         </div>
