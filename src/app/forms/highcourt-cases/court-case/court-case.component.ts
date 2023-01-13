@@ -507,23 +507,24 @@ export class CourtCaseComponent implements OnInit {
     this.onClearCaseForm();
     this.onClearAppealForm();
     this.onClearJudgementForm();
-  }
-
-  onClearJudgementForm() {
     this.caseId = 0;
     this.writId = 0;
     this.judgementId = 0;
-    this._judgementForm.reset();
-    this._judgementForm.form.markAsUntouched();
-    this._judgementForm.form.markAsPristine();
-    this.directedTo = null;
-    this.directedToOptions = [];
     this.isCourtCaseSaved = false;
     this.isWritCaseSaved = false;
     this.disableCaseTab = true;
     this.disableWritTab = true;
     this.disableJudgementTab = true;
     this.tabIndex = 0;
+  }
+
+  onClearJudgementForm() {
+    this.judgementId = 0;
+    this._judgementForm.reset();
+    this._judgementForm.form.markAsUntouched();
+    this._judgementForm.form.markAsPristine();
+    this.directedTo = null;
+    this.directedToOptions = [];
   }
 
   onClearAppealForm() {
@@ -692,9 +693,7 @@ export class CourtCaseComponent implements OnInit {
           if ((res * 1) > 0) {
             this.responseMsg = [{ severity: ResponseMessage.SuccessSeverity, detail: ResponseMessage.SuccessMessage }];
             setTimeout(() => this.responseMsg = [], 3000);
-            this.onClearCaseForm();
-            this.onClearAppealForm();
-            this.onClearJudgementForm();
+            this.onClearAll();
           } else {
             this.isCourtCaseSaved = false;
             this.responseMsg = [{ severity: ResponseMessage.ErrorSeverity, detail: ResponseMessage.ErrorMessage }];
