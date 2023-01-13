@@ -501,7 +501,12 @@ export class CourtCaseComponent implements OnInit {
     if (index !== undefined && index !== null) {
       this.linkedCaseDetails.splice(index, 1);
     }
+  }
 
+  onClearAll() {
+    this.onClearCaseForm();
+    this.onClearAppealForm();
+    this.onClearJudgementForm();
   }
 
   onClearJudgementForm() {

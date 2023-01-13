@@ -291,7 +291,7 @@
                                             </div>
                                             <div #row5 class="col-12 md:col-11 lg:col-11 txt-to-center no-padding">
                                                 <button pButton pRipple type="button" label="Clear"
-                                                    (click)="onClearCaseForm()"></button> &nbsp;
+                                                    (click)="onClearAll()"></button> &nbsp;
                                                 <button pButton pRipple type="button" label="Save"
                                                     (click)="onSaveCase()"
                                                     [disabled]="(!caseForm.valid || !caseForm.dirty || (isLinkedCaseAvailable=='1' && linkedCaseDetails.length==0))"></button>
